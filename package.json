@@ -4,6 +4,10 @@
   "description": "Knack component library",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ahmad-Zaaza/knack-ui.git"
+  },
   "files": [
     "dist"
   ],
@@ -27,7 +31,7 @@
   },
   "keywords": [],
   "author": "Ahmad Zaaza",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "peerDependencies": {
     "react": ">=16.8",
     "react-dom": ">=16.8"
