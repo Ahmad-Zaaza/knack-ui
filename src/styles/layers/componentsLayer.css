@@ -1,0 +1,10 @@
+@tailwind components;
+
+@layer components {
+  .paper {
+    @apply rounded bg-paper;
+  }
+  .input-label {
+    @apply block mb-2;
+  }
+}
