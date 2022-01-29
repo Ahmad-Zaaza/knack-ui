@@ -1,0 +1,9 @@
+@layer components {
+  .input {
+    @apply px-3 py-2 rounded-lg text-body1;
+    &:disabled {
+      background-color: #eaebee;
+      cursor: not-allowed;
+    }
+  }
+}

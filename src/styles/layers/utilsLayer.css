@@ -1,4 +1,5 @@
-@tailwind utilities;
+@import "tailwindcss/utilities";
+@import "../utilities/input.utilities.css";
 
 @layer utilities {
   .elevation-1 {

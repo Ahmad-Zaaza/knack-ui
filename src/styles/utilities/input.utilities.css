@@ -1,0 +1,8 @@
+@layer utilities {
+  .input-sm {
+    @apply px-2 py-1 text-body2;
+  }
+  .input-lg {
+    @apply px-3 py-3 text-body1;
+  }
+}

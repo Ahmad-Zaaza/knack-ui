@@ -6,12 +6,14 @@ const backgroundColor = require("./extendTheme/backgroundColor");
 const backgroundImage = require("./extendTheme/backgroundImage");
 const screens = require("./extendTheme/screens");
 const zIndex = require("./extendTheme/zIndex");
+const fontSize = require("./fontSize");
 
 module.exports = {
   container: {
     center: true,
     padding: "1rem"
   },
+  fontSize,
   fontFamily: {
     inter: ["Inter", "sans-serif"],
     system: [

@@ -27,7 +27,8 @@
     "prepare": "husky install",
     "lint:staged": "lint-staged",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "create": "node scripts/create.mjs"
   },
   "keywords": [],
   "author": "Ahmad Zaaza",
@@ -73,10 +74,12 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
+    "inquirer": "^6.5.2",
     "jest": "^27.4.7",
     "lint-staged": "^12.3.2",
     "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
+    "postcss-nesting": "^10.1.2",
     "prettier": "^2.3.0",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
