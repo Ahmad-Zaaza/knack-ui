@@ -1,5 +1,6 @@
 @import "tailwindcss/utilities";
 @import "../utilities/input.utilities.css";
+@import "../utilities/stack.utilities.css";
 
 @layer utilities {
   .elevation-1 {

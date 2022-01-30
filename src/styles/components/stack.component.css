@@ -1,0 +1,8 @@
+@layer components {
+  .stack {
+    @apply flex;
+  }
+  .stack-column {
+    @apply flex flex-col;
+  }
+}

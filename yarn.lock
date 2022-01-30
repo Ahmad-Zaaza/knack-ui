@@ -12636,6 +12636,11 @@
   "resolved" "https://registry.npmjs.org/synchronous-promise/-/synchronous-promise-2.0.15.tgz"
   "version" "2.0.15"
 
+"tailwindcss-rtl@^0.8.0":
+  "integrity" "sha512-D+iKrobvc29qAmjwh3IpA2ZrBJacg2tSED7m9doJMCqlqneb8/dK71j0An+zCZQ+pI/c+/CBcm/x7nirzPWVOA=="
+  "resolved" "https://registry.npmjs.org/tailwindcss-rtl/-/tailwindcss-rtl-0.8.0.tgz"
+  "version" "0.8.0"
+
 "tailwindcss@^3.0.16":
   "integrity" "sha512-1L8E5Wr+o1c4kxxObNz2owJe94a7BLEMV+2Lz6wzprJdcs3ENSRR9t4OZf2OqtRNS/q/zFPuOKoLtQoy3Lrhhw=="
   "resolved" "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.0.16.tgz"
