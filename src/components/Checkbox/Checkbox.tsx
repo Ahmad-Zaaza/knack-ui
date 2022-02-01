@@ -16,6 +16,7 @@ const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
       <span className={containerClasses}>
         <input
           aria-checked={checked}
+          checked={checked}
           ref={ref}
           disabled={disabled}
           {...delegated}

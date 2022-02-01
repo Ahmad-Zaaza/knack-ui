@@ -8,6 +8,10 @@ export default {
   argTypes: {
     variant: {
       defaultValue: "default"
+    },
+    checked: {
+      type:'boolean',
+      defaultValue: false
     }
   }
 } as ComponentMeta<typeof Checkbox>;

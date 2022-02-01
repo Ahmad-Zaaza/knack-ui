@@ -1,32 +1,19 @@
-import { useMemo, ComponentPropsWithoutRef, forwardRef } from "react";
-import classnames from "classnames/bind";
-import styles from "../../tailwind.css";
 
-const clsx = classnames.bind(styles);
+import {  ComponentPropsWithoutRef, forwardRef } from "react";
+import useButtonClasses from "./useButtonClasses";
+
 export interface IButtonProps extends ComponentPropsWithoutRef<"button"> {
-  variant: "primary" | "secondary";
+  
 }
 
 const Button = forwardRef<HTMLButtonElement, IButtonProps>(
-  ({ variant, className, children, ...delegated }, ref) => {
-    const classes = useMemo(
-      () =>
-        clsx(
-          "p-4",
-          {
-            "bg-primary": variant === "primary",
-            "bg-secondary": variant === "secondary"
-          },
-          className
-        ),
-      [variant]
-    );
+  ({ className, ...delegated }, ref) => {
+    const { containerClasses } = useButtonClasses({className});
     return (
-      <button ref={ref} className={classes} {...delegated}>
-        {children}
-      </button>
+      <button ref={ref} className={containerClasses} {...delegated}>GENERATED FROM create.mjs</button>
     );
   }
 );
 
 export default Button;
+

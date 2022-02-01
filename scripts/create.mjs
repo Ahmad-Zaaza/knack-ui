@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import inquirer from "inquirer";
 import fs from "fs/promises";
+import fsSync from "fs";
 import path from "path";
 
 import { fileURLToPath } from "url";
@@ -10,28 +11,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const rootPath = path.join(__dirname, "..");
 const componentsPath = path.join(rootPath, "src", "components");
+const stylesPath = path.join(rootPath, "src", "styles");
 
 const jsxTemplate = `
-import { useMemo, ComponentPropsWithoutRef, forwardRef } from "react";
-import classnames from "classnames/bind";
-import styles from "../../tailwind.css";
+import { ComponentPropsWithoutRef, forwardRef } from "react";
+import use[NAME]Classes from "./use[NAME]Classes";
 
-const clsx = classnames.bind(styles);
 export interface I[NAME]Props extends ComponentPropsWithoutRef<"[TYPE]"> {
   
 }
 
 const [NAME] = forwardRef<HTML[CTYPE]Element, I[NAME]Props>(
   ({ className, ...delegated }, ref) => {
-    const classes = useMemo(
-      () =>
-        clsx(
-          className
-        ),
-      []
-    );
+    const { containerClasses } = use[NAME]Classes({className});
     return (
-      <[TYPE] ref={ref} className={classes} {...delegated}>Hi</[TYPE]>
+      <[TYPE] ref={ref} className={containerClasses} {...delegated}>GENERATED FROM create.mjs</[TYPE]>
     );
   }
 );
@@ -57,6 +51,28 @@ export const Default = Template.bind({});
 `;
 const indexTemplate = `
 export { default as [NAME] } from "./[NAME]";
+`;
+
+const useClassesTemplate = `
+import { useMemo } from "react";
+import classnames from "classnames/bind";
+import styles from "../../tailwind.css";
+import { I[NAME]Props } from "./[NAME]";
+
+const clsx = classnames.bind(styles);
+const use[NAME]Classes = ({className}: I[NAME]Props) => {
+  const containerClasses = useMemo(
+    () =>
+      clsx(className),
+    []
+  );
+
+  return {
+    containerClasses
+  };
+};
+
+export default use[NAME]Classes;
 `;
 
 const produceTemplate = (file, changes) => {
@@ -108,11 +124,72 @@ const getUserInput = async () => {
       })
     );
     // 🆕 Make index.tsx file
+
     await fs.writeFile(
       path.join(componentsPath, componentName, `index.tsx`),
       produceTemplate(indexTemplate, {
         NAME: componentName
       })
+    );
+    // Append file to index.ts
+    await fs.appendFile(
+      path.join(componentsPath, `index.ts`),
+      `export { ${componentName} } from "./${componentName}";`
+    );
+    // Add useComponentClasses.tsx
+    await fs.writeFile(
+      path.join(
+        componentsPath,
+        componentName,
+        `use${componentName}Classes.tsx`
+      ),
+      produceTemplate(useClassesTemplate, { NAME: componentName })
+    );
+    // 🎨 Add component styles and utilities
+    await fs.writeFile(
+      path.join(
+        stylesPath,
+        "components",
+        `${componentName.toLowerCase()}.component.css`
+      ),
+      `@layer components {}`
+    );
+    await fs.writeFile(
+      path.join(
+        stylesPath,
+        "utilities",
+        `${componentName.toLowerCase()}.utilities.css`
+      ),
+      `@layer utilities {}`
+    );
+    // Update imports in layers
+    const componentsLayer = fsSync
+      .readFileSync(path.join(stylesPath, "layers", `componentsLayer.css`))
+      .toString()
+      .split("\n");
+    const utilsLayer = fsSync
+      .readFileSync(path.join(stylesPath, "layers", `utilsLayer.css`))
+      .toString()
+      .split("\n");
+    componentsLayer.splice(
+      1, // After tailwind import
+      0,
+      `@import "../components/${componentName.toLowerCase()}.component.css";`
+    );
+    utilsLayer.splice(
+      1, // after tailwind import
+      0,
+      `@import "../utilities/${componentName.toLowerCase()}.utilities.css";`
+    );
+    const newComponentLayer = componentsLayer.join("\n");
+    const newUtilsLayer = utilsLayer.join("\n");
+    await fs.writeFile(
+      path.join(stylesPath, "layers", `componentsLayer.css`),
+      newComponentLayer
+    );
+    await fs.writeFile(
+      path.join(stylesPath, "layers", `utilsLayer.css`),
+      newUtilsLayer
     );
   } catch (error) {
     console.error(error);
