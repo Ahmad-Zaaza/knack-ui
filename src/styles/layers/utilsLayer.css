@@ -1,6 +1,7 @@
 @import "tailwindcss/utilities";
 @import "../utilities/input.utilities.css";
 @import "../utilities/stack.utilities.css";
+@import "../utilities/checkbox.utilities.css";
 
 @layer utilities {
   .elevation-1 {

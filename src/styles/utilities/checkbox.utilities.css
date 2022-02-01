@@ -1,0 +1,20 @@
+@layer utilities {
+  .checkbox-sm {
+    @apply w-[20px] h-[20px];
+    & input[type="checkbox"] ~ span::after {
+      left: 8px;
+      top: 4px;
+      width: 5px;
+      height: 10px;
+    }
+  }
+  .checkbox-lg {
+    @apply w-[30px] h-[30px];
+    & input[type="checkbox"] ~ span::after {
+      left: 12px;
+      top: 5px;
+      width: 8px;
+      height: 17px;
+    }
+  }
+}

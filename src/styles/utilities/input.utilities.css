@@ -6,7 +6,7 @@
     @apply px-3 py-3 text-body1;
   }
   .input-disabled {
-    background-color: #eaebee;
+    @apply border-inputDisabled;
   }
   .input-error {
     @apply border-error;
@@ -18,7 +18,7 @@
   }
   .a-input {
     display: flex;
-    align-items:center;
+    align-items: center;
   }
   .input-prefix-lg {
     @apply ms-3 h-11;

@@ -1,0 +1,42 @@
+@layer components {
+  .checkbox-container {
+    @apply  outline outline-2 outline-primary h-[25px] rounded overflow-hidden  w-[25px] relative inline-block;
+    &:focus-within:not(.input-disabled),
+    &:focus-visible:not(.input-disabled) {
+      @apply outline-black;
+    }
+    &.input-disabled {
+      @apply outline-inputDisabled;
+    }
+    &.input-disabled input[type="checkbox"]:checked ~ span {
+      background-color: #eaebee !important;
+      
+    }
+    & input[type="checkbox"] {
+      @apply !absolute !top-0 !left-0 !w-full !h-full !p-0 !m-0 !z-[2] !opacity-0 !outline-none !shadow-none !inline-block;
+    }
+    & input[type="checkbox"] ~ span {
+      @apply overflow-hidden  block absolute top-0 left-0 w-full h-full pointer-events-none z-[1];
+      transition: background 100ms ease-out 0s;
+      background: transparent;
+    }
+    & input[type="checkbox"]:checked ~ span {
+      @apply bg-primary;
+    }
+    & input[type="checkbox"] ~ span::after {
+      @apply transition-transform duration-100 rotate-45 translate-y-2 opacity-0 transform-gpu;
+      position: absolute;
+      z-index: 1;
+      content: " ";
+      left: 9.2px;
+      top: 4.2px;
+      width: 7px;
+      height: 13px;
+      border: solid #fff;
+      border-width: 0 3px 3px 0;
+    }
+    & input[type="checkbox"]:checked ~ span::after {
+      @apply translate-y-0 opacity-100;
+    }
+  }
+}

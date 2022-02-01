@@ -1,7 +1,7 @@
-/* @tailwind components; */
 @import "tailwindcss/components";
 @import "../components/input.component.css";
 @import "../components/stack.component.css";
+@import "../components/checkbox.component.css";
 
 @layer components {
   .paper {
