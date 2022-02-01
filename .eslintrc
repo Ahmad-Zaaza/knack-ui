@@ -4,6 +4,7 @@
     "es2021": true,
     "jest/globals": true
   },
+  "globals": { "React": true, "JSX": true },
   "plugins": ["react", "@typescript-eslint", "import", "jest"],
   "extends": [
     "plugin:react/recommended",

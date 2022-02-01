@@ -96,8 +96,9 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "module": "ESNext",
-    "target": "es6" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-
+    "target": "ES6" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "lib": ["ES5", "ES6", "DOM", "DOM.Iterable"],
+    "downlevelIteration": true,
     "jsx": "react-jsx",
     "declaration": true,
     "declarationDir": "types",
@@ -107,5 +108,5 @@
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true
   },
-  "exclude": ["**/*.stories.tsx", "dist", "src/stories"]
+  "exclude": ["dist", "src/stories"]
 }

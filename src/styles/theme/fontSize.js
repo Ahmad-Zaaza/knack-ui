@@ -1,6 +1,6 @@
 module.exports = {
   caption: [
-    "0.875rem",
+    "0.8125em",
     {
       letterSpacing: "0.00625rem",
       lineHeight: "20px"

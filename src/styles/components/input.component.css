@@ -1,9 +1,32 @@
 @layer components {
   .input {
-    @apply px-3 py-2 rounded-lg text-body1;
-    &:disabled {
-      background-color: #eaebee;
+    @apply block w-full px-3 py-2 outline-none text-body2;
+    background: none;
+  }
+  .input-container {
+    @apply transition-colors duration-75 border rounded-lg border-borderColor;
+    &:hover:not(:focus):not(:focus-within):not(.input-disabled):not(.input-error) {
+      @apply border-primary;
+    }
+    & input:disabled {
       cursor: not-allowed;
     }
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      @apply outline outline-2 outline-primary;
+    }
+  }
+  .input-adornment {
+    @apply flex items-center justify-center h-9 ms-3 text-primary;
+  }
+  .input-prefix {
+    @apply ms-3;
+  }
+  .input-suffix {
+    @apply me-3;
+  }
+  .input-error-wrapper {
+    @apply inline-block mt-3 text-error text-caption;
   }
 }

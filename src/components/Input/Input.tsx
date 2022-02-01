@@ -1,29 +1,67 @@
-import { useMemo, ComponentPropsWithoutRef, forwardRef } from "react";
-import classnames from "classnames/bind";
-import styles from "../../tailwind.css";
+import { ComponentPropsWithoutRef, forwardRef } from "react";
+import useInputClasses from "./useInputClasses";
 
-const clsx = classnames.bind(styles);
 export interface IInputProps extends ComponentPropsWithoutRef<"input"> {
-  variant?: "small" | "large";
+  /**
+   * Input size.
+   * @default 'default'
+   */
+  variant?: "small" | "default" | "large";
+  /**
+   * Input prefix. Can be a symbol or an icon. colored by primary color
+   */
+  inputPrefix?: JSX.Element;
+  /**
+   * Input suffix. Can be a symbol or an icon. colored by primary color
+   */
+  inputSuffix?: JSX.Element;
+  error?: boolean | string;
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(
-  ({ variant, className, ...delegated }, ref) => {
-    const classes = useMemo(
-      () =>
-        clsx(
-          "input",
-          {
-            "input-sm": variant === "small",
-            "input-lg": variant === "large"
-          },
-          className
-        ),
-      [variant]
-    );
+  (
+    {
+      variant = "default",
+      className,
+      error,
+      inputPrefix: InputPrefix,
+      inputSuffix: InputSuffux,
+      disabled,
+      ...delegated
+    },
+    ref
+  ) => {
+    const {
+      containerClasses,
+      inputClasses,
+      prefixClasses,
+      inputErrorWrapperClasses
+    } = useInputClasses({
+      error,
+      disabled,
+      variant,
+      className,
+      inputPrefix: InputPrefix,
+      inputSuffix: InputSuffux
+    });
+
     return (
-      <input ref={ref} className={classes} {...delegated}/>
-      
+      <div className="input-wrapper">
+        <div className={containerClasses}>
+          {InputPrefix ? (
+            <div className={prefixClasses}>{InputPrefix}</div>
+          ) : null}
+          <input
+            ref={ref}
+            className={inputClasses}
+            disabled={disabled}
+            {...delegated}
+          />
+        </div>
+        {typeof error === "string" ? (
+          <span className={inputErrorWrapperClasses}>{error}</span>
+        ) : null}
+      </div>
     );
   }
 );
