@@ -2,8 +2,12 @@
 
 @layer base {
   :root {
-    --primary-color: 31, 178, 200;
-    --secondary-color: #d75449;
+    --primary-color: 31, 64, 230;
+    --primary-dark-color: 17, 51, 227;
+    --primary-text-color: #fff;
+    --secondary-color: 1, 160, 133;
+    --secondary-dark-color: 1, 118, 98;
+    --error-color: 254,95,85;
     --text-color: #252525;
     --text-color-inverted: #fff;
     --text-color-muted: #999999;

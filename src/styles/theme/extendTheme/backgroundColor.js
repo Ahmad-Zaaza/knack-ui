@@ -5,6 +5,18 @@ module.exports = {
     }
     return `rgb(var(--primary-color))`;
   },
+  secondary: ({ opacityValue }) => {
+    if (opacityValue) {
+      return `rgba(var(--secondary-color), ${opacityValue})`;
+    }
+    return `rgb(var(--secondary-color))`;
+  },
+  error: ({ opacityValue }) => {
+    if (opacityValue) {
+      return `rgba(var(--error-color), ${opacityValue})`;
+    }
+    return `rgb(var(--error-color))`;
+  },
   body: ({ opacityValue }) => {
     if (opacityValue) {
       return `rgba(var(--bg-color), ${opacityValue})`;
