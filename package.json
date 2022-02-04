@@ -26,7 +26,7 @@
     "lint:fix": "eslint --fix",
     "prepare": "husky install",
     "lint:staged": "lint-staged",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "create": "node scripts/create.mjs"
   },
