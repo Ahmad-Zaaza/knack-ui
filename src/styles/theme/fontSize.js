@@ -9,7 +9,8 @@ module.exports = {
   button: [
     "0.875rem",
     {
-      lineHeight: "24px"
+      lineHeight: "24px",
+      fontWeight: 600
     }
   ],
   body2: [

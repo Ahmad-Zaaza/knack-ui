@@ -20,4 +20,13 @@
   .elevation-5 {
     @apply shadow-2xl bg-elevation-5;
   }
+  .sm-size {
+    @apply px-2 py-1.5
+  }
+  .md-size {
+    @apply px-3 py-2
+  }
+  .lg-size {
+    @apply px-3 py-3
+  }
 }

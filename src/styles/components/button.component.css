@@ -1,1 +1,11 @@
-@layer components {}
+@layer components {
+  .btn {
+    @apply flex items-center justify-center transition-all duration-75 rounded-md;
+  }
+  .btn-primary {
+    @apply bg-primary hover:bg-primaryDark text-primaryMain;
+  }
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondaryDark text-secondaryMain;
+  }
+}

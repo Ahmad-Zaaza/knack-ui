@@ -1,1 +1,8 @@
-@layer utilities {}
+@layer utilities {
+  .btn-md {
+    @apply md-size text-button;
+  }
+  .btn-sm {
+    @apply sm-size text-button;
+  }
+}

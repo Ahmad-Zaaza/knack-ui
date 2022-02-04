@@ -1,9 +1,9 @@
 @layer utilities {
   .input-sm {
-    @apply px-2 py-1.5 text-body2;
+    @apply sm-size text-body2;
   }
   .input-lg {
-    @apply px-3 py-3 text-body1;
+    @apply lg-size text-body1;
   }
   .input-disabled {
     @apply border-inputDisabled;
