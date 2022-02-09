@@ -6,24 +6,35 @@ import { TButtonProps } from "./Button";
 const clsx = classnames.bind(styles);
 const useButtonClasses = ({
   className,
-  size,
+  kind,
   variant,
+  fullWidth,
+  iconOnly
 }: TButtonProps<"button">) => {
   const containerClasses = useMemo(
     () =>
       clsx(
         "btn",
         {
-          "btn-primary": variant === "primary",
-          "btn-secondary": variant === "secondary"
+          "btn-primary": kind === "primary",
+          "btn-secondary": kind === "secondary",
+          "btn-primaryOutline": kind === "primaryOutline",
+          "btn-secondaryOutline": kind === "secondaryOutline",
+          "btn-tertiary": kind === "tertiary"
         },
         {
-          "btn-sm": size === "small",
-          "btn-md": size === "medium"
+          "btn-sm": variant === "small" && !iconOnly,
+          "btn-md": variant === "medium" && !iconOnly,
+          "btn-icon-md": variant === "medium" && iconOnly,
+          "btn-icon-sm": variant === "small" && iconOnly,
+        },
+        {
+          "w-full": fullWidth,
+          "btn-icon": iconOnly
         },
         className
       ),
-    [className, variant, size]
+    [className, variant, fullWidth, kind, iconOnly]
   );
 
   return {

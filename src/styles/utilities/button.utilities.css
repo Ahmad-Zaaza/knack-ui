@@ -5,4 +5,10 @@
   .btn-sm {
     @apply sm-size text-button;
   }
+  .btn-icon-md {
+    @apply px-3 py-3 text-button min-h-[40px];
+  }
+  .btn-icon-sm {
+    @apply px-2 py-2 text-button min-h-[36px];
+  }
 }

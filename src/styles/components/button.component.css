@@ -1,11 +1,46 @@
 @layer components {
   .btn {
-    @apply flex items-center justify-center transition-all duration-75 rounded-md;
+    @apply relative flex items-center justify-center transition-all duration-150 rounded-md disabled:opacity-30 disabled:pointer-events-auto;
+    &:not([disabled]):not(:active):not(.btn-icon):hover {
+      transform: translate3d(0px, -2px, 0px);
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px 0px;
+    }
+    &:not(.btn-icon):active {
+      transform: translate3d(0px, 0px, 0px);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 3em inset;
+    }
+  }
+  .btn-icon {
+    @apply overflow-hidden;
   }
   .btn-primary {
-    @apply bg-primary hover:bg-primaryDark text-primaryMain;
+    @apply bg-primary text-primaryMain;
+    &:not([disabled]):hover {
+      @apply bg-primaryDark;
+    }
   }
   .btn-secondary {
-    @apply bg-secondary hover:bg-secondaryDark text-secondaryMain;
+    @apply bg-secondary text-secondaryMain;
+    &:not([disabled]):hover {
+      @apply bg-secondaryDark;
+    }
+  }
+  .btn-tertiary {
+    @apply bg-tertiary text-tertiaryMain;
+    &:not([disabled]):hover {
+      @apply bg-tertiaryDark;
+    }
+  }
+  .btn-primaryOutline {
+    @apply border border-primary text-primary;
+    &:not([disabled]):hover {
+      @apply bg-primary text-primaryMain;
+    }
+  }
+  .btn-secondaryOutline {
+    @apply border border-secondary text-secondary;
+    &:not([disabled]):hover {
+      @apply bg-secondary text-secondaryMain;
+    }
   }
 }
