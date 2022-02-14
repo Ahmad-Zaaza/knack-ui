@@ -1,6 +1,6 @@
 @layer components {
   .checkbox-container {
-    @apply  outline outline-2 outline-primary h-[25px] rounded overflow-hidden  w-[25px] relative inline-block;
+    @apply outline outline-2 outline-primary h-[20px] rounded overflow-hidden  w-[20px] relative inline-block;
     &:focus-within:not(.input-disabled),
     &:focus-visible:not(.input-disabled) {
       @apply outline-black;
@@ -9,8 +9,7 @@
       @apply outline-inputDisabled;
     }
     &.input-disabled input[type="checkbox"]:checked ~ span {
-      background-color: #eaebee !important;
-      
+      @apply bg-inputDisabled;
     }
     & input[type="checkbox"] {
       @apply !absolute !top-0 !left-0 !w-full !h-full !p-0 !m-0 !z-[2] !opacity-0 !outline-none !shadow-none !inline-block;
@@ -28,10 +27,10 @@
       position: absolute;
       z-index: 1;
       content: " ";
-      left: 9.2px;
-      top: 4.2px;
-      width: 7px;
-      height: 13px;
+      left: 7.5px;
+      top: 3.2px;
+      width: 5px;
+      height: 12px;
       border: solid #fff;
       border-width: 0 3px 3px 0;
     }

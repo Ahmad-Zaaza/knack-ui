@@ -4,6 +4,16 @@ import useCheckboxClasses from "./useCheckboxClasses";
 export interface ICheckboxProps
   extends Omit<ComponentPropsWithoutRef<"input">, "type" | "className"> {
   variant?: "small" | "default" | "large";
+  /**
+   * Controls whether or not the checkbox is checked.
+   *
+   */
+  checked?: boolean;
+  /**
+   * Controls whether or not the checkbox is disabled.
+   *
+   */
+  disabled?: boolean;
 }
 
 const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(

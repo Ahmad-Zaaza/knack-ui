@@ -6,7 +6,7 @@
     @apply lg-size text-body1;
   }
   .input-disabled {
-    @apply border-inputDisabled;
+    @apply bg-inputDisabled;
   }
   .input-error {
     @apply border-error;
