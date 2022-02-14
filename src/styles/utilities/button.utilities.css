@@ -6,9 +6,9 @@
     @apply sm-size text-button;
   }
   .btn-icon-md {
-    @apply px-3 py-3 text-button min-h-[40px];
+    @apply px-1.5 py-1.5 text-button;
   }
   .btn-icon-sm {
-    @apply px-2 py-2 text-button min-h-[36px];
+    @apply px-1 py-1 text-button;
   }
 }

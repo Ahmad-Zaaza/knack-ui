@@ -1,0 +1,29 @@
+@layer components {
+  .dialog-overlay {
+    @apply fixed top-0 left-0 block w-full h-full opacity-100 bg-overlay z-dialog-overlay;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    perspective: 1000px;
+    &.dialog-overlay-hidden {
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+  }
+  .dialog {
+    @apply z-dialog bg-paper absolute block overflow-hidden w-[95%] min-w-[300px] shadow opacity-100 rounded top-1/2 left-1/2;
+    transform: translate3d(-50%, -50%, 0) scale(1) rotateX(0);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    &.dialog-hidden {
+      opacity: 0;
+      transform: translate3d(-78%, 100%, 0) scale(0.5) rotateX(-90deg) !important;
+    }
+  }
+  .confirmation-dialog {
+    @apply max-w-2xl mx-auto;
+  }
+  .dialog-close-btn {
+    @apply absolute top-[8px] end-2;
+  }
+  .modal-head {
+    @apply relative p-2 bg-paper;
+  }
+}

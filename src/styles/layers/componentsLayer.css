@@ -1,4 +1,5 @@
 @import "tailwindcss/components";
+@import "../components/dialog.component.css";
 @import "../components/radio.component.css";
 @import "../components/button.component.css";
 @import "../components/input.component.css";

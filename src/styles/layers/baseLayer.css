@@ -3,7 +3,7 @@
 @layer base {
   :root {
     --primary-color: 31, 64, 230;
-    --primary-dark-color: 17, 51, 227;
+    --primary-dark-color: 17, 51, 186;
     --primary-text-color: #fff;
     --secondary-color: 1, 160, 133;
     --secondary-dark-color: 1, 118, 98;
@@ -11,7 +11,7 @@
     --tertiary-color: 234, 235, 238;
     --tertiary-dark-color: 219, 219, 221;
     --tertiary-text-color: #252525;
-    --error-color: 254,95,85;
+    --error-color: 254, 95, 85;
     --text-color: #252525;
     --text-color-inverted: #fff;
     --text-color-muted: #999999;
@@ -19,7 +19,9 @@
     --nav-color: 255, 255, 255;
     --paper-color: #fff;
     --drawer-root-z: 1200;
-    --dialog-root-z: 1100;
+    --dialog-root-z: 1101;
+    --dialog-overlay-z: 1100;
+    --overlay-color: 0, 0, 0, 0.4;
   }
   html[class="dark"] {
     --primary-color: #83c9ce;

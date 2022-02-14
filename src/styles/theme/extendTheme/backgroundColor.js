@@ -23,11 +23,13 @@ module.exports = {
     }
     return `rgb(var(--error-color))`;
   },
+
   body: ({ opacityValue }) => {
     if (opacityValue) {
       return `rgba(var(--bg-color), ${opacityValue})`;
     }
     return `rgb(var(--bg-color))`;
   },
-  paper: "var(--paper-color)"
+  paper: "var(--paper-color)",
+  overlay: "rgba(var(--overlay-color))"
 };

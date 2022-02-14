@@ -20,7 +20,8 @@ const useButtonClasses = ({
           "btn-secondary": kind === "secondary",
           "btn-primaryOutline": kind === "primaryOutline",
           "btn-secondaryOutline": kind === "secondaryOutline",
-          "btn-tertiary": kind === "tertiary"
+          "btn-tertiary": kind === "tertiary",
+          "btn-ghost": kind === "ghost",
         },
         {
           "btn-sm": variant === "small" && !iconOnly,

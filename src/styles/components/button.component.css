@@ -1,11 +1,11 @@
 @layer components {
   .btn {
     @apply relative flex items-center justify-center transition-all duration-150 rounded-md disabled:opacity-30 disabled:pointer-events-auto;
-    &:not([disabled]):not(:active):not(.btn-icon):hover {
+    &:not([disabled]):not(:active):not(.btn-icon):not(.btn-ghost):hover {
       transform: translate3d(0px, -2px, 0px);
       box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px 0px;
     }
-    &:not(.btn-icon):active {
+    &:not(.btn-icon):not(.btn-ghost):active {
       transform: translate3d(0px, 0px, 0px);
       box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 3em inset;
     }
@@ -29,6 +29,12 @@
     @apply bg-tertiary text-tertiaryMain;
     &:not([disabled]):hover {
       @apply bg-tertiaryDark;
+    }
+  }
+  .btn-ghost {
+    @apply text-main;
+    &:not([disabled]):hover {
+      @apply bg-tertiary bg-opacity-80;
     }
   }
   .btn-primaryOutline {
