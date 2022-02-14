@@ -5,22 +5,17 @@ import { IBaseDialogProps } from "./BaseDialog";
 
 const clsx = classnames.bind(styles);
 const useBaseDialogClasses = ({
-  overlayClassName,
   dialogClassName,
-  isOpen
-}: Omit<IBaseDialogProps, "onClose">) => {
+  isOpen,
+  active
+}: Omit<IBaseDialogProps, "onClose"> & { active: boolean }) => {
   const dialogClasses = useMemo(
-    () => clsx("dialog", { "dialog-hidden": !isOpen }, dialogClassName),
-    [isOpen]
-  );
-  const overlayClasses = useMemo(
     () =>
-      clsx("dialog-overlay", { "dialog-overlay-hidden": !isOpen }, overlayClassName),
-    [isOpen]
+      clsx("dialog", { "dialog-active": isOpen && active }, dialogClassName),
+    [isOpen, active]
   );
 
   return {
-    overlayClasses,
     dialogClasses
   };
 };

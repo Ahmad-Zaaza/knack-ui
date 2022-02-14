@@ -1,17 +1,36 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-// import { BaseDialog } from "../BaseDialog";
+import { useState } from "react";
+import { Button } from "../..";
 
 import ConfirmationDialog from "./ConfirmationDialog";
 
 export default {
   title: "Components/ConfirmationDialog",
   component: ConfirmationDialog,
-  argTypes: {},
-  // subcomponents: { BaseDialog }
+  argTypes: {
+    isOpen: {
+      control: {
+        disable: true
+      }
+    }
+  }
 } as ComponentMeta<typeof ConfirmationDialog>;
 
-const Template: ComponentStory<typeof ConfirmationDialog> = (args) => (
-  <ConfirmationDialog {...args} />
-);
+const Template: ComponentStory<typeof ConfirmationDialog> = ({ ...args }) => {
+  const [open, setOpen] = useState(args.isOpen);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open</Button>
+      <ConfirmationDialog
+        disableFocusLock
+        {...args}
+        isOpen={open}
+        onCancel={() => {
+          setOpen(false);
+        }}
+      />
+    </>
+  );
+};
 
 export const Default = Template.bind({});

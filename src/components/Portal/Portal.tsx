@@ -30,7 +30,6 @@ interface IPortalProps {
  * @see React  https://reactjs.org/docs/portals.html
  */
 const Portal: React.FC<IPortalProps> = ({ children, containerRef, type='knack-portal' }) => {
-  //   const rootNode = useMemo(() => appendToBody(id), [id]);
   const mountNode = useRef<HTMLDivElement | null>(null);
   const portalNode = useRef<HTMLElement | null>(null);
   const forceUpdate = useForceUpdate();

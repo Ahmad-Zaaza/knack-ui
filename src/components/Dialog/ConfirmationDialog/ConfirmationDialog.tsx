@@ -24,13 +24,17 @@ export interface IConfirmationDialogProps
 }
 
 export type TConfirmationDialogProps = IConfirmationDialogProps &
-  IBaseDialogProps;
+  Omit<IBaseDialogProps, "onClose">;
+
+/**
+ * An accessible confirmation dialog or modal window.
+ * Made on top of `Dialog` Component
+ */
 const ConfirmationDialog = forwardRef<HTMLDivElement, TConfirmationDialogProps>(
   (
     {
       className,
-      onClose,
-      // onCancel,
+      onCancel,
       // onConfirm,
       // cancelBtnText,
       // confirmBtnText,
@@ -42,11 +46,11 @@ const ConfirmationDialog = forwardRef<HTMLDivElement, TConfirmationDialogProps>(
     return (
       <BaseDialog
         ref={ref}
-        onClose={onClose}
+        onClose={onCancel}
         dialogClassName={containerClasses}
         {...delegated}
       >
-        <ModalHead content="Modal Title" onClose={onClose} />
+        <ModalHead content="Modal Title" onClose={onCancel} />
       </BaseDialog>
     );
   }

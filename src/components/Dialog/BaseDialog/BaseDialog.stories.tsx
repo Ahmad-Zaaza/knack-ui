@@ -1,29 +1,34 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
+import { Button } from "../..";
 
 import Dialog from "./BaseDialog";
 
 export default {
   title: "Components/Dialog",
   component: Dialog,
-  argTypes: {}
+  argTypes: {
+    isOpen: {
+      control: {
+        disable: true
+      }
+    }
+  }
 } as ComponentMeta<typeof Dialog>;
 
-const Template: ComponentStory<typeof Dialog> = ({
-  isOpen:_,
-  onClose:__,
-  ...args
-}) => {
+const Template: ComponentStory<typeof Dialog> = (args) => {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ height: "100vh" }}>
-      <Dialog isOpen={open} onClose={() => setOpen(false)} {...args} />
-    </div>
+    <>
+      <Button onClick={() => setOpen(true)}>Open</Button>
+      <div style={{ height: "110vh" }}>
+        <Dialog {...args} isOpen={open} onClose={() => setOpen(false)} />
+      </div>
+    </>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  children: "Base Dialog",
-  // isOpen: false
+  children: "Base Dialog"
 };

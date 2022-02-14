@@ -100,5 +100,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "react-remove-scroll": "^2.4.4"
   }
 }

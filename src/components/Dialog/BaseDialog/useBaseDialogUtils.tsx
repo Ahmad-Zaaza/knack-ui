@@ -1,21 +1,15 @@
-import { useCallback, useEffect } from "react";
-import { getScrollbarWidth } from "../../../utils/helpers";
+import { Dispatch, SetStateAction, useCallback, useEffect } from "react";
+import { useIsomorphicLayoutEffect } from "../../../utils/useIsomorphicLayoutEffect";
 import { IBaseDialogProps } from "./BaseDialog";
 
 const useBaseDialogUtils = ({
   isOpen,
   onClose,
-  bodyScrollLocked,
-  replaceScrollBar,
-  defaultBodyOverflow
-}: Pick<
-  IBaseDialogProps,
-  | "isOpen"
-  | "onClose"
-  | "replaceScrollBar"
-  | "bodyScrollLocked"
-  | "defaultBodyOverflow"
->) => {
+
+  setActive
+}: Pick<IBaseDialogProps, "isOpen" | "onClose"> & {
+  setActive: Dispatch<SetStateAction<boolean>>;
+}) => {
   // 🔒 Close on Esc press
   const handleEsc = useCallback(
     (event: KeyboardEvent) => {
@@ -32,19 +26,13 @@ const useBaseDialogUtils = ({
       window.removeEventListener("keydown", handleEsc);
     };
   }, [handleEsc]);
-  useEffect(() => {
-    if (bodyScrollLocked) {
-      if (replaceScrollBar) {
-        document.body.style.borderRight = isOpen
-          ? `solid ${getScrollbarWidth()}px ${"#eeeeee"}`
-          : "none";
-      }
-
-      document.body.style.overflow = isOpen
-        ? "hidden"
-        : defaultBodyOverflow || "visible";
+  useIsomorphicLayoutEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        setActive(isOpen);
+      }, 10);
     }
-  }, [isOpen, defaultBodyOverflow, replaceScrollBar, bodyScrollLocked]);
+  }, [isOpen]);
 };
 
 export default useBaseDialogUtils;
