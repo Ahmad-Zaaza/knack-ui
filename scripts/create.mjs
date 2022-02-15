@@ -64,7 +64,7 @@ const use[NAME]Classes = ({className}: I[NAME]Props) => {
   const containerClasses = useMemo(
     () =>
       clsx(className),
-    []
+    [className ]
   );
 
   return {

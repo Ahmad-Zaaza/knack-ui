@@ -7,6 +7,7 @@ const backgroundImage = require("./extendTheme/backgroundImage");
 const screens = require("./extendTheme/screens");
 const zIndex = require("./extendTheme/zIndex");
 const fontSize = require("./fontSize");
+const fontWeight = require("./fontWeight");
 
 module.exports = {
   container: {
@@ -14,6 +15,7 @@ module.exports = {
     padding: "1rem"
   },
   fontSize,
+  fontWeight,
   fontFamily: {
     inter: ["Inter", "sans-serif"],
     system: [
