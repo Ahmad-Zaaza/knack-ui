@@ -108,5 +108,5 @@
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true
   },
-  "exclude": ["dist", "src/stories"]
+  "exclude": ["dist", "src/stories", "**/__tests__", "**/*/spec.tsx"]
 }
