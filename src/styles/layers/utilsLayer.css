@@ -1,4 +1,5 @@
 @import "tailwindcss/utilities";
+@import "../utilities/toggle.utilities.css";
 @import "../utilities/typography.utilities.css";
 @import "../utilities/dialog.utilities.css";
 @import "../utilities/radio.utilities.css";

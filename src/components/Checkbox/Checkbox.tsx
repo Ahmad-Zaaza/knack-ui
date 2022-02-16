@@ -2,8 +2,8 @@ import { ComponentPropsWithoutRef, forwardRef } from "react";
 import useCheckboxClasses from "./useCheckboxClasses";
 
 export interface ICheckboxProps
-  extends Omit<ComponentPropsWithoutRef<"input">, "type" | "className"> {
-  variant?: "small" | "default" | "large";
+  extends Omit<ComponentPropsWithoutRef<"input">, "type" | "className" | 'size'> {
+  size?: "small" | "default" | "large";
   /**
    * Controls whether or not the checkbox is checked.
    *
@@ -17,10 +17,10 @@ export interface ICheckboxProps
 }
 
 const Checkbox = forwardRef<HTMLInputElement, ICheckboxProps>(
-  ({ disabled, checked, variant = "default", ...delegated }, ref) => {
+  ({ disabled, checked, size = "default", ...delegated }, ref) => {
     const { containerClasses } = useCheckboxClasses({
       disabled,
-      variant
+      size
     });
     return (
       <span className={containerClasses}>

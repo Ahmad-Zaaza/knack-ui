@@ -7,7 +7,7 @@ export default {
   title: "Components/Checkbox",
   component: Checkbox,
   argTypes: {
-    variant: {
+    size: {
       defaultValue: "default"
     },
     checked: {
@@ -38,11 +38,11 @@ const Template: ComponentStory<typeof Checkbox> = ({...args}) => {
 export const Default = Template.bind({});
 export const Small = Template.bind({});
 Small.args = {
-  variant: "small"
+  size: "small"
 };
 export const Large = Template.bind({});
 Large.args = {
-  variant: "large"
+  size: "large"
 };
 export const Disabled = Template.bind({});
 Disabled.args = {

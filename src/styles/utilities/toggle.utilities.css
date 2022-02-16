@@ -1,0 +1,11 @@
+@layer utilities {
+  .toggle-sm {
+    @apply h-[18px];
+    & span:before {
+      @apply w-[10px] h-[10px] top-[4px];
+    }
+    & input[type="checkbox"]:checked ~ span::before {
+      transform: translateX(21px);
+    }
+  }
+}
