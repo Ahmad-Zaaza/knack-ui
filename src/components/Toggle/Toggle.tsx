@@ -31,7 +31,7 @@ const Toggle = forwardRef<HTMLInputElement, IToggleProps>(
   ({ disabled, color = "secondary", size = "medium", ...delegated }, ref) => {
     const { containerClasses } = useToggleClasses({ color, size });
     return (
-      <div data-testId='k-toggle' ref={ref} className={containerClasses}>
+      <div data-testid='k-toggle' ref={ref} className={containerClasses}>
         <input
           type="checkbox"
           disabled={disabled}
