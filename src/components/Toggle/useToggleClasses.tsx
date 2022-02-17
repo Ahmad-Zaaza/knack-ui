@@ -4,7 +4,7 @@ import styles from "../../tailwind.css";
 import { IToggleProps } from "./Toggle";
 
 const clsx = classnames.bind(styles);
-const useToggleClasses = ({  color, size }: IToggleProps) => {
+const useToggleClasses = ({ color, size }: IToggleProps) => {
   const containerClasses = useMemo(
     () =>
       clsx("toggle", {
@@ -12,7 +12,7 @@ const useToggleClasses = ({  color, size }: IToggleProps) => {
         "text-primary": color === "primary",
         "toggle-sm": size === "small"
       }),
-    [ color, size]
+    [color, size]
   );
 
   return {

@@ -5,7 +5,7 @@ import {
 } from "../../types/helpers";
 import useTypographyClasses from "./useTypographyClasses";
 
-type TypographyTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+type TypographyTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | 'label';
 export type TypographyVariants =
   | "h1"
   | "h2"

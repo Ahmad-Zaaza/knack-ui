@@ -4,15 +4,17 @@ import styles from "../../tailwind.css";
 import { ICheckboxProps } from "./Checkbox";
 
 const clsx = classnames.bind(styles);
-const useCheckboxClasses = ({ disabled, size }: ICheckboxProps) => {
+const useCheckboxClasses = ({ size, color }: ICheckboxProps) => {
   const containerClasses = useMemo(
     () =>
       clsx("checkbox-container", {
-        "input-disabled": disabled,
+        
         "checkbox-sm": size === "small",
-        "checkbox-lg": size === "large"
+        "checkbox-lg": size === "large",
+        "text-secondary": color === "secondary",
+        "text-primary": color === "primary"
       }),
-    [disabled, size]
+    [ size, color]
   );
 
   return {

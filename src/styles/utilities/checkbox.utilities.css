@@ -2,17 +2,17 @@
   .checkbox-sm {
     @apply w-[15px] h-[15px];
     & input[type="checkbox"] ~ span::after {
-      left: 5px;
-      top: 1.8px;
-      width: 5px;
-      height: 10px;
+      left: 4.5px;
+      top: 1.5px;
+      width: 4px;
+      height: 8px;
     }
   }
   .checkbox-lg {
     @apply w-[25px] h-[25px];
     & input[type="checkbox"] ~ span::after {
-      left: 9px;
-      top: 3.9px;
+      left: 8.2px;
+      top: 3.4px;
       width: 7px;
       height: 14px;
     }

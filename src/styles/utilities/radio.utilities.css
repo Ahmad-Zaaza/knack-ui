@@ -1,1 +1,22 @@
-@layer utilities {}
+@layer utilities {
+    .radio-sm {
+      @apply w-[15px] h-[15px];
+      & input[type="radio"] ~ span::after {
+        left: 4px;
+        top: 1.7px;
+        width: 4.2px;
+        height: 8px;
+        border-width: 0 2px 2px 0;
+      }
+    }
+    .radio-lg {
+      @apply w-[25px] h-[25px];
+      & input[type="radio"] ~ span::after {
+        left: 7.4px;
+        top: 3.9px;
+        width: 7px;
+        height: 13px;
+      }
+    }
+  }
+  
