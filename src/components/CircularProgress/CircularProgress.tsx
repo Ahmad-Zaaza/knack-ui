@@ -84,7 +84,11 @@ const CircularProgress = forwardRef<SVGSVGElement, ICircularProgressProps>(
         width={size}
         height={size}
         viewBox={viewBox}
+        aria-valuenow={percentage}
+        aria-valuemax={100}
+        aria-valuemin={0}
         {...delegated}
+        role="progressbar"
       >
         <circle
           fill="none"

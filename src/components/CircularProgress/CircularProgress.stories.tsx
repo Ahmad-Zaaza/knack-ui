@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof CircularProgress> = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  size: 50,
-  strokeWidth: 3,
-  percentage: 45
+  size: 20,
+  percentage: 45,
+  showText: true
 };
