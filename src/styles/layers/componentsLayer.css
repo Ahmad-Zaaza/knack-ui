@@ -1,4 +1,5 @@
 @import "tailwindcss/components";
+@import "../components/circularprogress.component.css";
 @import "../components/toggle.component.css";
 @import "../components/typography.component.css";
 @import "../components/dialog.component.css";

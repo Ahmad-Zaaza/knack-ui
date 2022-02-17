@@ -6,4 +6,6 @@ export { Radio } from "./Radio";
 export { BaseDialog } from "./Dialog/BaseDialog";
 export { ConfirmationDialog } from "./Dialog/ConfirmationDialog";
 export { ModalHead } from "./Dialog/components/ModalHead";
-export { Typography } from "./Typography";export { Toggle } from "./Toggle";
+export { Typography } from "./Typography";
+export { Toggle } from "./Toggle";
+export { CircularProgress } from "./CircularProgress";

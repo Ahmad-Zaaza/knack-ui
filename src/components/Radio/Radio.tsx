@@ -6,6 +6,10 @@ export interface IRadioProps
     ComponentPropsWithoutRef<"input">,
     "type" | "className" | "size"
   > {
+  /**
+   * Controls the size of the radio button.
+   *
+   */
   size?: "small" | "default" | "large";
   /**
    * Controls whether or not the radio is checked.
