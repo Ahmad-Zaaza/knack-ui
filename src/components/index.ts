@@ -10,3 +10,4 @@ export { Typography } from "./Typography";
 export { Toggle } from "./Toggle";
 export { CircularProgress } from "./CircularProgress";
 export { LinearProgress } from "./LinearProgress";
+export { Stepper } from "./Stepper";

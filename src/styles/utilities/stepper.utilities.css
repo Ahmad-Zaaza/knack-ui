@@ -1,0 +1,12 @@
+@layer utilities {
+  .step-connector--active,.step-connector--completed {
+    & span {
+      @apply border-solid;
+    }
+  }
+  .step--active , .step--completed {
+    & button {
+      @apply bg-current;
+    }
+  }
+}

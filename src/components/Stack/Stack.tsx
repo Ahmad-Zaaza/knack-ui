@@ -8,6 +8,10 @@ import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
 
 const clsx = classnames.bind(styles);
+
+/**
+ * One limitation with Stack that it affects absolute children with `margin-top`
+ */
 export interface IStackProps extends ComponentPropsWithoutRef<"div"> {
   /**
    * Controls flex direction

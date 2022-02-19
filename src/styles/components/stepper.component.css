@@ -1,0 +1,20 @@
+@layer components {
+  .stepper {
+    @apply flex items-start p-4;
+  }
+  .step {
+    @apply relative flex-1 px-4;
+    & button {
+      @apply rounded-full w-[40px] h-[40px];
+    }
+  }
+  .step-connector {
+    @apply absolute !mt-0;
+    top: calc((40px - 1px) / 2);
+    left: calc((-50% + 40px) - 8px);
+    right: calc((50% + 40px) - 8px);
+    & span {
+      @apply block border-t border-dashed;
+    }
+  }
+}
