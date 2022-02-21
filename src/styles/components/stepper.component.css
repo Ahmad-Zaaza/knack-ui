@@ -17,7 +17,7 @@
     left: calc((-50% + 40px) - 8px);
     right: calc((50% + 40px) - 8px);
     & span {
-      @apply block border-t border-dashed;
+      @apply block border-t-2 border-dashed;
     }
   }
 }

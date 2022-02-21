@@ -2,7 +2,6 @@ import React, {
   ComponentPropsWithoutRef,
   createContext,
   forwardRef,
-  useCallback,
   useContext,
   useMemo,
   useState
@@ -34,24 +33,24 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
     const { stepperClasses } = useStepperClasses({
       className
     });
-    const onStepChange = useCallback((index: number) => {
-      if (typeof activeStep !== "undefined" && !onChange) {
+
+    const onStepChange = (index: number) => {
+      if (typeof activeStep !== "undefined" && onChange) {
+        onChange?.(index);
         return;
       }
       if (!activeStep) {
         return setStep(index);
       }
-      if (typeof activeStep !== "undefined" && onChange) {
-        setStep(index);
-      }
-    }, []);
+    };
+
     const contextValue = useMemo(
       () => ({
         onChange: onStepChange,
-        currentStep: step,
+        currentStep: activeStep || step,
         clickable: Boolean(clickable)
       }),
-      [onStepChange, step, clickable]
+      [onStepChange, step, clickable, activeStep]
     );
     return (
       <StepperContext.Provider value={contextValue}>

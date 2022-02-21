@@ -9,7 +9,7 @@
     }
   }
   .dialog {
-    @apply z-dialog bg-paper absolute block overflow-hidden w-[95%] min-w-[300px] shadow opacity-0 rounded top-1/2 left-1/2;
+    @apply z-dialog bg-paper absolute block overflow-hidden w-[95%] min-w-[300px] shadow opacity-0 rounded-xl top-1/2 left-1/2;
     transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     transform: translate3d(-78%, 100%, 0) scale(0.5) rotateX(-90deg);
     &.dialog-active {

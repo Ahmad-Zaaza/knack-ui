@@ -71,12 +71,14 @@ const Step: React.FC<IStepProps> = ({
         onClick={() => {
           if (clickable && typeof index !== "undefined")
             handleChangeStep(index);
+            
         }}
         disabled={disabled}
       >
         {iconChildren}
       </Button>
       <Typography
+        textAlign="center"
         onClick={() => {
           if (clickable && typeof index !== "undefined")
             handleChangeStep(index);
