@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Stepper>;
 
 const Template: ComponentStory<typeof Stepper> = ({ ...args }) => (
-  <Stepper {...args}>
+  <Stepper clickable {...args}>
     <Step>First step</Step>
     <Step>hello</Step>
     <Step>I am disabled</Step>

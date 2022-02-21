@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Button, Stack, Typography } from "../..";
 import { useStepperContext } from "../Stepper";
 import useStepClasses from "./useStepClasses";
@@ -45,6 +45,12 @@ const Step: React.FC<IStepProps> = ({
       ),
     [completed]
   );
+  const handleChangeStep = useCallback(
+    (num: number) => {
+      onChange(num);
+    },
+    [index]
+  );
   return (
     <Stack
       direction="column"
@@ -52,14 +58,32 @@ const Step: React.FC<IStepProps> = ({
       gap={2}
       className={stepClasses}
     >
-      {clickable ? (
+      {/* {clickable ? (
         <Button onClick={() => onChange(index!)} disabled={disabled}>
           {iconChildren}
         </Button>
       ) : (
         <span>{iconChildren}</span>
-      )}
-      <Typography variant="subtitle1" as="p">
+      )} */}
+      <Button
+        kind="tertiary"
+        elevationAnimation={false}
+        onClick={() => {
+          if (clickable && typeof index !== "undefined")
+            handleChangeStep(index);
+        }}
+        disabled={disabled}
+      >
+        {iconChildren}
+      </Button>
+      <Typography
+        onClick={() => {
+          if (clickable && typeof index !== "undefined")
+            handleChangeStep(index);
+        }}
+        variant="subtitle1"
+        as="p"
+      >
         {children}
       </Typography>
       {index !== 0 && (

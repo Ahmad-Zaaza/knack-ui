@@ -35,6 +35,12 @@ export interface TBaseButtonProps {
    * If `true` will render an Icon button
    */
   iconOnly?: boolean;
+  /**
+   * If `false` will disable hover elevation animation.
+   *
+   * @default true
+   */
+  elevationAnimation?: boolean;
 }
 
 export type ButtonComponent = <C extends ElementType = "button">(
@@ -55,6 +61,7 @@ const Button: ButtonComponent = forwardRef(
       children,
       fullWidth,
       iconOnly,
+      elevationAnimation,
 
       ...delegated
     }: TButtonProps<C>,
@@ -66,7 +73,8 @@ const Button: ButtonComponent = forwardRef(
       kind,
       isLoading,
       fullWidth,
-      iconOnly
+      iconOnly,
+      elevationAnimation
     });
     const component = as || "button";
     return createElement(

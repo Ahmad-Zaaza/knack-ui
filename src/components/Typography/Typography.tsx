@@ -5,7 +5,16 @@ import {
 } from "../../types/helpers";
 import useTypographyClasses from "./useTypographyClasses";
 
-type TypographyTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | 'label';
+type TypographyTags =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "p"
+  | "span"
+  | "label";
 export type TypographyVariants =
   | "h1"
   | "h2"
@@ -37,6 +46,10 @@ export type TBaseTypographyProps = {
    * Controls the typography font weight
    */
   fontWeight?: TypographyFontWeight;
+  /**
+   * Controls `text-align` CSS property.
+   */
+  textAlign?: "left" | "right" | "start" | "end" | "center";
 };
 
 export type TypographyComponent = <C extends TypographyTags>(
@@ -55,6 +68,7 @@ const Typography: TypographyComponent = forwardRef(
       children,
       fontWeight,
       color,
+      textAlign,
       ...delegated
     }: TypographyProps<C>,
     ref: PolymorphicRef<C>
@@ -63,7 +77,8 @@ const Typography: TypographyComponent = forwardRef(
       className,
       variant,
       color,
-      fontWeight
+      fontWeight,
+      textAlign
     });
     const component = as || "p";
     return createElement(

@@ -5,7 +5,10 @@
   .step {
     @apply relative flex-1 px-4;
     & button {
-      @apply rounded-full w-[40px] h-[40px];
+      @apply rounded-full w-[40px] h-[40px] transition-colors duration-200;
+    }
+    & p {
+      @apply cursor-pointer;
     }
   }
   .step-connector {

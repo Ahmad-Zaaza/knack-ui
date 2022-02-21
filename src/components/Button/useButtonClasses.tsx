@@ -9,7 +9,8 @@ const useButtonClasses = ({
   kind,
   variant,
   fullWidth,
-  iconOnly
+  iconOnly,
+  elevationAnimation
 }: TButtonProps<"button">) => {
   const containerClasses = useMemo(
     () =>
@@ -21,17 +22,18 @@ const useButtonClasses = ({
           "btn-primaryOutline": kind === "primaryOutline",
           "btn-secondaryOutline": kind === "secondaryOutline",
           "btn-tertiary": kind === "tertiary",
-          "btn-ghost": kind === "ghost",
+          "btn-ghost": kind === "ghost"
         },
         {
           "btn-sm": variant === "small" && !iconOnly,
           "btn-md": variant === "medium" && !iconOnly,
           "btn-icon-md": variant === "medium" && iconOnly,
-          "btn-icon-sm": variant === "small" && iconOnly,
+          "btn-icon-sm": variant === "small" && iconOnly
         },
         {
           "w-full": fullWidth,
-          "btn-icon": iconOnly
+          "btn-icon": iconOnly,
+          "no-btn-elev": !elevationAnimation
         },
         className
       ),

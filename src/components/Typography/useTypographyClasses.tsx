@@ -1,24 +1,16 @@
 import { useMemo } from "react";
 import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
-import {
-  TypographyColors,
-  TypographyFontWeight,
-  TypographyVariants
-} from "./Typography";
+import { TBaseTypographyProps } from "./Typography";
 
 const clsx = classnames.bind(styles);
 const useTypographyClasses = ({
   className,
   variant,
   fontWeight,
-  color
-}: {
-  className?: string;
-  variant?: TypographyVariants;
-  color?: TypographyColors;
-  fontWeight?: TypographyFontWeight;
-}) => {
+  color,
+  textAlign
+}: TBaseTypographyProps & { className?: string }) => {
   const typographyClasses = useMemo(
     () =>
       clsx(
@@ -52,6 +44,13 @@ const useTypographyClasses = ({
           "font-semibold": fontWeight === "semibold",
           "font-light": fontWeight === "light",
           "font-medium": fontWeight === "medium"
+        },
+        {
+          "text-center": textAlign === "center",
+          "text-start": textAlign === "start",
+          "text-end": textAlign === "end",
+          "text-left": textAlign === "left",
+          "text-right": textAlign === "right"
         },
         className
       ),
