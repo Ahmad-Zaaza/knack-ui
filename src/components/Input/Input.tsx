@@ -46,7 +46,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     });
 
     return (
-      <div className="input-wrapper">
+      <div>
         <div className={containerClasses}>
           {InputPrefix ? (
             <div className={prefixClasses}>{InputPrefix}</div>

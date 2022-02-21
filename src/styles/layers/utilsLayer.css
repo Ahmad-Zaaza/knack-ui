@@ -1,4 +1,5 @@
 @import "tailwindcss/utilities";
+@import "../utilities/textarea.utilities.css";
 @import "../utilities/stepper.utilities.css";
 @import "../utilities/linearprogress.utilities.css";
 @import "../utilities/circularprogress.utilities.css";

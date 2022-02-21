@@ -12,3 +12,4 @@ export { CircularProgress } from "./CircularProgress";
 export { LinearProgress } from "./LinearProgress";
 export { Stepper } from "./Stepper";
 export { Step } from "./Step";
+export { Textarea } from "./Textarea";

@@ -1,4 +1,5 @@
 @import "tailwindcss/components";
+@import "../components/textarea.component.css";
 @import "../components/stepper.component.css";
 @import "../components/linearprogress.component.css";
 @import "../components/circularprogress.component.css";

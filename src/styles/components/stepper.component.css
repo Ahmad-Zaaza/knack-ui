@@ -1,6 +1,6 @@
 @layer components {
   .stepper {
-    @apply flex items-start p-4;
+    @apply flex items-start;
   }
   .step {
     @apply relative flex-1 px-4;
