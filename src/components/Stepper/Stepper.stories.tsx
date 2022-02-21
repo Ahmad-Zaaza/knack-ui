@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Step from "./Step/Step";
+import Step from "../Step/Step";
 
 import Stepper from "./Stepper";
 

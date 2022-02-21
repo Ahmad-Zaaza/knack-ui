@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
-import { Button, Stack, Typography } from "../..";
-import { useStepperContext } from "../Stepper";
+import { Button, Stack, Typography } from "..";
+import { useStepperContext } from "../Stepper/Stepper";
 import useStepClasses from "./useStepClasses";
 
 export interface IStepProps {
