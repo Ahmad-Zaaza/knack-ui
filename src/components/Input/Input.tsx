@@ -22,11 +22,11 @@ export interface IInputProps extends ComponentPropsWithoutRef<"input"> {
   /**
    * className applied to input container
    */
-  className: string;
+  className?: string;
   /**
    * className applied to input element
    */
-  inputClassname: string;
+  inputClassName?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(
@@ -35,7 +35,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       variant = "default",
       className,
       error,
-      inputClassname,
+      inputClassName,
       inputPrefix: InputPrefix,
       inputSuffix: InputSuffux,
       disabled,
@@ -53,7 +53,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       disabled,
       variant,
       className,
-      inputClassname,
+      inputClassName,
       inputPrefix: InputPrefix,
       inputSuffix: InputSuffux
     });

@@ -9,7 +9,7 @@ const useInputClasses = ({
   variant,
   className,
   disabled,
-  inputClassname,
+  inputClassName,
   inputPrefix: InputPrefix,
   inputSuffix: InputSuffux
 }: IInputProps) => {
@@ -21,9 +21,9 @@ const useInputClasses = ({
           "input-sm": variant === "small",
           "input-lg": variant === "large"
         },
-        inputClassname
+        inputClassName
       ),
-    [variant, inputClassname]
+    [variant, inputClassName]
   );
   const containerClasses = useMemo(
     () =>
