@@ -50,6 +50,10 @@ export type TBaseTypographyProps = {
    * Controls `text-align` CSS property.
    */
   textAlign?: "left" | "right" | "start" | "end" | "center";
+  /**
+   * Applies `line-clamp` to the element.
+   */
+  clamp?: 1 | 2 | 3 | 4;
 };
 
 export type TypographyComponent = <C extends TypographyTags>(
@@ -68,6 +72,7 @@ const Typography: TypographyComponent = forwardRef(
       children,
       fontWeight,
       color,
+      clamp,
       textAlign,
       ...delegated
     }: TypographyProps<C>,
@@ -78,6 +83,7 @@ const Typography: TypographyComponent = forwardRef(
       variant,
       color,
       fontWeight,
+      clamp,
       textAlign
     });
     const component = as || "p";

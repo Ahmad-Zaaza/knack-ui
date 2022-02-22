@@ -2693,6 +2693,11 @@
     "resolve-from" "^5.0.0"
     "store2" "^2.12.0"
 
+"@tailwindcss/line-clamp@^0.3.1":
+  "integrity" "sha512-pNr0T8LAc3TUx/gxCfQZRe9NB2dPEo/cedPHzUGIPxqDMhgjwNm6jYxww4W5l0zAsAddxr+XfZcqttGiFDgrGg=="
+  "resolved" "https://registry.npmjs.org/@tailwindcss/line-clamp/-/line-clamp-0.3.1.tgz"
+  "version" "0.3.1"
+
 "@testing-library/dom@^8.0.0":
   "integrity" "sha512-9LId28I+lx70wUiZjLvi1DB/WT2zGOxUh46glrSNMaWVx849kKAluezVzZrXJfTKKoQTmEOutLes/bHg4Bj3aA=="
   "resolved" "https://registry.npmjs.org/@testing-library/dom/-/dom-8.11.3.tgz"
@@ -12691,7 +12696,7 @@
   "resolved" "https://registry.npmjs.org/tailwindcss-rtl/-/tailwindcss-rtl-0.8.0.tgz"
   "version" "0.8.0"
 
-"tailwindcss@^3.0.16":
+"tailwindcss@^3.0.16", "tailwindcss@>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1":
   "integrity" "sha512-1L8E5Wr+o1c4kxxObNz2owJe94a7BLEMV+2Lz6wzprJdcs3ENSRR9t4OZf2OqtRNS/q/zFPuOKoLtQoy3Lrhhw=="
   "resolved" "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.0.16.tgz"
   "version" "3.0.16"

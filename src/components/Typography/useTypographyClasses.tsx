@@ -9,6 +9,7 @@ const useTypographyClasses = ({
   variant,
   fontWeight,
   color,
+  clamp,
   textAlign
 }: TBaseTypographyProps & { className?: string }) => {
   const typographyClasses = useMemo(
@@ -51,6 +52,12 @@ const useTypographyClasses = ({
           "text-end": textAlign === "end",
           "text-left": textAlign === "left",
           "text-right": textAlign === "right"
+        },
+        {
+          "line-clamp-1": clamp === 1,
+          "line-clamp-2": clamp === 2,
+          "line-clamp-3": clamp === 3,
+          "line-clamp-4": clamp === 4
         },
         className
       ),

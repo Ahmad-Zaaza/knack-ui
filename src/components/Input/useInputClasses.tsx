@@ -9,6 +9,7 @@ const useInputClasses = ({
   variant,
   className,
   disabled,
+  inputClassname,
   inputPrefix: InputPrefix,
   inputSuffix: InputSuffux
 }: IInputProps) => {
@@ -20,18 +21,22 @@ const useInputClasses = ({
           "input-sm": variant === "small",
           "input-lg": variant === "large"
         },
-        className
+        inputClassname
       ),
-    [variant]
+    [variant, inputClassname]
   );
   const containerClasses = useMemo(
     () =>
-      clsx("input-container", {
-        "a-input": Boolean(InputPrefix) || Boolean(InputSuffux),
-        "input-disabled": disabled,
-        "input-error": Boolean(error)
-      }),
-    [InputPrefix, InputSuffux, disabled, error]
+      clsx(
+        "input-container",
+        {
+          "a-input": Boolean(InputPrefix) || Boolean(InputSuffux),
+          "input-disabled": disabled,
+          "input-error": Boolean(error)
+        },
+        className
+      ),
+    [InputPrefix, InputSuffux, disabled, error, className]
   );
   const prefixClasses = useMemo(
     () =>

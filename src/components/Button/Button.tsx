@@ -58,6 +58,7 @@ const Button: ButtonComponent = forwardRef(
       kind = "primary",
       isLoading,
       as,
+      type,
       children,
       fullWidth,
       iconOnly,
@@ -79,7 +80,12 @@ const Button: ButtonComponent = forwardRef(
     const component = as || "button";
     return createElement(
       component,
-      { className: containerClasses, ref, ...delegated },
+      {
+        className: containerClasses,
+        ref,
+        type: type || "button",
+        ...delegated
+      },
       children
     );
   }

@@ -15,7 +15,18 @@ export interface IInputProps extends ComponentPropsWithoutRef<"input"> {
    * Input suffix. Can be a symbol or an icon. colored by primary color
    */
   inputSuffix?: JSX.Element;
+  /**
+   * Toggle input error state by providing a `boolean` to error text directly
+   */
   error?: boolean | string;
+  /**
+   * className applied to input container
+   */
+  className: string;
+  /**
+   * className applied to input element
+   */
+  inputClassname: string;
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(
@@ -24,6 +35,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       variant = "default",
       className,
       error,
+      inputClassname,
       inputPrefix: InputPrefix,
       inputSuffix: InputSuffux,
       disabled,
@@ -41,6 +53,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       disabled,
       variant,
       className,
+      inputClassname,
       inputPrefix: InputPrefix,
       inputSuffix: InputSuffux
     });
@@ -59,7 +72,9 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
           />
         </div>
         {typeof error === "string" ? (
-          <span className={inputErrorWrapperClasses}>{error}</span>
+          <span role="alert" className={inputErrorWrapperClasses}>
+            {error}
+          </span>
         ) : null}
       </div>
     );
