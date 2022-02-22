@@ -1,0 +1,14 @@
+@layer components {
+  .breadcrumbs {
+    @apply flex items-center;
+    & svg {
+      @apply mx-2;
+    }
+    & > * {
+      @apply inline-block text-body1 text-muted;
+      &:last-child {
+        @apply text-main;
+      }
+    }
+  }
+}
