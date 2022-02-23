@@ -59,7 +59,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     });
 
     return (
-      <div>
+      <>
         <div className={containerClasses}>
           {InputPrefix ? (
             <div className={prefixClasses}>{InputPrefix}</div>
@@ -76,7 +76,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
             {error}
           </span>
         ) : null}
-      </div>
+      </>
     );
   }
 );

@@ -23,7 +23,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
     } = useTextareaClasses({ className, variant, error, disabled });
 
     return (
-      <div>
+      <>
         <div className={containerClasses}>
           <textarea
             ref={ref}
@@ -35,7 +35,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
         {typeof error === "string" ? (
           <span className={inputErrorWrapperClasses}>{error}</span>
         ) : null}
-      </div>
+      </>
     );
   }
 );
