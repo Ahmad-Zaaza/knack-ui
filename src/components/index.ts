@@ -14,3 +14,4 @@ export { Stepper } from "./Stepper";
 export { Step } from "./Step";
 export { Textarea } from "./Textarea";
 export { Breadcrumbs } from "./Breadcrumbs";
+export { Box } from "./Box";

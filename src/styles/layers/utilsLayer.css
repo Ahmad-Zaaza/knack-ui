@@ -1,4 +1,5 @@
 @import "tailwindcss/utilities";
+@import "../utilities/box.utilities.css";
 @import "../utilities/breadcrumbs.utilities.css";
 @import "../utilities/textarea.utilities.css";
 @import "../utilities/stepper.utilities.css";
@@ -26,16 +27,16 @@
   .elevation-4 {
     @apply shadow-xl bg-elevation-4;
   }
-  .elevation-5 {
-    @apply shadow-2xl bg-elevation-5;
+  .elevation-6 {
+    @apply shadow-3xl bg-elevation-6;
   }
   .sm-size {
-    @apply px-2 py-1.5
+    @apply px-2 py-1.5;
   }
   .md-size {
-    @apply px-3 py-2
+    @apply px-3 py-2;
   }
   .lg-size {
-    @apply px-3 py-3
+    @apply px-3 py-3;
   }
 }

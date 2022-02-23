@@ -6,6 +6,7 @@ const backgroundColor = require("./extendTheme/backgroundColor");
 const backgroundImage = require("./extendTheme/backgroundImage");
 const screens = require("./extendTheme/screens");
 const zIndex = require("./extendTheme/zIndex");
+const boxShadow = require("./extendTheme/boxShadow");
 const fontSize = require("./fontSize");
 const fontWeight = require("./fontWeight");
 
@@ -38,6 +39,7 @@ module.exports = {
     backgroundColor,
     backgroundImage,
     screens,
+    boxShadow,
     zIndex
   }
 };
