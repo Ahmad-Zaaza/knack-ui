@@ -8,6 +8,10 @@
     --secondary-color: 1, 160, 133;
     --secondary-dark-color: 1, 118, 98;
     --secondary-text-color: #fff;
+    --success-color: 1, 160, 133;
+    --success-text-color: #fff;
+    --warning-color: 255, 133, 82;
+    --warning-text-color: #fff;
     --tertiary-color: 234, 235, 238;
     --tertiary-dark-color: 219, 219, 221;
     --tertiary-text-color: #252525;

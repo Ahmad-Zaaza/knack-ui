@@ -1,0 +1,29 @@
+@layer components {
+  .chip {
+    @apply relative flex items-center justify-center font-medium transition-all duration-150 rounded-md text-button;
+  }
+  .chip-primary {
+    @apply bg-primary text-primaryMain;
+  }
+  .chip-secondary {
+    @apply bg-secondary text-secondaryMain;
+  }
+  .chip-tertiary {
+    @apply bg-tertiary text-tertiaryMain;
+  }
+  .chip-primaryOutline {
+    @apply border border-primary text-primary;
+  }
+  .chip-secondaryOutline {
+    @apply border border-secondary text-secondary;
+  }
+  .chip-danger {
+    @apply bg-error bg-opacity-20 text-error;
+  }
+  .chip-success {
+    @apply bg-success bg-opacity-10 text-success;
+  }
+  .chip-warning {
+    @apply bg-warning bg-opacity-10 text-warning;
+  }
+}

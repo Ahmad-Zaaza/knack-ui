@@ -31,7 +31,7 @@ export interface IRadioProps
 }
 
 const Radio = forwardRef<HTMLInputElement, IRadioProps>(
-  ({ size = "default", color, ...delegated }, ref) => {
+  ({ size = "default", color='primary', ...delegated }, ref) => {
     const { containerClasses } = useRadioClasses({
       size,
       color

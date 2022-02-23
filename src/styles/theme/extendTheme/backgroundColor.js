@@ -23,6 +23,18 @@ module.exports = {
     }
     return `rgb(var(--error-color))`;
   },
+  success: ({ opacityValue }) => {
+    if (opacityValue) {
+      return `rgba(var(--success-color), ${opacityValue})`;
+    }
+    return `rgb(var(--success-color))`;
+  },
+  warning: ({ opacityValue }) => {
+    if (opacityValue) {
+      return `rgba(var(--warning-color), ${opacityValue})`;
+    }
+    return `rgb(var(--success-color))`;
+  },
 
   body: ({ opacityValue }) => {
     if (opacityValue) {

@@ -55,6 +55,11 @@ Ghost.args = {
   kind: "ghost",
   variant: "medium"
 };
+export const Danger = Template.bind({});
+Danger.args = {
+  kind: "danger",
+  variant: "medium"
+};
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   fullWidth: true
@@ -71,6 +76,6 @@ LinkButton.args = {
 export const IconButton = Template.bind({});
 IconButton.args = {
   iconOnly: true,
-  
+
   children: <BsFillBagFill size={20} />
 };

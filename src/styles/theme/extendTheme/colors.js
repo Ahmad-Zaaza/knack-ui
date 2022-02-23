@@ -6,6 +6,8 @@ module.exports = {
   tertiary: "rgb(var(--tertiary-color))",
   tertiaryDark: "rgb(var(--tertiary-dark-color))",
   error: "rgb(var(--error-color))",
+  success: "rgb(var(--success-color))",
+  warning: "rgb(var(--warning-color))",
   borderColor: "#EAEBEE",
   inputDisabled: "#EAEBEE"
 };

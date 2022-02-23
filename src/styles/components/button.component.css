@@ -49,4 +49,7 @@
       @apply bg-secondary text-secondaryMain;
     }
   }
+  .btn-danger {
+    @apply bg-error text-white;
+  }
 }

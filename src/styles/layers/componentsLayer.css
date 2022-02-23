@@ -1,4 +1,5 @@
 @import "tailwindcss/components";
+@import "../components/chip.component.css";
 @import "../components/box.component.css";
 @import "../components/breadcrumbs.component.css";
 @import "../components/textarea.component.css";

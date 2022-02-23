@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof LinearProgress> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  size: 50,
+  size: 20,
   percentage: 45,
   showPercentage: true
 };

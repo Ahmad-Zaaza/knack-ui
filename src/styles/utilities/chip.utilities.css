@@ -1,0 +1,8 @@
+@layer utilities {
+  .chip-md {
+    @apply md-size text-button;
+  }
+  .chip-sm {
+    @apply sm-size text-button;
+  }
+}
