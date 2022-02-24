@@ -29,7 +29,12 @@ export type TypographyVariants =
   | "button"
   | "caption";
 
-export type TypographyColors = "primary" | "secondary" | "muted";
+export type TypographyColors =
+  | "primary"
+  | "secondary"
+  | "muted"
+  | "success"
+  | "warning";
 export type TypographyFontWeight =
   | "bold"
   | "semibold"

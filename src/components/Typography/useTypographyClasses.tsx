@@ -37,6 +37,8 @@ const useTypographyClasses = ({
         {
           "text-primary": color === "primary",
           "text-secondary": color === "secondary",
+          "text-success": color === "success",
+          "text-warning": color === "warning",
           "text-muted": color === "muted",
           "text-main": !color
         },

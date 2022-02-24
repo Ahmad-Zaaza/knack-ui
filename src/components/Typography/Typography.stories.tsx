@@ -9,7 +9,7 @@ export default {
   argTypes: {
     color: {
       defaultValue: "normal",
-      options: ["primary", "secondary", "muted", "normal"],
+      options: ["primary", "secondary", "muted", "normal","warning","success"],
       control: "select"
     }
   }
