@@ -13,7 +13,8 @@ type TButtonVariants =
   | "primaryOutline"
   | "secondaryOutline"
   | "ghostOutline"
-  | "danger";
+  | "danger"
+  | "default" | "defaultOutline";
 
 export interface TBaseButtonProps {
   /**

@@ -16,3 +16,5 @@ export { Textarea } from "./Textarea";
 export { Breadcrumbs } from "./Breadcrumbs";
 export { Box } from "./Box";
 export { Chip } from "./Chip";
+export { Avatar } from "./Avatar";
+export { AvatarGroup } from "./AvatarGroup";

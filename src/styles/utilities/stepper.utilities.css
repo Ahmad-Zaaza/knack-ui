@@ -1,10 +1,16 @@
 @layer utilities {
-  .step-connector--active, .step-connector--completed {
+  .step-connector--active {
     & span {
-      @apply border-solid !bg-primary;
+      @apply border-solid;
     }
   }
-  .step--active , .step--completed {
+  .step-connector--completed {
+    & span {
+      @apply border-primary;
+    }
+  }
+  .step--active,
+  .step--completed {
     & button {
       @apply !bg-primary text-primaryMain;
     }

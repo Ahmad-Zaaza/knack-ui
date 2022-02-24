@@ -1,4 +1,6 @@
 @import "tailwindcss/components";
+@import "../components/avatargroup.component.css";
+@import "../components/avatar.component.css";
 @import "../components/chip.component.css";
 @import "../components/box.component.css";
 @import "../components/breadcrumbs.component.css";

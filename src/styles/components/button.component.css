@@ -49,7 +49,19 @@
       @apply bg-secondary text-secondaryMain;
     }
   }
+  .btn-default {
+    @apply bg-gray-300;
+    &:not([disabled]):hover {
+      @apply bg-gray-500;
+    }
+  }
+  .btn-defaultOutline {
+    @apply border border-gray-300;
+    &:not([disabled]):hover {
+      @apply bg-gray-300;
+    }
+  }
   .btn-danger {
-    @apply bg-error text-white;
+    @apply text-white bg-error;
   }
 }

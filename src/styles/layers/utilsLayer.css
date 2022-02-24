@@ -1,4 +1,6 @@
 @import "tailwindcss/utilities";
+@import "../utilities/avatargroup.utilities.css";
+@import "../utilities/avatar.utilities.css";
 @import "../utilities/chip.utilities.css";
 @import "../utilities/box.utilities.css";
 @import "../utilities/breadcrumbs.utilities.css";

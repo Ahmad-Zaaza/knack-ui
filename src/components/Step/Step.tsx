@@ -66,7 +66,7 @@ const Step: React.FC<IStepProps> = ({
         <span>{iconChildren}</span>
       )} */}
       <Button
-        kind="tertiary"
+        kind="defaultOutline"
         elevationAnimation={false}
         onClick={() => {
           if (clickable && typeof index !== "undefined")
@@ -83,7 +83,7 @@ const Step: React.FC<IStepProps> = ({
           if (clickable && typeof index !== "undefined")
             handleChangeStep(index);
         }}
-        variant="subtitle1"
+        variant="subtitle2"
         as="p"
       >
         {children}
