@@ -18,3 +18,4 @@ export { Box } from "./Box";
 export { Chip } from "./Chip";
 export { Avatar } from "./Avatar";
 export { AvatarGroup } from "./AvatarGroup";
+export { EditbleTypography } from "./EditbleTypography";

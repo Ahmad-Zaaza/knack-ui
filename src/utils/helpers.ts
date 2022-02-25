@@ -41,3 +41,14 @@ export function componentEventHandlers<
     }
   };
 }
+
+/**
+ * 🚀 Calculate Input & Textarea height based on their content.
+ */
+
+export const calculateInputHeight = (
+  el: HTMLInputElement | HTMLTextAreaElement
+) => {
+  // eslint-disable-next-line no-param-reassign
+  el.style.height = `${el.scrollHeight}px`;
+};
