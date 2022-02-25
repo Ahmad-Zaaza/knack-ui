@@ -5,7 +5,7 @@ import {
 } from "../../types/helpers";
 import useTypographyClasses from "./useTypographyClasses";
 
-type TypographyTags =
+export type TypographyTags =
   | "h1"
   | "h2"
   | "h3"

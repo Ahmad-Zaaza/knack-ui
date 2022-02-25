@@ -4,7 +4,10 @@ import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect
 
 import Input, { IInputProps } from "../Input/Input";
 import Textarea, { ITextareaProps } from "../Textarea/Textarea";
-import Typography, { TypographyProps } from "../Typography/Typography";
+import Typography, {
+  TypographyProps,
+  TypographyTags
+} from "../Typography/Typography";
 
 export interface IEditbleTypographyProps {
   /**
@@ -16,17 +19,17 @@ export interface IEditbleTypographyProps {
    */
   inputProps?: IInputProps | ITextareaProps;
   /**
-   *  Underlying Input | Textarea element Ref
+   *  Underlying `Input` | `Textarea` element Ref
    */
   inputRef?: (ref: HTMLInputElement | HTMLTextAreaElement | null) => void;
   /**
-   * Props for the underlying form element which wraps the input to activate
+   * Props for the underlying `form` element which wraps the input to activate
    */
   formProps?: ComponentPropsWithoutRef<"form">;
   /**
-   * Props for the underlying Typography element
+   * Props for the underlying `Typography` element
    */
-  typographyProps?: TypographyProps<"p">;
+  typographyProps?: TypographyProps<TypographyTags>;
 
   /**
    * Callback applied when pressing 'Enter' or pressing 'Esc' or Blurring out an input
@@ -74,7 +77,7 @@ const EditbleTypography: React.FC<IEditbleTypographyProps> = ({
     <>
       {!showInput && (
         <Typography
-          onDoubleClick={(event) => {
+          onDoubleClick={(event: any) => {
             if (event.detail > 1) {
               event.preventDefault();
               onToggleEdit?.();
@@ -102,19 +105,31 @@ const EditbleTypography: React.FC<IEditbleTypographyProps> = ({
                 interalInputRef.current = e;
               }}
               onKeyDown={onEscPress}
-              onBlur={() => {
+              {...(inputProps as IInputProps)}
+              onBlur={(e) => {
+                const providedProps = inputProps as IInputProps;
+                if (providedProps && providedProps.onBlur) {
+                  providedProps?.onBlur(e);
+                }
                 onSubmit?.();
               }}
-              {...(inputProps as IInputProps)}
             />
           ) : (
             <Textarea
               autoFocus
+              ref={(e) => {
+                inputRef?.(e);
+                interalInputRef.current = e;
+              }}
               onKeyDown={onEscPress}
-              onBlur={() => {
+              {...(inputProps as ITextareaProps)}
+              onBlur={(e) => {
+                const providedProps = inputProps as ITextareaProps;
+                if (providedProps && providedProps.onBlur) {
+                  providedProps?.onBlur(e);
+                }
                 onSubmit?.();
               }}
-              {...(inputProps as ITextareaProps)}
             />
           )}
         </form>
