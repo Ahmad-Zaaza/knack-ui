@@ -56,7 +56,7 @@ const EditbleTypography: React.FC<IEditbleTypographyProps> = ({
   onSubmit,
   children
 }) => {
-  const interalInputRef =
+  const internalInputRef =
     useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
 
   const onEscPress = (
@@ -69,10 +69,10 @@ const EditbleTypography: React.FC<IEditbleTypographyProps> = ({
 
   // Update input height to match the input value content
   useIsomorphicLayoutEffect(() => {
-    if (interalInputRef.current) {
-      calculateInputHeight(interalInputRef.current);
+    if (internalInputRef.current) {
+      calculateInputHeight(internalInputRef.current);
     }
-  }, []);
+  }, [showInput]);
   return (
     <>
       {!showInput && (
@@ -102,7 +102,7 @@ const EditbleTypography: React.FC<IEditbleTypographyProps> = ({
               autoFocus
               ref={(e) => {
                 inputRef?.(e);
-                interalInputRef.current = e;
+                internalInputRef.current = e;
               }}
               onKeyDown={onEscPress}
               {...(inputProps as IInputProps)}
@@ -119,7 +119,7 @@ const EditbleTypography: React.FC<IEditbleTypographyProps> = ({
               autoFocus
               ref={(e) => {
                 inputRef?.(e);
-                interalInputRef.current = e;
+                internalInputRef.current = e;
               }}
               onKeyDown={onEscPress}
               {...(inputProps as ITextareaProps)}
