@@ -1,34 +1,25 @@
-import {
-  useRef,
-  useMemo,
-  CSSProperties,
-  Dispatch,
-  SetStateAction
-} from "react";
+/* eslint-disable no-param-reassign */
+import { useMemo, CSSProperties, useState, useCallback, useRef } from "react";
+import composeRefs from "@seznam/compose-react-refs";
 import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
 import { Portal } from "../Portal";
 import usePopoverUtils from "./usePopoverUtils";
+import { Box } from "..";
 // import FocusLock from "../../utils/FocusLock";
 
 const clsx = classnames.bind(styles);
 
-export type AbsolutePositions = {
-  top?: string;
-  left?: string;
-  right?: string;
-  bottom?: string;
-};
+export type PopoverAnimations = "fade" | "fade-up";
 
 export interface IPopoverProps {
   isOpen: boolean;
   onClose: () => void;
-  active: boolean;
-  setActive: Dispatch<SetStateAction<boolean>>;
+  parentRect?: DOMRect | null;
   disableFocusLock?: boolean;
   popoverClasses?: string;
   popoverStyles?: CSSProperties;
-  position?: AbsolutePositions;
+  animationType?: PopoverAnimations;
 }
 
 const Popover: React.FC<IPopoverProps> = ({
@@ -36,16 +27,46 @@ const Popover: React.FC<IPopoverProps> = ({
   children,
   disableFocusLock: _,
   onClose,
-  active,
-  setActive,
-  position,
+  parentRect,
+  animationType = "fade",
   popoverClasses: className,
   popoverStyles
 }) => {
-  const overlayRef = useRef<HTMLDivElement | null>(null);
-  usePopoverUtils({ isOpen, onClose, setActive, ref: overlayRef, position });
-  const popoverClasses = useMemo(() => clsx("popover", className), [className]);
+  console.log({ parentRect });
+  const [active, setActive] = useState(false);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const internalRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (!node || !parentRect) return;
+      if (parentRect.top) node.style.top = `${parentRect.top}px`;
+      if (parentRect.left) node.style.left = `${parentRect.left}px`;
+      // if (parentRect.right) node.style.right = `${parentRect.right}px`;
+      // if (parentRect.bottom) node.style.bottom = `${parentRect.bottom}px`;
+    },
+    [parentRect]
+  );
 
+  usePopoverUtils({
+    isOpen,
+    onClose,
+    setActive,
+    ref: popoverRef,
+    parentRect
+  });
+
+  const popoverMenuClasses = useMemo(
+    () =>
+      clsx(
+        "popover-menu",
+        {
+          [`${animationType}--active`]: isOpen && active,
+          [`${animationType}--initial`]: true
+        },
+        className
+      ),
+    [className, isOpen, active]
+  );
+  const popoverClasses = useMemo(() => clsx("popover", className), [className]);
   const onTransitionEnd = () => {
     setActive(isOpen);
   };
@@ -57,12 +78,14 @@ const Popover: React.FC<IPopoverProps> = ({
       <div
         style={popoverStyles}
         onTransitionEnd={onTransitionEnd}
-        ref={overlayRef}
+        ref={composeRefs(internalRef, popoverRef)}
         role="presentation"
         tabIndex={-1}
         className={popoverClasses}
       >
-        {children}
+        <Box as="ul" className={popoverMenuClasses}>
+          {children}
+        </Box>
       </div>
       {/* </FocusLock> */}
     </Portal>

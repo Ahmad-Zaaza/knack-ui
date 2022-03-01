@@ -1,17 +1,16 @@
-import { MutableRefObject, useRef, useState } from "react";
-import useEventInEffect from "./useEventInEffect";
+import { useCallback, useState } from "react";
 
 const useGetBoundingClientRect = <T extends Element>(): [
   DOMRect | undefined | null,
-  MutableRefObject<T | null>
+  (node: T) => void
 ] => {
-  const ref = useRef<T>(null);
-
   const [rect, setRect] = useState<DOMRect>();
 
-  const set = () => setRect(ref.current?.getBoundingClientRect());
-
-  useEventInEffect("resize", set);
+  const ref = useCallback((node: T) => {
+    if (node !== null) {
+      setRect(node.getBoundingClientRect());
+    }
+  }, []);
 
   return [rect, ref];
 };

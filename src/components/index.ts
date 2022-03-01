@@ -19,7 +19,4 @@ export { Chip } from "./Chip";
 export { Avatar } from "./Avatar";
 export { AvatarGroup } from "./AvatarGroup";
 export { EditbleTypography } from "./EditbleTypography";
-export { MenuButton } from "./MenuButton";
 export { MenuItem } from "./MenuItem";
-export { Menu } from "./Menu";
-export { MenuList } from "./MenuList";

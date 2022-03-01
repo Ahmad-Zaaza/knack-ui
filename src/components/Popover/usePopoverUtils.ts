@@ -1,11 +1,5 @@
 /* eslint-disable no-param-reassign */
-import {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useCallback,
-  useEffect
-} from "react";
+import { Dispatch, RefObject, SetStateAction, useCallback } from "react";
 import useEventInEffect from "../../utils/useEventInEffect";
 import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect";
 import { IPopoverProps } from "./Popover";
@@ -14,11 +8,10 @@ const usePopoverUtils = ({
   isOpen,
   onClose,
   ref,
-  position,
   setActive
-}: Pick<IPopoverProps, "isOpen" | "onClose" | "position"> & {
+}: Pick<IPopoverProps, "isOpen" | "onClose" | "parentRect"> & {
   setActive: Dispatch<SetStateAction<boolean>>;
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
 }) => {
   // 🔒 Close on Esc press
   const handleEsc = useCallback(
@@ -32,30 +25,15 @@ const usePopoverUtils = ({
 
   // 🔒 Close on Click outside the popover
   const handleClickOutside = useCallback((event: any) => {
-    if (ref.current && !ref.current.contains(event.target)) {
+    console.log(ref);
+    if (ref && ref.current?.contains(event.target)) {
       onClose();
     }
   }, []);
+
   useEventInEffect("keydown", handleEsc);
   useEventInEffect("mousedown", handleClickOutside);
-  // useEffect(() => {
-  //   window.addEventListener("keydown", handleEsc);
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //     window.removeEventListener("keydown", handleEsc);
-  //   };
-  // }, [handleEsc, handleClickOutside]);
 
-  useEffect(() => {
-    if (ref.current && position) {
-      console.log({ position });
-      if (position.top) ref.current.style.top = `${position.top}px`;
-      if (position.right) ref.current.style.right = `${position.right}px`;
-      if (position.bottom) ref.current.style.bottom = `${position.bottom}px`;
-      if (position.left) ref.current.style.left = `${position.left}px`;
-    }
-  }, [position]);
   useIsomorphicLayoutEffect(() => {
     if (isOpen) {
       setTimeout(() => {

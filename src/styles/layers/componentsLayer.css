@@ -1,9 +1,6 @@
 @import "tailwindcss/components";
-@import "../components/menulist.component.css";
-@import "../components/menu.component.css";
 @import "../components/menuitem.component.css";
 @import "../components/popover.component.css";
-@import "../components/buttonmenu.component.css";
 @import "../components/avatargroup.component.css";
 @import "../components/avatar.component.css";
 @import "../components/chip.component.css";

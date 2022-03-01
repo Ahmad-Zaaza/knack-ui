@@ -1,8 +1,6 @@
 @import "tailwindcss/utilities";
-@import "../utilities/menulist.utilities.css";
-@import "../utilities/menu.utilities.css";
+@import "../utilities/popover.utilities.css";
 @import "../utilities/menuitem.utilities.css";
-@import "../utilities/buttonmenu.utilities.css";
 @import "../utilities/avatargroup.utilities.css";
 @import "../utilities/avatar.utilities.css";
 @import "../utilities/chip.utilities.css";
@@ -46,4 +44,5 @@
   .lg-size {
     @apply px-3 py-3;
   }
+
 }
