@@ -14,7 +14,8 @@ type TButtonVariants =
   | "secondaryOutline"
   | "ghostOutline"
   | "danger"
-  | "default" | "defaultOutline";
+  | "default"
+  | "defaultOutline";
 
 export interface TBaseButtonProps {
   /**
@@ -37,6 +38,10 @@ export interface TBaseButtonProps {
    * If `true` will render an Icon button
    */
   iconOnly?: boolean;
+  /**
+   * If `true` will render an Icon button
+   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   /**
    * If `false` will disable hover elevation animation.
    *

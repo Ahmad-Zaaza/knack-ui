@@ -25,6 +25,7 @@
     --drawer-root-z: 1200;
     --dialog-root-z: 1101;
     --dialog-overlay-z: 1100;
+    --popover-z: 1200;
     --overlay-color: 0, 0, 0, 0.4;
   }
   html[class="dark"] {
