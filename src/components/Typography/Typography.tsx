@@ -2,7 +2,7 @@ import { createElement, forwardRef } from "react";
 import * as Polymorphic from "../../types/helpers";
 import useTypographyClasses from "./useTypographyClasses";
 
- type TypographyTags =
+type TypographyTags =
   | "h1"
   | "h2"
   | "h3"
@@ -12,7 +12,7 @@ import useTypographyClasses from "./useTypographyClasses";
   | "p"
   | "span"
   | "label";
- type TypographyVariants =
+type TypographyVariants =
   | "h1"
   | "h2"
   | "h3"
@@ -26,18 +26,13 @@ import useTypographyClasses from "./useTypographyClasses";
   | "button"
   | "caption";
 
- type TypographyColors =
+type TypographyColors =
   | "primary"
   | "secondary"
   | "muted"
   | "success"
   | "warning";
- type TypographyFontWeight =
-  | "bold"
-  | "semibold"
-  | "medium"
-  | "normal"
-  | "light";
+type TypographyFontWeight = "bold" | "semibold" | "medium" | "normal" | "light";
 type TypographyProps = {
   variant?: TypographyVariants;
   /**
@@ -88,7 +83,7 @@ const Typography = forwardRef(
       children
     );
   }
-) as Polymorphic.ForwardRefComponent<"p", TypographyProps>;
+) as Polymorphic.ForwardRefComponent<TypographyTags, TypographyProps>;
 
 export default Typography;
 export type {

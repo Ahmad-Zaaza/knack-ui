@@ -1,15 +1,10 @@
 import { useMemo } from "react";
 import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
-import { IChipBaseProps } from "./Chip";
+import { ChipProps } from "./Chip";
 
 const clsx = classnames.bind(styles);
-const useChipClasses = ({
-  className,
-  variant,
-  size,
-  square
-}: IChipBaseProps) => {
+const useChipClasses = ({ className, variant, size, square }: ChipProps) => {
   const containerClasses = useMemo(
     () =>
       clsx(
@@ -22,7 +17,7 @@ const useChipClasses = ({
           "chip-tertiary": variant === "tertiary",
           "chip-warning": variant === "warning",
           "chip-success": variant === "success",
-          "chip-danger": variant === "danger",
+          "chip-danger": variant === "danger"
         },
         {
           "chip-sm": size === "small",

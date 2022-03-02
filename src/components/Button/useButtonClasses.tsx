@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
-import { TButtonProps } from "./Button";
+import { ButtonProps } from "./Button";
 
 const clsx = classnames.bind(styles);
 const useButtonClasses = ({
@@ -11,7 +11,7 @@ const useButtonClasses = ({
   fullWidth,
   iconOnly,
   elevationAnimation
-}: TButtonProps<"button">) => {
+}: Omit<ButtonProps, "children"> & { className?: string }) => {
   const containerClasses = useMemo(
     () =>
       clsx(

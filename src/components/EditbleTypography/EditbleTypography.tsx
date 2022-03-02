@@ -4,10 +4,7 @@ import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect
 
 import Input, { IInputProps } from "../Input/Input";
 import Textarea, { ITextareaProps } from "../Textarea/Textarea";
-import Typography, {
-  TypographyProps,
-  TypographyTags
-} from "../Typography/Typography";
+import Typography, { TypographyProps } from "../Typography/Typography";
 
 export interface IEditbleTypographyProps {
   /**
@@ -29,7 +26,7 @@ export interface IEditbleTypographyProps {
   /**
    * Props for the underlying `Typography` element
    */
-  typographyProps?: TypographyProps<TypographyTags>;
+  typographyProps?: TypographyProps;
 
   /**
    * Callback applied when pressing 'Enter' or pressing 'Esc' or Blurring out an input

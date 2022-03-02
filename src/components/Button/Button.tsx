@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import * as Polymorphic from "../../types/helpers";
 import useButtonClasses from "./useButtonClasses";
 
-type TButtonVariants =
+type ButtonVariants =
   | "primary"
   | "secondary"
   | "tertiary"
@@ -18,7 +18,7 @@ interface ButtonProps {
   /**
    * Appearance of the button
    */
-  kind?: TButtonVariants;
+  kind?: ButtonVariants;
   children: React.ReactNode;
   /**
    * Controls the size of the button
@@ -83,4 +83,4 @@ const Button = forwardRef(
 ) as Polymorphic.ForwardRefComponent<"button", ButtonProps>;
 export default Button;
 
-export type { ButtonProps };
+export type { ButtonProps,ButtonVariants };

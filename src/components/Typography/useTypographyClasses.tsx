@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
-import { TBaseTypographyProps } from "./Typography";
+import { TypographyProps } from "./Typography";
 
 const clsx = classnames.bind(styles);
 const useTypographyClasses = ({
@@ -11,7 +11,7 @@ const useTypographyClasses = ({
   color,
   clamp,
   textAlign
-}: TBaseTypographyProps & { className?: string }) => {
+}: TypographyProps & { className?: string }) => {
   const typographyClasses = useMemo(
     () =>
       clsx(

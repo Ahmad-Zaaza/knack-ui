@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Button, Stack } from "..";
+import { Stack } from "..";
 
 import Chip from "./Chip";
 
@@ -47,9 +47,4 @@ Default.args = {
 export const Small = Template.bind({});
 Small.args = {
   size: "small"
-};
-export const asButton = Template.bind({});
-asButton.args = {
-  size: "medium",
-  as: Button
 };

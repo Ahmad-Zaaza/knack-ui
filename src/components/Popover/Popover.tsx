@@ -22,7 +22,6 @@ interface IPopoverProps {
   parentRef: RefObject<HTMLElement>;
   disableFocusLock?: boolean;
   popoverClasses?: string;
-
   position?: Position;
   animationType?: PopoverAnimations;
 }

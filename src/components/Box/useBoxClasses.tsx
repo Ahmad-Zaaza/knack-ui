@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
-import { IBoxBaseProps } from "./Box";
+import { BoxProps } from "./Box";
 
 const clsx = classnames.bind(styles);
 const useBoxClasses = ({
@@ -10,7 +10,7 @@ const useBoxClasses = ({
   elevation,
   paddingPreset,
   square
-}: IBoxBaseProps) => {
+}: BoxProps) => {
   const containerClasses = useMemo(
     () =>
       clsx(
