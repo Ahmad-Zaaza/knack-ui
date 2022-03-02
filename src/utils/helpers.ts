@@ -1,4 +1,5 @@
 import React from "react";
+import type { PRect } from "./useGetBoundingClientRect";
 
 export function getScrollbarWidth(): number {
   return window.innerWidth - document.documentElement.clientWidth;
@@ -51,4 +52,26 @@ export const calculateInputHeight = (
 ) => {
   // eslint-disable-next-line no-param-reassign
   el.style.height = `${el.scrollHeight}px`;
+};
+
+export const getCollisions = (
+  targetRect: PRect,
+  popoverRect: PRect,
+  offsetLeft: number = 0,
+  offsetBottom: number = 0
+) => {
+  const collisions = {
+    top: targetRect.top - popoverRect.height < 0,
+    right: window.innerWidth < targetRect.left + popoverRect.width - offsetLeft,
+    bottom:
+      window.innerHeight <
+      targetRect.bottom + popoverRect.height - offsetBottom,
+    left: targetRect.left + targetRect.width - popoverRect.width < 0
+  };
+  const directionRight = collisions.right && !collisions.left;
+  const directionLeft = collisions.left && !collisions.right;
+  const directionUp = collisions.bottom && !collisions.top;
+  const directionDown = collisions.top && !collisions.bottom;
+
+  return { directionRight, directionLeft, directionUp, directionDown };
 };

@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
-import { Dispatch, RefObject, SetStateAction, useCallback } from "react";
+import { Dispatch, MutableRefObject, SetStateAction, useCallback } from "react";
+import useClickOutside from "../../utils/useClickOutside";
 import useEventInEffect from "../../utils/useEventInEffect";
 import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect";
 import { IPopoverProps } from "./Popover";
@@ -8,10 +9,11 @@ const usePopoverUtils = ({
   isOpen,
   onClose,
   ref,
+  parentRef,
   setActive
-}: Pick<IPopoverProps, "isOpen" | "onClose" | "parentRect"> & {
+}: Pick<IPopoverProps, "isOpen" | "onClose" | "parentRef"> & {
   setActive: Dispatch<SetStateAction<boolean>>;
-  ref: RefObject<HTMLDivElement | null>;
+  ref: MutableRefObject<null>;
 }) => {
   // 🔒 Close on Esc press
   const handleEsc = useCallback(
@@ -24,15 +26,9 @@ const usePopoverUtils = ({
   );
 
   // 🔒 Close on Click outside the popover
-  const handleClickOutside = useCallback((event: any) => {
-    console.log(ref);
-    if (ref && ref.current?.contains(event.target)) {
-      onClose();
-    }
-  }, []);
+  useClickOutside(ref, onClose, parentRef);
 
   useEventInEffect("keydown", handleEsc);
-  useEventInEffect("mousedown", handleClickOutside);
 
   useIsomorphicLayoutEffect(() => {
     if (isOpen) {

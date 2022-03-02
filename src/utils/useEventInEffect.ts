@@ -10,7 +10,9 @@ const useEventInEffect = (
   useIsomorphicLayoutEffect(() => {
     // @ts-ignore
     window.addEventListener(type, eventHandler);
-    return () => window.removeEventListener(type, eventHandler);
+    return () => {
+      window.removeEventListener(type, eventHandler);
+    };
   }, []);
 };
 

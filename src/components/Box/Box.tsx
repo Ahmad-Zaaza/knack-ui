@@ -1,11 +1,8 @@
-import { ElementType, forwardRef } from "react";
-import {
-  PolymorphicComponentPropsWithRef,
-  PolymorphicRef
-} from "../../types/helpers";
+import { forwardRef } from "react";
+import * as Polymorphic from "../../types/helpers";
 import useBoxClasses from "./useBoxClasses";
 
-export interface IBoxBaseProps {
+interface BoxProps {
   className?: string;
   /**
    * The variant to use.
@@ -25,19 +22,19 @@ export interface IBoxBaseProps {
   paddingPreset?: "card";
 }
 
-const Box: BoxComponent = forwardRef(
-  <C extends ElementType = "div">(
+const Box = forwardRef(
+  (
     {
       className,
-      as,
+      as: Component = "div",
       children,
       variant = "elevated",
       square,
       paddingPreset,
       elevation = 1,
       ...delegated
-    }: TBoxProps<C>,
-    ref: PolymorphicRef<C>
+    },
+    ref
   ) => {
     const { containerClasses } = useBoxClasses({
       className,
@@ -46,20 +43,15 @@ const Box: BoxComponent = forwardRef(
       square,
       paddingPreset
     });
-    const Component = as || "div";
+
     return (
       <Component ref={ref} className={containerClasses} {...delegated}>
         {children}
       </Component>
     );
   }
-);
+) as Polymorphic.ForwardRefComponent<"div", BoxProps>;
 
 export default Box;
-export type BoxComponent = <C extends ElementType>(
-  props: TBoxProps<C>
-) => JSX.Element | null;
-export type TBoxProps<C extends ElementType> = PolymorphicComponentPropsWithRef<
-  C,
-  IBoxBaseProps
->;
+
+export type { BoxProps };

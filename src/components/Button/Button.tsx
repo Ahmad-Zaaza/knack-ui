@@ -1,8 +1,5 @@
-import { createElement, ElementType, forwardRef } from "react";
-import {
-  PolymorphicComponentPropsWithRef,
-  PolymorphicRef
-} from "../../types/helpers";
+import { forwardRef } from "react";
+import * as Polymorphic from "../../types/helpers";
 import useButtonClasses from "./useButtonClasses";
 
 type TButtonVariants =
@@ -17,11 +14,12 @@ type TButtonVariants =
   | "default"
   | "defaultOutline";
 
-export interface TBaseButtonProps {
+interface ButtonProps {
   /**
    * Appearance of the button
    */
   kind?: TButtonVariants;
+  children: React.ReactNode;
   /**
    * Controls the size of the button
    */
@@ -39,10 +37,6 @@ export interface TBaseButtonProps {
    */
   iconOnly?: boolean;
   /**
-   * If `true` will render an Icon button
-   */
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  /**
    * If `false` will disable hover elevation animation.
    *
    * @default true
@@ -50,30 +44,23 @@ export interface TBaseButtonProps {
   elevationAnimation?: boolean;
 }
 
-export type ButtonComponent = <C extends ElementType = "button">(
-  _props: TButtonProps<C>
-) => JSX.Element | null;
-
-export type TButtonProps<C extends ElementType> =
-  PolymorphicComponentPropsWithRef<C, TBaseButtonProps>;
-
-const Button: ButtonComponent = forwardRef(
-  <C extends ElementType = "button">(
+const Button = forwardRef(
+  (
     {
       className,
       variant = "medium",
       kind = "primary",
       isLoading,
-      as,
-      type,
-      children,
+      as: Component = "button",
+      type = "button",
+
       fullWidth,
       iconOnly,
       elevationAnimation,
 
       ...delegated
-    }: TButtonProps<C>,
-    ref: PolymorphicRef<C>
+    },
+    ref
   ) => {
     const { containerClasses } = useButtonClasses({
       className,
@@ -84,17 +71,16 @@ const Button: ButtonComponent = forwardRef(
       iconOnly,
       elevationAnimation
     });
-    const component = as || "button";
-    return createElement(
-      component,
-      {
-        className: containerClasses,
-        ref,
-        type: type || "button",
-        ...delegated
-      },
-      children
+    return (
+      <Component
+        ref={ref}
+        className={containerClasses}
+        type={type}
+        {...delegated}
+      />
     );
   }
-);
+) as Polymorphic.ForwardRefComponent<"button", ButtonProps>;
 export default Button;
+
+export type { ButtonProps };

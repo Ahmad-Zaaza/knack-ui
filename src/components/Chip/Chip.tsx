@@ -1,8 +1,5 @@
-import { ElementType, forwardRef } from "react";
-import {
-  PolymorphicComponentPropsWithRef,
-  PolymorphicRef
-} from "../../types/helpers";
+import { forwardRef } from "react";
+import * as Polymorphic from "../../types/helpers";
 import useChipClasses from "./useChipClasses";
 
 type TChipVariants =
@@ -14,7 +11,7 @@ type TChipVariants =
   | "success"
   | "danger"
   | "warning";
-export interface IChipBaseProps {
+interface ChipProps {
   className?: string;
   /**
    * The variant to use.
@@ -30,18 +27,18 @@ export interface IChipBaseProps {
   size?: "small" | "medium";
 }
 
-const Chip: ChipComponent = forwardRef(
-  <C extends ElementType = "div">(
+const Chip = forwardRef(
+  (
     {
       className,
-      as,
+      as: Component = "div",
       children,
       variant = "primaryOutline",
       size = "medium",
       square,
       ...delegated
-    }: TChipProps<C>,
-    ref: PolymorphicRef<C>
+    },
+    ref
   ) => {
     const { containerClasses } = useChipClasses({
       className,
@@ -49,18 +46,15 @@ const Chip: ChipComponent = forwardRef(
       square,
       size
     });
-    const Component = as || "div";
+
     return (
       <Component ref={ref} className={containerClasses} {...delegated}>
         {children}
       </Component>
     );
   }
-);
+) as Polymorphic.ForwardRefComponent<"div", ChipProps>;
 
 export default Chip;
-export type ChipComponent = <C extends ElementType>(
-  props: TChipProps<C>
-) => JSX.Element | null;
-export type TChipProps<C extends ElementType> =
-  PolymorphicComponentPropsWithRef<C, IChipBaseProps>;
+
+export type { ChipProps };

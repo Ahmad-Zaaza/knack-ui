@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 
-import Stack, { IStackProps } from "./Stack";
+import Stack, { StackProps } from "./Stack";
 
 export default {
   title: "Components/Stack",
@@ -10,7 +10,7 @@ export default {
   }
 } as Meta<typeof Stack>;
 
-const Template: Story<IStackProps & { numberOfChildren: number }> = ({
+const Template: Story<StackProps & { numberOfChildren: number }> = ({
   numberOfChildren,
   ...args
 }) => (

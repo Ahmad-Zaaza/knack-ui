@@ -2,7 +2,7 @@ import { Story, ComponentMeta } from "@storybook/react";
 import { Router, Link } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { BsFillBagFill } from "react-icons/bs";
-import Button, { TButtonProps } from "./Button";
+import Button, { ButtonProps } from "./Button";
 
 export default {
   title: "Components/Button",
@@ -20,12 +20,10 @@ export default {
   }
 } as ComponentMeta<typeof Button>;
 const history = createMemoryHistory();
-const Template: Story<TButtonProps<"button">> = ({ as: _, ...args }) => (
-  <Button as="button" {...args} />
-);
-const RouterTemplate: Story<TButtonProps<typeof Link>> = (args) => (
+const Template: Story<ButtonProps> = ({ ...args }) => <Button {...args} />;
+const RouterTemplate: Story<ButtonProps> = (args) => (
   <Router navigator={history} location={history.location}>
-    <Button {...args} />
+    <Button as={Link} to="/" {...args} />
   </Router>
 );
 
@@ -64,18 +62,11 @@ export const FullWidth = Template.bind({});
 FullWidth.args = {
   fullWidth: true
 };
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true
-};
+
 export const LinkButton = RouterTemplate.bind({});
-LinkButton.args = {
-  as: Link,
-  to: "/"
-};
+LinkButton.args = {};
 export const IconButton = Template.bind({});
 IconButton.args = {
   iconOnly: true,
-
   children: <BsFillBagFill size={20} />
 };

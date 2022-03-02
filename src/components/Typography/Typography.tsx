@@ -1,11 +1,8 @@
 import { createElement, forwardRef } from "react";
-import {
-  PolymorphicComponentPropsWithRef,
-  PolymorphicRef
-} from "../../types/helpers";
+import * as Polymorphic from "../../types/helpers";
 import useTypographyClasses from "./useTypographyClasses";
 
-export type TypographyTags =
+ type TypographyTags =
   | "h1"
   | "h2"
   | "h3"
@@ -15,7 +12,7 @@ export type TypographyTags =
   | "p"
   | "span"
   | "label";
-export type TypographyVariants =
+ type TypographyVariants =
   | "h1"
   | "h2"
   | "h3"
@@ -29,19 +26,19 @@ export type TypographyVariants =
   | "button"
   | "caption";
 
-export type TypographyColors =
+ type TypographyColors =
   | "primary"
   | "secondary"
   | "muted"
   | "success"
   | "warning";
-export type TypographyFontWeight =
+ type TypographyFontWeight =
   | "bold"
   | "semibold"
   | "medium"
   | "normal"
   | "light";
-export type TBaseTypographyProps = {
+type TypographyProps = {
   variant?: TypographyVariants;
   /**
    * Controls the typography color
@@ -61,15 +58,8 @@ export type TBaseTypographyProps = {
   clamp?: 1 | 2 | 3 | 4;
 };
 
-export type TypographyComponent = <C extends TypographyTags>(
-  _props: TypographyProps<C>
-) => JSX.Element | null;
-
-export type TypographyProps<C extends TypographyTags> =
-  PolymorphicComponentPropsWithRef<C, TBaseTypographyProps>;
-
-const Typography: TypographyComponent = forwardRef(
-  <C extends TypographyTags = "p">(
+const Typography = forwardRef(
+  (
     {
       className,
       as,
@@ -80,8 +70,8 @@ const Typography: TypographyComponent = forwardRef(
       clamp,
       textAlign,
       ...delegated
-    }: TypographyProps<C>,
-    ref: PolymorphicRef<C>
+    },
+    ref
   ) => {
     const { typographyClasses } = useTypographyClasses({
       className,
@@ -98,6 +88,13 @@ const Typography: TypographyComponent = forwardRef(
       children
     );
   }
-);
+) as Polymorphic.ForwardRefComponent<"p", TypographyProps>;
 
 export default Typography;
+export type {
+  TypographyProps,
+  TypographyTags,
+  TypographyColors,
+  TypographyFontWeight,
+  TypographyVariants
+};

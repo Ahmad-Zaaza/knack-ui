@@ -1,23 +1,20 @@
-import {
-  useMemo,
-  ComponentPropsWithoutRef,
-  forwardRef,
-  CSSProperties
-} from "react";
+import { useMemo, forwardRef, CSSProperties } from "react";
 import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
+import * as Polymorphic from "../../types/helpers";
 
 const clsx = classnames.bind(styles);
 
 /**
  * One limitation with Stack that it affects absolute children with `margin-top`
  */
-export interface IStackProps extends ComponentPropsWithoutRef<"div"> {
+interface StackProps {
   /**
    * Controls flex direction
    * @default 'row'
    */
   direction?: "column" | "row";
+  children: React.ReactNode;
   /**
    * Controls `align-items` flex property
    * @default 'row'
@@ -39,7 +36,7 @@ export interface IStackProps extends ComponentPropsWithoutRef<"div"> {
   gap?: number;
 }
 
-const Stack = forwardRef<HTMLDivElement, IStackProps>(
+const Stack = forwardRef(
   (
     {
       className,
@@ -75,7 +72,7 @@ const Stack = forwardRef<HTMLDivElement, IStackProps>(
 
           className
         ),
-      [gap, direction,className]
+      [gap, direction, className]
     );
     return (
       <div ref={ref} style={stackStyles} className={classes} {...delegated}>
@@ -83,6 +80,7 @@ const Stack = forwardRef<HTMLDivElement, IStackProps>(
       </div>
     );
   }
-);
+) as Polymorphic.ForwardRefComponent<"div", StackProps>;
 
 export default Stack;
+export type { StackProps };

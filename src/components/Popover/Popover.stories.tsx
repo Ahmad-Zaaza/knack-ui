@@ -1,9 +1,8 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
-import { Button, MenuItem } from "..";
-import useGetBoundingClientRect from "../../utils/useGetBoundingClientRect";
+import { Button, Input, MenuItem } from "..";
 
 export default {
   title: "Components/Popover",
@@ -12,21 +11,36 @@ export default {
 } as ComponentMeta<typeof Popover>;
 
 const Template: ComponentStory<typeof Popover> = (_) => {
-  const [parentRect, ref] = useGetBoundingClientRect<HTMLButtonElement>();
+  const parentRef = useRef<HTMLButtonElement | null>(null);
+
   const [open, setOpen] = useState(false);
 
   return (
     <BrowserRouter>
-      <Button onClick={() => setOpen(!open)} ref={ref}>
+      <Input />
+      <Button
+        onClick={() => {
+          if (!open) {
+            setOpen(true);
+          }
+        }}
+        ref={parentRef}
+      >
         Click me
       </Button>
       <Popover
+        position={() => ({
+            top: 0,
+            left: 0
+          })}
         animationType="fade-up"
         isOpen={open}
         onClose={() => setOpen(false)}
-        parentRect={parentRect}
+        parentRef={parentRef}
       >
-        <MenuItem>Go to home</MenuItem>
+        <MenuItem kind="ghost">Go to home</MenuItem>
+        <MenuItem kind="ghost">Go to home</MenuItem>
+        <MenuItem kind="ghost">Go to home</MenuItem>
       </Popover>
     </BrowserRouter>
   );
