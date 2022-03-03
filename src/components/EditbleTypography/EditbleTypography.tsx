@@ -1,10 +1,13 @@
 import { ComponentPropsWithoutRef, useRef } from "react";
 import { calculateInputHeight } from "../../utils/helpers";
 import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect";
-
+import * as Polymorphic from "../../types/helpers";
 import Input, { IInputProps } from "../Input/Input";
 import Textarea, { ITextareaProps } from "../Textarea/Textarea";
-import Typography, { TypographyProps } from "../Typography/Typography";
+import Typography, {
+  TypographyProps,
+  TypographyTags
+} from "../Typography/Typography";
 
 export interface IEditbleTypographyProps {
   /**
@@ -26,7 +29,10 @@ export interface IEditbleTypographyProps {
   /**
    * Props for the underlying `Typography` element
    */
-  typographyProps?: TypographyProps;
+  typographyProps?: Polymorphic.Merge<
+    JSX.IntrinsicElements[TypographyTags],
+    TypographyProps & { as?: TypographyTags }
+  >;
 
   /**
    * Callback applied when pressing 'Enter' or pressing 'Esc' or Blurring out an input
@@ -73,18 +79,22 @@ const EditbleTypography: React.FC<IEditbleTypographyProps> = ({
   return (
     <>
       {!showInput && (
-        <Typography
-          onDoubleClick={(event: any) => {
-            if (event.detail > 1) {
-              event.preventDefault();
-              onToggleEdit?.();
-            }
-          }}
-          {...typographyProps}
-        >
-          {children}
-        </Typography>
+        <>
+          {/* @ts-ignore */}
+          <Typography
+            onDoubleClick={(event: any) => {
+              if (event.detail > 1) {
+                event.preventDefault();
+                onToggleEdit?.();
+              }
+            }}
+            {...typographyProps}
+          >
+            {children}
+          </Typography>
+        </>
       )}
+
       {/* 🍄 Title edit Input */}
       {showInput && (
         <form
