@@ -1,4 +1,4 @@
-import { createElement, forwardRef } from "react";
+import { forwardRef } from "react";
 import * as Polymorphic from "../../types/helpers";
 import useTypographyClasses from "./useTypographyClasses";
 
@@ -57,7 +57,7 @@ const Typography = forwardRef(
   (
     {
       className,
-      as,
+      as: Component = "p",
       variant,
       children,
       fontWeight,
@@ -76,14 +76,13 @@ const Typography = forwardRef(
       clamp,
       textAlign
     });
-    const component = as || "p";
-    return createElement(
-      component,
-      { className: typographyClasses, ref, ...delegated },
-      children
+    return (
+      <Component className={typographyClasses} ref={ref} {...delegated}>
+        {children}
+      </Component>
     );
   }
-) as Polymorphic.ForwardRefComponent<TypographyTags, TypographyProps>;
+) as Polymorphic.ForwardRefComponent<"p", TypographyProps>;
 
 export default Typography;
 export type {
