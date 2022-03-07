@@ -1,14 +1,13 @@
 /* eslint-disable no-param-reassign */
-import { useMemo, useState, useRef, RefObject } from "react";
+import { useMemo, useState, useRef, RefObject, CSSProperties } from "react";
 
 import classnames from "classnames/bind";
+import { useRect } from "@reach/rect";
 import styles from "../../tailwind.css";
 import { Portal } from "../Portal";
 import usePopoverUtils from "./usePopoverUtils";
 import { Box } from "..";
-import useGetBoundingClientRect, {
-  PRect
-} from "../../utils/useGetBoundingClientRect";
+import { PRect } from "../../utils/useGetBoundingClientRect";
 import { getCollisions } from "../../utils/helpers";
 // import FocusLock from "../../utils/FocusLock";
 
@@ -22,10 +21,10 @@ interface IPopoverProps {
   parentRef: RefObject<HTMLElement>;
   disableFocusLock?: boolean;
   popoverClasses?: string;
+  popoverStyles?: CSSProperties;
   position?: Position;
   animationType?: PopoverAnimations;
 }
-
 
 function getStyles(
   position: Position,
@@ -36,7 +35,6 @@ function getStyles(
     ? position(targetRect, popoverRect)
     : { visibility: "hidden" };
 }
-
 
 export type Position = (
   targetRect?: PRect | null,
@@ -82,6 +80,7 @@ const Popover: React.FC<IPopoverProps> = ({
   disableFocusLock: _,
   onClose,
   parentRef,
+  popoverStyles,
   position = positionDefault,
   animationType = "fade",
   popoverClasses: className
@@ -90,8 +89,8 @@ const Popover: React.FC<IPopoverProps> = ({
 
   const popoverRef = useRef(null);
 
-  const parentRect = useGetBoundingClientRect(parentRef);
-  const popoverRect = useGetBoundingClientRect(popoverRef);
+  const parentRect = useRect(parentRef);
+  const popoverRect = useRect(popoverRef);
 
   usePopoverUtils({
     isOpen,
@@ -127,10 +126,12 @@ const Popover: React.FC<IPopoverProps> = ({
       <Box
         onTransitionEnd={onTransitionEnd}
         ref={popoverRef}
+        variant="outlined"
         role="presentation"
         tabIndex={-1}
         style={{
-          ...getStyles(position, parentRect as PRect, popoverRect as PRect)
+          ...getStyles(position, parentRect as PRect, popoverRect as PRect),
+          ...popoverStyles
         }}
         className={popoverMenuClasses}
       >

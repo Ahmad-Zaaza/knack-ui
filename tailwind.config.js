@@ -8,7 +8,7 @@ module.exports = {
     require("tailwindcss-rtl"),
     require("@tailwindcss/line-clamp"),
     plugin(function ({ addVariant }) {
-      // Add a `third` variant, ie. `third:pb-0`
+      // Add a `second` variant, ie. `second:pb-0`
       addVariant("second", "&>:nth-child(n+2)");
     })
   ]

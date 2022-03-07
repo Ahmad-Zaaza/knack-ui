@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
 import { Button, Input, MenuItem } from "..";
+import { Stack } from "../Stack";
 
 export default {
   title: "Components/Popover",
@@ -17,6 +18,8 @@ const Template: ComponentStory<typeof Popover> = (_) => {
 
   return (
     <BrowserRouter>
+    <Stack justifyContent='space-between'>
+
       <Input />
       <Button
         onClick={() => {
@@ -29,10 +32,6 @@ const Template: ComponentStory<typeof Popover> = (_) => {
         Click me
       </Button>
       <Popover
-        position={() => ({
-            top: 0,
-            left: 0
-          })}
         animationType="fade-up"
         isOpen={open}
         onClose={() => setOpen(false)}
@@ -42,6 +41,7 @@ const Template: ComponentStory<typeof Popover> = (_) => {
         <MenuItem kind="ghost">Go to home</MenuItem>
         <MenuItem kind="ghost">Go to home</MenuItem>
       </Popover>
+          </Stack>
     </BrowserRouter>
   );
 };
