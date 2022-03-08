@@ -18,30 +18,39 @@ const Template: ComponentStory<typeof Popover> = (_) => {
 
   return (
     <BrowserRouter>
-    <Stack justifyContent='space-between'>
-
-      <Input />
-      <Button
-        onClick={() => {
-          if (!open) {
-            setOpen(true);
-          }
-        }}
-        ref={parentRef}
+      <Stack
+        justifyContent="space-between"
+        // className="flex-row-reverse"
       >
-        Click me
-      </Button>
-      <Popover
-        animationType="fade-up"
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        parentRef={parentRef}
-      >
-        <MenuItem kind="ghost">Go to home</MenuItem>
-        <MenuItem kind="ghost">Go to home</MenuItem>
-        <MenuItem kind="ghost">Go to home</MenuItem>
-      </Popover>
-          </Stack>
+        <Input />
+        <Button
+          onClick={() => {
+            if (!open) {
+              setOpen(true);
+            }
+          }}
+          className="mt-[300px]"
+          ref={parentRef}
+        >
+          Click me
+        </Button>
+        <Popover
+          animationType="fade-up"
+          isOpen={open}
+          offset={{ bottom: 10, left: 0 }}
+          popoverProps={{
+            className: "w-64",
+            variant: "elevated",
+            elevation: 2
+          }}
+          onClose={() => setOpen(false)}
+          parentRef={parentRef}
+        >
+          <MenuItem kind="ghost">Go to home</MenuItem>
+          <MenuItem kind="ghost">Go to home</MenuItem>
+          <MenuItem kind="ghost">Go to home</MenuItem>
+        </Popover>
+      </Stack>
     </BrowserRouter>
   );
 };
