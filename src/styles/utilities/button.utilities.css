@@ -1,14 +1,26 @@
 @layer utilities {
+  .btn-lg {
+    @apply lg-size;
+  }
   .btn-md {
-    @apply md-size text-button;
+    @apply md-size;
   }
   .btn-sm {
-    @apply sm-size text-button;
+    @apply sm-size;
+    & .btn-startIcon {
+      @apply me-1;
+    }
+  }
+  .btn-icon-lg {
+    @apply px-2 py-2;
   }
   .btn-icon-md {
-    @apply px-1.5 py-1.5 text-button;
+    @apply px-1.5 py-1.5;
   }
   .btn-icon-sm {
-    @apply px-1 py-1 text-button;
+    @apply px-1 py-1;
+  }
+  .btn-rounded {
+    @apply rounded-full;
   }
 }

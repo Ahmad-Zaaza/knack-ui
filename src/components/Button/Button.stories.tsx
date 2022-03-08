@@ -2,6 +2,7 @@ import { Story, ComponentMeta } from "@storybook/react";
 import { Router, Link } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { BsFillBagFill } from "react-icons/bs";
+import { AiFillEdit } from "react-icons/ai";
 import Button, { ButtonProps } from "./Button";
 
 export default {
@@ -10,13 +11,14 @@ export default {
   argTypes: {
     variant: {
       defaultValue: "medium",
-      options: ["small", "medium"],
+      options: ["small", "medium", "large"],
       control: "radio"
     },
     kind: { control: "radio" },
     children: { defaultValue: "Hello", control: "text" },
     fullWidth: { defaultValue: false, control: "boolean" },
-    disabled: { defaultValue: false, control: "boolean" }
+    disabled: { defaultValue: false, control: "boolean" },
+    rounded: { defaultValue: false, control: "boolean" }
   }
 } as ComponentMeta<typeof Button>;
 const history = createMemoryHistory();
@@ -31,7 +33,8 @@ export const Primary = Template.bind({});
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  kind: "secondary"
+  kind: "secondary",
+  startIcon: <AiFillEdit />
 };
 export const PrimaryOutline = Template.bind({});
 PrimaryOutline.args = {
@@ -68,5 +71,5 @@ LinkButton.args = {};
 export const IconButton = Template.bind({});
 IconButton.args = {
   iconOnly: true,
-  children: <BsFillBagFill size={20} />
+  children: <BsFillBagFill />
 };

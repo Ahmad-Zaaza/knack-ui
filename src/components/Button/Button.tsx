@@ -19,11 +19,15 @@ interface ButtonProps {
    * Appearance of the button
    */
   kind?: ButtonVariants;
+  /**
+   * Start Icon Component
+   */
+  startIcon?: JSX.Element;
   children: React.ReactNode;
   /**
    * Controls the size of the button
    */
-  variant?: "small" | "medium";
+  variant?: "small" | "medium" | "large";
   /**
    * If `true` sets the width to 100%
    */
@@ -36,6 +40,10 @@ interface ButtonProps {
    * If `true` will render an Icon button
    */
   iconOnly?: boolean;
+  /**
+   * If `true` will render a circle shape
+   */
+  rounded?: boolean;
   /**
    * If `false` will disable hover elevation animation.
    *
@@ -53,19 +61,21 @@ const Button = forwardRef(
       isLoading,
       as: Component = "button",
       type = "button",
-
+      rounded,
       fullWidth,
       iconOnly,
       elevationAnimation,
-
+      startIcon,
+      children,
       ...delegated
     },
     ref
   ) => {
-    const { containerClasses } = useButtonClasses({
+    const { containerClasses, startIconClasses } = useButtonClasses({
       className,
       variant,
       kind,
+      rounded,
       isLoading,
       fullWidth,
       iconOnly,
@@ -77,10 +87,15 @@ const Button = forwardRef(
         className={containerClasses}
         type={type}
         {...delegated}
-      />
+      >
+        {startIcon ? (
+          <span className={startIconClasses}>{startIcon}</span>
+        ) : null}
+        {children}
+      </Component>
     );
   }
 ) as Polymorphic.ForwardRefComponent<"button", ButtonProps>;
 export default Button;
 
-export type { ButtonProps,ButtonVariants };
+export type { ButtonProps, ButtonVariants };

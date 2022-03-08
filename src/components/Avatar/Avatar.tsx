@@ -13,6 +13,7 @@ export interface IAvatarProps extends ComponentPropsWithoutRef<"div"> {
   image?: string;
   color?: "primary" | "secondary";
   max?: boolean;
+  square?: boolean;
 }
 
 const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
@@ -23,6 +24,7 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       text,
       image,
       max,
+      square,
       color = "primary",
       ...delegated
     },
@@ -32,6 +34,7 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
     const { containerClasses, imageClasses } = useAvatarClasses({
       className,
       size,
+      square,
       color
     });
     useEffect(() => {

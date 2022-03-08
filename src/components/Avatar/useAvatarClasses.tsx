@@ -6,6 +6,7 @@ import { IAvatarProps } from "./Avatar";
 const clsx = classnames.bind(styles);
 const useAvatarClasses = ({
   className,
+  square,
   size,
   color
 }: Omit<IAvatarProps, "text">) => {
@@ -16,7 +17,8 @@ const useAvatarClasses = ({
         {
           "avatar-sm": size === "small",
           "avatar-md": size === "medium",
-          "avatar-lg": size === "large"
+          "avatar-lg": size === "large",
+          "avatar-square": square
         },
         {
           "avatar-primary": color === "primary",
@@ -24,7 +26,7 @@ const useAvatarClasses = ({
         },
         className
       ),
-    [className, size]
+    [className, size, square, color]
   );
   const imageClasses = useMemo(() => clsx("avatar-img"), []);
 

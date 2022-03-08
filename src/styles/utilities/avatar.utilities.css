@@ -21,4 +21,7 @@
     @apply w-[56px] h-[56px];
     font-size: 1.5em;
   }
+  .avatar-square {
+    @apply rounded-md;
+  }
 }

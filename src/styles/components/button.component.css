@@ -9,6 +9,9 @@
       transform: translate3d(0px, 0px, 0px);
       box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 3em inset;
     }
+    & svg {
+      font-size:inherit;
+    }
   }
   .btn-icon {
     @apply overflow-hidden;
@@ -63,5 +66,8 @@
   }
   .btn-danger {
     @apply text-white bg-error;
+  }
+  .btn-startIcon {
+    @apply inline-block me-2;
   }
 }

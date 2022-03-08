@@ -16,9 +16,11 @@ export default {
 } as ComponentMeta<typeof Avatar>;
 
 const Template: ComponentStory<typeof Avatar> = ({ ...args }) => (
- 
-    <Avatar {...args} />
- 
+  <Avatar {...args} />
 );
 
 export const Default = Template.bind({});
+export const Square = Template.bind({});
+Square.args = {
+  square: true
+};

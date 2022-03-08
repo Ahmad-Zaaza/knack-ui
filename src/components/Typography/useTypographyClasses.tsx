@@ -35,12 +35,12 @@ const useTypographyClasses = ({
           "text-button": variant === "button"
         },
         {
+          "text-current": color === "currentColor",
           "text-primary": color === "primary",
           "text-secondary": color === "secondary",
           "text-success": color === "success",
           "text-warning": color === "warning",
-          "text-muted": color === "muted",
-          "text-main": !color
+          "text-muted": color === "muted"
         },
         {
           "font-bold": fontWeight === "bold",

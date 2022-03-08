@@ -31,7 +31,8 @@ type TypographyColors =
   | "secondary"
   | "muted"
   | "success"
-  | "warning";
+  | "warning"
+  | "currentColor";
 type TypographyFontWeight = "bold" | "semibold" | "medium" | "normal" | "light";
 type TypographyProps = {
   variant?: TypographyVariants;
@@ -61,7 +62,7 @@ const Typography = forwardRef(
       variant,
       children,
       fontWeight,
-      color,
+      color = "currentColor",
       clamp,
       textAlign,
       ...delegated
