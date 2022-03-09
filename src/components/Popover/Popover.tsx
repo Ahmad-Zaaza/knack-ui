@@ -100,7 +100,7 @@ interface IPopoverProps {
   position?: Position;
   offset?: PopoverOffset;
   animationType?: PopoverAnimations;
-  popoverProps: Polymorphic.Merge<ComponentPropsWithoutRef<"div">, BoxProps>;
+  popoverProps?: Polymorphic.Merge<ComponentPropsWithoutRef<"div">, BoxProps>;
 }
 const Popover: React.FC<IPopoverProps> = ({
   isOpen,
@@ -111,7 +111,7 @@ const Popover: React.FC<IPopoverProps> = ({
   offset,
   position = positionDefault,
   animationType = "fade",
-  popoverProps: { style, className, ...leftPopoverProps }
+  popoverProps
 }) => {
   const [active, setActive] = useState(false);
 
@@ -136,9 +136,9 @@ const Popover: React.FC<IPopoverProps> = ({
           [`${animationType}--active`]: isOpen && active,
           [`${animationType}--initial`]: true
         },
-        className
+        popoverProps?.className
       ),
-    [className, isOpen, active]
+    [popoverProps?.className, isOpen, active]
   );
 
   const onTransitionEnd = () => {
@@ -156,15 +156,15 @@ const Popover: React.FC<IPopoverProps> = ({
         variant="outlined"
         role="presentation"
         tabIndex={-1}
+        {...popoverProps}
         style={{
           ...getStyles(position, parentRect as PRect, popoverRect as PRect, {
             bottom: offset?.bottom ?? 0,
             left: offset?.left ?? 0
           }),
-          ...style
+          ...popoverProps?.style
         }}
         className={popoverMenuClasses}
-        {...leftPopoverProps}
       >
         {children}
       </Box>
