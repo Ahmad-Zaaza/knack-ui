@@ -11,12 +11,7 @@ module.exports = {
     }
     return `rgb(var(--secondary-color))`;
   },
-  tertiary: ({ opacityValue }) => {
-    if (opacityValue) {
-      return `rgba(var(--tertiary-color), ${opacityValue})`;
-    }
-    return `rgb(var(--tertiary-color))`;
-  },
+  tertiary: "rgb(var(--tertiary-color))",
   error: ({ opacityValue }) => {
     if (opacityValue) {
       return `rgba(var(--error-color), ${opacityValue})`;

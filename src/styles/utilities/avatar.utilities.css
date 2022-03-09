@@ -23,5 +23,8 @@
   }
   .avatar-square {
     @apply rounded-md;
+    & span {
+      @apply rounded-md;
+    }
   }
 }
