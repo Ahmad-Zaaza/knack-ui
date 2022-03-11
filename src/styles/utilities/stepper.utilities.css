@@ -6,7 +6,7 @@
   }
   .step-connector--completed {
     & span {
-      @apply border-primary;
+      @apply border-solid border-primary;
     }
   }
   .step--active,

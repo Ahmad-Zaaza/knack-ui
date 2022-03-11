@@ -22,10 +22,10 @@
     --bg-color: 255, 251, 235;
     --nav-color: 255, 255, 255;
     --paper-color: #fff;
-    --drawer-root-z: 1200;
     --dialog-root-z: 1101;
     --dialog-overlay-z: 1100;
-    --popover-z: 1200;
+    --drawer-root-z: 1099;
+    --popover-z: 1098;
     --overlay-color: 0, 0, 0, 0.4;
   }
   html[class="dark"] {

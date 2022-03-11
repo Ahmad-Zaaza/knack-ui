@@ -66,12 +66,12 @@ const Step: React.FC<IStepProps> = ({
         <span>{iconChildren}</span>
       )} */}
       <Button
+        variant="small"
         kind="defaultOutline"
         elevationAnimation={false}
         onClick={() => {
           if (clickable && typeof index !== "undefined")
             handleChangeStep(index);
-            
         }}
         disabled={disabled}
       >

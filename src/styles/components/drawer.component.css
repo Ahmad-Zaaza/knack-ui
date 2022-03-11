@@ -1,0 +1,38 @@
+@layer components {
+  .drawer {
+    @apply absolute block overflow-hidden shadow opacity-0 z-drawer bg-paper;
+    transition: all 0.3s cubic-bezier(0.21, 0.73, 0.75, 1);
+
+    &.drawer-active {
+      opacity: 100;
+    }
+    &.drawer-start {
+      @apply top-0 bottom-0 start-0;
+      transform: translateX(-100%);
+      &.drawer-active {
+        transform: translateX(0) !important;
+      }
+    }
+    &.drawer-end {
+      @apply top-0 bottom-0 end-0;
+      transform: translateX(100%);
+      &.drawer-active {
+        transform: translateX(0) !important;
+      }
+    }
+    &.drawer-top {
+      @apply top-0 end-0 start-0;
+      transform: translateY(-100%);
+      &.drawer-active {
+        transform: translateY(0) !important;
+      }
+    }
+    &.drawer-bottom {
+      @apply bottom-0 end-0 start-0;
+      transform: translateY(100%);
+      &.drawer-active {
+        transform: translateY(0) !important;
+      }
+    }
+  }
+}

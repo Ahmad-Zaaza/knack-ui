@@ -21,3 +21,4 @@ export { AvatarGroup } from "./AvatarGroup";
 export { EditbleTypography } from "./EditbleTypography";
 export { MenuItem } from "./MenuItem";
 export * from "./Popover";
+export { Drawer } from "./Drawer";
