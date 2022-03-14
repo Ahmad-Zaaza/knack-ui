@@ -20,7 +20,8 @@ interface ChipProps {
   /**
    * Apply sharp edges
    */
-  square?: boolean;
+  shape?: "square" | "rounded";
+
   /**
    * Controls Chip size
    */
@@ -35,7 +36,7 @@ const Chip = forwardRef(
       children,
       variant = "primaryOutline",
       size = "medium",
-      square,
+      shape,
       ...delegated
     },
     ref
@@ -43,7 +44,7 @@ const Chip = forwardRef(
     const { containerClasses } = useChipClasses({
       className,
       variant,
-      square,
+      shape,
       size
     });
 

@@ -4,7 +4,7 @@ import styles from "../../tailwind.css";
 import { ChipProps } from "./Chip";
 
 const clsx = classnames.bind(styles);
-const useChipClasses = ({ className, variant, size, square }: ChipProps) => {
+const useChipClasses = ({ className, variant, size, shape }: ChipProps) => {
   const containerClasses = useMemo(
     () =>
       clsx(
@@ -23,10 +23,11 @@ const useChipClasses = ({ className, variant, size, square }: ChipProps) => {
           "chip-sm": size === "small",
           "chip-md": size === "medium"
         },
-        { "rounded-none": square },
+        { "chip-square": shape === "square" },
+        { "chip-rounded": shape === "rounded" },
         className
       ),
-    [className, variant, size, square]
+    [className, variant, size, shape]
   );
 
   return {

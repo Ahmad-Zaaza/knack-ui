@@ -6,7 +6,12 @@ import Chip from "./Chip";
 export default {
   title: "Components/Chip",
   component: Chip,
-  argTypes: {}
+  argTypes: {
+    shape: {
+      control: "radio",
+      options: ["rounded", "square"]
+    }
+  }
 } as ComponentMeta<typeof Chip>;
 
 const Template: ComponentStory<typeof Chip> = ({

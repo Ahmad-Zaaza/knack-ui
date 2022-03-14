@@ -5,4 +5,10 @@
   .chip-sm {
     @apply sm-size text-button;
   }
+  .chip-square {
+    @apply rounded-none;
+  }
+  .chip-rounded {
+    @apply rounded-full;
+  }
 }
