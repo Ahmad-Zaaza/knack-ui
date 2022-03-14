@@ -22,3 +22,4 @@ export { EditbleTypography } from "./EditbleTypography";
 export { MenuItem } from "./MenuItem";
 export * from "./Popover";
 export { Drawer } from "./Drawer";
+export { HorizontalList } from "./HorizontalList";

@@ -1,4 +1,5 @@
 @import "tailwindcss/utilities";
+@import "../utilities/horizontallist.utilities.css";
 @import "../utilities/drawer.utilities.css";
 @import "../utilities/popover.utilities.css";
 @import "../utilities/menuitem.utilities.css";
