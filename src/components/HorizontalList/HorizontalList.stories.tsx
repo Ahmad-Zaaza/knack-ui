@@ -18,13 +18,13 @@ const Template: ComponentStory<typeof HorizontalList> = (args) => (
     <Chip>Long name here</Chip>
     <Chip>Long name here</Chip>
     <Chip>Long name here</Chip>
+    {/* <Chip>Long name here</Chip>
     <Chip>Long name here</Chip>
     <Chip>Long name here</Chip>
     <Chip>Long name here</Chip>
     <Chip>Long name here</Chip>
     <Chip>Long name here</Chip>
-    <Chip>Long name here</Chip>
-    <Chip>Long name here</Chip>
+    <Chip>Long name here</Chip> */}
   </HorizontalList>
 );
 

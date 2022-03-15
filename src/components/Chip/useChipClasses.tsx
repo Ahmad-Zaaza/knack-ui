@@ -21,10 +21,11 @@ const useChipClasses = ({ className, variant, size, shape }: ChipProps) => {
         },
         {
           "chip-sm": size === "small",
-          "chip-md": size === "medium"
+          "chip-md": size === "medium",
+          "chip-square": shape === "square",
+          "chip-rounded": shape === "rounded"
         },
-        { "chip-square": shape === "square" },
-        { "chip-rounded": shape === "rounded" },
+
         className
       ),
     [className, variant, size, shape]

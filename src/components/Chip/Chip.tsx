@@ -18,7 +18,7 @@ interface ChipProps {
    */
   variant?: TChipVariants;
   /**
-   * Apply sharp edges
+   * Chip border radius
    */
   shape?: "square" | "rounded";
 

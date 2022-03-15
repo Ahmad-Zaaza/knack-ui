@@ -1,9 +1,22 @@
 @layer components {
+  .horizontal-list__container {
+    @apply overflow-x-visible snap-proximity;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(300px);
+    scroll-snap-type: y mandatory;
+  }
   .horizontal-list {
-    @apply relative overflow-x-hidden;
+    @apply relative overflow-x-scroll scroll-smooth;
+    scrollbar-width: 0;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & > * {
+      scroll-snap-align: start;
+    }
   }
   .horizontal-list__arrows {
-    @apply absolute z-20 -translate-y-1/2 bg-paper top-1/2 end-0;
+    @apply !hidden sm:!flex;
     &::before {
       content: " ";
       @apply absolute w-[70px] h-full;

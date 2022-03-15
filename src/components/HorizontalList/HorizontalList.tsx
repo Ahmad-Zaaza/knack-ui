@@ -1,11 +1,4 @@
-import {
-  ComponentPropsWithoutRef,
-  CSSProperties,
-  forwardRef,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import composeRefs from "@seznam/compose-react-refs";
 import { useRect } from "@reach/rect";
 import { Stack } from "../Stack";
@@ -13,17 +6,13 @@ import useHorizontalListClasses from "./useHorizontalListClasses";
 import * as Polymorphic from "../../types/helpers";
 import { Button } from "../Button";
 
-export interface IHorizontalListProps extends ComponentPropsWithoutRef<"div"> {}
-
-// const arrowsWidth = 76;
-
 const HorizontalList = forwardRef(
   ({ className, children, as: Component = Stack, ...delegated }, ref) => {
-    const { containerClasses, listArrowsClasses } = useHorizontalListClasses({
-      className
-    });
-    const [listWidth, setListWidth] =
-      useState<CSSProperties["width"]>("max-content");
+    const { containerClasses, listArrowsClasses, horizontalListClasses } =
+      useHorizontalListClasses({
+        className
+      });
+
     const [showButtons, setShowButtons] = useState(false);
     const listRef = useRef<HTMLDivElement | null>(null);
     const parentRef = useRef<HTMLDivElement | null>(null);
@@ -31,20 +20,36 @@ const HorizontalList = forwardRef(
     const parentRect = useRect(parentRef);
 
     useEffect(() => {
-      if (listRect && parentRect) {
-        // console.log({ listWidth: listRect.width });
-        // console.log({ parentWidth: parentRect.width });
-        // console.log(listRect.width, "first");
-        if (listRect.width > parentRect.width) {
-          setListWidth((parentRect.width * 80) / 100);
-          // listRect.width = 50;
-          // console.log(listRect.width);
+      if (listRect && parentRect && listRef.current) {
+        const list = listRef.current;
+        const listWidth = list.scrollWidth;
+
+        if (listWidth > parentRect.width) {
           setShowButtons(true);
         } else if (showButtons) {
           setShowButtons(false);
         }
       }
     }, [listRect, parentRect]);
+
+    const handleScrollForward = () => {
+      if (listRef.current && parentRect) {
+        if (window.document.dir === "rtl") {
+          listRef.current.scrollLeft -= parentRect.width / 2;
+        } else {
+          listRef.current.scrollLeft += parentRect.width / 2;
+        }
+      }
+    };
+    const handleScrollBackward = () => {
+      if (listRef.current && parentRect) {
+        if (window.document.dir === "rtl") {
+          listRef.current.scrollLeft += parentRect.width / 2;
+        } else {
+          listRef.current.scrollLeft -= parentRect.width / 2;
+        }
+      }
+    };
     return (
       <Stack
         ref={parentRef}
@@ -52,18 +57,21 @@ const HorizontalList = forwardRef(
         alignItems="baseline"
         gap={2}
       >
-        <div style={{ overflow: "hidden" }}>
-          <Component
-            style={{ width: listWidth }}
-            ref={composeRefs(listRef, ref)}
-            {...delegated}
-          >
-            {children}
-          </Component>
-        </div>
+        <Component
+          className={horizontalListClasses}
+          ref={composeRefs(listRef, ref)}
+          {...delegated}
+        >
+          {children}
+        </Component>
+
         {showButtons ? (
           <Stack className={listArrowsClasses} gap={2}>
-            <Button disabled iconOnly kind="defaultOutline">
+            <Button
+              onClick={handleScrollBackward}
+              iconOnly
+              kind="defaultOutline"
+            >
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -77,7 +85,11 @@ const HorizontalList = forwardRef(
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
               </svg>
             </Button>
-            <Button iconOnly kind="defaultOutline">
+            <Button
+              onClick={handleScrollForward}
+              iconOnly
+              kind="defaultOutline"
+            >
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -96,6 +108,6 @@ const HorizontalList = forwardRef(
       </Stack>
     );
   }
-) as Polymorphic.ForwardRefComponent<typeof Stack, IHorizontalListProps>;
+) as Polymorphic.ForwardRefComponent<typeof Stack, {}>;
 
 export default HorizontalList;
