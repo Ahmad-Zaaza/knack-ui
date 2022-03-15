@@ -1,11 +1,13 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import composeRefs from "@seznam/compose-react-refs";
 import { useRect } from "@reach/rect";
 import { Stack } from "../Stack";
 import useHorizontalListClasses from "./useHorizontalListClasses";
 import * as Polymorphic from "../../types/helpers";
 import { Button } from "../Button";
+import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect";
 
+// TODO: Add Disabled state 
 const HorizontalList = forwardRef(
   ({ className, children, as: Component = Stack, ...delegated }, ref) => {
     const { containerClasses, listArrowsClasses, horizontalListClasses } =
@@ -16,15 +18,15 @@ const HorizontalList = forwardRef(
     const [showButtons, setShowButtons] = useState(false);
     const listRef = useRef<HTMLDivElement | null>(null);
     const parentRef = useRef<HTMLDivElement | null>(null);
+
     const listRect = useRect(listRef);
     const parentRect = useRect(parentRef);
-
-    useEffect(() => {
-      if (listRect && parentRect && listRef.current) {
+    useIsomorphicLayoutEffect(() => {
+      if (parentRect && listRef.current) {
         const list = listRef.current;
         const listWidth = list.scrollWidth;
 
-        if (listWidth > parentRect.width) {
+        if (listWidth > parentRect.width + 0.1 && !showButtons) {
           setShowButtons(true);
         } else if (showButtons) {
           setShowButtons(false);
@@ -51,12 +53,7 @@ const HorizontalList = forwardRef(
       }
     };
     return (
-      <Stack
-        ref={parentRef}
-        className={containerClasses}
-        alignItems="baseline"
-        gap={2}
-      >
+      <Stack gap={2} ref={parentRef} className={containerClasses}>
         <Component
           className={horizontalListClasses}
           ref={composeRefs(listRef, ref)}

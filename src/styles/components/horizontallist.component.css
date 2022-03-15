@@ -1,12 +1,14 @@
 @layer components {
   .horizontal-list__container {
-    @apply overflow-x-visible snap-proximity;
+    @apply relative w-full snap-proximity;
+
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(300px);
     scroll-snap-type: y mandatory;
   }
   .horizontal-list {
-    @apply relative overflow-x-scroll scroll-smooth;
+    @apply overflow-auto scroll-smooth;
+
     scrollbar-width: 0;
     &::-webkit-scrollbar {
       display: none;
@@ -16,7 +18,7 @@
     }
   }
   .horizontal-list__arrows {
-    @apply !hidden sm:!flex;
+    @apply !hidden relative  bg-paper shrink-0  sm:!flex;
     &::before {
       content: " ";
       @apply absolute w-[70px] h-full;

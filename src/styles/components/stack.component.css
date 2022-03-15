@@ -1,6 +1,6 @@
 @layer components {
   .stack {
-    @apply flex;
+    @apply flex min-w-0;
   }
   .stack-column {
     @apply flex flex-col;

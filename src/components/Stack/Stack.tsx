@@ -14,6 +14,7 @@ interface StackProps {
    * @default 'row'
    */
   direction?: "column" | "row";
+  inline?: boolean;
   children: React.ReactNode;
   /**
    * Controls `align-items` flex property
@@ -44,6 +45,7 @@ const Stack = forwardRef(
       gap = 0,
       style,
       children,
+      inline,
       justifyContent,
       alignItems,
       ...delegated
@@ -66,13 +68,14 @@ const Stack = forwardRef(
             "justify-between": justifyContent === "space-between",
             "justify-around": justifyContent === "space-around",
             "justify-evenly": justifyContent === "space-evenly",
+            "inline-flex": inline,
             [`sc-spacing-${gap}`]: direction === "column",
             [`sr-spacing-${gap}`]: direction === "row"
           },
 
           className
         ),
-      [gap, direction, className]
+      [gap, direction, className,inline]
     );
     return (
       <div ref={ref} style={stackStyles} className={classes} {...delegated}>
