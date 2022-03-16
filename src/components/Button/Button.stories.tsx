@@ -18,7 +18,7 @@ export default {
     children: { defaultValue: "Hello", control: "text" },
     fullWidth: { defaultValue: false, control: "boolean" },
     disabled: { defaultValue: false, control: "boolean" },
-    rounded: { defaultValue: false, control: "boolean" }
+    shape: { options: ["square", "rounded"], control: "radio" }
   }
 } as ComponentMeta<typeof Button>;
 const history = createMemoryHistory();
@@ -59,6 +59,16 @@ Ghost.args = {
 export const Danger = Template.bind({});
 Danger.args = {
   kind: "danger",
+  variant: "medium"
+};
+export const Warning = Template.bind({});
+Warning.args = {
+  kind: "warning",
+  variant: "medium"
+};
+export const Success = Template.bind({});
+Success.args = {
+  kind: "success",
   variant: "medium"
 };
 export const FullWidth = Template.bind({});

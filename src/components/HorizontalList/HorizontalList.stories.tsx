@@ -44,11 +44,11 @@ const Template: ComponentStory<typeof HorizontalList> = () => (
           {[
             "Communications",
             "Behaviour",
-            "Behaviour",
-            "Behaviour",
-            "Behaviour",
-            "Behaviour",
-            "Behaviour"
+            // "Behaviour",
+            // "Behaviour",
+            // "Behaviour",
+            // "Behaviour",
+            // "Behaviour"
             // "Behaviour",
             // "Behaviour",
             // "Behaviour",

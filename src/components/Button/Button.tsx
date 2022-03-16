@@ -11,6 +11,8 @@ type ButtonVariants =
   | "secondaryOutline"
   | "ghostOutline"
   | "danger"
+  | "warning"
+  | "success"
   | "default"
   | "defaultOutline";
 
@@ -40,10 +42,8 @@ interface ButtonProps {
    * If `true` will render an Icon button
    */
   iconOnly?: boolean;
-  /**
-   * If `true` will render a circle shape
-   */
-  rounded?: boolean;
+
+  shape?: "rounded" | "square";
   /**
    * If `false` will disable hover elevation animation.
    *
@@ -61,7 +61,7 @@ const Button = forwardRef(
       isLoading,
       as: Component = "button",
       type = "button",
-      rounded,
+      shape,
       fullWidth,
       iconOnly,
       elevationAnimation,
@@ -75,7 +75,7 @@ const Button = forwardRef(
       className,
       variant,
       kind,
-      rounded,
+      shape,
       isLoading,
       fullWidth,
       iconOnly,

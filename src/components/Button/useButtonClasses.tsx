@@ -8,7 +8,7 @@ const useButtonClasses = ({
   className,
   kind,
   variant,
-  rounded,
+  shape,
   fullWidth,
   iconOnly,
   elevationAnimation
@@ -26,7 +26,9 @@ const useButtonClasses = ({
           "btn-ghost": kind === "ghost",
           "btn-danger": kind === "danger",
           "btn-default": kind === "default",
-          "btn-defaultOutline": kind === "defaultOutline"
+          "btn-defaultOutline": kind === "defaultOutline",
+          "btn-warning": kind === "warning",
+          "btn-success": kind === "success"
         },
         {
           "btn-sm": variant === "small" && !iconOnly,
@@ -40,11 +42,12 @@ const useButtonClasses = ({
           "w-full": fullWidth,
           "btn-icon": iconOnly,
           "no-btn-elev": !elevationAnimation,
-          "btn-rounded": rounded
+          "btn-rounded": shape==='rounded',
+          "btn-square": shape==='square'
         },
         className
       ),
-    [className, variant, fullWidth, kind, iconOnly, rounded]
+    [className, variant, fullWidth, kind, iconOnly, shape]
   );
   const startIconClasses = useMemo(() => clsx("btn-startIcon"), []);
 

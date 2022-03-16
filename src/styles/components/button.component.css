@@ -34,6 +34,18 @@
       @apply bg-tertiaryDark;
     }
   }
+  .btn-warning {
+    @apply bg-warning bg-opacity-10 text-warning;
+    &:not([disabled]):hover {
+      @apply bg-opacity-20;
+    }
+  }
+  .btn-success {
+    @apply bg-success bg-opacity-10 text-success;
+    &:not([disabled]):hover {
+      @apply bg-opacity-20;
+    }
+  }
   .btn-ghost {
     @apply text-main;
     &:not([disabled]):hover {

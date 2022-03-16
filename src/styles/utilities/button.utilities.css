@@ -23,4 +23,7 @@
   .btn-rounded {
     @apply rounded-full;
   }
+  .btn-square {
+    @apply rounded-none;
+  }
 }
