@@ -75,7 +75,7 @@ const Stack = forwardRef(
 
           className
         ),
-      [gap, direction, className,inline]
+      [gap, direction, className, inline, justifyContent, alignItems]
     );
     return (
       <div ref={ref} style={stackStyles} className={classes} {...delegated}>
