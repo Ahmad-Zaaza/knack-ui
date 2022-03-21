@@ -8,6 +8,7 @@ const useInputClasses = ({
   error,
   variant,
   className,
+  size,
   disabled,
   inputClassName,
   inputPrefix: InputPrefix,
@@ -18,12 +19,13 @@ const useInputClasses = ({
       clsx(
         "input",
         {
-          "input-sm": variant === "small",
-          "input-lg": variant === "large"
+          "input-sm": size === "small",
+          "input-lg": size === "large",
+          "input-filled": variant === "filled"
         },
         inputClassName
       ),
-    [variant, inputClassName]
+    [size, inputClassName, variant]
   );
   const containerClasses = useMemo(
     () =>
@@ -41,14 +43,14 @@ const useInputClasses = ({
   const prefixClasses = useMemo(
     () =>
       clsx("input-prefix", "input-adornment", {
-        "input-prefix-lg": variant === "large",
-        "input-prefix-sm": variant === "small"
+        "input-prefix-lg": size === "large",
+        "input-prefix-sm": size === "small"
       }),
-    [variant]
+    [size]
   );
   const inputErrorWrapperClasses = useMemo(
     () => clsx("input-error-wrapper"),
-    [error]
+    []
   );
   return {
     containerClasses,

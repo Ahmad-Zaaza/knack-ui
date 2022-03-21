@@ -11,7 +11,7 @@ export default {
   argTypes: {
     variant: {
       defaultValue: "medium",
-      options: ["small", "medium", "large"],
+      options: ["xsmall","small", "medium", "large"],
       control: "radio"
     },
     kind: { control: "radio" },
@@ -78,6 +78,10 @@ FullWidth.args = {
 
 export const LinkButton = RouterTemplate.bind({});
 LinkButton.args = {};
+export const EndIcon = Template.bind({});
+EndIcon.args = {
+  endIcon: <BsFillBagFill size={18} />
+};
 export const IconButton = Template.bind({});
 IconButton.args = {
   iconOnly: true,

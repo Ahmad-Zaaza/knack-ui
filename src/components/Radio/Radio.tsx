@@ -28,12 +28,18 @@ export interface IRadioProps
    *
    */
   color?: "primary" | "secondary";
+  /**
+   * Controls Radio icon
+   * @default checkmark
+   */
+  icon?: "checkmark" | "circle";
 }
 
 const Radio = forwardRef<HTMLInputElement, IRadioProps>(
-  ({ size = "default", color='primary', ...delegated }, ref) => {
+  ({ size = "default", color = "primary", icon, ...delegated }, ref) => {
     const { containerClasses } = useRadioClasses({
       size,
+      icon,
       color
     });
     return (

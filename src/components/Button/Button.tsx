@@ -25,11 +25,15 @@ interface ButtonProps {
    * Start Icon Component
    */
   startIcon?: JSX.Element;
+  /**
+   * End Icon Component
+   */
+  endIcon?: JSX.Element;
   children: React.ReactNode;
   /**
    * Controls the size of the button
    */
-  variant?: "small" | "medium" | "large";
+  variant?: "xsmall" | "small" | "medium" | "large";
   /**
    * If `true` sets the width to 100%
    */
@@ -66,12 +70,13 @@ const Button = forwardRef(
       iconOnly,
       elevationAnimation,
       startIcon,
+      endIcon,
       children,
       ...delegated
     },
     ref
   ) => {
-    const { containerClasses, startIconClasses } = useButtonClasses({
+    const { containerClasses, startIconClasses,endIconClasses } = useButtonClasses({
       className,
       variant,
       kind,
@@ -92,6 +97,7 @@ const Button = forwardRef(
           <span className={startIconClasses}>{startIcon}</span>
         ) : null}
         {children}
+        {endIcon ? <span className={endIconClasses}>{endIcon}</span> : null}
       </Component>
     );
   }

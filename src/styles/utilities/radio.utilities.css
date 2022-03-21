@@ -1,22 +1,58 @@
 @layer utilities {
-    .radio-sm {
-      @apply w-[15px] h-[15px];
-      & input[type="radio"] ~ span::after {
-        left: 4px;
-        top: 1.7px;
-        width: 4.2px;
-        height: 8px;
-        border-width: 0 2px 2px 0;
-      }
-    }
-    .radio-lg {
-      @apply w-[25px] h-[25px];
-      & input[type="radio"] ~ span::after {
-        left: 7.4px;
-        top: 3.9px;
-        width: 7px;
-        height: 13px;
-      }
+  .radio-sm {
+    @apply w-[15px] h-[15px];
+  }
+  .radio-lg {
+    @apply w-[25px] h-[25px];
+  }
+  .radio-check-sm {
+    & input[type="radio"] ~ span::after {
+      left: 4px;
+      top: 1.7px;
+      width: 4.2px;
+      height: 7.5px;
+      border-width: 0 2px 2px 0;
     }
   }
-  
+  .radio-check-lg {
+    & input[type="radio"] ~ span::after {
+      left: 7.1px;
+      top: 3.9px;
+      width: 7px;
+      height: 13px;
+    }
+  }
+  .radio-circle {
+    & input[type="radio"] ~ span::after {
+      left: 3.2px;
+      top: 3.4px;
+      @apply bg-paper;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+    }
+  }
+  .radio-circle-sm {
+    & input[type="radio"] ~ span::after {
+      left: 2px;
+      top: 2px;
+      @apply bg-paper;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: none;
+    }
+  }
+  .radio-circle-lg {
+    & input[type="radio"] ~ span::after {
+      left: 5px;
+      top: 5px;
+      @apply bg-paper;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: none;
+    }
+  }
+}

@@ -3,8 +3,11 @@
     @apply block w-full md-size outline-none text-body2 !border-none;
     background: none;
   }
+  .input-filled {
+    @apply bg-gray-100;
+  }
   .input-container {
-    @apply transition-colors duration-75 border rounded-lg border-borderColor;
+    @apply overflow-hidden transition-colors duration-75 border rounded-lg border-borderColor;
     &:hover:not(:focus):not(:focus-within):not(.input-disabled):not(.input-error) {
       @apply border-primary;
     }

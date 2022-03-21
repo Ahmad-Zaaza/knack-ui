@@ -5,10 +5,22 @@
   .btn-md {
     @apply md-size;
   }
+  .btn-xs {
+    @apply xs-size;
+    & .btn-startIcon {
+      @apply me-1;
+    }
+    & .btn-endIcon {
+      @apply ms-1;
+    }
+  }
   .btn-sm {
     @apply sm-size;
     & .btn-startIcon {
       @apply me-1;
+    }
+    & .btn-endIcon {
+      @apply ms-1;
     }
   }
   .btn-icon-lg {

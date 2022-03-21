@@ -17,7 +17,7 @@ export default {
 
 const Template: ComponentStory<typeof Typography> = ({ ...args }) => (
   <Stack direction="column" gap={1}>
-    <Typography {...args} variant="h1">
+    <Typography {...args} variant="h1" as='h1'>
       This is an h1 variant
     </Typography>
     <Typography {...args} variant="h2">

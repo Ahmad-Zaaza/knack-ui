@@ -37,12 +37,16 @@
   .elevation-6 {
     @apply shadow-3xl bg-elevation-6;
   }
-  .sm-size {
+  .xs-size {
     @apply px-2 py-1.5;
     font-size: 0.8125em;
   }
+  .sm-size {
+    @apply px-3 py-1.5;
+    font-size: 0.8125em;
+  }
   .md-size {
-    @apply px-4 py-2;
+    @apply px-5 py-2;
     font-size: 0.875em;
   }
   .lg-size {

@@ -1,2 +1,49 @@
 @layer utilities {
+  .text-h1 {
+    font-size: 4.5rem;
+    line-height: 80px;
+    letter-spacing: -0.09375rem;
+    @screen sm {
+      font-size: 5rem;
+      line-height: 95px;
+    }
+    @screen md {
+      font-size: 6rem;
+      line-height: 114px;
+    }
+  }
+  .text-h2 {
+    font-size: 3.25rem;
+    line-height: 55px;
+    letter-spacing: -0.03125rem;
+
+    @screen sm {
+      font-size: 3.5rem;
+      line-height: 65px;
+    }
+    @screen md {
+      font-size: 3.75rem;
+      line-height: 72px;
+    }
+  }
+
+  .text-h3 {
+    font-size: 3rem;
+    line-height: 56px;
+  }
+  .text-h4 {
+    font-size: 2.125rem;
+    line-height: 40px;
+    letter-spacing: -0.0625rem;
+  }
+  .text-h5 {
+    font-size: 1.5rem;
+    line-height: 30px;
+    letter-spacing: -0.0175rem;
+  }
+  .text-h6 {
+    font-size: 1.25rem;
+    line-height: 24px;
+    letter-spacing: -0.021875rem;
+  }
 }

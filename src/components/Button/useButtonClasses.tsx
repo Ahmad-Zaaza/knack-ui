@@ -31,6 +31,7 @@ const useButtonClasses = ({
           "btn-success": kind === "success"
         },
         {
+          "btn-xs": variant === "xsmall" && !iconOnly,
           "btn-sm": variant === "small" && !iconOnly,
           "btn-md": variant === "medium" && !iconOnly,
           "btn-lg": variant === "large" && !iconOnly,
@@ -42,17 +43,19 @@ const useButtonClasses = ({
           "w-full": fullWidth,
           "btn-icon": iconOnly,
           "no-btn-elev": !elevationAnimation,
-          "btn-rounded": shape==='rounded',
-          "btn-square": shape==='square'
+          "btn-rounded": shape === "rounded",
+          "btn-square": shape === "square"
         },
         className
       ),
     [className, variant, fullWidth, kind, iconOnly, shape]
   );
-  const startIconClasses = useMemo(() => clsx("btn-startIcon"), []);
+  const startIconClasses = useMemo(() => clsx("btn-startIcon", "btn-icon"), []);
+  const endIconClasses = useMemo(() => clsx("btn-endIcon", "btn-icon"), []);
 
   return {
     containerClasses,
+    endIconClasses,
     startIconClasses
   };
 };

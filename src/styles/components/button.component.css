@@ -79,7 +79,13 @@
   .btn-danger {
     @apply text-white bg-error;
   }
+  .btn-icon {
+    @apply inline-block;
+  }
   .btn-startIcon {
-    @apply inline-block me-2;
+    @apply me-2;
+  }
+  .btn-endIcon {
+    @apply ms-2;
   }
 }

@@ -1,12 +1,13 @@
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import useInputClasses from "./useInputClasses";
 
-export interface IInputProps extends ComponentPropsWithoutRef<"input"> {
+export interface IInputProps
+  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   /**
    * Input size.
    * @default 'default'
    */
-  variant?: "small" | "default" | "large";
+  size?: "small" | "default" | "large";
   /**
    * Input prefix. Can be a symbol or an icon. colored by primary color
    */
@@ -27,18 +28,23 @@ export interface IInputProps extends ComponentPropsWithoutRef<"input"> {
    * className applied to input element
    */
   inputClassName?: string;
+  /**
+   * input variant
+   */
+  variant?: 'standard' | 'filled';
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(
   (
     {
-      variant = "default",
+      variant = "standard",
       className,
       error,
       inputClassName,
       inputPrefix: InputPrefix,
       inputSuffix: InputSuffux,
       disabled,
+      size="default",
       ...delegated
     },
     ref
@@ -52,6 +58,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       error,
       disabled,
       variant,
+      size,
       className,
       inputClassName,
       inputPrefix: InputPrefix,
