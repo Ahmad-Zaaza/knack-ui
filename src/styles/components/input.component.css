@@ -21,13 +21,7 @@
     }
   }
   .input-adornment {
-    @apply flex items-center justify-center h-9 ms-3 text-primary;
-  }
-  .input-prefix {
-    @apply ms-3;
-  }
-  .input-suffix {
-    @apply me-3;
+    @apply flex items-center justify-center h-9 mx-3 text-primary;
   }
   .input-error-wrapper {
     @apply inline-block mt-3 text-error text-caption;

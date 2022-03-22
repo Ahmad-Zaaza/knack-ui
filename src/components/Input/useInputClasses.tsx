@@ -40,11 +40,11 @@ const useInputClasses = ({
       ),
     [InputPrefix, InputSuffux, disabled, error, className]
   );
-  const prefixClasses = useMemo(
+  const inputAdornmentClasses = useMemo(
     () =>
-      clsx("input-prefix", "input-adornment", {
-        "input-prefix-lg": size === "large",
-        "input-prefix-sm": size === "small"
+      clsx( "input-adornment", {
+        "input-adornment-lg": size === "large",
+        "input-adornment-sm": size === "small"
       }),
     [size]
   );
@@ -54,7 +54,7 @@ const useInputClasses = ({
   );
   return {
     containerClasses,
-    prefixClasses,
+    inputAdornmentClasses,
     inputClasses,
     inputErrorWrapperClasses
   };
