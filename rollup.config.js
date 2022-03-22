@@ -15,12 +15,12 @@ export default [
     output: [
       {
         file: pkg.main,
-        sourcemap: true,
+        sourcemap: false,
         format: "cjs",
       },
       {
         file: pkg.module,
-        sourcemap: true,
+        sourcemap: false,
         format: "esm",
       },
     ],
@@ -35,12 +35,12 @@ export default [
         },
         extensions: [".css"],
         minimize: true,
-        inject: {
-          insertAt: "top",
-        },
+        // inject: {
+        //   insertAt: "top",
+        // },
         autoModules: false,
         modules: {
-          generateScopedName: "Knack_[local]_[hash:base64:8]",
+          generateScopedName: "Knack_[hash:base64:8]",
         },
         // extract: "knack-ui.css",
       }),
