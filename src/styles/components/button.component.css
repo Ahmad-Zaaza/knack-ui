@@ -1,6 +1,6 @@
 @layer components {
   .btn {
-    @apply relative flex items-center justify-center font-medium transition-all duration-150 rounded-md disabled:opacity-30 disabled:pointer-events-auto text-button;
+    @apply relative flex items-center justify-center font-medium transition-all duration-150 rounded-system disabled:opacity-30 disabled:pointer-events-auto text-button;
     &:not([disabled]):not(:active):not(.no-btn-elev):not(.btn-ghost):hover {
       transform: translate3d(0px, -2px, 0px);
       box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px 0px;

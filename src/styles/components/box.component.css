@@ -1,5 +1,5 @@
 @layer components {
   .box {
-    @apply bg-paper rounded-lg;
+    @apply bg-paper rounded-system;
   }
 }

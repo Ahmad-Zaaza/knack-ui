@@ -1,9 +1,23 @@
-const theme = require("./src/styles/theme/theme");
+const knackPreset = require("./src/styles/theme/themePreset");
 const plugin = require("tailwindcss/plugin");
+const { loadConfig } = require("./configs/configLoader");
 
+let customConfig;
+
+try {
+  const configFile = loadConfig();
+  customConfig = JSON.parse(configFile);
+} catch (e) {
+  if (e instanceof Error && e.code === "MODULE_NOT_FOUND") {
+    console.warn("No custom knack-ui configuration file was found");
+    customConfig = {};
+  }
+}
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme,
+  presets: [knackPreset],
+  // User configurations goes here, because it overrides the preset
+  theme: { extend: customConfig },
   plugins: [
     require("tailwindcss-rtl"),
     require("@tailwindcss/line-clamp"),
