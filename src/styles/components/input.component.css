@@ -21,7 +21,7 @@
     }
   }
   .input-adornment {
-    @apply flex items-center justify-center h-9 mx-3 text-primary;
+    @apply flex items-center justify-center mx-3 h-9 text-primary;
   }
   .input-error-wrapper {
     @apply inline-block mt-3 text-error text-caption;

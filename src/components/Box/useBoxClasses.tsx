@@ -10,7 +10,7 @@ const useBoxClasses = ({
   elevation,
   paddingPreset,
   square
-}: BoxProps) => {
+}: BoxProps & { className?: string }) => {
   const containerClasses = useMemo(
     () =>
       clsx(

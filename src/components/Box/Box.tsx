@@ -3,7 +3,6 @@ import * as Polymorphic from "../../types/helpers";
 import useBoxClasses from "./useBoxClasses";
 
 interface BoxProps {
-  className?: string;
   /**
    * The variant to use.
    */
@@ -19,19 +18,19 @@ interface BoxProps {
   /**
    * Preset padding values
    */
-  paddingPreset?: "card";
+  paddingPreset?: "card" | string;
 }
 
 const Box = forwardRef(
   (
     {
-      className,
       as: Component = "div",
       children,
       variant = "elevated",
       square,
       paddingPreset,
       elevation = 1,
+      className,
       ...delegated
     },
     ref

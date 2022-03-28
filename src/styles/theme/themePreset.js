@@ -12,38 +12,36 @@ const fontSize = require("./fontSize");
 const fontWeight = require("./fontWeight");
 
 module.exports = {
-  theme: {
-    container: {
-      center: true,
-      padding: "1rem"
-    },
-    fontSize,
-    fontWeight,
-    fontFamily: {
-      inter: ["Inter", "sans-serif"],
-      system: [
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "Segoe UI",
-        "Helvetica",
-        "Arial",
-        "sans-serif",
-        "Apple Color Emoji",
-        "Segoe UI Emoji",
-        "Segoe UI Symbol"
-      ]
-    },
-    extend: {
-      animation,
-      keyframes,
-      colors,
-      textColor,
-      backgroundColor,
-      backgroundImage,
-      screens,
-      boxShadow,
-      borderRadius,
-      zIndex
-    }
+  container: {
+    center: true,
+    padding: "1rem"
+  },
+  fontSize,
+  fontWeight,
+  fontFamily: {
+    inter: ["Inter", "sans-serif"],
+    system: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      "Segoe UI",
+      "Helvetica",
+      "Arial",
+      "sans-serif",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol"
+    ]
+  },
+  extend: {
+    screens,
+    animation,
+    keyframes,
+    colors,
+    textColor,
+    backgroundColor,
+    backgroundImage,
+    boxShadow,
+    borderRadius,
+    zIndex
   }
 };
