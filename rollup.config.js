@@ -42,7 +42,7 @@ export default [
         modules: {
           generateScopedName: "Knack_[hash:base64:8]",
         },
-        // extract: "knack-ui.css",
+        extract: "knack-ui.css",
       }),
       terser(),
     ],
