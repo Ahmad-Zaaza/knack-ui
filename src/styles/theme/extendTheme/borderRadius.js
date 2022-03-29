@@ -1,3 +1,3 @@
 module.exports = {
-  system: "1rem"
+  system: "0.5rem"
 };
