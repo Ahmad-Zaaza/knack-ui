@@ -8,7 +8,6 @@ import dts from "rollup-plugin-dts";
 
 const pkg = require("./package.json");
 
-
 export default [
   {
     input: "src/index.tsx",
@@ -16,13 +15,13 @@ export default [
       {
         file: pkg.main,
         sourcemap: false,
-        format: "cjs",
+        format: "cjs"
       },
       {
         file: pkg.module,
         sourcemap: false,
-        format: "esm",
-      },
+        format: "esm"
+      }
     ],
     plugins: [
       peerDepsExternal(),
@@ -31,26 +30,26 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss({
         config: {
-          path: "./postcss.config.js",
+          path: "./postcss.config.js"
         },
         extensions: [".css"],
         minimize: true,
-        // inject: {
-        //   insertAt: "top",
-        // },
+        inject: {
+          insertAt: "top"
+        },
         autoModules: false,
         modules: {
-          generateScopedName: "Knack_[hash:base64:8]",
+          generateScopedName: "Knack_[hash:base64:8]"
         },
-        extract: "knack-ui.css",
+        extract: "knack-ui.css"
       }),
-      terser(),
-    ],
+      terser()
+    ]
   },
   {
     input: "dist/esm/types/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
-    external: [/\.css$/],
-  },
+    external: [/\.css$/]
+  }
 ];
