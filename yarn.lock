@@ -13429,6 +13429,11 @@
   "resolved" "https://registry.npmjs.org/use-composed-ref/-/use-composed-ref-1.2.1.tgz"
   "version" "1.2.1"
 
+"use-debounce@^7.0.1":
+  "integrity" "sha512-fOrzIw2wstbAJuv8PC9Vg4XgwyTLEOdq4y/Z3IhVl8DAE4svRcgyEUvrEXu+BMNgMoc3YND6qLT61kkgEKXh7Q=="
+  "resolved" "https://registry.npmjs.org/use-debounce/-/use-debounce-7.0.1.tgz"
+  "version" "7.0.1"
+
 "use-isomorphic-layout-effect@^1.0.0":
   "integrity" "sha512-L7Evj8FGcwo/wpbv/qvSfrkHFtOpCzvM5yl2KVyDJoylVuSvzphiiasmjgQPttIGBAy2WKiBNR98q8w7PiNgKQ=="
   "resolved" "https://registry.npmjs.org/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.1.tgz"

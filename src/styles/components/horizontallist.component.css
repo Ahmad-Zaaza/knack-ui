@@ -1,14 +1,13 @@
 @layer components {
   .horizontal-list__container {
     @apply relative w-full snap-proximity;
-
+  }
+  .horizontal-list_scroller {
+    @apply flex-1 inline-block overflow-x-auto overflow-y-hidden whitespace-nowrap scroll-smooth;
+    padding: 0 5px;
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(300px);
     scroll-snap-type: y mandatory;
-  }
-  .horizontal-list {
-    @apply overflow-auto scroll-smooth;
-
     scrollbar-width: 0;
     &::-webkit-scrollbar {
       display: none;
@@ -17,17 +16,9 @@
       scroll-snap-align: start;
     }
   }
-  .horizontal-list__arrows {
-    @apply !hidden relative  bg-paper shrink-0  sm:!flex;
-    &::before {
-      content: " ";
-      @apply absolute w-[70px] h-full;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0),
-        rgba(250, 250, 250, 1)
-      );
-      left: -71px;
-    }
+  .horizontal-list__prev-btn,
+  .horizontal-list__next-btn {
+    flex-shrink: 0;
+    @apply !hidden xs:!block;
   }
 }

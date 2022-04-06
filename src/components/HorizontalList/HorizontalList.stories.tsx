@@ -40,7 +40,7 @@ const Template: ComponentStory<typeof HorizontalList> = () => (
           Coaching topics
         </Typography>
 
-        <HorizontalList activeIndex={15} gap={2}>
+        <HorizontalList activeIndex={7} gap={2}>
           {[
             "Behaviour",
             "Behaviour",

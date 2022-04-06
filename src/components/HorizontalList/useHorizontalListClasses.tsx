@@ -8,16 +8,20 @@ const useHorizontalListClasses = ({ className }: { className?: string }) => {
     () => clsx("horizontal-list__container"),
     []
   );
-  const horizontalListClasses = useMemo(
-    () => clsx("horizontal-list", className),
+
+  const horizontalListScrollerClasses = useMemo(
+    () => clsx("horizontal-list_scroller", className),
     [className]
   );
-  const listArrowsClasses = useMemo(() => clsx("horizontal-list__arrows"), []);
+  const prevBtnClasses = useMemo(() => clsx("horizontal-list__prev-btn"), []);
+  const nextBtnClasses = useMemo(() => clsx("horizontal-list__next-btn"), []);
 
   return {
     containerClasses,
-    listArrowsClasses,
-    horizontalListClasses
+
+    nextBtnClasses,
+    prevBtnClasses,
+    horizontalListScrollerClasses
   };
 };
 

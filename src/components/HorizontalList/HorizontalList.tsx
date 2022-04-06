@@ -1,5 +1,5 @@
+import { useDebouncedCallback } from "use-debounce";
 import { forwardRef, useRef, useState } from "react";
-import composeRefs from "@seznam/compose-react-refs";
 import { useRect } from "@reach/rect";
 import { Stack, StackProps } from "../Stack";
 import useHorizontalListClasses from "./useHorizontalListClasses";
@@ -8,6 +8,11 @@ import { Button } from "../Button";
 import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect";
 
 interface IHorizontalListProps extends StackProps {
+  /**
+   * If Specified, the list will scroll to the child that has the same index.
+   *
+   * Helpful when you want to show an active Button or Chip that is hidden by overflow-hidden.
+   */
   activeIndex?: number;
 }
 
@@ -17,107 +22,131 @@ const HorizontalList = forwardRef(
     { className, children, as: Component = Stack, activeIndex, ...delegated },
     ref
   ) => {
-    const { containerClasses, listArrowsClasses, horizontalListClasses } =
-      useHorizontalListClasses({
-        className
-      });
-
-    const [showButtons, setShowButtons] = useState(false);
-    const listRef = useRef<HTMLDivElement | null>(null);
+    const [scrollable, setScrollable] = useState(false);
+    const scrollerRef = useRef<HTMLDivElement | null>(null);
     const parentRef = useRef<HTMLDivElement | null>(null);
-
-    const listRect = useRect(listRef);
+    const actualWidth = useRef<number | null>(null);
+    const scrollerRect = useRect(scrollerRef);
     const parentRect = useRect(parentRef);
-    useIsomorphicLayoutEffect(() => {
-      if (parentRect && listRef.current) {
-        const list = listRef.current;
-        const listWidth = list.scrollWidth;
 
-        if (listWidth > parentRect.width + 0.1 && !showButtons) {
-          setShowButtons(true);
-        } else if (showButtons) {
-          setShowButtons(false);
+    const debouncedShouldShowArrow = useDebouncedCallback(
+      () => {
+        if (scrollerRef.current && parentRef.current) {
+          const list = scrollerRef.current;
+
+          if (actualWidth.current === null) {
+            actualWidth.current = list.scrollWidth;
+          }
+          const visibleListWidth = parentRef.current.clientWidth;
+
+          const hasScrolls = actualWidth.current > visibleListWidth;
+
+          if (hasScrolls) {
+            setScrollable(true);
+          } else {
+            setScrollable(false);
+          }
         }
-      }
-    }, [listRect, parentRect]);
+      },
+      // delay in ms
+      200
+    );
+
     useIsomorphicLayoutEffect(() => {
-      if (activeIndex && parentRect && listRef.current) {
-        const list = listRef.current;
-        const child = list.childNodes[activeIndex] as Element;
+      debouncedShouldShowArrow();
+    }, [parentRect]);
+
+    useIsomorphicLayoutEffect(() => {
+      if (activeIndex && scrollerRef.current) {
+        const list = scrollerRef.current;
+        const child = list.childNodes[0].childNodes[activeIndex] as Element;
         if (child) {
-          child.scrollIntoView({ inline: "start" ,behavior:'auto',block:'center'});
+          const childX = child.getBoundingClientRect().x;
+
+          if (window.document.dir === "rtl") {
+            scrollerRef.current.scrollLeft -= childX;
+          } else {
+            scrollerRef.current.scrollLeft += childX;
+          }
         }
-        // console.log(list.childNodes[activeIndex].scrollIntoView() as Element);
       }
-    }, [activeIndex, listRect, parentRect]);
+    }, [activeIndex, scrollerRect]);
 
     const handleScrollForward = () => {
-      if (listRef.current && parentRect) {
+      if (scrollerRef.current && parentRect) {
         if (window.document.dir === "rtl") {
-          listRef.current.scrollLeft -= parentRect.width / 2;
+          scrollerRef.current.scrollLeft -= parentRect.width / 2;
         } else {
-          listRef.current.scrollLeft += parentRect.width / 2;
+          scrollerRef.current.scrollLeft += parentRect.width / 2;
         }
       }
     };
     const handleScrollBackward = () => {
-      if (listRef.current && parentRect) {
+      if (scrollerRef.current && parentRect) {
         if (window.document.dir === "rtl") {
-          listRef.current.scrollLeft += parentRect.width / 2;
+          scrollerRef.current.scrollLeft += parentRect.width / 2;
         } else {
-          listRef.current.scrollLeft -= parentRect.width / 2;
+          scrollerRef.current.scrollLeft -= parentRect.width / 2;
         }
       }
     };
+    const {
+      containerClasses,
+      prevBtnClasses,
+      horizontalListScrollerClasses,
+      nextBtnClasses
+    } = useHorizontalListClasses({
+      className
+    });
     return (
-      <Stack gap={2} ref={parentRef} className={containerClasses}>
-        <Component
-          className={horizontalListClasses}
-          ref={composeRefs(listRef, ref)}
-          {...delegated}
-        >
-          {children}
-        </Component>
+      <Stack gap={0} ref={parentRef} className={containerClasses}>
+        {scrollable && (
+          <Button
+            className={prevBtnClasses}
+            onClick={handleScrollBackward}
+            iconOnly
+            kind="ghost"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 24 24"
+              height="20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </Button>
+        )}
+        <div ref={scrollerRef} className={horizontalListScrollerClasses}>
+          <Component ref={ref} {...delegated}>
+            {children}
+          </Component>
+        </div>
 
-        {showButtons ? (
-          <Stack className={listArrowsClasses} gap={2}>
-            <Button
-              onClick={handleScrollBackward}
-              iconOnly
-              kind="defaultOutline"
+        {scrollable ? (
+          <Button
+            className={nextBtnClasses}
+            onClick={handleScrollForward}
+            iconOnly
+            kind="ghost"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 24 24"
+              height="20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth="0"
-                viewBox="0 0 24 24"
-                height="20"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path fill="none" d="M0 0h24v24H0z" />
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-              </svg>
-            </Button>
-            <Button
-              onClick={handleScrollForward}
-              iconOnly
-              kind="defaultOutline"
-            >
-              <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth="0"
-                viewBox="0 0 24 24"
-                height="20"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path fill="none" d="M0 0h24v24H0z" />
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-              </svg>
-            </Button>
-          </Stack>
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+          </Button>
         ) : null}
       </Stack>
     );
