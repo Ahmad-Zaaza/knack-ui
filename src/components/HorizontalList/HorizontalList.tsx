@@ -1,15 +1,22 @@
 import { forwardRef, useRef, useState } from "react";
 import composeRefs from "@seznam/compose-react-refs";
 import { useRect } from "@reach/rect";
-import { Stack } from "../Stack";
+import { Stack, StackProps } from "../Stack";
 import useHorizontalListClasses from "./useHorizontalListClasses";
 import * as Polymorphic from "../../types/helpers";
 import { Button } from "../Button";
 import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect";
 
-// TODO: Add Disabled state 
+interface IHorizontalListProps extends StackProps {
+  activeIndex?: number;
+}
+
+// TODO: Add Disabled state
 const HorizontalList = forwardRef(
-  ({ className, children, as: Component = Stack, ...delegated }, ref) => {
+  (
+    { className, children, as: Component = Stack, activeIndex, ...delegated },
+    ref
+  ) => {
     const { containerClasses, listArrowsClasses, horizontalListClasses } =
       useHorizontalListClasses({
         className
@@ -33,6 +40,16 @@ const HorizontalList = forwardRef(
         }
       }
     }, [listRect, parentRect]);
+    useIsomorphicLayoutEffect(() => {
+      if (activeIndex && parentRect && listRef.current) {
+        const list = listRef.current;
+        const child = list.childNodes[activeIndex] as Element;
+        if (child) {
+          child.scrollIntoView({ inline: "start" ,behavior:'auto',block:'center'});
+        }
+        // console.log(list.childNodes[activeIndex].scrollIntoView() as Element);
+      }
+    }, [activeIndex, listRect, parentRect]);
 
     const handleScrollForward = () => {
       if (listRef.current && parentRect) {
@@ -105,6 +122,7 @@ const HorizontalList = forwardRef(
       </Stack>
     );
   }
-) as Polymorphic.ForwardRefComponent<typeof Stack, {}>;
+) as Polymorphic.ForwardRefComponent<"div", IHorizontalListProps>;
 
 export default HorizontalList;
+export type { IHorizontalListProps };

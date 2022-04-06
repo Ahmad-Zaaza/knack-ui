@@ -40,22 +40,24 @@ const Template: ComponentStory<typeof HorizontalList> = () => (
           Coaching topics
         </Typography>
 
-        <HorizontalList gap={2}>
+        <HorizontalList activeIndex={15} gap={2}>
           {[
-            "Communications",
             "Behaviour",
-            // "Behaviour",
-            // "Behaviour",
-            // "Behaviour",
-            // "Behaviour",
-            // "Behaviour"
-            // "Behaviour",
-            // "Behaviour",
-            // "Behaviour",
-            // "Behaviour",
-            // "Behaviour",
-            // "Behaviour",
-            // "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Behaviour",
+            "Communications",
           ].map((t) => (
             <Chip shape="rounded" size="small" variant="primaryOutline" key={t}>
               {t}
