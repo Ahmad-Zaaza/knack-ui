@@ -20,6 +20,15 @@ export const Default = Template.bind({});
 Default.args = {
   size: 150,
   percentage: 45,
-  strokeWidth: 5,
+  strokeWidth: 15,
+  showText: true
+};
+export const DynamicColors = Template.bind({});
+
+DynamicColors.args = {
+  size: 150,
+  color: "dynamic",
+  percentage: 24,
+  strokeWidth: 15,
   showText: true
 };

@@ -17,7 +17,16 @@ const Template: ComponentStory<typeof LinearProgress> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  size: 20,
+  size: 14,
   percentage: 45,
+  showPercentage: true
+};
+export const DynamicColors = Template.bind({});
+
+DynamicColors.args = {
+  size: 14,
+  color: "dynamic",
+  percentage: 24,
+  strokeWidth: 15,
   showPercentage: true
 };

@@ -58,11 +58,15 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
         clsx(
           {
             "!text-primary": color === "primary",
-            "!text-secondary": color === "secondary"
+            "!text-secondary": color === "secondary",
+            "text-success": color === "dynamic" && percentage >= 90,
+            "text-warning":
+              color === "dynamic" && percentage >= 25 && percentage < 90,
+            "text-error": color === "dynamic" && percentage < 25
           },
           className
         ),
-      [color, className]
+      [color, className, percentage]
     );
     // 🎨 enables animation transition from 0 to `percantage`
     useEffect(() => {

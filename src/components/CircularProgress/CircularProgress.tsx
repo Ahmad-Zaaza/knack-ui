@@ -32,7 +32,7 @@ export interface ICircularProgressProps
    *
    * Accepts `primary` and `secondary` values
    */
-  color?: CSSProperties["color"] | "primary" | "secondary";
+  color?: CSSProperties["color"] | "primary" | "secondary" | "dynamic";
   /**
    * Control showing percentage text or not.
    *
@@ -69,9 +69,13 @@ const CircularProgress = forwardRef<SVGSVGElement, ICircularProgressProps>(
       () =>
         clsx({
           "!text-primary": color === "primary",
-          "!text-secondary": color === "secondary"
+          "!text-secondary": color === "secondary",
+          "text-success": color === "dynamic" && percentage >= 90,
+          "text-warning":
+            color === "dynamic" && percentage >= 25 && percentage < 90,
+          "text-error": color === "dynamic" && percentage < 25
         }),
-      [color]
+      [color, percentage]
     );
     // 🎨 enables animation transition from 0 to `percantage`
     useEffect(() => {
