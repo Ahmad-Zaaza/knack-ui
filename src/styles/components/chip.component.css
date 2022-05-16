@@ -3,10 +3,10 @@
     @apply relative flex items-center justify-center font-medium transition-all duration-150 rounded-md text-button whitespace-nowrap;
   }
   .chip-primary {
-    @apply bg-primary text-primaryMain;
+    @apply border bg-primary border-primary text-primaryMain;
   }
   .chip-secondary {
-    @apply bg-secondary text-secondaryMain;
+    @apply border bg-secondary border-secondary text-secondaryMain;
   }
   .chip-tertiary {
     @apply bg-tertiary text-tertiaryMain;

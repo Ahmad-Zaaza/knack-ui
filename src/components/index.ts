@@ -23,3 +23,4 @@ export { MenuItem } from "./MenuItem";
 export * from "./Popover";
 export { Drawer } from "./Drawer";
 export { HorizontalList } from "./HorizontalList";
+export { Calendar } from "./Calendar";

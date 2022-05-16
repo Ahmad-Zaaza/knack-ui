@@ -1,0 +1,7 @@
+@layer components {
+  .calendar__container {
+    @apply h-full w-full;
+
+    
+  }
+}

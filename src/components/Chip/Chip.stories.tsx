@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Chip> = ({
     <Chip variant="secondaryOutline" {...args}>
       Secondary Outline
     </Chip>
-    <Chip variant="primary" {...args}>
+    <Chip  variant="primary" {...args}>
       Primary
     </Chip>
     <Chip variant="secondary" {...args}>

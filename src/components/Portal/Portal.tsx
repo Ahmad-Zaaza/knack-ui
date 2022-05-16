@@ -50,7 +50,6 @@ const Portal: React.FC<IPortalProps> = ({ children, containerRef, type='knack-po
       }
     };
   }, [type, forceUpdate, containerRef]);
-
   return portalNode.current ? (
     createPortal(children, portalNode.current)
   ) : (
