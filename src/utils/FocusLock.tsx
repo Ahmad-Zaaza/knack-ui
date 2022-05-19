@@ -13,6 +13,7 @@ const FocusLock: React.FC<IFocusLockProps> = ({
   const rootRef = useRef<HTMLDivElement | null>(null);
   // eslint-disable-next-line no-undef
   const focusableItems = useRef<NodeListOf<Element> | null>(null);
+
   // 🚼 Put children's children into focusableItems ref each time they change
   useEffect(() => {
     if (!rootRef.current) return;
@@ -29,7 +30,8 @@ const FocusLock: React.FC<IFocusLockProps> = ({
     return () => {
       observer.disconnect();
     };
-  }, [rootRef]);
+  }, [rootRef.current]);
+
   useEffect(() => {
     if (open && rootRef.current && focusableItems.current) {
       let focused = [];
@@ -57,7 +59,7 @@ const FocusLock: React.FC<IFocusLockProps> = ({
         firstFocusItem.focus();
       }
     }
-  }, [open, rootRef, focusableItems]);
+  }, [open, rootRef, focusableItems.current]);
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -103,7 +105,8 @@ const FocusLock: React.FC<IFocusLockProps> = ({
         window.removeEventListener("keydown", handleKeyPress);
       };
     }
-  }, [focusLock, focusableItems, open]);
+  }, [focusLock, focusableItems.current, open]);
+
   return <div ref={rootRef}>{children}</div>;
 };
 

@@ -1,7 +1,7 @@
 @layer utilities {
   .step-connector--active {
     & span {
-      @apply border-solid;
+      @apply border-primary;
     }
   }
   .step-connector--completed {

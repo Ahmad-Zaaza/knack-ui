@@ -1,9 +1,14 @@
 @layer components {
   .stepper {
-    @apply flex items-start;
+    @apply flex items-center;
+    margin: 0 2vw;
   }
+  .stepper-vertical {
+    @apply items-start
+  }
+
   .step {
-    @apply relative flex-1 px-4;
+    @apply relative px-0;
     & button {
       @apply rounded-full w-[40px] h-[40px] transition-colors duration-200;
     }
@@ -11,13 +16,36 @@
       @apply cursor-pointer;
     }
   }
-  .step-connector {
-    @apply absolute !mt-0;
-    top: calc((40px - 1px) / 2);
-    left: calc((-50% + 40px) - 8px);
-    right: calc((50% + 40px) - 8px);
+  .step-horizontal {
+    & p {
+      @apply absolute mt-2;
+      left: -50%;
+      right: -50%;
+    }
+  }
+  .step-vertical {
+    @apply flex items-center;
+
+    & p {
+      margin-inline-start: 1em;
+    }
+  }
+  .step-connector--horizontal {
+    @apply relative flex-1 flex-shrink;
+    margin: 0 1vw;
+
     & span {
       @apply block border-t-2 border-dashed;
+    }
+  }
+  .step-connector--vertical {
+    @apply flex-1 flex-shrink;
+    margin: 1vh 0;
+    margin-inline-start: 20px;
+    height: 100%;
+
+    & span {
+      @apply border-l-2 border-dashed;
     }
   }
 }

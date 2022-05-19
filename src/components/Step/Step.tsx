@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { Button, Stack, Typography } from "..";
+import { Button, Typography } from "..";
 import { useStepperContext } from "../Stepper/Stepper";
 import useStepClasses from "./useStepClasses";
 
@@ -16,11 +16,12 @@ const Step: React.FC<IStepProps> = ({
   children,
   completed
 }) => {
-  const { currentStep, onChange, clickable } = useStepperContext();
+  const { currentStep, onChange, clickable, vertical } = useStepperContext();
   const active = useMemo(() => currentStep === index, [currentStep, index]);
-  const { stepClasses, connectorClasses } = useStepClasses({
+  const { stepClasses } = useStepClasses({
     active,
-    completed: Boolean(completed)
+    completed: Boolean(completed),
+    vertical: Boolean(vertical)
   });
 
   const iconChildren = useMemo(
@@ -52,10 +53,10 @@ const Step: React.FC<IStepProps> = ({
     [index]
   );
   return (
-    <Stack
-      direction="column"
-      alignItems="center"
-      gap={2}
+    <div
+      // direction="column"
+      // alignItems="center"
+      // gap={1}
       className={stepClasses}
     >
       {/* {clickable ? (
@@ -80,7 +81,7 @@ const Step: React.FC<IStepProps> = ({
       <Typography
         textAlign="center"
         onClick={() => {
-          if (clickable && typeof index !== "undefined")
+          if (!disabled && clickable && typeof index !== "undefined")
             handleChangeStep(index);
         }}
         variant="subtitle2"
@@ -88,12 +89,7 @@ const Step: React.FC<IStepProps> = ({
       >
         {children}
       </Typography>
-      {index !== 0 && (
-        <div className={connectorClasses}>
-          <span />
-        </div>
-      )}
-    </Stack>
+    </div>
   );
 };
 

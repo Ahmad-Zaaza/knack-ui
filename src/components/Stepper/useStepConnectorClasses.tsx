@@ -3,7 +3,7 @@ import classnames from "classnames/bind";
 import styles from "../../tailwind.css";
 
 const clsx = classnames.bind(styles);
-const useStepClasses = ({
+const useStepConnectorClasses = ({
   active,
   completed,
   vertical
@@ -12,20 +12,19 @@ const useStepClasses = ({
   completed: boolean;
   vertical: boolean;
 }) => {
-  const stepClasses = useMemo(
+  const connectorClasses = useMemo(
     () =>
-      clsx("step", {
-        "step-horizontal": !vertical,
-        "step-vertical": vertical,
-        "step--active": active,
-        "step--completed": completed
+      clsx({
+        "step-connector--vertical": vertical,
+        "step-connector--horizontal": !vertical,
+        "step-connector--active": active,
+        "step-connector--completed": completed
       }),
     [active, completed, vertical]
   );
-
   return {
-    stepClasses
+    connectorClasses
   };
 };
 
-export default useStepClasses;
+export default useStepConnectorClasses;

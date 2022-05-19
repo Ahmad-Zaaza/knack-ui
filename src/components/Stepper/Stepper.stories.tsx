@@ -26,10 +26,10 @@ const Template: ComponentStory<typeof Stepper> = ({
         clickable
         {...args}
       >
-        <Step>First step</Step>
-        <Step>hello</Step>
+        <Step completed>First step</Step>
+        <Step completed>hello</Step>
         <Step>I am disabled</Step>
-        <Step>4th step</Step>
+        <Step disabled>4th step bla bla 4th step bla bla</Step>
       </Stepper>
       {active === 0 && "step 1"}
       {active === 1 && "step 2"}
@@ -38,3 +38,7 @@ const Template: ComponentStory<typeof Stepper> = ({
 };
 
 export const Uncontrolled = Template.bind({});
+export const VerticalStepper = Template.bind({});
+VerticalStepper.args = {
+  vertical: true
+};

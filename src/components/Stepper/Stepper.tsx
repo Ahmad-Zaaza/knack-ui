@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useState
 } from "react";
+import StepConnector from "./StepConnector";
 import useStepperClasses from "./useStepperClasses";
 
 interface IStepperProps
@@ -13,12 +14,14 @@ interface IStepperProps
   activeStep?: number;
   onChange?: (stepIndex: number) => void;
   clickable?: boolean;
+  vertical?: boolean;
 }
 
 interface StepperContextProps {
   currentStep: number;
   onChange: (stepIndex: number) => void;
   clickable: boolean;
+  vertical: boolean;
 }
 
 export const StepperContext =
@@ -26,12 +29,21 @@ export const StepperContext =
 
 const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
   (
-    { className, activeStep, onChange, clickable, children, ...delegated },
+    {
+      className,
+      activeStep,
+      onChange,
+      clickable,
+      children,
+      vertical,
+      ...delegated
+    },
     ref
   ) => {
     const [step, setStep] = useState(() => activeStep || 0);
     const { stepperClasses } = useStepperClasses({
-      className
+      className,
+      vertical
     });
 
     const onStepChange = (index: number) => {
@@ -48,22 +60,43 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       () => ({
         onChange: onStepChange,
         currentStep: activeStep || step,
-        clickable: Boolean(clickable)
+        clickable: Boolean(clickable),
+        vertical: Boolean(vertical)
       }),
-      [onStepChange, step, clickable, activeStep]
+      [onStepChange, step, clickable, activeStep, vertical]
     );
+
+    const renderChildren = useMemo(() => {
+      const lclChildren: React.ReactNode[] = [];
+      React.Children.map(children, (child, index) => {
+        if (React.isValidElement(child)) {
+          lclChildren.push(
+            React.cloneElement(child, {
+              index,
+              // eslint-disable-next-line react/no-array-index-key
+              key: index,
+              isLast: index === React.Children.count(children) - 1
+            })
+          );
+        }
+      });
+      return lclChildren;
+    }, [children]);
     return (
       <StepperContext.Provider value={contextValue}>
         <div ref={ref} className={stepperClasses} {...delegated}>
-          {React.Children.map(children, (child, index) => {
-            if (React.isValidElement(child)) {
-              return React.cloneElement(child, {
-                index,
-                isLast: index === React.Children.count(children) - 1
-              });
-            }
-            return null;
-          })}
+          {renderChildren.reduce((prev, curr, index) => [
+            prev,
+            // eslint-disable-next-line react/no-array-index-key
+            <StepConnector
+              completed={
+                React.isValidElement(curr) ? !!curr.props.completed : false
+              }
+              index={index}
+              key={`connector-${index + 1}`}
+            />,
+            curr
+          ])}
         </div>
       </StepperContext.Provider>
     );

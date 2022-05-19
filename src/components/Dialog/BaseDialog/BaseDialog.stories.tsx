@@ -1,6 +1,8 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "../..";
+import { Box } from "../../Box";
+import { Stack } from "../../Stack";
 
 import Dialog from "./BaseDialog";
 
@@ -22,13 +24,21 @@ const Template: ComponentStory<typeof Dialog> = (args) => {
     <>
       <Button onClick={() => setOpen(true)}>Open</Button>
       <div style={{ height: "110vh" }}>
-        <Dialog {...args} isOpen={open} onClose={() => setOpen(false)} />
+        <Dialog {...args} isOpen={open} onClose={() => setOpen(false)}>
+          <Box paddingPreset="card">
+            Dialog
+            <Stack gap={2}>
+              <Button>OK</Button>
+              <Button>Cancel</Button>
+            </Stack>
+          </Box>
+        </Dialog>
       </div>
     </>
   );
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  children: "Base Dialog"
-};
+// Default.args = {
+//   children: "Base Dialog"
+// };
