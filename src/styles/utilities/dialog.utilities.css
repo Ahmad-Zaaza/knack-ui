@@ -1,1 +1,14 @@
-@layer utilities {}
+@layer utilities {
+  .dialog-fadeUp {
+    @apply anim-fadeUp--initial top-1/2 left-1/2;
+    &.dialog-active {
+      @apply anim-fadeUp--active;
+    }
+  }
+  .dialog-fadeIn {
+    @apply -translate-x-1/2 -translate-y-1/2 fade--initial top-1/2 left-1/2;
+    &.dialog-active {
+      @apply fade--active;
+    }
+  }
+}

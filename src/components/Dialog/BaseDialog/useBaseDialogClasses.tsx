@@ -7,11 +7,20 @@ const clsx = classnames.bind(styles);
 const useBaseDialogClasses = ({
   dialogClassName,
   isOpen,
+  animationType,
   active
 }: Omit<IBaseDialogProps, "onClose"> & { active: boolean }) => {
   const dialogClasses = useMemo(
     () =>
-      clsx("dialog", { "dialog-active": isOpen && active }, dialogClassName),
+      clsx(
+        "dialog",
+        {
+          "dialog-active": isOpen && active,
+          "dialog-fadeUp": animationType === "fadeUp",
+          "dialog-fadeIn": animationType === "fade"
+        },
+        dialogClassName
+      ),
     [isOpen, active]
   );
 

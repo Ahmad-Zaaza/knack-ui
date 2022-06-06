@@ -27,6 +27,7 @@ export interface IBaseDialogProps
    */
   onClose: () => void;
   dialogClassName?: string;
+  animationType?: "fadeUp" | "fade";
   /**
    * By default the dialog locks the focus inside it. Normally this is what you
    * want. This prop is provided so that this feature can be disabled. This,
@@ -81,6 +82,7 @@ const BaseDialog = forwardRef<HTMLDivElement, IBaseDialogProps>(
       disableScrollLock = false,
       allowPinchZoom = true,
       onClick,
+      animationType = "fadeUp",
       children,
       ...delegated
     },
@@ -98,6 +100,7 @@ const BaseDialog = forwardRef<HTMLDivElement, IBaseDialogProps>(
     const { dialogClasses } = useDialogClasses({
       dialogClassName,
       isOpen,
+      animationType,
       active
     });
 

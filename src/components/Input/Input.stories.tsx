@@ -9,6 +9,8 @@ import {
   PRIMARY_STORY
 } from "@storybook/addon-docs";
 import Input, { IInputProps } from "./Input";
+import { Stack } from "../Stack";
+import { Box } from "../Box";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "Components/Input",
@@ -42,19 +44,38 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<IInputProps> = (args) => <Input {...args} />;
+const OTPTemplate: Story<IInputProps> = (args) => (
+  <Box className="container max-w-lg p-4 mx-auto rounded-2xl">
+    <Stack gap={2}>
+      {Array.from(new Array(4).keys()).map((c) => (
+        <Input
+          variant="filled"
+          key={c}
+          max={9}
+          min={0}
+          maxLength={1}
+          inputClassName="min-w-0  whitespace-nowrap font-bold text-center"
+          className="flex-1 p-0 bg-gray-100 whitespace-nowrap"
+          {...args}
+        />
+      ))}
+    </Stack>
+  </Box>
+);
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 export const Basic = Template.bind({});
+export const XSmall = Template.bind({});
+XSmall.args = {
+  size: "small"
+};
 export const Small = Template.bind({});
 Small.args = {
   size: "small"
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: "large"
-};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
@@ -64,6 +85,11 @@ export const WithErrorState = Template.bind({});
 WithErrorState.args = {
   error: "Error message"
 };
+export const OTPInput = OTPTemplate.bind({});
+// OTPInput.args = {
+//   className: "flex-1 p-0 bg-gray-100 whitespace-nowrap",
+//   inputClassName: "min-w-0  whitespace-nowrap font-bold text-center"
+// };
 export const InputWithPrefix = Template.bind({});
 InputWithPrefix.args = {
   value: "Input With prefix",

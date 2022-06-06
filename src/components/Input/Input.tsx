@@ -7,7 +7,7 @@ export interface IInputProps
    * Input size.
    * @default 'default'
    */
-  size?: "small" | "default" | "large";
+  size?: "xsmall" | "small" | "default";
   /**
    * Input prefix. Can be a symbol or an icon. colored by primary color
    */
@@ -31,7 +31,7 @@ export interface IInputProps
   /**
    * input variant
    */
-  variant?: 'standard' | 'filled';
+  variant?: "standard" | "filled";
 }
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(
@@ -44,7 +44,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       inputPrefix: InputPrefix,
       inputSuffix: InputSuffux,
       disabled,
-      size="default",
+      size = "default",
       ...delegated
     },
     ref
@@ -76,10 +76,10 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
             className={inputClasses}
             disabled={disabled}
             {...delegated}
-            />
-            {InputSuffux ? (
-              <div className={inputAdornmentClasses}>{InputSuffux}</div>
-            ) : null}
+          />
+          {InputSuffux ? (
+            <div className={inputAdornmentClasses}>{InputSuffux}</div>
+          ) : null}
         </div>
         {typeof error === "string" ? (
           <span role="alert" className={inputErrorWrapperClasses}>

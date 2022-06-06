@@ -1,6 +1,6 @@
 @layer components {
   .input {
-    @apply block w-full md-size outline-none text-body2 !border-none;
+    @apply block w-full outline-none !border-none;
     background: none;
   }
   .input-filled {
@@ -21,7 +21,7 @@
     }
   }
   .input-adornment {
-    @apply flex items-center justify-center mx-3 h-9 text-primary;
+    @apply flex items-center justify-center text-primary;
   }
   .input-error-wrapper {
     @apply inline-block mt-3 text-error text-caption;

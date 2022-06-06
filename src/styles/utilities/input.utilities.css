@@ -1,10 +1,14 @@
 @layer utilities {
+  .input-xs {
+    @apply px-2 py-1 text-caption;
+  }
   .input-sm {
-    @apply sm-size text-body2;
+    @apply px-3 py-1.5 text-subtitle2;
   }
-  .input-lg {
-    @apply lg-size text-body1;
+  .input-md {
+    @apply px-3.5 py-2 text-subtitle2;
   }
+
   .input-disabled {
     @apply bg-inputDisabled;
   }
@@ -20,8 +24,8 @@
     display: flex;
     align-items: center;
   }
-  .input-adornment-lg {
-    @apply mx-3 h-11;
+  .input-adornment-md {
+    @apply mx-3 h-9;
   }
   .input-adornment-sm {
     @apply mx-2 h-7;

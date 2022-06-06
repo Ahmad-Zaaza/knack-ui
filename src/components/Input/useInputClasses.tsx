@@ -19,8 +19,9 @@ const useInputClasses = ({
       clsx(
         "input",
         {
+          "input-xs": size === "xsmall",
           "input-sm": size === "small",
-          "input-lg": size === "large",
+          "input-md": size === "default",
           "input-filled": variant === "filled"
         },
         inputClassName
@@ -42,8 +43,8 @@ const useInputClasses = ({
   );
   const inputAdornmentClasses = useMemo(
     () =>
-      clsx( "input-adornment", {
-        "input-adornment-lg": size === "large",
+      clsx("input-adornment", {
+        "input-adornment-md": size === "default",
         "input-adornment-sm": size === "small"
       }),
     [size]
