@@ -45,7 +45,7 @@ const useInputClasses = ({
     () =>
       clsx("input-adornment", {
         "input-adornment-md": size === "default",
-        "input-adornment-sm": size === "small"
+        "input-adornment-sm": size === "small" || size === "xsmall",
       }),
     [size]
   );
