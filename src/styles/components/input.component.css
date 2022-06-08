@@ -1,6 +1,6 @@
 @layer components {
   .input {
-    @apply block w-full outline-none !border-none;
+    @apply block w-full outline-none !border-none input-md;
     background: none;
   }
   .input-filled {

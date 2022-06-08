@@ -11,7 +11,7 @@ a {
   transform: translate3d(-78%, 100%, 0) scale(0.5) rotateX(-90deg);
 }
 .anim-fadeUp--active {
-  opacity: 100;
+  opacity: 1 ;
   transform: translate3d(-50%, -50%, 0) scale(1) rotateX(0) !important;
 }
 

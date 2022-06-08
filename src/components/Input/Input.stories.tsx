@@ -68,7 +68,7 @@ const OTPTemplate: Story<IInputProps> = (args) => (
 export const Basic = Template.bind({});
 export const XSmall = Template.bind({});
 XSmall.args = {
-  size: "small"
+  size: "xsmall"
 };
 export const Small = Template.bind({});
 Small.args = {
