@@ -25,9 +25,9 @@
     align-items: center;
   }
   .input-adornment-md {
-    @apply h-8 ms-3;
+    @apply h-8 mx-3;
   }
   .input-adornment-sm {
-    @apply ms-2 h-7;
+    @apply mx-2 h-7;
   }
 }
