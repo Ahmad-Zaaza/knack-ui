@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, forwardRef, useState } from "react";
-import useBaseDialogUtils from "../Dialog/BaseDialog/useBaseDialogUtils";
-import { DialogOverlay } from "../Dialog/DialogOverlay";
+import useBaseDialogUtils from "../BaseDialog/BaseDialog/useBaseDialogUtils";
+import { DialogOverlay } from "../BaseDialog/DialogOverlay";
 import useDrawerClasses from "./useDrawerClasses";
 
 export interface IDrawerProps extends ComponentPropsWithoutRef<"div"> {
