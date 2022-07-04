@@ -29,4 +29,28 @@
   .input-label {
     @apply block mb-2;
   }
+  .dual-ring-loader {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+
+    &:after {
+      content: " ";
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      border-color: #fff transparent #fff transparent;
+      animation: dual-ring-loader 1.2s linear infinite;
+    }
+  }
+  @keyframes dual-ring-loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }

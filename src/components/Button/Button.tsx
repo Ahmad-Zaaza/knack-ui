@@ -1,4 +1,8 @@
-import { forwardRef } from "react";
+import composeRefs from "@seznam/compose-react-refs";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import useLoaderClasses, {
+  LoaderTypes
+} from "../../lib/hooks/useLoaderClasses";
 import * as Polymorphic from "../../types/helpers";
 import useButtonClasses from "./useButtonClasses";
 
@@ -43,6 +47,10 @@ interface ButtonProps {
    */
   isLoading?: boolean;
   /**
+   * If `true` Shows a loading indicator
+   */
+  loaderType?: LoaderTypes;
+  /**
    * If `true` will render an Icon button
    */
   iconOnly?: boolean;
@@ -70,33 +78,73 @@ const Button = forwardRef(
       iconOnly,
       elevationAnimation,
       startIcon,
+      loaderType = "Dual Ring",
       endIcon,
       children,
       ...delegated
     },
     ref
   ) => {
-    const { containerClasses, startIconClasses,endIconClasses } = useButtonClasses({
-      className,
-      variant,
-      kind,
-      shape,
-      isLoading,
-      fullWidth,
-      iconOnly,
-      elevationAnimation
+    const loaderClasses = useLoaderClasses({ loader: loaderType });
+    const { containerClasses, startIconClasses, endIconClasses } =
+      useButtonClasses({
+        className,
+        variant,
+        kind,
+        shape,
+        isLoading,
+        fullWidth,
+        iconOnly,
+        elevationAnimation
+      });
+    const [dims, setDims] = useState<{
+      width: string | number;
+      height: string | number;
+    }>({
+      width: "auto",
+      height: "auto"
     });
+    const innerRef = useRef<HTMLButtonElement | null>(null);
+    const dimsRef = useRef<{
+      width: string | number;
+      height: string | number;
+    }>({ height: "auto", width: "auto" });
+
+    useEffect(() => {
+      if (!isLoading) {
+        const dim = innerRef?.current?.getBoundingClientRect();
+
+        dimsRef.current = {
+          height: dim?.height as number,
+          width: dim?.width as number
+        };
+        setDims({
+          height: dim?.height as number,
+          width: dim?.width as number
+        });
+      }
+    }, [variant, children, isLoading]);
+
+    useEffect(() => {
+      if (isLoading) {
+        setDims({
+          height: dimsRef.current.height,
+          width: dimsRef.current.width
+        });
+      }
+    }, [isLoading]);
     return (
       <Component
-        ref={ref}
+        ref={composeRefs(innerRef, ref)}
         className={containerClasses}
         type={type}
+        style={{ ...(isLoading && { width: dims.width, height: dims.height }) }}
         {...delegated}
       >
         {startIcon ? (
           <span className={startIconClasses}>{startIcon}</span>
         ) : null}
-        {children}
+        {isLoading ? <div className={loaderClasses} /> : children}
         {endIcon ? <span className={endIconClasses}>{endIcon}</span> : null}
       </Component>
     );

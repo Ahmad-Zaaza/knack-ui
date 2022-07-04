@@ -11,14 +11,16 @@ export default {
   argTypes: {
     variant: {
       defaultValue: "medium",
-      options: ["xsmall","small", "medium", "large"],
+      options: ["xsmall", "small", "medium", "large"],
       control: "radio"
     },
     kind: { control: "radio" },
     children: { defaultValue: "Hello", control: "text" },
     fullWidth: { defaultValue: false, control: "boolean" },
     disabled: { defaultValue: false, control: "boolean" },
-    shape: { options: ["square", "rounded"], control: "radio" }
+    isLoading: { defaultValue: false, control: "boolean" },
+    shape: { options: ["square", "rounded"], control: "radio" },
+    loaderType: { options: ["Dual Ring"], control: "radio" }
   }
 } as ComponentMeta<typeof Button>;
 const history = createMemoryHistory();

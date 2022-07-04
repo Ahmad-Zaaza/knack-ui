@@ -12,7 +12,7 @@ const useButtonClasses = ({
   fullWidth,
   iconOnly,
   elevationAnimation
-}: Omit<ButtonProps, "children"> & { className?: string }) => {
+}: Omit<ButtonProps, "children" | "loaderType"> & { className?: string }) => {
   const containerClasses = useMemo(
     () =>
       clsx(
