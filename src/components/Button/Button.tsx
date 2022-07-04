@@ -62,6 +62,7 @@ interface ButtonProps {
    * @default true
    */
   elevationAnimation?: boolean;
+  disabled?: boolean;
 }
 
 const Button = forwardRef(
@@ -81,6 +82,7 @@ const Button = forwardRef(
       loaderType = "Dual Ring",
       endIcon,
       children,
+      disabled,
       ...delegated
     },
     ref
@@ -138,14 +140,17 @@ const Button = forwardRef(
         ref={composeRefs(innerRef, ref)}
         className={containerClasses}
         type={type}
+        disabled={disabled || isLoading}
         style={{ ...(isLoading && { width: dims.width, height: dims.height }) }}
         {...delegated}
       >
-        {startIcon ? (
+        {!isLoading && startIcon ? (
           <span className={startIconClasses}>{startIcon}</span>
         ) : null}
         {isLoading ? <div className={loaderClasses} /> : children}
-        {endIcon ? <span className={endIconClasses}>{endIcon}</span> : null}
+        {!isLoading && endIcon ? (
+          <span className={endIconClasses}>{endIcon}</span>
+        ) : null}
       </Component>
     );
   }
