@@ -1,11 +1,8 @@
 @layer components {
   .drawer {
-    @apply absolute block overflow-hidden shadow opacity-0 z-drawer bg-paper;
+    @apply absolute block overflow-hidden shadow z-drawer bg-paper;
     transition: all 0.3s cubic-bezier(0.21, 0.73, 0.75, 1);
 
-    &.drawer-active {
-      opacity: 100;
-    }
     &.drawer-start {
       @apply top-0 bottom-0 start-0;
       transform: translateX(-100%);
