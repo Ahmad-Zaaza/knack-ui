@@ -2,13 +2,23 @@
   .breadcrumbs {
     @apply flex items-center;
     & svg {
-      @apply mx-2;
+      margin-inline-start: 8px;
     }
-    & > * {
+    /* & > * {
       @apply inline-block text-body1 text-muted;
       &:last-child {
         @apply text-main;
       }
+    } */
+  }
+  .crumb {
+    @apply text-muted text-body1;
+    display: inline;
+    &:last-of-type {
+      @apply text-main;
+    }
+    &:not(:first-of-type) {
+      margin-inline-start: 8px;
     }
   }
 }

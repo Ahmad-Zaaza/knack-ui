@@ -1,12 +1,14 @@
+/* eslint-disable react/no-array-index-key */
 import React, {
   cloneElement,
   ComponentPropsWithoutRef,
   forwardRef,
   isValidElement
 } from "react";
+import Crumb from "./Crumb";
 import useBreadcrumbsClasses from "./useBreadcrumbsClasses";
 
-export interface IBreadcrumbsProps extends ComponentPropsWithoutRef<"div"> {}
+export interface IBreadcrumbsProps extends ComponentPropsWithoutRef<"nav"> {}
 const Arrow = () => (
   <svg
     width="7"
@@ -25,15 +27,17 @@ const Breadcrumbs = forwardRef<HTMLDivElement, IBreadcrumbsProps>(
   ({ className, children, ...delegated }, ref) => {
     const { containerClasses } = useBreadcrumbsClasses({ className });
     return (
-      <div ref={ref} className={containerClasses} {...delegated}>
-        {React.Children.map(children, (child) => {
-          if (isValidElement(child)) {
-            return cloneElement(child);
-          }
-          return null;
-          // @ts-ignore
-        })?.reduce((prev, curr) => [prev, <Arrow key={Math.random} />, curr])}
-      </div>
+      <nav aria-label="Breadcrumb" ref={ref} {...delegated}>
+        <ol className={containerClasses}>
+          {React.Children.map(children, (child, i) => {
+            if (isValidElement(child)) {
+              return <Crumb key={i}>{cloneElement(child)}</Crumb>;
+            }
+            return null;
+            // @ts-ignore
+          })?.reduce((prev, curr) => [prev, <Arrow key={Math.random} />, curr])}
+        </ol>
+      </nav>
     );
   }
 );
