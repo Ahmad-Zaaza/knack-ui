@@ -33,6 +33,10 @@ export interface ILinearProgressProps extends ComponentPropsWithoutRef<"svg"> {
    * font size is relative to the Linear progress height
    */
   showPercentage?: boolean;
+  /**
+   * Text to show inside the bar, will override `showPercentage` props when passed
+   */
+  barInnerText?: string;
 }
 
 const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
@@ -43,6 +47,7 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
       percentage = 0,
       color = "primary",
       showPercentage,
+      barInnerText,
       style,
       ...delegated
     },
@@ -110,7 +115,7 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
             color: color === "primary" && color === "secondary" ? "" : color
           }}
         />
-        {showPercentage ? (
+        {barInnerText || showPercentage ? (
           <text
             fill="white"
             fontSize="0.8em"
@@ -119,7 +124,7 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
             dominantBaseline="central"
             textAnchor="middle"
           >
-            {`${percentage}%`}
+            {`${barInnerText || `${percentage}%`}`}
           </text>
         ) : null}
       </svg>
