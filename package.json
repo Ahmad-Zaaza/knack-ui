@@ -28,7 +28,8 @@
     "lint:staged": "lint-staged",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
-    "create": "node scripts/create.mjs"
+    "create": "node scripts/create.mjs",
+    "commit": "cz"
   },
   "keywords": [],
   "author": "Ahmad Zaaza",

@@ -19,33 +19,26 @@ const useInputClasses = ({
       clsx(
         "input",
         {
-          "input-xs": size === "xsmall",
           "input-sm": size === "small",
           "input-md": size === "default",
-          "input-filled": variant === "filled"
-        },
-        inputClassName
-      ),
-    [size, inputClassName, variant]
-  );
-  const containerClasses = useMemo(
-    () =>
-      clsx(
-        "input-container",
-        {
+          "input-filled": variant === "filled",
           "a-input": Boolean(InputPrefix) || Boolean(InputSuffux),
           "input-disabled": disabled,
           "input-error": Boolean(error)
         },
-        className
+        inputClassName
       ),
-    [InputPrefix, InputSuffux, disabled, error, className]
+    [size, inputClassName, variant, InputPrefix, InputSuffux, disabled, error]
+  );
+  const containerClasses = useMemo(
+    () => clsx("input-container", {}, className),
+    [className]
   );
   const inputAdornmentClasses = useMemo(
     () =>
       clsx("input-adornment", {
         "input-adornment-md": size === "default",
-        "input-adornment-sm": size === "small" || size === "xsmall",
+        "input-adornment-sm": size === "small"
       }),
     [size]
   );

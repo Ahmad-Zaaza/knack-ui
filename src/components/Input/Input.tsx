@@ -7,7 +7,7 @@ export interface IInputProps
    * Input size.
    * @default 'default'
    */
-  size?: "xsmall" | "small" | "default";
+  size?: "small" | "default";
   /**
    * Input prefix. Can be a symbol or an icon. colored by primary color
    */
@@ -65,9 +65,31 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       inputSuffix: InputSuffux
     });
 
+    const sizes = {
+      small: {
+        height: 28,
+        iconSize: 24,
+        padding: 8
+      },
+      default: {
+        height: 36,
+        iconSize: 36,
+        padding: 12
+      }
+    };
+
     return (
       <>
-        <div className={containerClasses}>
+        <div
+          style={{
+            // @ts-ignore
+            "--input-height": `${sizes[size].height}px`,
+            "--icon-size": `${sizes[size].iconSize}px`,
+            "--padding": `${sizes[size].padding}px`,
+         
+          }}
+          className={containerClasses}
+        >
           {InputPrefix ? (
             <div className={inputAdornmentClasses}>{InputPrefix}</div>
           ) : null}

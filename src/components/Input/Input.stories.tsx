@@ -66,10 +66,7 @@ const OTPTemplate: Story<IInputProps> = (args) => (
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 export const Basic = Template.bind({});
-export const XSmall = Template.bind({});
-XSmall.args = {
-  size: "xsmall"
-};
+
 export const Small = Template.bind({});
 Small.args = {
   size: "small"

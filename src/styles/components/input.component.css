@@ -1,27 +1,35 @@
 @layer components {
   .input {
-    @apply block w-full outline-none !border-none input-md;
-    background: none;
+    @apply block w-full rounded-lg input-md;
+    padding: var(--padding);
+    &:disabled {
+      @apply cursor-not-allowed bg-inputDisabled border-inputDisabled;
+    }
+    &:hover:not(:focus):not(:focus-within):not(:disabled):not(.input-error) {
+      @apply border-primary;
+    }
+    height: var(--input-height);
+    /* background: none; */
   }
+
   .input-filled {
     @apply bg-gray-100;
   }
   .input-container {
-    @apply overflow-hidden transition-colors duration-75 border rounded-lg border-borderColor;
-    &:hover:not(:focus):not(:focus-within):not(.input-disabled):not(.input-error) {
-      @apply border-primary;
-    }
-    & input:disabled {
+    @apply relative transition-colors duration-75;
+    /* & input:disabled {
       cursor: not-allowed;
     }
     &:focus,
     &:focus-within,
     &:focus-visible {
       @apply outline outline-2 outline-primary;
-    }
+    } */
   }
   .input-adornment {
-    @apply flex items-center justify-center text-primary input-adornment-md;
+    @apply absolute top-0 bottom-0;
+    margin: auto 0;
+    height: var(--icon-size);
   }
   .input-error-wrapper {
     @apply inline-block mt-3 text-error text-caption;

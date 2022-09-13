@@ -2,6 +2,124 @@
 @import "./styles/layers/componentsLayer.css";
 @import "./styles/layers/utilsLayer.css";
 
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  3. Allow percentage-based heights in the application
+*/
+html,
+body {
+  height: 100%;
+}
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  6. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  7. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  8. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+button {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  border: 1px solid hsl(210deg, 14%, 66%);
+}
+
+:root {
+  --primary-color: 31, 64, 230;
+  --primary-dark-color: 17, 51, 186;
+  --primary-text-color: #fff;
+  --secondary-color: 1, 160, 133;
+  --secondary-dark-color: 1, 118, 98;
+  --secondary-text-color: #fff;
+  --success-color: 1, 160, 133;
+  --success-text-color: #fff;
+  --warning-color: 255, 133, 82;
+  --warning-text-color: #fff;
+  --tertiary-color: 242, 247, 252;
+  --tertiary-dark-color: 219, 219, 221;
+  --tertiary-text-color: #1f40e6;
+  --error-color: 254, 95, 85;
+  --text-color: #252525;
+  --text-color-inverted: #fff;
+  --text-color-muted: #999999;
+  --bg-color: 255, 251, 235;
+  --nav-color: 255, 255, 255;
+  --paper-color: #fff;
+  --dialog-root-z: 1101;
+  --dialog-overlay-z: 1100;
+  --drawer-root-z: 1099;
+  --popover-z: 1098;
+  --overlay-color: 0, 0, 0, 0.4;
+}
+html[class="dark"] {
+  --primary-color: #83c9ce;
+  --secondary-color: #e09794;
+  --text-color: #fff;
+  --text-color-inverted: #252525;
+  --text-color-muted: #cdcdcd;
+  --bg-color: 37, 37, 37;
+  --nav-color: 37, 37, 37;
+  --paper-color: #252525;
+}
+html {
+  scroll-behavior: smooth !important;
+  font-family: "Inter", sans-serif;
+}
+body {
+  @apply min-h-screen transition-colors duration-200 bg-body text-main;
+}
+
 a {
   @apply inline-block disabled:bg-opacity-30;
 }
@@ -11,7 +129,7 @@ a {
   transform: translate3d(-78%, 100%, 0) scale(0.5) rotateX(-90deg);
 }
 .anim-fadeUp--active {
-  opacity: 1 ;
+  opacity: 1;
   transform: translate3d(-50%, -50%, 0) scale(1) rotateX(0) !important;
 }
 

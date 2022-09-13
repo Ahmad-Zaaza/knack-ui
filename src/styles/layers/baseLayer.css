@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 
 @layer base {
   :root {
@@ -45,4 +45,4 @@
   body {
     @apply min-h-screen transition-colors duration-200 bg-body text-main;
   }
-}
+} */

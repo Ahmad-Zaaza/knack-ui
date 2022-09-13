@@ -1,17 +1,12 @@
 @layer utilities {
-  .input-xs {
-    @apply px-2 py-1 text-caption;
-  }
   .input-sm {
-    @apply px-3 py-1.5 text-subtitle2;
+    @apply text-subtitle2;
   }
   .input-md {
-    @apply px-3.5 py-2 text-subtitle2;
+    @apply text-subtitle2;
   }
 
-  .input-disabled {
-    @apply bg-inputDisabled;
-  }
+
   .input-error {
     @apply border-error;
     &:focus,
@@ -21,13 +16,6 @@
     }
   }
   .a-input {
-    display: flex;
-    align-items: center;
-  }
-  .input-adornment-md {
-    @apply h-8 mx-3;
-  }
-  .input-adornment-sm {
-    @apply mx-2 h-7;
+    padding-left: var(--input-height);
   }
 }
