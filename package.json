@@ -30,6 +30,7 @@
     "test:watch": "jest --watch",
     "create": "node scripts/create.mjs",
     "commit": "cz"
+    
   },
   "keywords": [],
   "author": "Ahmad Zaaza",
