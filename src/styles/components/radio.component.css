@@ -5,27 +5,28 @@
     &:focus-within:not(input[type="radio"]:disabled),
     &:focus-visible:not(input[type="radio"]:disabled) {
       @apply outline outline-2 outline-black;
-    
     }
     & input[type="radio"]:disabled ~ span {
-      @apply border-inputDisabled
+      @apply border-inputDisabled;
     }
     & input[type="radio"]:checked:disabled ~ span {
       @apply bg-inputDisabled border-inputDisabled;
     }
     & input[type="radio"] {
-      @apply !absolute !top-0 !left-0 !w-full !h-full !p-0 !m-0 !z-[2] !opacity-0 !outline-none !shadow-none !inline-block;
+      @apply !absolute !top-0 !left-0 !w-full !h-full !p-0 !m-0 !z-[2]  !opacity-0 !outline-none !shadow-none !inline-block;
     }
     & input[type="radio"] ~ span {
-      @apply overflow-hidden border-2 border-current rounded-full  inline-block absolute top-0 left-0 w-full h-full pointer-events-none z-[1];
+      @apply overflow-hidden border-2 rounded-full  inline-block absolute top-0 left-0 w-full h-full pointer-events-none z-[1];
       transition: background 100ms ease-out 0s;
+      border: 2px solid currentColor;
       background: transparent;
     }
     & input[type="radio"]:checked:not(:disabled) ~ span {
       @apply bg-current;
     }
     & input[type="radio"] ~ span::after {
-      @apply transition-transform duration-100 rotate-45 translate-y-2 rounded opacity-0 transform-gpu;
+      @apply transition-transform duration-100 rounded opacity-0;
+      transform: rotate(45deg) translateY(8px);
       position: absolute;
       z-index: 1;
       content: " ";
@@ -38,7 +39,8 @@
       border-radius: 1px;
     }
     & input[type="radio"]:checked ~ span::after {
-      @apply translate-y-0 opacity-100;
+      @apply opacity-100;
+      transform: translateY(0) rotate(45deg);
     }
   }
 }

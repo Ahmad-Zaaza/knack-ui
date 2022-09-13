@@ -8,13 +8,12 @@ const useCheckboxClasses = ({ size, color }: ICheckboxProps) => {
   const containerClasses = useMemo(
     () =>
       clsx("checkbox-container", {
-        
         "checkbox-sm": size === "small",
         "checkbox-lg": size === "large",
         "text-secondary": color === "secondary",
         "text-primary": color === "primary"
       }),
-    [ size, color]
+    [size, color]
   );
 
   return {

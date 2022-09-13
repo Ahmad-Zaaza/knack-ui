@@ -4,7 +4,7 @@
     margin: 0 2vw;
   }
   .stepper-vertical {
-    @apply items-start
+    @apply items-start;
   }
 
   .step {
@@ -35,7 +35,8 @@
     margin: 0 1vw;
 
     & span {
-      @apply block border-t-2 border-dashed;
+      @apply block;
+      border-top: 2px dashed;
     }
   }
   .step-connector--vertical {
@@ -45,7 +46,7 @@
     height: 100%;
 
     & span {
-      @apply border-l-2 border-dashed;
+      border-left: 2px dashed;
     }
   }
 }

@@ -1,7 +1,6 @@
-@import "./styles/layers/baseLayer.css";
+/* @tailwind base; */
 @import "./styles/layers/componentsLayer.css";
 @import "./styles/layers/utilsLayer.css";
-
 *,
 *::before,
 *::after {
@@ -105,6 +104,8 @@ body {
 
 a {
   @apply inline-block disabled:bg-opacity-30;
+  text-decoration: none;
+  color: inherit;
 }
 .anim-fadeUp--initial {
   opacity: 0;
@@ -123,12 +124,4 @@ a {
 .fade--active {
   @apply opacity-100;
   transition: opacity 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.fade-up--initial {
-  @apply translate-y-2 opacity-0;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.fade-up--active {
-  @apply translate-y-0 opacity-100;
-  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }

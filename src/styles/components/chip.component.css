@@ -12,10 +12,10 @@
     @apply bg-tertiary text-tertiaryMain;
   }
   .chip-primaryOutline {
-    @apply border border-primary text-primary;
+    @apply border border-solid border-primary text-primary;
   }
   .chip-secondaryOutline {
-    @apply border border-secondary text-secondary;
+    @apply border border-solid border-secondary text-secondary;
   }
   .chip-danger {
     @apply bg-error bg-opacity-20 text-error;

@@ -6,7 +6,8 @@
     }
   }
   .dialog-fadeIn {
-    @apply -translate-x-1/2 -translate-y-1/2 fade--initial top-1/2 left-1/2;
+    @apply  fade--initial top-1/2 left-1/2;
+    transform: translate(-50%, -50%);
     &.dialog-active {
       @apply fade--active;
     }

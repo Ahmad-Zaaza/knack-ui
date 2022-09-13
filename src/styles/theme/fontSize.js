@@ -22,13 +22,13 @@ module.exports = {
   body1: [
     "1rem",
     {
-      lineHeight: "26px"
+      lineHeight: "24px"
     }
   ],
   subtitle2: [
     "0.875rem",
     {
-      lineHeight: "24px"
+      lineHeight: "20px"
     }
   ],
   subtitle1: [

@@ -4,6 +4,9 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme,
+  corePlugins: {
+    preflight: false
+  },
   plugins: [
     require("tailwindcss-rtl"),
     require("@tailwindcss/line-clamp"),

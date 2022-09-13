@@ -47,19 +47,19 @@
     }
   }
   .btn-ghost {
-    @apply text-main;
+    @apply bg-transparent text-main ;
     &:not([disabled]):hover {
       @apply bg-tertiary bg-opacity-80;
     }
   }
   .btn-primaryOutline {
-    @apply border border-primary text-primary;
+    @apply bg-transparent border border-solid border-primary text-primary;
     &:not([disabled]):hover {
       @apply bg-primary text-primaryMain;
     }
   }
   .btn-secondaryOutline {
-    @apply border border-secondary text-secondary;
+    @apply bg-transparent border border-solid border-secondary text-secondary;
     &:not([disabled]):hover {
       @apply bg-secondary text-secondaryMain;
     }
