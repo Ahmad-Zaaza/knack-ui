@@ -8,8 +8,7 @@ const useTextareaClasses = ({
   className,
   variant,
   error,
-  inputClassName,
-  disabled
+  inputClassName
 }: ITextareaProps) => {
   const inputClasses = useMemo(
     () =>
@@ -17,23 +16,20 @@ const useTextareaClasses = ({
         "input",
         {
           "input-sm": variant === "small",
-          "input-lg": variant === "large"
+          "input-error": Boolean(error)
         },
         inputClassName
       ),
-    [variant, inputClassName]
+    [variant, inputClassName, error]
   );
   const containerClasses = useMemo(
     () =>
       clsx(
         "input-container",
-        {
-          "input-disabled": disabled,
-          "input-error": Boolean(error)
-        },
+
         className
       ),
-    [disabled, error, className]
+    [className]
   );
   const inputErrorWrapperClasses = useMemo(
     () => clsx("input-error-wrapper"),

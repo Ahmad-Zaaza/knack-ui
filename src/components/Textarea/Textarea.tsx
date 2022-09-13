@@ -6,7 +6,7 @@ export interface ITextareaProps extends ComponentPropsWithoutRef<"textarea"> {
    * Input size.
    * @default 'default'
    */
-  variant?: "small" | "default" | "large";
+  variant?: "small" | "default";
   /**
    * Input prefix. Can be a symbol or an icon. colored by primary color
    */
@@ -23,7 +23,14 @@ export interface ITextareaProps extends ComponentPropsWithoutRef<"textarea"> {
 
 const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
   (
-    { className, variant, error, disabled, inputClassName, ...delegated },
+    {
+      className,
+      variant = "default",
+      error,
+      disabled,
+      inputClassName,
+      ...delegated
+    },
     ref
   ) => {
     const {
@@ -38,10 +45,23 @@ const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
       disabled,
       inputClassName
     });
-
+    const sizes = {
+      small: {
+        padding: 8
+      },
+      default: {
+        padding: 12
+      }
+    };
     return (
       <>
-        <div className={containerClasses}>
+        <div
+          style={{
+            // @ts-ignore
+            "--padding": `${sizes[variant].padding}px`
+          }}
+          className={containerClasses}
+        >
           <textarea
             ref={ref}
             className={inputClasses}
