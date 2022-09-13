@@ -34,14 +34,7 @@ const useInputClasses = ({
     () => clsx("input-container", {}, className),
     [className]
   );
-  const inputAdornmentClasses = useMemo(
-    () =>
-      clsx("input-adornment", {
-        "input-adornment-md": size === "default",
-        "input-adornment-sm": size === "small"
-      }),
-    [size]
-  );
+  const inputAdornmentClasses = useMemo(() => clsx("input-adornment"), []);
   const inputErrorWrapperClasses = useMemo(
     () => clsx("input-error-wrapper"),
     []

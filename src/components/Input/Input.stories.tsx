@@ -8,9 +8,11 @@ import {
   Stories,
   PRIMARY_STORY
 } from "@storybook/addon-docs";
+import { BsAlarm } from "react-icons/bs";
 import Input, { IInputProps } from "./Input";
 import { Stack } from "../Stack";
 import { Box } from "../Box";
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "Components/Input",
@@ -72,7 +74,6 @@ Small.args = {
   size: "small"
 };
 
-
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
@@ -91,20 +92,21 @@ export const InputWithPrefix = Template.bind({});
 InputWithPrefix.args = {
   value: "Input With prefix",
   inputPrefix: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ width: "100%", height: "100%" }}
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-      />
-    </svg>
+    <BsAlarm />
+    // <svg
+    //   xmlns="http://www.w3.org/2000/svg"
+    //   style={{ width: "100%", height: "100%" }}
+    //   fill="none"
+    //   viewBox="0 0 24 24"
+    //   stroke="currentColor"
+    // >
+    //   <path
+    //     strokeLinecap="round"
+    //     strokeLinejoin="round"
+    //     strokeWidth={2}
+    //     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+    //   />
+    // </svg>
   )
 };
 export const InputWithSuffix = Template.bind({});

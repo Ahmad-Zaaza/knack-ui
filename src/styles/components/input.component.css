@@ -1,13 +1,19 @@
 @layer components {
   .input {
     @apply block w-full rounded-lg input-md;
-    padding: var(--padding);
+    padding-left: var(--padding);
+    padding-right: var(--padding);
     &:disabled {
       @apply cursor-not-allowed bg-inputDisabled border-inputDisabled;
     }
-    &:hover:not(:focus):not(:focus-within):not(:disabled):not(.input-error) {
+    &:hover:not(:disabled):not(.input-error) {
       @apply border-primary;
     }
+
+    &:focus {
+      @apply outline-primary outline-2 outline ;
+    }
+
     height: var(--input-height);
     /* background: none; */
   }
@@ -17,19 +23,12 @@
   }
   .input-container {
     @apply relative transition-colors duration-75;
-    /* & input:disabled {
-      cursor: not-allowed;
-    }
-    &:focus,
-    &:focus-within,
-    &:focus-visible {
-      @apply outline outline-2 outline-primary;
-    } */
   }
   .input-adornment {
-    @apply absolute top-0 bottom-0;
+    @apply absolute top-0 bottom-0 flex items-center justify-center;
     margin: auto 0;
     height: var(--icon-size);
+    width: var(--icon-size);
   }
   .input-error-wrapper {
     @apply inline-block mt-3 text-error text-caption;
