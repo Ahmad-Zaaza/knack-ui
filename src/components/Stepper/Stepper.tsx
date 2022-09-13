@@ -2,6 +2,7 @@ import React, {
   ComponentPropsWithoutRef,
   createContext,
   forwardRef,
+  ReactElement,
   useContext,
   useMemo,
   useState
@@ -71,7 +72,7 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
       React.Children.map(children, (child, index) => {
         if (React.isValidElement(child)) {
           lclChildren.push(
-            React.cloneElement(child, {
+            React.cloneElement(child as ReactElement<any>, {
               index,
               // eslint-disable-next-line react/no-array-index-key
               key: index,
