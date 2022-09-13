@@ -47,7 +47,7 @@
     }
   }
   .btn-ghost {
-    @apply bg-transparent text-main ;
+    @apply bg-transparent text-main;
     &:not([disabled]):hover {
       @apply bg-tertiary bg-opacity-80;
     }
@@ -71,7 +71,7 @@
     }
   }
   .btn-defaultOutline {
-    @apply border border-gray-300;
+    @apply border border-gray-300 border-solid;
     &:not([disabled]):hover {
       @apply bg-gray-300;
     }
