@@ -53,10 +53,6 @@ button {
   cursor: pointer;
 }
 
-input {
-  border: 1px solid hsl(210deg, 14%, 66%);
-}
-
 :root {
   --primary-color: 31, 64, 230;
   --primary-dark-color: 17, 51, 186;

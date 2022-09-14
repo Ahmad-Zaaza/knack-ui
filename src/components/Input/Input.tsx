@@ -52,7 +52,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     const {
       containerClasses,
       inputClasses,
-      inputAdornmentClasses,
+      prefixClasses,suffixClasses,
       inputErrorWrapperClasses
     } = useInputClasses({
       error,
@@ -95,7 +95,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
           className={containerClasses}
         >
           {InputPrefix ? (
-            <div className={inputAdornmentClasses}>{InputPrefix}</div>
+            <div className={prefixClasses}>{InputPrefix}</div>
           ) : null}
           <input
             ref={ref}
@@ -104,7 +104,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
             {...delegated}
           />
           {InputSuffux ? (
-            <div className={inputAdornmentClasses}>{InputSuffux}</div>
+            <div className={suffixClasses}>{InputSuffux}</div>
           ) : null}
         </div>
         {typeof error === "string" ? (

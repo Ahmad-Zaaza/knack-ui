@@ -1,17 +1,18 @@
 @layer components {
   .input {
     @apply block w-full rounded-lg input-md;
+    border: 1px solid hsl(210deg, 14%, 66%);
     padding-left: var(--padding);
     padding-right: var(--padding);
     &:disabled {
       @apply cursor-not-allowed bg-inputDisabled border-inputDisabled;
     }
-    &:hover:not(:disabled):not(.input-error) {
+    &:hover:not(:disabled):not(.input-error):not(:focus) {
       @apply border-primary;
     }
 
     &:focus {
-      @apply outline-primary outline-2 outline ;
+      @apply outline-primary outline-2 outline;
     }
 
     height: var(--input-height);
@@ -29,6 +30,9 @@
     margin: auto 0;
     height: var(--icon-size);
     width: var(--icon-size);
+  }
+  .input-sx {
+    @apply end-0;
   }
   .input-error-wrapper {
     @apply inline-block mt-3 text-error text-caption;

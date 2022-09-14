@@ -115,7 +115,7 @@ InputWithPrefix.args = {
 };
 export const InputWithSuffix = Template.bind({});
 InputWithSuffix.args = {
-  value: "Input With prefix",
+  value: "Input With suffix",
   inputSuffix: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -132,4 +132,10 @@ InputWithSuffix.args = {
       />
     </svg>
   )
+};
+export const InputWithSuffixAndPrefix = Template.bind({});
+InputWithSuffixAndPrefix.args = {
+  value: "Input With suffix and prefix",
+  inputSuffix: <BsAlarm />,
+  inputPrefix: <BsAlarm />
 };

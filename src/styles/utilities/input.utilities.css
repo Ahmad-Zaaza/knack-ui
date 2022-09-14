@@ -6,16 +6,18 @@
     @apply text-subtitle2;
   }
 
-
   .input-error {
     @apply border-error;
     &:focus,
     &:focus-within,
     &:focus-visible {
-      @apply outline-error hover:border-inherit !important;
+      @apply outline-error;
     }
   }
-  .a-input {
-    padding-left: var(--input-height);
+  .input-w-sx {
+    padding-inline-start: var(--input-height);
+  }
+  .input-w-px {
+    padding-inline-end: var(--input-height);
   }
 }

@@ -22,7 +22,8 @@ const useInputClasses = ({
           "input-sm": size === "small",
           "input-md": size === "default",
           "input-filled": variant === "filled",
-          "a-input": Boolean(InputPrefix) || Boolean(InputSuffux),
+          "input-w-sx": Boolean(InputPrefix),
+          "input-w-px": Boolean(InputSuffux),
           "input-disabled": disabled,
           "input-error": Boolean(error)
         },
@@ -34,14 +35,17 @@ const useInputClasses = ({
     () => clsx("input-container", {}, className),
     [className]
   );
-  const inputAdornmentClasses = useMemo(() => clsx("input-adornment"), []);
+  const prefixClasses = useMemo(() => clsx("input-adornment"), []);
+  const suffixClasses = useMemo(() => clsx("input-adornment", "input-sx"), []);
   const inputErrorWrapperClasses = useMemo(
     () => clsx("input-error-wrapper"),
     []
   );
   return {
     containerClasses,
-    inputAdornmentClasses,
+    prefixClasses,
+
+    suffixClasses,
     inputClasses,
     inputErrorWrapperClasses
   };
