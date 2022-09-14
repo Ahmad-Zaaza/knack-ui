@@ -73,6 +73,10 @@ export const Small = Template.bind({});
 Small.args = {
   size: "small"
 };
+export const Large = Template.bind({});
+Small.args = {
+  size: "large"
+};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
@@ -90,7 +94,7 @@ export const OTPInput = OTPTemplate.bind({});
 // };
 export const InputWithPrefix = Template.bind({});
 InputWithPrefix.args = {
-  value: "Input With prefix",
+  placeholder: "Place text here...",
   inputPrefix: (
     <BsAlarm />
     // <svg

@@ -7,7 +7,7 @@ export interface IInputProps
    * Input size.
    * @default 'default'
    */
-  size?: "small" | "default";
+  size?: "small" | "default" | "large";
   /**
    * Input prefix. Can be a symbol or an icon. colored by primary color
    */
@@ -67,13 +67,18 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
 
     const sizes = {
       small: {
-        height: 28,
-        iconSize: 24,
+        height: 32,
+        iconSize: 32,
         padding: 8
       },
       default: {
-        height: 36,
-        iconSize: 36,
+        height: 40,
+        iconSize: 40,
+        padding: 10
+      },
+      large: {
+        height: 44,
+        iconSize: 44,
         padding: 12
       }
     };
@@ -85,8 +90,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
             // @ts-ignore
             "--input-height": `${sizes[size].height}px`,
             "--icon-size": `${sizes[size].iconSize}px`,
-            "--padding": `${sizes[size].padding}px`,
-         
+            "--padding": `${sizes[size].padding}px`
           }}
           className={containerClasses}
         >
