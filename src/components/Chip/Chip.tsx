@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import * as Polymorphic from "../../types/helpers";
+import DeleteIcon from "./DeleteIcon";
 import useChipClasses from "./useChipClasses";
 
 type TChipVariants =
@@ -26,6 +27,7 @@ interface ChipProps {
    * Controls Chip size
    */
   size?: "small" | "medium";
+  onDelete?: () => void;
 }
 
 const Chip = forwardRef(
@@ -37,11 +39,12 @@ const Chip = forwardRef(
       variant = "primaryOutline",
       size = "medium",
       shape,
+      onDelete,
       ...delegated
     },
     ref
   ) => {
-    const { containerClasses } = useChipClasses({
+    const { containerClasses, contentClasses, iconClasses } = useChipClasses({
       className,
       variant,
       shape,
@@ -50,7 +53,10 @@ const Chip = forwardRef(
 
     return (
       <Component ref={ref} className={containerClasses} {...delegated}>
-        {children}
+        <span className={contentClasses}>{children}</span>
+        {typeof onDelete !== "undefined" ? (
+          <DeleteIcon onClick={onDelete} className={iconClasses} />
+        ) : null}
       </Component>
     );
   }

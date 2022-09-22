@@ -1,7 +1,20 @@
 @layer components {
   .chip {
     @apply relative flex items-center justify-center font-medium transition-all duration-150 rounded-md text-button whitespace-nowrap;
+    & .KnChip-deleteIcon {
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      fill: currentColor;
+      flex-shrink: 0;
+      user-select: none;
+      cursor: pointer;
+      font-size: 22px;
+      margin-inline-end: 5px;
+      margin-inline-start: -6px;
+    }
   }
+
   .chip-primary {
     @apply border bg-primary border-primary text-primaryMain;
   }
@@ -26,4 +39,9 @@
   .chip-warning {
     @apply bg-warning bg-opacity-10 text-warning;
   }
+}
+.chip-content {
+  @apply text-button;
+  font-size: 0.8125rem;
+  padding: 0 12px;
 }

@@ -30,9 +30,23 @@ const useChipClasses = ({ className, variant, size, shape }: ChipProps) => {
       ),
     [className, variant, size, shape]
   );
+  const contentClasses = useMemo(
+    () =>
+      clsx(
+        "chip-content",
+        { "chip-content-sm": size === "small" },
+
+        className
+      ),
+    [size]
+  );
+
+  const iconClasses = useMemo(() => clsx("KnChip-deleteIcon"), []);
 
   return {
-    containerClasses
+    containerClasses,
+    contentClasses,
+    iconClasses
   };
 };
 

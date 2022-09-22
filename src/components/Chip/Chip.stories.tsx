@@ -21,13 +21,13 @@ const Template: ComponentStory<typeof Chip> = ({
   ...args
 }) => (
   <Stack gap={4}>
-    <Chip variant="primaryOutline" {...args}>
+    <Chip onDelete={() => {}} variant="primaryOutline" {...args}>
       Default Chip
     </Chip>
     <Chip variant="secondaryOutline" {...args}>
       Secondary Outline
     </Chip>
-    <Chip  variant="primary" {...args}>
+    <Chip onDelete={() => {}} variant="primary" {...args}>
       Primary
     </Chip>
     <Chip variant="secondary" {...args}>

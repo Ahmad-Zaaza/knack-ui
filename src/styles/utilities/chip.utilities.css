@@ -1,14 +1,20 @@
 @layer utilities {
   .chip-md {
-    @apply md-size text-button;
+    height: 32px;
   }
   .chip-sm {
-    @apply sm-size text-button;
+    height: 24px;
+    & .KnChip-deleteIcon {
+      font-size: 20px;
+    }
   }
   .chip-square {
     @apply rounded-none;
   }
   .chip-rounded {
     @apply rounded-full;
+  }
+  .chip-content-sm {
+    padding: 0 8px;
   }
 }
