@@ -34,23 +34,23 @@ const Template: ComponentStory<typeof Popover> = (_) => {
         >
           Click me
         </Button>
-        <Popover
-          animationType="fade-up"
-          isOpen={open}
-          offset={{ bottom: 10, left: 0 }}
-          popoverProps={{
-            className: "w-64",
-            variant: "elevated",
-            elevation: 2
-          }}
-          onClose={() => setOpen(false)}
-          parentRef={parentRef}
-        >
-          <MenuItem kind="ghost">Go to home</MenuItem>
-          <MenuItem kind="ghost">Go to home</MenuItem>
-          <MenuItem kind="ghost">Go to home</MenuItem>
-        </Popover>
       </Stack>
+      <Popover
+        animationType="fade-up"
+        isOpen={open}
+        offset={{ bottom: 10, left: 0 }}
+        popoverProps={{
+          className: "w-64",
+          variant: "elevated",
+          elevation: 2
+        }}
+        onClose={() => setOpen(false)}
+        parentRef={parentRef}
+      >
+        <MenuItem kind="ghost">Go to home</MenuItem>
+        <MenuItem kind="ghost">Go to home</MenuItem>
+        <MenuItem kind="ghost">Go to home</MenuItem>
+      </Popover>
     </BrowserRouter>
   );
 };

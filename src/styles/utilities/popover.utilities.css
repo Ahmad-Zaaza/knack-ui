@@ -1,2 +1,14 @@
 @layer utilities {
+  .popover-fade {
+    @apply fade--initial;
+    &.popover-active {
+      @apply fade--active;
+    }
+  }
+  .popover-fadeup {
+    @apply fade-up--initial;
+    &.popover-active {
+      @apply fade-up--active;
+    }
+  }
 }

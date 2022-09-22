@@ -133,12 +133,13 @@ const Popover: React.FC<IPopoverProps> = ({
       clsx(
         "popover",
         {
-          [`${animationType}--active`]: isOpen && active,
-          [`${animationType}--initial`]: true
+          "popover-fade": animationType === "fade",
+          "popover-fadeup": animationType === "fade-up",
+          "popover-active": isOpen && active
         },
         popoverProps?.className
       ),
-    [popoverProps?.className, isOpen, active]
+    [popoverProps?.className, isOpen, active, animationType]
   );
 
   const onTransitionEnd = () => {

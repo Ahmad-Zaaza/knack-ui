@@ -115,9 +115,19 @@ a {
 
 .fade--initial {
   @apply opacity-0;
-  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .fade--active {
   @apply opacity-100;
   transition: opacity 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.fade-up--initial {
+  @apply opacity-0;
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateY(8px);
+}
+.fade-up--active {
+  @apply opacity-100;
+  transform: translateY(0);
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
