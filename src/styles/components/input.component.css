@@ -1,7 +1,7 @@
 @layer components {
   .input {
     @apply block w-full rounded-lg input-md;
-    border: 1px solid hsl(210deg, 14%, 66%);
+    border: 1px solid hsl(210deg, 4%, 80%);
     padding-left: var(--padding);
     padding-right: var(--padding);
     &:disabled {
@@ -13,6 +13,7 @@
 
     &:focus {
       @apply outline-primary outline-2 outline;
+      outline-offset: -1px;
     }
 
     height: var(--input-height);
