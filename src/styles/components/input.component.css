@@ -1,9 +1,11 @@
 @layer components {
   .input {
-    @apply block w-full rounded-lg input-md;
-    border: 1px solid hsl(210deg, 4%, 80%);
-    padding-left: var(--padding);
-    padding-right: var(--padding);
+    @apply block w-full;
+    font-size: 14px;
+    border-radius: 8px !important;
+    border: 1px solid hsl(210deg, 4%, 80%) !important;
+    padding-left: var(--padding) !important;
+    padding-right: var(--padding) !important;
     &:disabled {
       @apply cursor-not-allowed bg-inputDisabled border-inputDisabled;
     }
