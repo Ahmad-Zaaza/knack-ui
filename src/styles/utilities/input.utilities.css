@@ -7,17 +7,17 @@
   }
 
   .input-error {
-    @apply border-error;
+    @apply border-error !important;
     &:focus,
     &:focus-within,
     &:focus-visible {
-      @apply outline-error;
+      @apply outline-error !important;
     }
   }
   .input-w-sx {
-    padding-inline-start: var(--input-height);
+    padding-inline-start: var(--input-height) !important;
   }
   .input-w-px {
-    padding-inline-end: var(--input-height);
+    padding-inline-end: var(--input-height) !important;
   }
 }
