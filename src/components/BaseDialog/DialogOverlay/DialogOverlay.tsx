@@ -1,7 +1,6 @@
 import { MouseEvent, useRef, useMemo, Dispatch, SetStateAction } from "react";
 import classnames from "classnames/bind";
 import { RemoveScroll } from "react-remove-scroll";
-import FocusLock from "../../../utils/FocusLock";
 import { Portal } from "../../Portal";
 import { IBaseDialogProps } from "../BaseDialog/BaseDialog";
 
@@ -26,7 +25,6 @@ interface IDialogOverlayProps
 const DialogOverlay: React.FC<IDialogOverlayProps> = ({
   isOpen,
   children,
-  disableFocusLock,
   disableScrollLock,
   allowPinchZoom,
   onClose,
@@ -50,23 +48,22 @@ const DialogOverlay: React.FC<IDialogOverlayProps> = ({
   if (!isOpen && !active) return null;
   return (
     <Portal>
-      <FocusLock open={isOpen} focusLock={!disableFocusLock}>
-        <RemoveScroll
-          enabled={!disableScrollLock}
-          allowPinchZoom={allowPinchZoom}
+      <RemoveScroll
+        style={{ isolation: "isolate" }}
+        enabled={!disableScrollLock}
+        allowPinchZoom={allowPinchZoom}
+      >
+        <div
+          onTransitionEnd={onTransitionEnd}
+          ref={overlayRef}
+          onClick={handleClick}
+          role="presentation"
+          tabIndex={-1}
+          className={overlayClasses}
         >
-          <div
-            onTransitionEnd={onTransitionEnd}
-            ref={overlayRef}
-            onClick={handleClick}
-            role="presentation"
-            tabIndex={-1}
-            className={overlayClasses}
-          >
-            {children}
-          </div>
-        </RemoveScroll>
-      </FocusLock>
+          {children}
+        </div>
+      </RemoveScroll>
     </Portal>
   );
 };
