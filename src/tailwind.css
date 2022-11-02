@@ -80,6 +80,7 @@ button {
   --popover-z: 1098;
   --overlay-color: 0, 0, 0, 0.4;
 }
+
 html[class="dark"] {
   --primary-color: #83c9ce;
   --secondary-color: #e09794;

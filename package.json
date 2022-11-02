@@ -36,7 +36,8 @@
   "license": "UNLICENSED",
   "peerDependencies": {
     "react": ">=16.8",
-    "react-dom": ">=16.8"
+    "react-dom": ">=16.8",
+    "styled-components": ">=5.3"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
@@ -59,6 +60,7 @@
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "autoprefixer": "^10.4.2",
@@ -107,6 +109,7 @@
     "@reach/rect": "^0.16.0",
     "@seznam/compose-react-refs": "^1.0.6",
     "date-fns": "^2.28.0",
+    "polished": "^4.2.2",
     "react-remove-scroll": "^2.4.4",
     "use-debounce": "^7.0.1"
   }

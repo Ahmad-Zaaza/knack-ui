@@ -1,17 +1,17 @@
 import { Story, ComponentMeta } from "@storybook/react";
-import { Router, Link } from "react-router-dom";
-import { createMemoryHistory } from "history";
-import { BsFillBagFill } from "react-icons/bs";
+// import { Router } from "react-router-dom";
+// import { createMemoryHistory } from "history";
 import { AiFillEdit } from "react-icons/ai";
 import Button, { ButtonProps } from "./Button";
+import ThemeProvider from "../../theme/ThemeProvider";
 
 export default {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    variant: {
+    size: {
       defaultValue: "medium",
-      options: ["xsmall", "small", "medium", "large"],
+      options: ["medium", "large"],
       control: "radio"
     },
     kind: { control: "radio" },
@@ -23,69 +23,26 @@ export default {
     loaderType: { options: ["Dual Ring"], control: "radio" }
   }
 } as ComponentMeta<typeof Button>;
-const history = createMemoryHistory();
-const Template: Story<ButtonProps> = ({ ...args }) => <Button {...args} />;
-const RouterTemplate: Story<ButtonProps> = (args) => (
-  <Router navigator={history} location={history.location}>
-    <Button as={Link} to="/" {...args} />
-  </Router>
+// const history = createMemoryHistory();
+const Template: Story<ButtonProps> = ({ ...args }) => (
+  <ThemeProvider>
+    <Button {...args}>
+      <AiFillEdit />
+    </Button>
+  </ThemeProvider>
 );
+// const RouterTemplate: Story<ButtonProps> = (args) => (
+//   <ThemeProvider>
+//     <Router navigator={history} location={history.location}>
+//       <Button {...args} />
+//     </Router>
+//   </ThemeProvider>
+// );
 
 export const Primary = Template.bind({});
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  kind: "secondary",
+  variant: "primary",
   startIcon: <AiFillEdit />
-};
-export const PrimaryOutline = Template.bind({});
-PrimaryOutline.args = {
-  kind: "primaryOutline",
-  variant: "medium"
-};
-export const SecondaryOutline = Template.bind({});
-SecondaryOutline.args = {
-  kind: "secondaryOutline",
-  variant: "medium"
-};
-export const Tertiary = Template.bind({});
-Tertiary.args = {
-  kind: "tertiary",
-  variant: "medium"
-};
-export const Ghost = Template.bind({});
-Ghost.args = {
-  kind: "ghost",
-  variant: "medium"
-};
-export const Danger = Template.bind({});
-Danger.args = {
-  kind: "danger",
-  variant: "medium"
-};
-export const Warning = Template.bind({});
-Warning.args = {
-  kind: "warning",
-  variant: "medium"
-};
-export const Success = Template.bind({});
-Success.args = {
-  kind: "success",
-  variant: "medium"
-};
-export const FullWidth = Template.bind({});
-FullWidth.args = {
-  fullWidth: true
-};
-
-export const LinkButton = RouterTemplate.bind({});
-LinkButton.args = {};
-export const EndIcon = Template.bind({});
-EndIcon.args = {
-  endIcon: <BsFillBagFill size={18} />
-};
-export const IconButton = Template.bind({});
-IconButton.args = {
-  iconOnly: true,
-  children: <BsFillBagFill />
 };

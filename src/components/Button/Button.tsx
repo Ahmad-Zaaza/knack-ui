@@ -1,30 +1,26 @@
-import composeRefs from "@seznam/compose-react-refs";
-import { forwardRef, useEffect, useRef, useState } from "react";
-import useLoaderClasses, {
-  LoaderTypes
-} from "../../lib/hooks/useLoaderClasses";
-import * as Polymorphic from "../../types/helpers";
-import useButtonClasses from "./useButtonClasses";
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import { ComponentPropsWithoutRef, CSSProperties, forwardRef } from "react";
+import styled, { css } from "styled-components";
+import { transparentize, darken, lighten } from "polished";
 
-type ButtonVariants =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "ghost"
-  | "primaryOutline"
-  | "secondaryOutline"
-  | "ghostOutline"
-  | "danger"
-  | "warning"
-  | "success"
-  | "default"
-  | "defaultOutline";
+import useButtonTheme from "./useButtonTheme";
+import Spinner from "../Spinner";
 
-interface ButtonProps {
+type ButtonVariants = "primary" | "secondary" | "tertiary";
+
+type ButtonTheme = "info" | "danger" | "success" | "default";
+
+type ButtonSize = "medium" | "large";
+
+interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   /**
    * Appearance of the button
    */
-  kind?: ButtonVariants;
+  variant?: ButtonVariants;
+  /**
+   * Appearance of the button
+   */
+  theme?: ButtonTheme;
   /**
    * Start Icon Component
    */
@@ -37,7 +33,7 @@ interface ButtonProps {
   /**
    * Controls the size of the button
    */
-  variant?: "xsmall" | "small" | "medium" | "large";
+  size?: ButtonSize;
   /**
    * If `true` sets the width to 100%
    */
@@ -46,40 +42,28 @@ interface ButtonProps {
    * If `true` Shows a loading indicator
    */
   isLoading?: boolean;
-  /**
-   * If `true` Shows a loading indicator
-   */
-  loaderType?: LoaderTypes;
-  /**
-   * If `true` will render an Icon button
-   */
-  iconOnly?: boolean;
 
-  shape?: "rounded" | "square";
+  shape?: "rounded" | "square" | "default";
   /**
    * If `false` will disable hover elevation animation.
    *
    * @default true
    */
-  elevationAnimation?: boolean;
   disabled?: boolean;
 }
 
-const Button = forwardRef(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      className,
-      variant = "medium",
-      kind = "primary",
+      size = "medium",
+      variant = "primary",
       isLoading,
-      as: Component = "button",
       type = "button",
-      shape,
+      shape = "default",
+      theme = "default",
       fullWidth,
-      iconOnly,
-      elevationAnimation,
+
       startIcon,
-      loaderType = "Dual Ring",
       endIcon,
       children,
       disabled,
@@ -87,74 +71,145 @@ const Button = forwardRef(
     },
     ref
   ) => {
-    const loaderClasses = useLoaderClasses({ loader: loaderType });
-    const { containerClasses, startIconClasses, endIconClasses } =
-      useButtonClasses({
-        className,
-        variant,
-        kind,
-        shape,
-        isLoading,
-        fullWidth,
-        iconOnly,
-        elevationAnimation
-      });
-    const [dims, setDims] = useState<{
-      width: string | number;
-      height: string | number;
-    }>({
-      width: "auto",
-      height: "auto"
-    });
-    const innerRef = useRef<HTMLButtonElement | null>(null);
-    const dimsRef = useRef<{
-      width: string | number;
-      height: string | number;
-    }>({ height: "auto", width: "auto" });
+    const { buttonSizeStyles, buttonTheme } = useButtonTheme();
 
-    useEffect(() => {
-      if (!isLoading) {
-        const dim = innerRef?.current?.getBoundingClientRect();
+    const styles = buttonSizeStyles[size] as CSSProperties;
 
-        dimsRef.current = {
-          height: dim?.height as number,
-          width: dim?.width as number
-        };
-        setDims({
-          height: dim?.height as number,
-          width: dim?.width as number
-        });
-      }
-    }, [variant, children, isLoading]);
+    let Component = ButtonBase;
 
-    useEffect(() => {
-      if (isLoading) {
-        setDims({
-          height: dimsRef.current.height,
-          width: dimsRef.current.width
-        });
-      }
-    }, [isLoading]);
+    if (variant === "primary") {
+      Component = PrimaryButton;
+    } else if (variant === "secondary") {
+      Component = SecondaryButton;
+    } else {
+      Component = TertiaryButton;
+    }
     return (
       <Component
-        ref={composeRefs(innerRef, ref)}
-        className={containerClasses}
+        palette={buttonTheme[variant][theme]}
+        ref={ref}
+        shape={shape}
         type={type}
+        fullWidth={fullWidth}
+        style={styles}
         disabled={disabled || isLoading}
-        style={{ ...(isLoading && { width: dims.width, height: dims.height }) }}
         {...delegated}
       >
-        {!isLoading && startIcon ? (
-          <span className={startIconClasses}>{startIcon}</span>
-        ) : null}
-        {isLoading ? <div className={loaderClasses} /> : children}
-        {!isLoading && endIcon ? (
-          <span className={endIconClasses}>{endIcon}</span>
-        ) : null}
+        <InnerContainer isLoading={isLoading}>
+          {startIcon ? <StartIconWrapper>{startIcon}</StartIconWrapper> : null}
+          <ButtonText style={styles}>{children}</ButtonText>
+          {endIcon ? <EndIconWrapper>{endIcon}</EndIconWrapper> : null}
+        </InnerContainer>
+        {isLoading && (
+          <LoadingWrapper>
+            <Spinner size={size === "large" ? 22 : 16} />
+          </LoadingWrapper>
+        )}
       </Component>
     );
   }
-) as Polymorphic.ForwardRefComponent<"button", ButtonProps>;
+);
 export default Button;
 
 export type { ButtonProps, ButtonVariants };
+
+const ButtonBase = styled.button<{
+  palette: any;
+  fullWidth?: boolean;
+  shape?: "rounded" | "square" | "default";
+}>`
+  border-radius: 6px;
+  position: relative;
+  display: inline-block;
+  font-size: var(--font-size);
+  height: var(--height);
+  font-weight: 500;
+  font-family: inherit;
+  transition: color 50ms ease, background 50ms ease;
+  color: ${(p) => p.palette.text};
+
+  ${(p) =>
+    p.fullWidth &&
+    css`
+      display: "block";
+      width: 100%;
+    `}
+`;
+
+const PrimaryButton = styled(ButtonBase)`
+  background-color: ${(p) => p.palette.theme};
+  border: 1px solid ${(p) => p.palette.theme};
+  ${(p) => p.theme.queries.hoverPointerDevices} {
+    &:hover:not(:disabled) {
+      background-color: ${(p) => darken(0.05, p.palette.theme)};
+      border-color: ${(p) => darken(0.05, p.palette.theme)};
+    }
+  }
+  &:active:not(:disabled) {
+    background-color: ${(p) => darken(0.12, p.palette.theme)};
+    border-color: ${(p) => darken(0.12, p.palette.theme)};
+  }
+  &:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
+  }
+`;
+const SecondaryButton = styled(ButtonBase)`
+  background-color: ${(p) => transparentize(0.7, p.palette.theme)};
+  color: ${(p) => lighten(0.05, p.palette.text)};
+  border: 1px solid ${(p) => p.palette.theme};
+  ${(p) => p.theme.queries.hoverPointerDevices} {
+    &:hover:not(:disabled) {
+      color: ${(p) => p.palette.text};
+      background-color: ${(p) => transparentize(0.6, p.palette.theme)};
+    }
+  }
+  &:active:not(:disabled) {
+    background-color: ${(p) => transparentize(0.5, p.palette.theme)};
+  }
+`;
+const TertiaryButton = styled(ButtonBase)`
+  background-color: transparent;
+  border: 1px solid transparent;
+  ${(p) => p.theme.queries.hoverPointerDevices} {
+    &:hover:not(:disabled) {
+      color: ${(p) => p.palette.text};
+      background-color: ${(p) => transparentize(0.6, p.palette.theme)};
+    }
+  }
+  &:active:not(:disabled) {
+    background-color: ${(p) => transparentize(0.5, p.palette.theme)};
+  }
+`;
+
+const InnerContainer = styled.span<{ isLoading?: boolean }>`
+  visibility: ${(p) => (p.isLoading ? "hidden" : "visible")};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`;
+
+const ButtonText = styled.span`
+  margin-left: var(--spacing);
+  margin-right: var(--spacing);
+`;
+const StartIconWrapper = styled.span`
+  margin-inline-start: var(--spacing);
+`;
+const EndIconWrapper = styled.span`
+  margin-inline-end: var(--spacing);
+`;
+const LoadingWrapper = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+Button.defaultProps = {
+  theme: "default"
+};

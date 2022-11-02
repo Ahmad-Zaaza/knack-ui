@@ -24,3 +24,4 @@ export * from "./Popover";
 export * from "./Drawer";
 export * from "./HorizontalList";
 export * from "./Calendar";
+export * from "./Spinner";
