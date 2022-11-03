@@ -9,15 +9,22 @@ export default {
   argTypes: {
     color: {
       defaultValue: "normal",
-      options: ["primary", "secondary", "muted", "normal","warning","success"],
+      options: [
+        "primary",
+        "secondary",
+        "muted",
+        "normal",
+        "warning",
+        "success"
+      ],
       control: "select"
     }
   }
 } as ComponentMeta<typeof Typography>;
 
 const Template: ComponentStory<typeof Typography> = ({ ...args }) => (
-  <Stack direction="column" gap={1}>
-    <Typography {...args} variant="h1" as='h1'>
+  <Stack direction="column" gap={2}>
+    <Typography {...args} variant="h1" tag="h1">
       This is an h1 variant
     </Typography>
     <Typography {...args} variant="h2">
@@ -41,17 +48,18 @@ const Template: ComponentStory<typeof Typography> = ({ ...args }) => (
     <Typography {...args} variant="subtitle2">
       This is subtitle2 variant
     </Typography>
+
     <Typography {...args} variant="body1">
       This is body1 variant
     </Typography>
     <Typography {...args} variant="body2">
       This is body2 variant
     </Typography>
+    <Typography {...args} variant="body3">
+      This is body3 variant
+    </Typography>
     <Typography {...args} variant="caption">
       This is caption variant
-    </Typography>
-    <Typography {...args} variant="button">
-      This is button variant
     </Typography>
   </Stack>
 );

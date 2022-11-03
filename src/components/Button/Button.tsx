@@ -52,6 +52,19 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   disabled?: boolean;
 }
 
+/**
+ * @description
+ * Change log:
+ *
+ * - `variant` is now `size` is now only "medium" & "large".
+ *
+ * - `kind` is replaced with `variant` and only supportes `primary`,`secondary` and `tertiary`.
+ *
+ * - added `theme` prop which determines the color of the button.
+ * 
+ * - fixed: loading state causing button to shrink.
+ *
+ */
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
