@@ -112,6 +112,8 @@ const Typography = forwardRef<HTMLHeadingElement, Props>(
 );
 
 export default Typography;
+
+
 export type {
   TypographyProps,
   TypographyTags,
@@ -143,3 +145,9 @@ const Text = styled.h1<{
       overflow: hidden;
     `};
 `;
+
+Typography.defaultProps = {
+  tag: "p",
+  variant: "body1",
+  color: "currentColor"
+};

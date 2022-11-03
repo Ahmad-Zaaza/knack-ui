@@ -11,7 +11,7 @@ import {
 import { BsAlarm } from "react-icons/bs";
 import Input, { IInputProps } from "./Input";
 import { Stack } from "../Stack";
-import { Box } from "../Box";
+import ThemeProvider from "../../theme/ThemeProvider";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -22,16 +22,16 @@ export default {
       description: {
         component: "Basic input component"
       },
-      subtitle: "Sibtitle",
+      subtitle: "Subtitle",
       page: () => (
-        <>
+        <ThemeProvider>
           <Title />
           <Subtitle />
           <Description />
           <Primary />
           <ArgsTable story={PRIMARY_STORY} />
           <Stories />
-        </>
+        </ThemeProvider>
       )
     }
   },
@@ -45,24 +45,31 @@ export default {
 } as Meta<IInputProps>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: Story<IInputProps> = (args) => <Input {...args} />;
+const Template: Story<IInputProps> = (args) => (
+  <ThemeProvider>
+    <Input {...args} />
+  </ThemeProvider>
+);
 const OTPTemplate: Story<IInputProps> = (args) => (
-  <Box className="container max-w-lg p-4 mx-auto rounded-2xl">
-    <Stack gap={2}>
-      {Array.from(new Array(4).keys()).map((c) => (
-        <Input
-          variant="filled"
-          key={c}
-          max={9}
-          min={0}
-          maxLength={1}
-          inputClassName="min-w-0  whitespace-nowrap font-bold text-center"
-          className="flex-1 p-0 bg-gray-100 whitespace-nowrap"
-          {...args}
-        />
-      ))}
-    </Stack>
-  </Box>
+  <ThemeProvider>
+    <div className="container max-w-lg p-4 mx-auto rounded-2xl">
+      <Stack gap={2}>
+        {Array.from(new Array(4).keys()).map((c) => (
+          <Input
+            size="small"
+            w={24}
+            key={c}
+            max={9}
+            min={0}
+            maxLength={1}
+            inputClassName="min-w-0  whitespace-nowrap font-bold text-center"
+            className="flex-1 p-0 bg-gray-100 whitespace-nowrap"
+            {...args}
+          />
+        ))}
+      </Stack>
+    </div>
+  </ThemeProvider>
 );
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

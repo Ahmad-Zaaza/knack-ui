@@ -7,18 +7,7 @@ export default {
   title: "Components/Typography",
   component: Typography,
   argTypes: {
-    color: {
-      defaultValue: "normal",
-      options: [
-        "primary",
-        "secondary",
-        "muted",
-        "normal",
-        "warning",
-        "success"
-      ],
-      control: "select"
-    }
+    color: { defaultValue: "currentColor", control: "text" }
   }
 } as ComponentMeta<typeof Typography>;
 
