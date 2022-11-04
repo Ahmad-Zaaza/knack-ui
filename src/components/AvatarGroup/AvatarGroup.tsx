@@ -20,7 +20,7 @@ const AvatarGroup = forwardRef<HTMLDivElement, IAvatargroupProps>(
     return (
       <div ref={ref} className={containerClasses} {...delegated}>
         {max > 0 && numberOfChildren > max && (
-          <Avatar max text={`+${(numberOfChildren - max).toString()}`} />
+          <Avatar alt={`+${(numberOfChildren - max).toString()}`} />
         )}
         {React.Children.map(children, (child, i) => {
           if (isValidElement(child)) {
