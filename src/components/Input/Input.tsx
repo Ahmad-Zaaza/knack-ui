@@ -81,6 +81,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       disabled,
       size = "default",
       inputStyle,
+      readOnly,
       ...delegated
     },
     ref
@@ -108,18 +109,23 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     const mainTheme = useTheme();
     if (!mainTheme) {
       throw new Error(
-        '<Button/> must be inside <ThemeProvider/> with a value, import {ThemeProvider} from "knack-ui" '
+        '<Input/> must be inside <ThemeProvider/> with a value, import {ThemeProvider} from "knack-ui" '
       );
     }
+
     return (
       <>
         <Wrapper
-          style={{
-            // @ts-ignore
-            "--input-height": `${sizes[size].height}px`,
-            "--icon-size": `${sizes[size].iconSize}px`
-          }}
-          w={w}
+          style={
+            {
+              "--input-height": `${sizes[size].height}px`,
+              "--icon-size": `${sizes[size].iconSize}px`,
+              "--width": typeof w === "number" ? `${w}px` : w
+            } as CSSProperties
+          }
+          error={Boolean(error)}
+          disabled={disabled}
+          readOnly={readOnly}
           className={className}
         >
           {InputPrefix ? (
@@ -136,6 +142,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
           ) : null}
           <TextInput
             ref={ref}
+            readOnly={readOnly}
             style={
               {
                 "--spacing": `${sizes[size].spacing}px`,
@@ -151,6 +158,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
           />
           {InputSuffix ? (
             <Adornment
+              tabIndex={-1}
               style={
                 {
                   "--spacing": `${sizes[size].spacing}px`
@@ -175,16 +183,48 @@ Input.defaultProps = {
   w: "100%"
 };
 
-const Wrapper = styled.div<{ w: IInputProps["w"] }>`
+const Wrapper = styled.div<{
+  error: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
+}>`
   height: var(--input-height);
-  width: ${(p) => (typeof p.w === "number" ? `${p.w}px` : p.w)};
+  width: var(--width);
   display: inline-flex;
   align-items: center;
   position: relative;
   padding: 1px;
   border-radius: 6px;
   border: 1px solid ${COLORS.gray["200"]};
-  box-shadow: ${(p) => p.theme.elevations.small};
+  
+  --focus-color: 202 100% 58%;
+  ${(p) =>
+    !p.readOnly &&
+    css`
+      &:focus-within {
+        box-shadow: 0 0 0 3px hsla(var(--focus-color) / 0.3);
+        border-color: hsl(var(--focus-color));
+      }
+    `}
+  ${(p) =>
+    p.readOnly &&
+    css`
+      background-color: ${p.theme.colors.gray["50"]};
+    `}
+  ${(p) =>
+    p.error &&
+    css`
+      --focus-color: 347deg 100% 41%;
+      border-color: ${p.theme.colors.red["500"]};
+      &:focus-within {
+        box-shadow: 0 0 0 3px hsla(var(--focus-color) / 0.3);
+      }
+    `}
+  ${(p) =>
+    p.disabled &&
+    css`
+      opacity: 0.45;
+    `}
 `;
 
 const Adornment = styled.span`
@@ -197,8 +237,11 @@ const Adornment = styled.span`
 
 const ErrorMessage = styled.span`
   color: ${(p) => p.theme.colors.red["500"]};
-  font-size: ${14 / 16}rem;
+  font-size: ${13 / 16}rem;
+  margin-top: 8px;
+  display: block;
 `;
+
 const TextInput = styled.input<{
   startNeighbor: boolean;
   endNeighbor: boolean;
@@ -211,6 +254,7 @@ const TextInput = styled.input<{
   outline: none;
   font-size: var(--font-size);
   background-color: transparent;
+
   ${(p) =>
     p.startNeighbor &&
     css`

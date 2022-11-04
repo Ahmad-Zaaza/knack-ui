@@ -47,7 +47,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<IInputProps> = (args) => (
   <ThemeProvider>
-    <Input {...args} />
+    <Input placeholder="Enter text..." {...args} />
   </ThemeProvider>
 );
 const OTPTemplate: Story<IInputProps> = (args) => (
@@ -56,14 +56,12 @@ const OTPTemplate: Story<IInputProps> = (args) => (
       <Stack gap={2}>
         {Array.from(new Array(4).keys()).map((c) => (
           <Input
-            size="small"
-            w={24}
+            w={50}
+            inputStyle={{ textAlign: "center", fontWeight: "bold" }}
             key={c}
             max={9}
             min={0}
             maxLength={1}
-            inputClassName="min-w-0  whitespace-nowrap font-bold text-center"
-            className="flex-1 p-0 bg-gray-100 whitespace-nowrap"
             {...args}
           />
         ))}
