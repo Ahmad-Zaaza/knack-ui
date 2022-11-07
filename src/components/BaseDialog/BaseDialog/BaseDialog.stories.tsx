@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "../..";
+import ThemeProvider from "../../../theme/ThemeProvider";
 import { Box } from "../../Box";
 import { Stack } from "../../Stack";
 
@@ -21,7 +22,7 @@ export default {
 const Template: ComponentStory<typeof Dialog> = (args) => {
   const [open, setOpen] = useState(false);
   return (
-    <>
+    <ThemeProvider>
       <Button onClick={() => setOpen(true)}>Open</Button>
       <div style={{ height: "110vh" }}>
         <Dialog {...args} isOpen={open} onClose={() => setOpen(false)}>
@@ -34,7 +35,7 @@ const Template: ComponentStory<typeof Dialog> = (args) => {
           </Box>
         </Dialog>
       </div>
-    </>
+    </ThemeProvider>
   );
 };
 

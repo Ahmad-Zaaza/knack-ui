@@ -25,3 +25,4 @@ export * from "./Drawer";
 export * from "./HorizontalList";
 export * from "./Calendar";
 export * from "./Spinner";
+export * from "./Modal";
