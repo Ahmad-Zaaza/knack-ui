@@ -20,6 +20,12 @@ export interface IAvatarProps extends ComponentPropsWithoutRef<"div"> {
 
   showAltOnFallback?: boolean;
   /**
+   *
+   * if `true`, The full alt text will be shown instead of the first capitalized letter incase of a fallback
+   */
+
+  disableAltSlicing?: boolean;
+  /**
    * sets border-radius.
    */
   shape?: "rounded" | "semi-rounded" | "square";
@@ -39,6 +45,8 @@ export interface IAvatarProps extends ComponentPropsWithoutRef<"div"> {
  *
  * - remove `color` prop.
  *
+ * - added `disableAltSlicing` that disables first letter slicing ,
+ *
  * - add an avatar image as a fallback when `showAltOnFallback` is not passed
  */
 
@@ -48,6 +56,7 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
       size = "medium",
       alt,
       image,
+      disableAltSlicing,
       style,
       shape = "rounded",
       showAltOnFallback,
@@ -56,7 +65,7 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
     ref
   ) => {
     const [showFallback, setShowFallback] = useState(() => Boolean(!image));
-    const [showTextFallback, setShowTextFallback] = useState(false);
+    const [showTextFallback, setShowTextFallback] = useState(showAltOnFallback);
 
     useEffect(() => {
       if (image) {
@@ -124,7 +133,9 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
           />
         )}
         {showTextFallback && (
-          <FallbackText>{(alt || "").slice(0, 1).toUpperCase()}</FallbackText>
+          <FallbackText>
+            {disableAltSlicing ? alt : (alt || "").slice(0, 1).toUpperCase()}
+          </FallbackText>
         )}
         {(showFallback || !image) && !showTextFallback && (
           <Image
@@ -139,7 +150,7 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
 
 export default Avatar;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -147,6 +158,7 @@ const Wrapper = styled.div`
   border-radius: var(--br);
   height: var(--spacing);
   width: var(--spacing);
+  font-size: var(--fs);
   user-select: none;
 `;
 
@@ -162,6 +174,7 @@ const FallbackText = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
+  font-weight: 700;
   align-items: center;
   justify-content: center;
   background-color: transparent;

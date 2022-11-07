@@ -35,9 +35,10 @@
       "error",
       { "extensions": [".ts", ".tsx"] }
     ],
+
     "no-use-before-define": "off",
     "no-restricted-exports": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-use-before-define": "off",
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
     "react/button-has-type": "off",
