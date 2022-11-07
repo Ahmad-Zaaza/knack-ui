@@ -1,11 +1,8 @@
 @import "tailwindcss/components";
-@import "../components/calendar.component.css";
 @import "../components/horizontallist.component.css";
 @import "../components/drawer.component.css";
 @import "../components/menuitem.component.css";
 @import "../components/popover.component.css";
-@import "../components/avatargroup.component.css";
-@import "../components/avatar.component.css";
 @import "../components/chip.component.css";
 @import "../components/box.component.css";
 @import "../components/breadcrumbs.component.css";
@@ -14,11 +11,9 @@
 @import "../components/linearprogress.component.css";
 @import "../components/circularprogress.component.css";
 @import "../components/toggle.component.css";
-@import "../components/typography.component.css";
 @import "../components/basedialog.component.css";
 @import "../components/radio.component.css";
 @import "../components/button.component.css";
-@import "../components/input.component.css";
 @import "../components/stack.component.css";
 @import "../components/checkbox.component.css";
 

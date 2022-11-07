@@ -3,8 +3,7 @@ import { ComponentPropsWithoutRef, CSSProperties, forwardRef } from "react";
 import styled, { css, useTheme } from "styled-components";
 import { COLORS } from "../../styles/constants";
 
-export interface IInputProps
-  extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
+interface IInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   /**
    * Input size.
    * @default 'default'
@@ -179,6 +178,8 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
 
 export default Input;
 
+export type { IInputProps };
+
 Input.defaultProps = {
   w: "100%"
 };
@@ -196,7 +197,7 @@ const Wrapper = styled.div<{
   padding: 1px;
   border-radius: 6px;
   border: 1px solid ${COLORS.gray["200"]};
-  
+
   --focus-color: 202 100% 58%;
   ${(p) =>
     !p.readOnly &&
