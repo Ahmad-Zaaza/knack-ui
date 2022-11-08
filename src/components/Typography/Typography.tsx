@@ -3,16 +3,17 @@ import { ComponentPropsWithoutRef, CSSProperties, forwardRef } from "react";
 import styled, { css } from "styled-components";
 import useTypographyStyles from "./useTypographyStyles";
 
-type TypographyTags =
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "p"
-  | "span"
-  | "label";
+const TagsMap = {
+  h1: "h1",
+  h2: "h2",
+  h3: "h3",
+  h4: "h4",
+  h5: "h5",
+  h6: "h6",
+  p: "p",
+  label: "label",
+  span: "span"
+} as const;
 
 type TypographyVariants =
   | "h1"
@@ -58,7 +59,7 @@ type TypographyProps = {
    */
   clamp?: number;
 
-  tag?: TypographyTags;
+  tag?: keyof typeof TagsMap;
 };
 
 type Props = TypographyProps & ComponentPropsWithoutRef<"h1">;
@@ -113,13 +114,7 @@ const Typography = forwardRef<HTMLHeadingElement, Props>(
 
 export default Typography;
 
-
-export type {
-  TypographyProps,
-  TypographyTags,
-  TypographyFontWeight,
-  TypographyVariants
-};
+export type { TypographyProps, TypographyFontWeight, TypographyVariants };
 
 const Text = styled.h1<{
   fw?: TypographyProps["fontWeight"];

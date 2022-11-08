@@ -109,3 +109,12 @@ export const ELEVATIONS = {
         0.5px 61px 79.2px -1.3px hsl(var(--shadow-color) / 0.3)
       `
 };
+
+export const RADIUSES = {
+  // Use for boxes and placeholder addons
+  small: "4px",
+  // Use for inputs and widgets
+  medium: "6px",
+  // Use for modal Windows and popovers
+  large: "12px"
+};
