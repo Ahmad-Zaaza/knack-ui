@@ -5,11 +5,13 @@ export interface ThemeType {
   elevations: typeof ELEVATIONS;
   colors: typeof COLORS;
   borderRadiuses: typeof RADIUSES;
+  scaleDenominator: number;
 }
 
 export const defaultTheme: ThemeType = {
   queries: QUERIES,
   colors: COLORS,
   elevations: ELEVATIONS,
-  borderRadiuses: RADIUSES
+  borderRadiuses: RADIUSES,
+  scaleDenominator: 4
 };

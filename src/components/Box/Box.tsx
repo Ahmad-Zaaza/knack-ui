@@ -1,56 +1,19 @@
 import { forwardRef } from "react";
+import styled, { css } from "styled-components";
 import * as Polymorphic from "../../types/helpers";
-import useBoxClasses from "./useBoxClasses";
+import { IBoxProps } from "./Box.types";
+import useBoxProps from "./useBoxProps";
 
-interface BoxProps {
-  /**
-   * The variant to use.
-   */
-  variant?: "outlined" | "elevated";
-  /**
-   * Controls the shadow depth
-   */
-  elevation?: 0 | 1 | 2 | 3 | 4 | 6;
-  /**
-   * Remove default `Box` border radius
-   */
-  square?: boolean;
-  /**
-   * Preset padding values
-   */
-  paddingPreset?: "card" | string;
-}
+const Box = forwardRef(({ as = "div", ...props }, ref) => {
+  const { indentStyles, otherProps } = useBoxProps(props);
 
-const Box = forwardRef(
-  (
-    {
-      as: Component = "div",
-      children,
-      variant = "elevated",
-      square,
-      paddingPreset,
-      elevation = 1,
-      className,
-      ...delegated
-    },
-    ref
-  ) => {
-    const { containerClasses } = useBoxClasses({
-      className,
-      variant,
-      elevation,
-      square,
-      paddingPreset
-    });
-
-    return (
-      <Component ref={ref} className={containerClasses} {...delegated}>
-        {children}
-      </Component>
-    );
-  }
-) as Polymorphic.ForwardRefComponent<"div", BoxProps>;
+  return <Wrapper as={as} ref={ref} styles={indentStyles} {...otherProps} />;
+}) as Polymorphic.ForwardRefComponent<"div", IBoxProps>;
 
 export default Box;
 
-export type { BoxProps };
+export type { IBoxProps };
+
+const Wrapper = styled.div<{ styles: {} }>`
+  ${(p) => p.styles && css(p.styles)}
+`;

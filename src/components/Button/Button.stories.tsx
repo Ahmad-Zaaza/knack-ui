@@ -27,7 +27,7 @@ export default {
 const Template: Story<ButtonProps> = ({ ...args }) => (
   <ThemeProvider>
     <Button {...args}>
-      <AiFillEdit />
+      Hello
     </Button>
   </ThemeProvider>
 );

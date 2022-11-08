@@ -75,3 +75,13 @@ export const getCollisions = (
 
   return { directionRight, directionLeft, directionUp, directionDown };
 };
+
+export function removeUndefinedKeys<T extends {}>(obj: T) {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
+    if (value !== undefined) {
+      // @ts-ignore
+      acc[key] = value;
+    }
+    return acc;
+  }, {});
+}

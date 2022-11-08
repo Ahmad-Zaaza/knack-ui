@@ -108,7 +108,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     const mainTheme = useTheme();
     if (!mainTheme) {
       throw new Error(
-        '<Input/> must be inside <ThemeProvider/> with a value, import {ThemeProvider} from "knack-ui" '
+        '<Input/> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
       );
     }
 
