@@ -4,8 +4,6 @@ export * from "./Button";
 export * from "./Checkbox";
 export * from "./Radio";
 export * from "./BaseDialog/BaseDialog";
-export * from "./BaseDialog/ConfirmationDialog";
-export * from "./BaseDialog/components/ModalHead";
 export * from "./Typography";
 export * from "./Toggle";
 export * from "./CircularProgress";

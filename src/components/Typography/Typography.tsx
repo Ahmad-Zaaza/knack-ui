@@ -2,7 +2,7 @@
 import { ComponentPropsWithoutRef, CSSProperties, forwardRef } from "react";
 import styled, { css } from "styled-components";
 import useTypographyStyles from "./useTypographyStyles";
-import * as Polymorphic from "../../types/helpers";
+// import * as Polymorphic from "../../types/helpers";
 
 export const TagsMap = {
   h1: "h1",
@@ -80,7 +80,7 @@ type Props = TypographyProps & ComponentPropsWithoutRef<"p">;
  *
  *
  */
-const Typography = forwardRef(
+const Typography = forwardRef<HTMLParagraphElement, Props>(
   (
     {
       tag = "p",
@@ -111,7 +111,7 @@ const Typography = forwardRef(
       </Text>
     );
   }
-) as Polymorphic.ForwardRefComponent<"p", Props>;
+);
 
 export default Typography;
 

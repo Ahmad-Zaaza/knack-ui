@@ -1,7 +1,6 @@
 import { CSSProperties } from "styled-components";
-import { HTMLAttributes } from "react";
 
-export interface IBoxProps extends HTMLAttributes<HTMLDivElement> {
+export interface IBoxProps {
   /** Sets the `inline-block` property */
   display?: CSSProperties["display"];
 

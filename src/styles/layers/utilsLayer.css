@@ -4,7 +4,6 @@
 @import "../utilities/popover.utilities.css";
 @import "../utilities/menuitem.utilities.css";
 @import "../utilities/chip.utilities.css";
-@import "../utilities/box.utilities.css";
 @import "../utilities/breadcrumbs.utilities.css";
 @import "../utilities/textarea.utilities.css";
 @import "../utilities/stepper.utilities.css";
@@ -14,7 +13,6 @@
 @import "../utilities/basedialog.utilities.css";
 @import "../utilities/radio.utilities.css";
 @import "../utilities/stack.utilities.css";
-@import "../utilities/checkbox.utilities.css";
 
 @layer utilities {
   .elevation-1 {

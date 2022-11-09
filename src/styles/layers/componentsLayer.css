@@ -13,7 +13,6 @@
 @import "../components/radio.component.css";
 @import "../components/button.component.css";
 @import "../components/stack.component.css";
-@import "../components/checkbox.component.css";
 
 @layer components {
   .paper {

@@ -24,7 +24,7 @@ type IntrinsicElement<E> = E extends ForwardRefComponent<infer I, any>
 type ForwardRefExoticComponent<E, OwnProps> = React.ForwardRefExoticComponent<
   Merge<
     E extends React.ElementType ? React.ComponentPropsWithRef<E> : never,
-    OwnProps & { as?: E }
+    OwnProps & { render?: E }
   >
 >;
 
@@ -46,11 +46,11 @@ interface ForwardRefComponent<
    */
   <As = IntrinsicElementString>(
     props: As extends ""
-      ? { as: keyof JSX.IntrinsicElements }
+      ? { render: keyof JSX.IntrinsicElements }
       : As extends React.ComponentType<infer P>
-      ? Merge<P, OwnProps & { as: As }>
+      ? Merge<P, OwnProps & { render: As }>
       : As extends keyof JSX.IntrinsicElements
-      ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
+      ? Merge<JSX.IntrinsicElements[As], OwnProps & { render: As }>
       : never
   ): React.ReactElement | null;
 }
@@ -61,11 +61,11 @@ interface MemoComponent<IntrinsicElementString, OwnProps = {}>
   > {
   <As = IntrinsicElementString>(
     props: As extends ""
-      ? { as: keyof JSX.IntrinsicElements }
+      ? { render: keyof JSX.IntrinsicElements }
       : As extends React.ComponentType<infer P>
-      ? Merge<P, OwnProps & { as: As }>
+      ? Merge<P, OwnProps & { render: As }>
       : As extends keyof JSX.IntrinsicElements
-      ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
+      ? Merge<JSX.IntrinsicElements[As], OwnProps & { render: As }>
       : never
   ): React.ReactElement | null;
 }

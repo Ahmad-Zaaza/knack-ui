@@ -4,10 +4,12 @@ import * as Polymorphic from "../../types/helpers";
 import { IBoxProps } from "./Box.types";
 import useBoxProps from "./useBoxProps";
 
-const Box = forwardRef(({ as = "div", ...props }, ref) => {
+const Box = forwardRef(({ render, ...props }, ref) => {
   const { indentStyles, otherProps } = useBoxProps(props);
-
-  return <Wrapper as={as} ref={ref} styles={indentStyles} {...otherProps} />;
+  console.log({ indentStyles, render });
+  return (
+    <Wrapper as={render} ref={ref} styles={indentStyles} {...otherProps} />
+  );
 }) as Polymorphic.ForwardRefComponent<"div", IBoxProps>;
 
 export default Box;
