@@ -2,8 +2,9 @@
 import { ComponentPropsWithoutRef, CSSProperties, forwardRef } from "react";
 import styled, { css } from "styled-components";
 import useTypographyStyles from "./useTypographyStyles";
+import * as Polymorphic from "../../types/helpers";
 
-const TagsMap = {
+export const TagsMap = {
   h1: "h1",
   h2: "h2",
   h3: "h3",
@@ -62,7 +63,7 @@ type TypographyProps = {
   tag?: keyof typeof TagsMap;
 };
 
-type Props = TypographyProps & ComponentPropsWithoutRef<"h1">;
+type Props = TypographyProps & ComponentPropsWithoutRef<"p">;
 
 /**
  * @description
@@ -79,7 +80,7 @@ type Props = TypographyProps & ComponentPropsWithoutRef<"h1">;
  *
  *
  */
-const Typography = forwardRef<HTMLHeadingElement, Props>(
+const Typography = forwardRef(
   (
     {
       tag = "p",
@@ -110,11 +111,17 @@ const Typography = forwardRef<HTMLHeadingElement, Props>(
       </Text>
     );
   }
-);
+) as Polymorphic.ForwardRefComponent<"p", Props>;
 
 export default Typography;
 
 export type { TypographyProps, TypographyFontWeight, TypographyVariants };
+
+Typography.defaultProps = {
+  tag: "p",
+  variant: "body1",
+  color: "currentColor"
+};
 
 const Text = styled.h1<{
   fw?: TypographyProps["fontWeight"];
@@ -140,9 +147,3 @@ const Text = styled.h1<{
       overflow: hidden;
     `};
 `;
-
-Typography.defaultProps = {
-  tag: "p",
-  variant: "body1",
-  color: "currentColor"
-};

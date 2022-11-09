@@ -6,7 +6,8 @@ import Input, { IInputProps } from "../Input/Input";
 import Textarea, { ITextareaProps } from "../Textarea/Textarea";
 import Typography, {
   TypographyProps,
-  TypographyTags
+  TagsMap,
+  TypographyVariants
 } from "../Typography/Typography";
 
 export interface IEditbleTypographyProps {
@@ -30,8 +31,8 @@ export interface IEditbleTypographyProps {
    * Props for the underlying `Typography` element
    */
   typographyProps?: Polymorphic.Merge<
-    JSX.IntrinsicElements[TypographyTags],
-    TypographyProps & { as?: TypographyTags }
+    JSX.IntrinsicElements[keyof typeof TagsMap],
+    TypographyProps & { as?: TypographyVariants }
   >;
 
   /**
@@ -82,7 +83,8 @@ const EditbleTypography: React.FC<IEditbleTypographyProps> = ({
         <>
           {/* @ts-ignore */}
           <Typography
-            onDoubleClick={(event: any) => {
+            // @ts-ignore
+            onDoubleClick={(event) => {
               if (event.detail > 1) {
                 event.preventDefault();
                 onToggleEdit?.();
