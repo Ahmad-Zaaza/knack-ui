@@ -26,7 +26,7 @@ const Template: ComponentStory<typeof Dialog> = (args) => {
       <Button onClick={() => setOpen(true)}>Open</Button>
       <div style={{ height: "110vh" }}>
         <Dialog {...args} isOpen={open} onClose={() => setOpen(false)}>
-          <Box paddingPreset="card">
+          <Box>
             Dialog
             <Stack gap={2}>
               <Button>OK</Button>
