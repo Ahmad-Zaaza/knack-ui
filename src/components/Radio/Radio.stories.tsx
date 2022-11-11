@@ -1,52 +1,53 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, Meta } from "@storybook/react";
 import { useState } from "react";
-import { Stack, Typography } from "..";
+import ThemeProvider from "../../theme/ThemeProvider";
 
-import Radio from "./Radio";
+import Radio, { RadioProps } from "./Radio";
 
 export default {
   title: "Components/Radio",
   component: Radio,
   argTypes: {
+    size: {
+      defaultValue: "default"
+    },
     checked: {
       control: {
         disable: true
       }
     }
   }
-} as ComponentMeta<typeof Radio>;
+} as Meta<RadioProps>;
 
-const Template: ComponentStory<typeof Radio> = (args) => {
+const Template: ComponentStory<typeof Radio> = ({ size }) => {
   const [value, setValue] = useState<"oranges" | "apples" | null>(null);
   return (
-    <Stack direction="column" gap={2}>
-      <Stack alignItems="center" gap={2}>
-        <Typography as="label" htmlFor="oranges" variant="body1">
-          I Like Oranges
-        </Typography>
-
-        <Radio
-          onChange={(e) => setValue(e.target.value as "oranges")}
-          checked={value === "oranges"}
-          id="oranges"
-          value="oranges"
-          {...args}
-        />
-      </Stack>
-      <Stack gap={2} alignItems="center">
-        <Typography as="label" htmlFor="apples" variant="body1">
-          I Like Apples
-        </Typography>
-        <Radio
-          checked={value === "apples"}
-          id="apples"
-          onChange={(e) => setValue(e.target.value as "apples")}
-          value="apples"
-          {...args}
-        />
-      </Stack>
-    </Stack>
+    <ThemeProvider>
+      <div style={{ gap: "2rem", display: "flex", flexDirection: "column" }}>
+        <Radio mt={6} mx={12} size={size}>
+          <Radio.Control
+            checked={value === "apples"}
+            onChange={() => setValue("apples")}
+          />
+          <Radio.Text>Apples</Radio.Text>
+        </Radio>
+        <Radio mt={6} mx={12} size={size}>
+          <Radio.Control
+            checked={value === "oranges"}
+            onChange={() => setValue("oranges")}
+          />
+          <Radio.Text>Oranges</Radio.Text>
+        </Radio>
+      </div>
+    </ThemeProvider>
   );
 };
 
 export const Default = Template.bind({});
+Default.args = {
+  size: "m"
+};
+export const Large = Template.bind({});
+Large.args = {
+  size: "l"
+};

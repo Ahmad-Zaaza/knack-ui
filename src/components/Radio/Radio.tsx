@@ -1,63 +1,72 @@
-import { ComponentPropsWithoutRef, forwardRef } from "react";
-import useRadioClasses from "./useRadioClasses";
+import { createContext, useMemo } from "react";
+import styled, { useTheme } from "styled-components";
+import { Box, IBoxProps } from "../Box";
+import Control, { RadioInput } from "./Control.Radio";
+import Text from "./Text.Radio";
 
-export interface IRadioProps
-  extends Omit<
-    ComponentPropsWithoutRef<"input">,
-    "type" | "className" | "size"
-  > {
-  /**
-   * Controls the size of the radio button.
-   *
-   */
-  size?: "small" | "default" | "large";
-  /**
-   * Controls whether or not the radio is checked.
-   *
-   */
-  checked?: boolean;
-  /**
-   * Controls whether or not the radio is disabled.
-   *
-   */
-  disabled?: boolean;
-  /**
-   * Controls the color of the radio.
-   *
-   * Only `primary` and `secondary` are supported for now waiting for feedback.
-   *
-   */
-  color?: "primary" | "secondary";
-  /**
-   * Controls Radio icon
-   * @default checkmark
-   */
-  icon?: "checkmark" | "circle";
+interface RadioProps {
+  size?: "m" | "l";
 }
 
-const Radio = forwardRef<HTMLInputElement, IRadioProps>(
-  (
-    { size = "default", color = "primary", icon = "checkmark", ...delegated },
-    ref
-  ) => {
-    const { containerClasses } = useRadioClasses({
-      size,
-      icon,
-      color
-    });
-    return (
-      <span className={containerClasses}>
-        <input
-          ref={ref}
-          {...delegated}
-          aria-checked={delegated.checked}
-          type="radio"
-        />
+interface ParentComposition {
+  Control: typeof Control;
+  Text: typeof Text;
+}
 
-        <span aria-hidden />
-      </span>
+type TRadioContext = {
+  size: "m" | "l";
+};
+
+export const RadioContext = createContext<TRadioContext>({ size: "m" });
+
+type TRadio = React.FC<RadioProps & IBoxProps> & ParentComposition;
+
+/**
+ *
+ * @description
+ *
+ * Change log:
+ *
+ *
+ * - remove `color` prop
+ *
+ * - remove `small` size
+ *
+ * - change checkmark implementation.
+ */
+const Radio: TRadio = ({ size = "m", ...delegated }) => {
+  const theme = useTheme();
+
+  if (!theme) {
+    throw new Error(
+      '<Radio /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
     );
   }
-);
+
+  const contextValue = useMemo(() => ({ size: size || "m" }), [size]);
+  return (
+    <RadioContext.Provider value={contextValue}>
+      {/* @ts-ignore */}
+      <Wrapper render="label" {...delegated} />
+    </RadioContext.Provider>
+  );
+};
 
 export default Radio;
+
+export type { TRadio, RadioProps, TRadioContext };
+
+Radio.Control = Control;
+Radio.Text = Text;
+
+const Wrapper = styled(Box)`
+  display: inline-flex;
+  align-items: flex-start;
+  cursor: pointer;
+  gap: 8px;
+  position: relative;
+
+  &:has(${RadioInput}:disabled) {
+    opacity: 0.6;
+  }
+`;
