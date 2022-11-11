@@ -6,7 +6,6 @@ import useBoxProps from "./useBoxProps";
 
 const Box = forwardRef(({ render, ...props }, ref) => {
   const { indentStyles, otherProps } = useBoxProps(props);
-  console.log({ indentStyles, render });
   return (
     <Wrapper as={render} ref={ref} styles={indentStyles} {...otherProps} />
   );
