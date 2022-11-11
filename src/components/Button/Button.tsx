@@ -5,6 +5,7 @@ import { transparentize, darken, lighten } from "polished";
 
 import useButtonTheme from "./useButtonTheme";
 import Spinner from "../Spinner";
+import { Tooltip, TooltipPosition } from "../Tooltip";
 
 type ButtonVariants = "primary" | "secondary" | "tertiary";
 
@@ -50,6 +51,15 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
    * @default true
    */
   disabled?: boolean;
+  /**
+   * If `false` will disable hover elevation animation.
+   *
+   * @default true
+   */
+  tooltipProps?: {
+    text: string;
+    position?: TooltipPosition;
+  };
 }
 
 /**
@@ -62,6 +72,8 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
  *
  * - added `theme` prop which determines the color of the button.
  * 
+ * - added tooltip support that can be configured using `tooltipProps` 
+ *
  * - fixed: loading state causing button to shrink.
  *
  */
@@ -75,7 +87,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       shape = "default",
       theme = "default",
       fullWidth,
-
+      tooltipProps,
       startIcon,
       endIcon,
       children,
@@ -115,8 +127,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         </InnerContainer>
         {isLoading && (
           <LoadingWrapper>
-            <Spinner size={size === "large" ? 22 : 16} />
+            <Spinner size={size === "large" ? 16 : 12} />
           </LoadingWrapper>
+        )}
+        {typeof tooltipProps !== "undefined" && (
+          <Tooltip position={tooltipProps.position}>
+            {tooltipProps.text}
+          </Tooltip>
         )}
       </Component>
     );
@@ -125,6 +142,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 export default Button;
 
 export type { ButtonProps, ButtonVariants };
+
+Button.defaultProps = {
+  theme: "default"
+};
 
 const ButtonBase = styled.button<{
   palette: any;
@@ -138,6 +159,7 @@ const ButtonBase = styled.button<{
   height: var(--height);
   font-weight: 500;
   font-family: inherit;
+  cursor: pointer;
   transition: color 50ms ease, background 50ms ease;
   color: ${(p) => p.palette.text};
 
@@ -147,6 +169,11 @@ const ButtonBase = styled.button<{
       display: "block";
       width: 100%;
     `}
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+  }
 `;
 
 const PrimaryButton = styled(ButtonBase)`
@@ -162,12 +189,8 @@ const PrimaryButton = styled(ButtonBase)`
     background-color: ${(p) => darken(0.12, p.palette.theme)};
     border-color: ${(p) => darken(0.12, p.palette.theme)};
   }
-  &:disabled {
-    opacity: 0.3;
-    pointer-events: none;
-    cursor: default;
-  }
 `;
+
 const SecondaryButton = styled(ButtonBase)`
   background-color: ${(p) => transparentize(0.7, p.palette.theme)};
   color: ${(p) => lighten(0.05, p.palette.text)};
@@ -182,6 +205,7 @@ const SecondaryButton = styled(ButtonBase)`
     background-color: ${(p) => transparentize(0.5, p.palette.theme)};
   }
 `;
+
 const TertiaryButton = styled(ButtonBase)`
   background-color: transparent;
   border: 1px solid transparent;
@@ -192,6 +216,9 @@ const TertiaryButton = styled(ButtonBase)`
     }
   }
   &:active:not(:disabled) {
+    background-color: ${(p) => transparentize(0.5, p.palette.theme)};
+  }
+  &:disabled {
     background-color: ${(p) => transparentize(0.5, p.palette.theme)};
   }
 `;
@@ -222,7 +249,3 @@ const LoadingWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-Button.defaultProps = {
-  theme: "default"
-};

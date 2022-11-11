@@ -21,9 +21,8 @@ const Template: ComponentStory<typeof Tooltip> = (_) => (
           alignItems: "center"
         }}
       >
-        <Button>
-          Hi
-          <Tooltip />
+        <Button tooltipProps={{ text: "My informative text" }}>
+          I have a tooltip
         </Button>
       </div>
     </ThemeProvider>
