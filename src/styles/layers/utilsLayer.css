@@ -2,7 +2,6 @@
 @import "../utilities/horizontallist.utilities.css";
 @import "../utilities/drawer.utilities.css";
 @import "../utilities/popover.utilities.css";
-@import "../utilities/menuitem.utilities.css";
 @import "../utilities/chip.utilities.css";
 @import "../utilities/breadcrumbs.utilities.css";
 @import "../utilities/textarea.utilities.css";
@@ -11,7 +10,6 @@
 @import "../utilities/circularprogress.utilities.css";
 @import "../utilities/toggle.utilities.css";
 @import "../utilities/basedialog.utilities.css";
-@import "../utilities/stack.utilities.css";
 
 @layer utilities {
   .elevation-1 {
