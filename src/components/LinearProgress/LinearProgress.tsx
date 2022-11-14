@@ -1,15 +1,11 @@
 import {
   ComponentPropsWithoutRef,
-  CSSProperties,
   forwardRef,
   useEffect,
   useMemo,
   useState
 } from "react";
-import classnames from "classnames/bind";
-import styles from "../../tailwind.css";
-
-const clsx = classnames.bind(styles);
+import styled, { useTheme } from "styled-components";
 
 export interface ILinearProgressProps extends ComponentPropsWithoutRef<"svg"> {
   /**
@@ -21,12 +17,7 @@ export interface ILinearProgressProps extends ComponentPropsWithoutRef<"svg"> {
    * Controls the completed percentage.
    */
   percentage: number;
-  /**
-   * Controls the progress color.
-   *
-   * Accepts `primary` and `secondary` values
-   */
-  color?: CSSProperties["color"] | "primary" | "secondary";
+
   /**
    * Control showing percentage text or not.
    *
@@ -34,18 +25,33 @@ export interface ILinearProgressProps extends ComponentPropsWithoutRef<"svg"> {
    */
   showPercentage?: boolean;
   /**
+   * if `true`, color will be set depending on the percentage itself via manipulating the HSL color wheel.
+   *
+   */
+  dynamicColors?: boolean;
+  /**
    * Text to show inside the bar, will override `showPercentage` props when passed
    */
   barInnerText?: string;
 }
 
+/**
+ * @description
+ *
+ * Change log:
+ *
+ * - remove `dynamic` color props
+ *
+ * - add new `dynamic` boolean prop to indicate that the colors should be dynamic as the percentage
+ */
 const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
   (
     {
       size = 20,
-      className,
+
       percentage = 0,
-      color = "primary",
+
+      dynamicColors,
       showPercentage,
       barInnerText,
       style,
@@ -53,26 +59,16 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
     },
     ref
   ) => {
+    const mainTheme = useTheme();
+    if (!mainTheme) {
+      throw new Error(
+        '<LinearProgress /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
+      );
+    }
     const [progress, setProgress] = useState(0);
 
     // clipping the track
 
-    // 🖌 Applying color to enable the use of `currentColor`
-    const svgClasses = useMemo(
-      () =>
-        clsx(
-          {
-            "!text-primary": color === "primary",
-            "!text-secondary": color === "secondary",
-            "text-success": color === "dynamic" && percentage >= 90,
-            "text-warning":
-              color === "dynamic" && percentage >= 25 && percentage < 90,
-            "text-error": color === "dynamic" && percentage < 25
-          },
-          className
-        ),
-      [color, className, percentage]
-    );
     // 🎨 enables animation transition from 0 to `percantage`
     useEffect(() => {
       // Prevent overflow edge cut
@@ -81,9 +77,18 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
       }
       setProgress(percentage);
     }, [percentage]);
+
+    const colors = useMemo(() => {
+      if (!dynamicColors) {
+        return { "--color": mainTheme.colors.primary };
+      }
+      return {
+        "--color": `hsl(${percentage + Math.round(percentage / 4)},100%, 50%)`
+      };
+    }, [dynamicColors, percentage]);
     return (
-      <svg
-        style={{ fontSize: `${size}px`, ...style }}
+      <Wrapper
+        style={{ fontSize: `${size}px`, ...colors, ...style }}
         ref={ref}
         width="100%"
         height={size}
@@ -91,7 +96,6 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
         aria-valuemax={100}
         aria-valuemin={0}
         {...delegated}
-        className={svgClasses}
         role="progressbar"
       >
         <rect
@@ -111,8 +115,7 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
           width={`${progress}%`}
           height="100%"
           style={{
-            transition: "all 0.5s",
-            color: color === "primary" && color === "secondary" ? "" : color
+            transition: "all 0.5s"
           }}
         />
         {barInnerText || showPercentage ? (
@@ -127,9 +130,12 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
             {`${barInnerText || `${percentage}%`}`}
           </text>
         ) : null}
-      </svg>
+      </Wrapper>
     );
   }
 );
 
 export default LinearProgress;
+const Wrapper = styled.svg`
+  color: var(--color, currentColor);
+`;

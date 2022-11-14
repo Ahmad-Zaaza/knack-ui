@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import styled from "styled-components";
-import { Stack } from "..";
+import { Stack } from "../Stack";
+import { Button } from "../Button";
+import { Modal } from ".";
 import ThemeProvider from "../../theme/ThemeProvider";
-import { Button, Modal } from "../..";
 import { BREAKPOINTS } from "../../styles/constants";
 
 export default {

@@ -5,7 +5,7 @@ const useButtonTheme = () => {
   const mainTheme = useTheme();
   if (!mainTheme) {
     throw new Error(
-      '<Button/> must be inside <ThemeProvider/> with a value, import {ThemeProvider} from "knack-ui" '
+      '<Button /> must be inside <ThemeProvider/> with a value, import {ThemeProvider} from "knack-ui" '
     );
   }
   const buttonSizeStyles = {

@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { CircularProgress } from ".";
+import ThemeProvider from "../../theme/ThemeProvider";
 
 export default {
   title: "Components/CircularProgress",
@@ -7,12 +8,17 @@ export default {
   argTypes: {
     color: {
       control: "text"
+    },
+    percentage: {
+      control: "range"
     }
   }
 } as ComponentMeta<typeof CircularProgress>;
 
 const Template: ComponentStory<typeof CircularProgress> = (args) => (
-  <CircularProgress {...args} />
+  <ThemeProvider>
+    <CircularProgress {...args} />
+  </ThemeProvider>
 );
 
 export const Default = Template.bind({});
@@ -27,7 +33,7 @@ export const DynamicColors = Template.bind({});
 
 DynamicColors.args = {
   size: 150,
-  color: "dynamic",
+  dynamicColors: true,
   percentage: 24,
   strokeWidth: 15,
   showText: true
