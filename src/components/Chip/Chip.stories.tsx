@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Stack } from "..";
+import { Stack } from "../Stack";
+import ThemeProvider from "../../theme/ThemeProvider";
 
 import Chip from "./Chip";
 
@@ -9,7 +10,7 @@ export default {
   argTypes: {
     shape: {
       control: "radio",
-      options: ["rounded", "square"]
+      options: ["rounded", "square", "default"]
     }
   }
 } as ComponentMeta<typeof Chip>;
@@ -20,29 +21,31 @@ const Template: ComponentStory<typeof Chip> = ({
 
   ...args
 }) => (
-  <Stack gap={4}>
-    <Chip onDelete={() => {}} variant="primaryOutline" {...args}>
-      Default Chip
-    </Chip>
-    <Chip variant="secondaryOutline" {...args}>
-      Secondary Outline
-    </Chip>
-    <Chip onDelete={() => {}} variant="primary" {...args}>
-      Primary
-    </Chip>
-    <Chip variant="secondary" {...args}>
-      Secondary
-    </Chip>
-    <Chip variant="danger" {...args}>
-      Danger
-    </Chip>
-    <Chip variant="success" {...args}>
-      Success
-    </Chip>
-    <Chip variant="warning" {...args}>
-      Warning
-    </Chip>
-  </Stack>
+  <ThemeProvider>
+    <Stack gap={4}>
+      <Chip onDelete={() => {}} variant="primary" {...args}>
+        Default Chip
+      </Chip>
+      <Chip variant="secondary" {...args}>
+        Secondary Outline
+      </Chip>
+      <Chip onDelete={() => {}} variant="primary" {...args}>
+        Primary
+      </Chip>
+      <Chip variant="secondary" {...args}>
+        Secondary
+      </Chip>
+      <Chip theme="danger" {...args}>
+        Danger
+      </Chip>
+      <Chip theme="success" {...args}>
+        Success
+      </Chip>
+      <Chip theme="default" {...args}>
+        Warning
+      </Chip>
+    </Stack>
+  </ThemeProvider>
 );
 
 export const Default = Template.bind({});

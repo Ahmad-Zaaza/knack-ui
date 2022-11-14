@@ -116,5 +116,6 @@ export const RADIUSES = {
   // Use for inputs and widgets
   medium: "6px",
   // Use for modal Windows and popovers
-  large: "12px"
+  large: "12px",
+  full: "50%"
 };

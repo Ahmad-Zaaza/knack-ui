@@ -71,8 +71,8 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
  * - `kind` is replaced with `variant` and only supportes `primary`,`secondary` and `tertiary`.
  *
  * - added `theme` prop which determines the color of the button.
- * 
- * - added tooltip support that can be configured using `tooltipProps` 
+ *
+ * - added tooltip support that can be configured using `tooltipProps`
  *
  * - fixed: loading state causing button to shrink.
  *
@@ -90,6 +90,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       tooltipProps,
       startIcon,
       endIcon,
+      style,
       children,
       disabled,
       ...delegated
@@ -111,12 +112,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
     return (
       <Component
-        palette={buttonTheme[variant][theme]}
+        palette={buttonTheme[variant]?.[theme] ?? {}}
         ref={ref}
         shape={shape}
         type={type}
         fullWidth={fullWidth}
-        style={styles}
+        style={{ ...styles, ...style }}
         disabled={disabled || isLoading}
         {...delegated}
       >
@@ -148,11 +149,11 @@ Button.defaultProps = {
 };
 
 const ButtonBase = styled.button<{
-  palette: any;
+  palette: Record<string, string>;
   fullWidth?: boolean;
   shape?: "rounded" | "square" | "default";
 }>`
-  border-radius: 6px;
+  border-radius: ${(p) => p.theme.borderRadiuses.medium};
   position: relative;
   display: inline-block;
   font-size: var(--font-size);

@@ -1,23 +1,24 @@
-import { forwardRef } from "react";
+import { transparentize } from "polished";
+import { forwardRef, CSSProperties } from "react";
+import styled from "styled-components";
 import * as Polymorphic from "../../types/helpers";
 import DeleteIcon from "./DeleteIcon";
-import useChipClasses from "./useChipClasses";
+import useChipTheme from "./useChipTheme";
 
-type TChipVariants =
-  | "primary"
-  | "secondary"
-  | "primaryOutline"
-  | "secondaryOutline"
-  | "tertiary"
-  | "success"
-  | "danger"
-  | "warning";
+type TChipVariants = "primary" | "secondary";
+
+type ChipTheme = "info" | "danger" | "success" | "default";
+
 interface ChipProps {
   className?: string;
   /**
    * The variant to use.
    */
   variant?: TChipVariants;
+  /**
+   * The theme to use.
+   */
+  theme?: ChipTheme;
   /**
    * Chip border radius
    */
@@ -27,35 +28,76 @@ interface ChipProps {
    * Controls Chip size
    */
   size?: "small" | "medium";
+  /**
+   * Start Icon Component
+   */
+  startIcon?: JSX.Element;
+  /**
+   * End Icon Component
+   */
+  endIcon?: JSX.Element;
+
+  /**
+   * passing this function shows
+   */
   onDelete?: () => void;
 }
+
+/**
+ * @description
+ * Change log:
+ *
+ * - `variant` now only accepts `primary` and `secondary`
+ *
+ * - added `theme` prop that determines the theme of the Chip
+ *
+ *
+ */
 
 const Chip = forwardRef(
   (
     {
-      className,
-      as: Component = "div",
       children,
-      variant = "primaryOutline",
+      variant = "secondary",
       size = "medium",
+      startIcon,
+      endIcon,
+      theme = "info",
+      style,
       shape,
       onDelete,
       ...delegated
     },
     ref
   ) => {
-    const { containerClasses, contentClasses, iconClasses } = useChipClasses({
-      className,
-      variant,
-      shape,
-      size
-    });
+    const { chipSizeStyles, chipTheme } = useChipTheme();
 
+    let Component = ChipBase;
+
+    if (variant === "primary") {
+      Component = PrimaryChip;
+    } else {
+      Component = SecondaryChip;
+    }
     return (
-      <Component ref={ref} className={containerClasses} {...delegated}>
-        <span className={contentClasses}>{children}</span>
+      <Component
+        corners={shape}
+        palette={chipTheme[variant]?.[theme] ?? {}}
+        style={
+          { ...chipSizeStyles[size || "medium"], ...style } as CSSProperties
+        }
+        ref={ref}
+        {...delegated}
+      >
+        {startIcon ? <StartIconWrapper>{startIcon}</StartIconWrapper> : null}
+        <ChipText>{children}</ChipText>
+        {typeof onDelete === "undefined" && endIcon ? (
+          <EndIconWrapper>{endIcon}</EndIconWrapper>
+        ) : null}
         {typeof onDelete !== "undefined" ? (
-          <DeleteIcon onClick={onDelete} className={iconClasses} />
+          <EndIconWrapper>
+            <DeleteIcon onClick={onDelete} size={size === "medium" ? 18 : 14} />
+          </EndIconWrapper>
         ) : null}
       </Component>
     );
@@ -65,3 +107,52 @@ const Chip = forwardRef(
 export default Chip;
 
 export type { ChipProps };
+
+const ChipBase = styled.div<{
+  palette: Record<string, string>;
+  corners: ChipProps["shape"];
+}>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: ${(p) =>
+    p.corners === "rounded"
+      ? p.theme.borderRadiuses.large
+      : p.corners === "square"
+      ? 0
+      : p.theme.borderRadiuses.medium};
+  font-size: var(--font-size);
+  height: var(--height);
+`;
+
+const PrimaryChip = styled(ChipBase)`
+  background-color: ${(p) => p.palette.theme};
+  color: ${(p) => p.palette.text};
+  fill: ${(p) => p.palette.text};
+  border: 1px solid transparent;
+`;
+const SecondaryChip = styled(ChipBase)`
+  background-color: ${(p) => transparentize(0.7, p.palette.theme)};
+  color: ${(p) => p.palette.text};
+  fill: ${(p) => p.palette.text};
+  border: 1px solid ${(p) => p.palette.theme};
+`;
+const ChipText = styled.span`
+  margin-left: var(--spacing);
+  margin-right: var(--spacing);
+`;
+const StartIconWrapper = styled.span`
+  margin-inline-start: var(--spacing);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+`;
+const EndIconWrapper = styled.span`
+  margin-inline-end: var(--spacing);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+`;

@@ -17,7 +17,6 @@ export * from "./Chip";
 export * from "./Avatar";
 export * from "./AvatarGroup";
 export * from "./EditbleTypography";
-export * from "./MenuItem";
 export * from "./Popover";
 export * from "./Drawer";
 export * from "./HorizontalList";

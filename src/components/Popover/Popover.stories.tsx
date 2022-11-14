@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useRef, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
-import { Button, Input, MenuItem } from "..";
+import { Button, Input } from "..";
 import { Stack } from "../Stack";
 
 export default {
@@ -47,9 +47,9 @@ const Template: ComponentStory<typeof Popover> = (_) => {
         onClose={() => setOpen(false)}
         parentRef={parentRef}
       >
-        <MenuItem kind="ghost">Go to home</MenuItem>
-        <MenuItem kind="ghost">Go to home</MenuItem>
-        <MenuItem kind="ghost">Go to home</MenuItem>
+        <div>Go to home</div>
+        <div>Go to home</div>
+        <div>Go to home</div>
       </Popover>
     </BrowserRouter>
   );
