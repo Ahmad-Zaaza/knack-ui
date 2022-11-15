@@ -65,6 +65,7 @@ const Wrapper = styled(Box)`
   cursor: pointer;
   gap: 8px;
   position: relative;
+  user-select: none;
 
   &:has(${CheckboxInput}:disabled) {
     opacity: 0.6;

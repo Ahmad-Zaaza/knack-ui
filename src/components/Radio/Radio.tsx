@@ -64,6 +64,7 @@ const Wrapper = styled(Box)`
   align-items: flex-start;
   cursor: pointer;
   gap: 8px;
+  user-select: none;
   position: relative;
 
   &:has(${RadioInput}:disabled) {

@@ -9,13 +9,13 @@ import {
 
 import classnames from "classnames/bind";
 import { useRect } from "@reach/rect";
+import styled from "styled-components";
 import styles from "../../tailwind.css";
 import { Portal } from "../Portal";
 import usePopoverUtils from "./usePopoverUtils";
-import { Box } from "..";
 import { PRect } from "../../utils/useGetBoundingClientRect";
 import { getCollisions } from "../../utils/helpers";
-import { BoxProps } from "../Box";
+import { IBoxProps } from "../Box";
 import * as Polymorphic from "../../types/helpers";
 // import FocusLock from "../../utils/FocusLock";
 
@@ -100,7 +100,7 @@ interface IPopoverProps {
   position?: Position;
   offset?: PopoverOffset;
   animationType?: PopoverAnimations;
-  popoverProps?: Polymorphic.Merge<ComponentPropsWithoutRef<"div">, BoxProps>;
+  popoverProps?: Polymorphic.Merge<ComponentPropsWithoutRef<"div">, IBoxProps>;
 }
 const Popover: React.FC<IPopoverProps> = ({
   isOpen,
@@ -151,12 +151,11 @@ const Popover: React.FC<IPopoverProps> = ({
   return (
     <Portal>
       {/* <FocusLock open={isOpen} focusLock={!!disableFocusLock}> */}
-      <Box
+      <Wrapper
         onTransitionEnd={onTransitionEnd}
         ref={popoverRef}
-        variant="outlined"
         role="presentation"
-        tabIndex={-1}
+        // tabIndex={-1}
         {...popoverProps}
         style={{
           ...getStyles(position, parentRect as PRect, popoverRect as PRect, {
@@ -168,7 +167,7 @@ const Popover: React.FC<IPopoverProps> = ({
         className={popoverMenuClasses}
       >
         {children}
-      </Box>
+      </Wrapper>
       {/* </FocusLock> */}
     </Portal>
   );
@@ -176,3 +175,5 @@ const Popover: React.FC<IPopoverProps> = ({
 
 export default Popover;
 export type { IPopoverProps };
+
+const Wrapper = styled.div``;

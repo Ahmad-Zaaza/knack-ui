@@ -1,26 +1,29 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, Meta } from "@storybook/react";
+import ThemeProvider from "../../theme/ThemeProvider";
 
-import Toggle from "./Toggle";
+import Toggle, { ToggleProps } from "./Toggle";
 
 export default {
   title: "Components/Toggle",
   component: Toggle,
   argTypes: {
-    checked: {
-      control: {
-        control: null,
-        disable: true
-      }
+    size: {
+      control: "radio",
+      options: ["l", "m"],
+      defaultValue: "medium"
     }
   }
-} as ComponentMeta<typeof Toggle>;
+} as Meta<ToggleProps>;
 
-const Template: ComponentStory<typeof Toggle> = (args) => (
-  <Toggle {...args} />
+const Template: ComponentStory<typeof Toggle> = ({ size }) => (
+  <ThemeProvider>
+    <Toggle size={size}>
+      <Toggle.Text>Turn Off</Toggle.Text>
+      <Toggle.Control />
+      <Toggle.Text>Turn On</Toggle.Text>
+    </Toggle>
+  </ThemeProvider>
 );
 
 export const Default = Template.bind({});
-Default.args = {
-  color: "secondary",
-  disabled: false
-};
+Default.args = {};
