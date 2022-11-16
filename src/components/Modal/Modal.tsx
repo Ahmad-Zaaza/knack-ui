@@ -1,6 +1,7 @@
 import { FC, CSSProperties, forwardRef, ComponentPropsWithoutRef } from "react";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import { fade, fadeUp } from "../../lib/animations";
 
 interface IModalProps extends ComponentPropsWithoutRef<"div"> {
   isOpen: boolean;
@@ -29,25 +30,6 @@ const Modal: FC<IModalProps> = forwardRef<HTMLDivElement, IModalProps>(
 
 export default Modal;
 export type { IModalProps };
-
-const fadeUp = keyframes`
-from {
-  opacity:0;
-  transform:translateY(10px)
-}
-to {
-  opacity:1;
-  transform:translateY(0px)
-}
-`;
-const fade = keyframes`
-from {
-  opacity:0
-}
-to {
-  opacity:1
-}
-`;
 
 const Overlay = styled(DialogOverlay)`
   position: fixed;

@@ -1,14 +1,12 @@
-import { Dispatch, SetStateAction, useCallback, useEffect } from "react";
-import { useIsomorphicLayoutEffect } from "../../../utils/useIsomorphicLayoutEffect";
+import { useCallback, useEffect } from "react";
 import { IBaseDialogProps } from "./BaseDialog";
 
 const useBaseDialogUtils = ({
   isOpen,
-  onClose,
-
-  setActive
-}: Pick<IBaseDialogProps, "isOpen" | "onClose"> & {
-  setActive: Dispatch<SetStateAction<boolean>>;
+  onClose
+}: // setActive
+Pick<IBaseDialogProps, "isOpen" | "onClose"> & {
+  // setActive: Dispatch<SetStateAction<boolean>>;
 }) => {
   // 🔒 Close on Esc press
   const handleEsc = useCallback(
@@ -26,13 +24,13 @@ const useBaseDialogUtils = ({
       window.removeEventListener("keydown", handleEsc);
     };
   }, [handleEsc]);
-  useIsomorphicLayoutEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        setActive(isOpen);
-      }, 10);
-    }
-  }, [isOpen]);
+  // useIsomorphicLayoutEffect(() => {
+  //   if (isOpen) {
+  //     setTimeout(() => {
+  //       setActive(isOpen);
+  //     }, 10);
+  //   }
+  // }, [isOpen]);
 };
 
 export default useBaseDialogUtils;
