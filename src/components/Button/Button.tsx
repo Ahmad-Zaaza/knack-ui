@@ -110,6 +110,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     } else {
       Component = TertiaryButton;
     }
+
     return (
       <Component
         palette={buttonTheme[variant]?.[theme] ?? {}}

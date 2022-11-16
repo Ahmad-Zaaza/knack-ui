@@ -85,12 +85,7 @@ const Drawer = forwardRef<HTMLDivElement, IDrawerProps>(
     ref
   ) => {
     const [active, setActive] = useState(false);
-    // const { containerClasses } = useDrawerClasses({
-    //   className,
-    //   isOpen,
-    //   position,
-    //   active
-    // });
+
     useBaseDialogUtils({ isOpen, onClose });
 
     const state = useMemo(() => {
@@ -163,12 +158,8 @@ const Wrapper = styled.div<{
       inset-block-start: 0;
       inset-block-end: 0;
 
-      &:is([data-state="CLOSING"]) {
-        --_x: var(--transition-transform-end);
-      }
-      &:is([data-state="OPENING"]) {
-        --_x: var(--transition-transform-end);
-      }
+      --_x: var(--transition-transform-end);
+
       &:is([data-state="OPENED"]) {
         --_x: 0;
       }
@@ -180,12 +171,7 @@ const Wrapper = styled.div<{
       inset-inline-start: 0;
       inset-block-start: 0;
       inset-block-end: 0;
-      &:is([data-state="CLOSING"]) {
-        --_x: var(--transition-transform-start);
-      }
-      &:is([data-state="OPENING"]) {
-        --_x: var(--transition-transform-start);
-      }
+      --_x: var(--transition-transform-start);
       &:is([data-state="OPENED"]) {
         --_x: 0;
       }
@@ -197,12 +183,8 @@ const Wrapper = styled.div<{
       inset-block-start: 0;
       inset-inline-start: 0;
       inset-inline-end: 0;
-      &:is([data-state="CLOSING"]) {
-        --_y: var(--transition-transform-top);
-      }
-      &:is([data-state="OPENING"]) {
-        --_y: var(--transition-transform-top);
-      }
+      --_y: var(--transition-transform-top);
+
       &:is([data-state="OPENED"]) {
         --_y: 0;
       }
@@ -214,12 +196,8 @@ const Wrapper = styled.div<{
       inset-block-end: 0;
       inset-inline-start: 0;
       inset-inline-end: 0;
-      &:is([data-state="CLOSING"]) {
-        --_y: var(--transition-transform-bottom);
-      }
-      &:is([data-state="OPENING"]) {
-        --_y: var(--transition-transform-bottom);
-      }
+      --_y: var(--transition-transform-bottom);
+
       &:is([data-state="OPENED"]) {
         --_y: 0;
       }

@@ -38,7 +38,6 @@ const DialogOverlay: React.FC<IDialogOverlayProps> = ({
     }
   };
   const onAnimationEnd = () => {
-    console.log('triggered active')
     setActive(isOpen);
   };
   if (!isOpen && !active) return null;
@@ -55,8 +54,6 @@ const DialogOverlay: React.FC<IDialogOverlayProps> = ({
           shouldClose={!isOpen && active}
           onClick={handleClick}
           role="presentation"
-
-          // className={overlayClasses}
         >
           {children}
         </Overlay>

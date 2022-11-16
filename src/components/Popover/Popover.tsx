@@ -1,25 +1,21 @@
-/* eslint-disable no-param-reassign */
 import {
   useMemo,
   useState,
   useRef,
   RefObject,
-  ComponentPropsWithoutRef
+  ComponentPropsWithoutRef,
+  MouseEvent
 } from "react";
 
-import classnames from "classnames/bind";
 import { useRect } from "@reach/rect";
 import styled from "styled-components";
-import styles from "../../tailwind.css";
 import { Portal } from "../Portal";
 import usePopoverUtils from "./usePopoverUtils";
 import { PRect } from "../../utils/useGetBoundingClientRect";
 import { getCollisions } from "../../utils/helpers";
-import { IBoxProps } from "../Box";
+import { Box, IBoxProps } from "../Box";
 import * as Polymorphic from "../../types/helpers";
-// import FocusLock from "../../utils/FocusLock";
-
-const clsx = classnames.bind(styles);
+import useRootInert from "../../utils/useRootInert";
 
 export type PopoverAnimations = "fade" | "fade-up";
 interface PopoverOffset {
@@ -102,73 +98,86 @@ interface IPopoverProps {
   animationType?: PopoverAnimations;
   popoverProps?: Polymorphic.Merge<ComponentPropsWithoutRef<"div">, IBoxProps>;
 }
+
+/**
+ * Change log:
+ *
+ * remove `animationType` prop.
+ *
+ */
 const Popover: React.FC<IPopoverProps> = ({
   isOpen,
   children,
-  disableFocusLock: _,
   onClose,
   parentRef,
   offset,
   position = positionDefault,
-  animationType = "fade",
+
   popoverProps
 }) => {
   const [active, setActive] = useState(false);
 
   const popoverRef = useRef(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
 
   const parentRect = useRect(parentRef);
   const popoverRect = useRect(popoverRef);
 
+  useRootInert(isOpen);
+
   usePopoverUtils({
     isOpen,
     onClose,
-    setActive,
-    parentRef,
-    ref: popoverRef
+    setActive
   });
-
-  const popoverMenuClasses = useMemo(
-    () =>
-      clsx(
-        "popover",
-        {
-          "popover-fade": animationType === "fade",
-          "popover-fadeup": animationType === "fade-up",
-          "popover-active": isOpen && active
-        },
-        popoverProps?.className
-      ),
-    [popoverProps?.className, isOpen, active, animationType]
-  );
 
   const onTransitionEnd = () => {
     setActive(isOpen);
   };
 
+  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (!overlayRef.current) return;
+    if (e.target === overlayRef.current) {
+      onClose();
+    }
+  };
+  const state = useMemo(() => {
+    if (isOpen && active) {
+      return "OPENED";
+    }
+    if (isOpen && !active) {
+      return "OPENING";
+    }
+    if (!isOpen && active) {
+      return "CLOSING";
+    }
+    if (!isOpen && !active) {
+      return "CLOSED";
+    }
+  }, [isOpen, active]);
+
   if (!isOpen && !active) return null;
 
   return (
     <Portal>
-      {/* <FocusLock open={isOpen} focusLock={!!disableFocusLock}> */}
-      <Wrapper
-        onTransitionEnd={onTransitionEnd}
-        ref={popoverRef}
-        role="presentation"
-        // tabIndex={-1}
-        {...popoverProps}
-        style={{
-          ...getStyles(position, parentRect as PRect, popoverRect as PRect, {
-            bottom: offset?.bottom ?? 0,
-            left: offset?.left ?? 0
-          }),
-          ...popoverProps?.style
-        }}
-        className={popoverMenuClasses}
-      >
-        {children}
-      </Wrapper>
-      {/* </FocusLock> */}
+      <Overlay ref={overlayRef} onClick={handleClick} role="presentation">
+        <Wrapper
+          data-state={state}
+          onTransitionEnd={onTransitionEnd}
+          ref={popoverRef}
+          role="presentation"
+          {...popoverProps}
+          style={{
+            ...getStyles(position, parentRect as PRect, popoverRect as PRect, {
+              bottom: offset?.bottom ?? 0,
+              left: offset?.left ?? 0
+            }),
+            ...popoverProps?.style
+          }}
+        >
+          {children}
+        </Wrapper>
+      </Overlay>
     </Portal>
   );
 };
@@ -176,4 +185,26 @@ const Popover: React.FC<IPopoverProps> = ({
 export default Popover;
 export type { IPopoverProps };
 
-const Wrapper = styled.div``;
+const Wrapper = styled(Box)`
+  --shadow-alpha: 15%;
+  position: absolute;
+  filter: drop-shadow(0 3px 3px hsl(0 0% 0% / var(--_shadow-alpha)))
+    drop-shadow(0 12px 12px hsl(0 0% 0% / var(--_shadow-alpha)));
+  transition: opacity 0.1s ease, transform 0.2s ease-out;
+  color: CanvasText;
+  opacity: 0;
+
+  &:is([data-state="OPENED"]) {
+    transition-duration: 200ms;
+    opacity: 1;
+  }
+`;
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  background: transparent;
+`;

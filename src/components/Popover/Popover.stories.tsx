@@ -2,9 +2,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useRef, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
-import { Button, Input } from "..";
+import { Button, Box, Stack } from "..";
 import ThemeProvider from "../../theme/ThemeProvider";
-import { Stack } from "../Stack";
 
 export default {
   title: "Components/Popover",
@@ -20,11 +19,8 @@ const Template: ComponentStory<typeof Popover> = (_) => {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <Stack
-          justifyContent="space-between"
-          // className="flex-row-reverse"
-        >
-          <Input />
+        <Stack justifyContent="space-between">
+          {/* <Input /> */}
           <Button
             onClick={() => {
               if (!open) {
@@ -41,16 +37,17 @@ const Template: ComponentStory<typeof Popover> = (_) => {
           animationType="fade-up"
           isOpen={open}
           offset={{ bottom: 10, left: 0 }}
-          popoverProps={{
-            className: "w-64"
-          }}
           onClose={() => setOpen(false)}
           parentRef={parentRef}
         >
-          <div>Go to home</div>
-          <div>Go to home</div>
-          <div>Go to home</div>
+          <Box p={4} style={{ backgroundColor: "#fff" }}>
+            <div>Go to home</div>
+            <div>Go to home</div>
+            <div>Go to home</div>
+            <Button>Hello</Button>
+          </Box>
         </Popover>
+        <Button>Fake Button</Button>
       </BrowserRouter>
     </ThemeProvider>
   );
