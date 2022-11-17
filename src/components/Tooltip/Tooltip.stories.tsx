@@ -10,7 +10,7 @@ export default {
   argTypes: {}
 } as ComponentMeta<typeof Tooltip>;
 
-const Template: ComponentStory<typeof Tooltip> = (_) => (
+const Template: ComponentStory<typeof Tooltip> = ({ position }) => (
   <BrowserRouter>
     <ThemeProvider>
       <div
@@ -21,7 +21,12 @@ const Template: ComponentStory<typeof Tooltip> = (_) => (
           alignItems: "center"
         }}
       >
-        <Button tooltipProps={{ text: "My informative text" }}>
+        <Button
+          tooltipProps={{
+            text: "My informative text",
+            position
+          }}
+        >
           I have a tooltip
         </Button>
       </div>
