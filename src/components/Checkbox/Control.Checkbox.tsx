@@ -47,9 +47,15 @@ const Control = forwardRef<HTMLInputElement, CheckboxControlProps>(
       }),
       []
     );
+    const sizes = useMemo(() => {
+      if (!context.size || !["m", "l"].includes(context.size)) {
+        return styles.m;
+      }
+      return styles[context.size];
+    }, [context.size]);
 
     return (
-      <Wrapper style={styles[context.size || 'm'] as CSSProperties}>
+      <Wrapper style={sizes as CSSProperties}>
         <CheckboxInput
           aria-checked={indeterminate ? "mixed" : checked}
           checked={checked}

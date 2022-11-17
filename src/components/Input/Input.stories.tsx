@@ -47,7 +47,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<IInputProps> = (args) => (
   <ThemeProvider>
-    <Input placeholder="Enter text..." {...args} />
+    <Input readOnly placeholder="Enter text..." {...args} />
   </ThemeProvider>
 );
 const OTPTemplate: Story<IInputProps> = (args) => (
@@ -73,6 +73,10 @@ const OTPTemplate: Story<IInputProps> = (args) => (
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 export const Basic = Template.bind({});
+
+Basic.args = {
+  readOnly: false
+};
 
 export const Small = Template.bind({});
 Small.args = {

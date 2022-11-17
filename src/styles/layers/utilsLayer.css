@@ -1,5 +1,4 @@
 @import "tailwindcss/utilities";
-@import "../utilities/textarea.utilities.css";
 
 @layer utilities {
   .elevation-1 {

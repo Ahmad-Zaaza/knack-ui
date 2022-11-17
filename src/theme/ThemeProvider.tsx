@@ -1,6 +1,7 @@
 import { ThemeProvider as StyledProvider } from "styled-components";
 import { useEffect } from "react";
 import { defaultTheme, ThemeType } from "./defaultTheme";
+import GlobalStyles from "./globalStyles";
 
 interface ThemeProviderProps {
   theme?: ThemeType;
@@ -17,7 +18,12 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
     el.async = true;
     document.head.appendChild(el);
   }, []);
-  return <StyledProvider theme={theme}>{children}</StyledProvider>;
+  return (
+    <>
+      <GlobalStyles />
+      <StyledProvider theme={theme}>{children}</StyledProvider>
+    </>
+  );
 };
 
 export default ThemeProvider;

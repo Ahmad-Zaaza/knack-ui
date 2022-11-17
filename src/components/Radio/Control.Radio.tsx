@@ -44,9 +44,14 @@ const Control = forwardRef<HTMLInputElement, RadioControlProps>(
       }),
       []
     );
-
+    const sizes = useMemo(() => {
+      if (!context.size || !["m", "l"].includes(context.size)) {
+        return styles.m;
+      }
+      return styles[context.size];
+    }, [context.size]);
     return (
-      <Wrapper style={styles[context.size || "m"] as CSSProperties}>
+      <Wrapper style={sizes as CSSProperties}>
         <RadioInput
           aria-checked={checked}
           checked={checked}

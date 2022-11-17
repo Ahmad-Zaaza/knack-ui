@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { ComponentPropsWithoutRef, CSSProperties, forwardRef } from "react";
+import {
+  ComponentPropsWithoutRef,
+  CSSProperties,
+  forwardRef,
+  useMemo
+} from "react";
 import styled, { css, useTheme } from "styled-components";
 import { COLORS } from "../../styles/constants";
 
@@ -8,7 +13,7 @@ interface IInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
    * Input size.
    * @default 'default'
    */
-  size?: "small" | "default" | "large";
+  size?: "small" | "medium" | "large";
   /**
    * Input prefix. Can be a symbol or an icon. colored by primary color
    */
@@ -63,7 +68,7 @@ interface IInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
  *
  * - added new prop `w` that sets the input container width
  * 
- * - Remove `variant` prop
+ * - Remove `variant` prop and replace it with `size`
  *
  
  *
@@ -78,47 +83,77 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       inputPrefix: InputPrefix,
       inputSuffix: InputSuffix,
       disabled,
-      size = "default",
+      size = "medium",
       inputStyle,
       readOnly,
       ...delegated
     },
     ref
   ) => {
-    const sizes = {
-      small: {
-        height: 32,
-        iconSize: 32,
-        fontSize: `${14 / 16}rem`,
-        spacing: 8
-      },
-      default: {
-        height: 40,
-        iconSize: 40,
-        fontSize: `${16 / 16}rem`,
-        spacing: 10
-      },
-      large: {
-        height: 44,
-        fontSize: `${16 / 16}rem`,
-        iconSize: 44,
-        spacing: 12
-      }
-    };
     const mainTheme = useTheme();
     if (!mainTheme) {
       throw new Error(
-        '<Input/> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
+        '<Input /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
       );
     }
+    const sizes = useMemo(
+      () => ({
+        small: {
+          height: 32,
+          iconSize: 32,
+          fontSize: `${14 / 16}rem`,
+          spacing: 8
+        },
+        medium: {
+          height: 40,
+          iconSize: 40,
+          fontSize: `${16 / 16}rem`,
+          spacing: 10
+        },
+        large: {
+          height: 44,
+          fontSize: `${16 / 16}rem`,
+          iconSize: 44,
+          spacing: 12
+        }
+      }),
+      []
+    );
+
+    const height = useMemo(() => {
+      if (!size || !["small", "large"].includes(size)) {
+        return `${sizes.medium.height}px`;
+      }
+      return `${sizes[size].height}px`;
+    }, [size]);
+
+    const spacing = useMemo(() => {
+      if (!size || !["small", "large"].includes(size)) {
+        return `${sizes.medium.spacing}px`;
+      }
+      return `${sizes[size].spacing}px`;
+    }, [size]);
+
+    const fontSize = useMemo(() => {
+      if (!size || !["small", "large"].includes(size)) {
+        return sizes.medium.fontSize;
+      }
+      return sizes[size].fontSize;
+    }, [size]);
+    const iconSize = useMemo(() => {
+      if (!size || !["small", "large"].includes(size)) {
+        return `${sizes.medium.iconSize}px`;
+      }
+      return `${sizes[size].iconSize}px`;
+    }, [size]);
 
     return (
       <>
         <Wrapper
           style={
             {
-              "--input-height": `${sizes[size].height}px`,
-              "--icon-size": `${sizes[size].iconSize}px`,
+              "--input-height": height,
+              "--icon-size": iconSize,
               "--width": typeof w === "number" ? `${w}px` : w
             } as CSSProperties
           }
@@ -131,7 +166,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
             <Adornment
               style={
                 {
-                  "--spacing": `${sizes[size].spacing}px`
+                  "--spacing": spacing
                 } as CSSProperties
               }
               tabIndex={-1}
@@ -144,8 +179,8 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
             readOnly={readOnly}
             style={
               {
-                "--spacing": `${sizes[size].spacing}px`,
-                "--font-size": `${sizes[size].fontSize}`,
+                "--spacing": spacing,
+                "--font-size": fontSize,
                 ...inputStyle
               } as CSSProperties
             }
@@ -160,7 +195,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
               tabIndex={-1}
               style={
                 {
-                  "--spacing": `${sizes[size].spacing}px`
+                  "--spacing": spacing
                 } as CSSProperties
               }
             >

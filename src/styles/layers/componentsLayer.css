@@ -1,7 +1,5 @@
 @import "tailwindcss/components";
-@import "../components/textarea.component.css";
 @import "../components/stepper.component.css";
-@import "../components/basedialog.component.css";
 
 @layer components {
   .paper {

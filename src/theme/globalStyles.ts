@@ -21,7 +21,7 @@ body {
 
 
 /* CSS Variables */
-:root {
+/* :root {
 --color-background:${COLORS.background};
 --color-text:${COLORS.text};
 --color-primary:${COLORS.primary};
@@ -47,15 +47,15 @@ body {
 --shadow-color: 0deg 0% 76%;
 --color-border: var(--color-gray-200);
 --color-paper-background:${COLORS.paper};
-}
+} */
   
 
-button {
+/* button {
   text-align: initial ;
   box-shadow:none ;
   border:none;
   font-family:inherit;
-}
+} */
 
 
 
