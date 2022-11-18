@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, forwardRef, useMemo, useState } from "react";
 import styled, { css } from "styled-components";
-import useBaseDialogUtils from "../BaseDialog/BaseDialog/useBaseDialogUtils";
 import { DialogOverlay } from "../BaseDialog/DialogOverlay";
+import useDrawerUtils from "./useDrawerUtils";
 
 export interface IDrawerProps extends ComponentPropsWithoutRef<"div"> {
   /**
@@ -86,7 +86,7 @@ const Drawer = forwardRef<HTMLDivElement, IDrawerProps>(
   ) => {
     const [active, setActive] = useState(false);
 
-    useBaseDialogUtils({ isOpen, onClose });
+    useDrawerUtils({ isOpen, onClose });
 
     const state = useMemo(() => {
       if (isOpen && active) {

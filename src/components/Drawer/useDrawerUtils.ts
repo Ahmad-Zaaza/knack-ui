@@ -1,13 +1,10 @@
 import { useCallback, useEffect } from "react";
-import { IBaseDialogProps } from "./BaseDialog";
+import { IDrawerProps } from "./Drawer";
 
-const useBaseDialogUtils = ({
+const useDrawerUtils = ({
   isOpen,
   onClose
-}: // setActive
-Pick<IBaseDialogProps, "isOpen" | "onClose"> & {
-  // setActive: Dispatch<SetStateAction<boolean>>;
-}) => {
+}: Pick<IDrawerProps, "isOpen" | "onClose"> & {}) => {
   // 🔒 Close on Esc press
   const handleEsc = useCallback(
     (event: KeyboardEvent) => {
@@ -24,13 +21,6 @@ Pick<IBaseDialogProps, "isOpen" | "onClose"> & {
       window.removeEventListener("keydown", handleEsc);
     };
   }, [handleEsc]);
-  // useIsomorphicLayoutEffect(() => {
-  //   if (isOpen) {
-  //     setTimeout(() => {
-  //       setActive(isOpen);
-  //     }, 10);
-  //   }
-  // }, [isOpen]);
 };
 
-export default useBaseDialogUtils;
+export default useDrawerUtils;
