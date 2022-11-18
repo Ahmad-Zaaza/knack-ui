@@ -1,14 +1,13 @@
 import React, {
   ComponentPropsWithoutRef,
   createContext,
-  forwardRef,
   ReactElement,
   useContext,
   useMemo,
   useState
 } from "react";
-import StepConnector from "./StepConnector";
-import useStepperClasses from "./useStepperClasses";
+import styled, { IntrinsicElementsKeys } from "styled-components";
+import Step from "./Step.Stepper";
 
 interface IStepperProps
   extends Omit<ComponentPropsWithoutRef<"div">, "onChange"> {
@@ -28,65 +27,63 @@ interface StepperContextProps {
 export const StepperContext =
   createContext<StepperContextProps | undefined>(undefined);
 
-const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
-  (
-    {
-      className,
-      activeStep,
-      onChange,
-      clickable,
-      children,
-      vertical,
-      ...delegated
-    },
-    ref
-  ) => {
-    const [step, setStep] = useState(() => activeStep || 0);
-    const { stepperClasses } = useStepperClasses({
-      className,
-      vertical
+interface ParentComposition {
+  Step: typeof Step;
+}
+
+type TStepper = React.FC<IStepperProps> & ParentComposition;
+
+const Stepper: TStepper = ({
+  activeStep,
+  onChange,
+  clickable,
+  children,
+  vertical,
+  ...delegated
+}) => {
+  const [step, setStep] = useState(() => activeStep || 0);
+
+  const onStepChange = (index: number) => {
+    if (typeof activeStep !== "undefined" && onChange) {
+      onChange?.(index);
+      return;
+    }
+    if (!activeStep) {
+      return setStep(index);
+    }
+  };
+
+  const contextValue = useMemo(
+    () => ({
+      onChange: onStepChange,
+      currentStep: activeStep || step,
+      clickable: Boolean(clickable),
+      vertical: Boolean(vertical)
+    }),
+    [onStepChange, step, clickable, activeStep, vertical]
+  );
+
+  const renderChildren = useMemo(() => {
+    const lclChildren: React.ReactNode[] = [];
+    React.Children.map(children, (child, index) => {
+      if (React.isValidElement(child)) {
+        lclChildren.push(
+          React.cloneElement(child as ReactElement<any>, {
+            index,
+            // eslint-disable-next-line react/no-array-index-key
+            key: index
+          })
+        );
+      }
     });
+    return lclChildren;
+  }, [children]);
 
-    const onStepChange = (index: number) => {
-      if (typeof activeStep !== "undefined" && onChange) {
-        onChange?.(index);
-        return;
-      }
-      if (!activeStep) {
-        return setStep(index);
-      }
-    };
-
-    const contextValue = useMemo(
-      () => ({
-        onChange: onStepChange,
-        currentStep: activeStep || step,
-        clickable: Boolean(clickable),
-        vertical: Boolean(vertical)
-      }),
-      [onStepChange, step, clickable, activeStep, vertical]
-    );
-
-    const renderChildren = useMemo(() => {
-      const lclChildren: React.ReactNode[] = [];
-      React.Children.map(children, (child, index) => {
-        if (React.isValidElement(child)) {
-          lclChildren.push(
-            React.cloneElement(child as ReactElement<any>, {
-              index,
-              // eslint-disable-next-line react/no-array-index-key
-              key: index,
-              isLast: index === React.Children.count(children) - 1
-            })
-          );
-        }
-      });
-      return lclChildren;
-    }, [children]);
-    return (
-      <StepperContext.Provider value={contextValue}>
-        <div ref={ref} className={stepperClasses} {...delegated}>
-          {renderChildren.reduce((prev, curr, index) => [
+  return (
+    <StepperContext.Provider value={contextValue}>
+      <Wrapper {...delegated}>
+        {renderChildren}
+        {/* {renderChildren.reduce((prev, curr, index) => [
             prev,
             // eslint-disable-next-line react/no-array-index-key
             <StepConnector
@@ -97,18 +94,26 @@ const Stepper = forwardRef<HTMLDivElement, IStepperProps>(
               key={`connector-${index + 1}`}
             />,
             curr
-          ])}
-        </div>
-      </StepperContext.Provider>
-    );
-  }
-);
+          ])} */}
+      </Wrapper>
+    </StepperContext.Provider>
+  );
+};
 
 export default Stepper;
-export type { IStepperProps };
+Stepper.Step = Step;
+
+export type { IStepperProps, TStepper };
+
 export const useStepperContext = () => {
   const stepperContext = useContext(StepperContext);
   if (stepperContext === undefined)
     throw new Error("useStepperContext must be used within a StepperProvider");
   return stepperContext;
 };
+
+const Wrapper = styled("stepper" as IntrinsicElementsKeys)`
+  --stepper-spacing: 16px;
+  display: flex;
+  justify-content: space-between;
+`;

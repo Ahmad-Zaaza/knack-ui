@@ -9,7 +9,6 @@ export * from "./Toggle";
 export * from "./CircularProgress";
 export * from "./LinearProgress";
 export * from "./Stepper";
-export * from "./Step";
 export * from "./Textarea";
 export * from "./Breadcrumbs";
 export * from "./Box";

@@ -5,8 +5,9 @@ import {
   forwardRef,
   useMemo
 } from "react";
-import styled, { css, useTheme } from "styled-components";
+import styled, { css } from "styled-components";
 import { COLORS } from "../../styles/constants";
+import useKnackTheme from "../../utils/useTheme";
 
 interface IInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   /**
@@ -90,12 +91,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     },
     ref
   ) => {
-    const mainTheme = useTheme();
-    if (!mainTheme) {
-      throw new Error(
-        '<Input /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
-      );
-    }
+    useKnackTheme();
     const sizes = useMemo(
       () => ({
         small: {
