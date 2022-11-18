@@ -18,7 +18,7 @@ export interface IEditbleTypographyProps {
   /**
    * Props for the underlying Input | Textarea element
    */
-  inputProps?: IInputProps | ITextareaProps;
+  inputProps?: Polymorphic.Merge<ITextareaProps, IInputProps>;
   /**
    *  Underlying `Input` | `Textarea` element Ref
    */
