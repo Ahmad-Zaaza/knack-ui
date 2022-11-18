@@ -26,10 +26,16 @@ const Template: ComponentStory<typeof Stepper> = ({
         clickable
         {...args}
       >
-        <Stepper.Step>First step</Stepper.Step>
-        <Stepper.Step completed>hello</Stepper.Step>
-        <Stepper.Step disabled>I am disabled</Stepper.Step>
-        <Stepper.Step >4th step bla bla 4th step bla bla</Stepper.Step>
+        <Stepper.Step iconSize={20}>First step</Stepper.Step>
+        <Stepper.Step completed iconSize={30}>
+          hello
+        </Stepper.Step>
+        <Stepper.Step disabled iconSize={40}>
+          I am disabled
+        </Stepper.Step>
+        <Stepper.Step iconSize={50}>
+          4th step bla bla 4th step bla bla
+        </Stepper.Step>
       </Stepper>
       {active === 0 && "step 1"}
       {active === 1 && "step 2"}

@@ -2,18 +2,25 @@ import {
   useCallback,
   useMemo,
   forwardRef,
-  ComponentPropsWithoutRef
+  ComponentPropsWithoutRef,
+  CSSProperties
 } from "react";
 import styled, { IntrinsicElementsKeys } from "styled-components";
 import { Typography } from "..";
-import DefaultStepperIcon from "./DefaultStepperIcon";
 import { useStepperContext } from "./Stepper";
+import DefaultStepperIcon from "./DefaultStepperIcon";
 
 export interface IStepProps extends ComponentPropsWithoutRef<"div"> {
   index?: number;
   completed?: boolean;
   disabled?: boolean;
   isLast?: boolean;
+  /**
+   * Dimentions for step icon
+   *
+   * @default 40
+   */
+  iconSize?: number;
   icon?: ({
     completed,
     active
@@ -29,17 +36,15 @@ const Step = forwardRef<HTMLDivElement, IStepProps>(
       index = 0,
       disabled,
       children,
+      iconSize = 40,
+      style,
       completed = false,
-      icon = DefaultStepperIcon
+      icon = DefaultStepperIcon,
+      ...delegated
     },
     ref
   ) => {
-    const {
-      currentStep,
-      onChange,
-      clickable,
-      vertical: _
-    } = useStepperContext();
+    const { currentStep, onChange, clickable, vertical } = useStepperContext();
     const active = useMemo(() => currentStep === index, [currentStep, index]);
 
     const handleChangeStep = useCallback(
@@ -56,7 +61,16 @@ const Step = forwardRef<HTMLDivElement, IStepProps>(
     }, [disabled, index, clickable]);
 
     return (
-      <Wrapper data-disabled={disabled} ref={ref} onClick={onChangeStep}>
+      <Wrapper
+        data-direction={vertical ? "vertical" : "horizontal"}
+        data-disabled={disabled}
+        data-clickable={clickable}
+        data-completed={completed}
+        ref={ref}
+        onClick={onChangeStep}
+        style={{ "--size": `${iconSize}px`, ...style } as CSSProperties}
+        {...delegated}
+      >
         <IconWrapper>{icon({ active, completed, index })}</IconWrapper>
 
         <Typography
@@ -82,8 +96,7 @@ const Wrapper = styled("step" as IntrinsicElementsKeys)`
   flex-direction: column;
   align-items: center;
   padding: 8px;
-  --size: 40px;
-  &:not(:last-of-type) {
+  &:not(:last-of-type):not([data-direction="vertical"]) {
     &:after {
       position: absolute;
       content: " ";
@@ -95,9 +108,17 @@ const Wrapper = styled("step" as IntrinsicElementsKeys)`
       top: calc(var(--size) / 2 + 8px);
       transform: translateY(-50%);
     }
+    &:is([data-completed="true"])::after {
+      border-top-style: solid;
+      border-color: ${(p) => p.theme.colors.green[400]};
+    }
   }
 
-  &:not([data-disabled="true"]) {
+  &:is([data-disabled="true"]) {
+    opacity: 0.3;
+  }
+
+  &:not([data-clickable="false"]):not([data-disabled="true"]) {
     cursor: pointer;
   }
 `;

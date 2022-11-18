@@ -32,7 +32,13 @@ interface ParentComposition {
 }
 
 type TStepper = React.FC<IStepperProps> & ParentComposition;
-
+/**
+ * @description
+ *
+ * Change log:
+ *
+ * added a new composite component `Step`
+ */
 const Stepper: TStepper = ({
   activeStep,
   onChange,
@@ -81,7 +87,10 @@ const Stepper: TStepper = ({
 
   return (
     <StepperContext.Provider value={contextValue}>
-      <Wrapper {...delegated}>
+      <Wrapper
+        data-direction={vertical ? "vertical" : "horizontal"}
+        {...delegated}
+      >
         {renderChildren}
         {/* {renderChildren.reduce((prev, curr, index) => [
             prev,
@@ -116,4 +125,8 @@ const Wrapper = styled("stepper" as IntrinsicElementsKeys)`
   --stepper-spacing: 16px;
   display: flex;
   justify-content: space-between;
+
+  &:is([data-direction="vertical"]) {
+    flex-direction: column;
+  }
 `;
