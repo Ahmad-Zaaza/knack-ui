@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { ComponentPropsWithoutRef, CSSProperties, forwardRef } from "react";
+import {
+  ComponentPropsWithoutRef,
+  CSSProperties,
+  forwardRef,
+  useMemo
+} from "react";
 import styled, { css } from "styled-components";
 import { transparentize, darken, lighten } from "polished";
 
@@ -101,19 +106,28 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const styles = buttonSizeStyles[size] as CSSProperties;
 
-    let Component = ButtonBase;
+    let Component = PrimaryButton;
 
-    if (variant === "primary") {
-      Component = PrimaryButton;
-    } else if (variant === "secondary") {
+    if (variant === "secondary") {
       Component = SecondaryButton;
-    } else {
+    } else if (variant === "tertiary") {
       Component = TertiaryButton;
     }
-
+    const pallete = useMemo(() => {
+      let variantPallete;
+      if (!variant || !["primary", "secondary", "tertiary"].includes(variant)) {
+        variantPallete = buttonTheme.primary;
+      } else {
+        variantPallete = buttonTheme[variant];
+      }
+      if (!theme || !["info", "success", "danger", "default"].includes(theme)) {
+        return variantPallete.default;
+      }
+      return variantPallete[theme];
+    }, [theme, buttonTheme, variant]);
     return (
       <Component
-        palette={buttonTheme[variant]?.[theme] ?? {}}
+        palette={pallete}
         ref={ref}
         shape={shape}
         type={type}
