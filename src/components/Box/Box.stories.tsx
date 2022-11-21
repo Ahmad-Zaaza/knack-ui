@@ -16,13 +16,12 @@ const Template: ComponentStory<typeof Box> = ({
   ...args
 }) => (
   <ThemeProvider>
-    <Box style={{ border: "1px solid red" }} {...args}>
+    <Box elevation={2} p={4}  {...args}>
       <div>Hey ma, I am dynamic! </div>
     </Box>
   </ThemeProvider>
 );
 const PolymorphicTemplate: ComponentStory<typeof Box> = ({
-  as: _,
   children: __,
   ...args
 }) => (
@@ -30,7 +29,7 @@ const PolymorphicTemplate: ComponentStory<typeof Box> = ({
     <Typography style={{ marginBottom: "1rem" }} variant="h5">
       Box as Stack
     </Typography>
-    <Box as={Stack} gap={4} {...args}>
+    <Box render={Stack} gap={4} {...args}>
       <Box {...args}>
         <div>Elevation 1 (Default)</div>
       </Box>

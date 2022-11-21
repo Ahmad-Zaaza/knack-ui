@@ -1,6 +1,7 @@
 import { useMemo } from "react";
-import { useTheme } from "styled-components";
+import { ELEVATIONS } from "../../styles/constants";
 import { removeUndefinedKeys } from "../../utils/helpers";
+import useKnackTheme from "../../utils/useTheme";
 import { IBoxProps } from "./Box.types";
 
 function getSize(size: string | number | undefined) {
@@ -101,15 +102,19 @@ function useBoxProps({
   right,
   display,
   wMin,
+  elevation = 0,
+
   ...otherProps
 }: IBoxProps) {
-  const theme = useTheme();
+  const theme = useKnackTheme();
 
-  if (!theme) {
-    throw new Error(
-      '<Box/> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
-    );
-  }
+  const elevationStyles = useMemo(() => {
+    if (theme.mode === "dark") {
+      return ELEVATIONS.dark[elevation];
+    }
+    return ELEVATIONS.light[elevation];
+  }, [theme, elevation]);
+
   const indentStyles = useMemo(
     () =>
       calculateIndentStyles(
@@ -171,6 +176,6 @@ function useBoxProps({
     ]
   );
 
-  return { indentStyles, otherProps };
+  return { indentStyles, otherProps, elevationStyles };
 }
 export default useBoxProps;

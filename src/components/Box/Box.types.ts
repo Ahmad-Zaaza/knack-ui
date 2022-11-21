@@ -109,4 +109,5 @@ export interface IBoxProps {
   right?: number | string;
 
   zIndex?: number;
+  elevation?: number;
 }

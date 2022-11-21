@@ -94,3 +94,14 @@ export type Subset<K> = {
     ? Subset<K[attr]> | null | undefined
     : K[attr];
 };
+export const getSystemColorScheme = (): "light" | "dark" => {
+  if (typeof window !== "undefined") {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => (e.matches ? "dark" : "light"));
+    // if (window.matchMedia("(prefers-color-scheme: dark)")) {
+    //   return "dark";
+    // }
+  }
+  return "light";
+};

@@ -2,15 +2,19 @@ import { ThemeProvider as StyledProvider } from "styled-components";
 import { useEffect } from "react";
 import { defaultTheme, Theme } from "./defaultTheme";
 import GlobalStyles from "./globalStyles";
+import { useDarkMode } from "../utils/useDarkMode";
 
 interface ThemeProviderProps {
   theme?: Theme;
+  mode?: "dark" | "light" | "auto";
 }
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
+  mode = "light",
   theme = defaultTheme
 }) => {
+  const themeMode = useDarkMode(mode);
   useEffect(() => {
     const el = document.createElement("script");
     el.src =
@@ -21,7 +25,9 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
   return (
     <>
       <GlobalStyles />
-      <StyledProvider theme={theme}>{children}</StyledProvider>
+      <StyledProvider theme={{ ...theme, mode: themeMode }}>
+        {children}
+      </StyledProvider>
     </>
   );
 };

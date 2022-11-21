@@ -1,4 +1,8 @@
-import { ThemeColors, ThemeMediaQueries } from "../theme/theme.types";
+import {
+  ThemeColors,
+  ThemeElevation,
+  ThemeMediaQueries
+} from "../theme/theme.types";
 
 export const COLORS: ThemeColors = {
   primary: "hsl(350, 100%, 72%)",
@@ -72,34 +76,52 @@ export const QUERIES: ThemeMediaQueries = {
     `${QUERIES.hoverSupported} and ${QUERIES.hoverPointerDevices}`
 };
 
-export const ELEVATIONS = {
-  small: `
-      0px 1px 1.3px hsla(var(--shadow-color) / 0.11),
-      0px 1.6px 2.1px -0.7px hsla(var(--shadow-color) / 0.17),
-      0px 3.2px 4.2px -1.3px hsl(var(--shadow-color) / 0.24);
-      `,
-  medium: `
-        0px 1px 1.3px hsl(var(--shadow-color) / 0.12),
-        0px 3.4px 4.4px -0.4px hsl(var(--shadow-color) / 0.17),
-        0.1px 7.3px 9.5px -0.9px hsl(var(--shadow-color) / 0.22),
-        0.1px 16.1px 20.9px -1.3px hsl(var(--shadow-color) / 0.27)
-    `,
+export const ELEVATIONS: ThemeElevation = {
+  light: {
+    0: { "box-shadow": "none" },
+
+    1: {
+      "box-shadow": `0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)`
+    }
+  },
+  dark: {
+    0: {
+      "box-shadow": "none",
+      "background-image": `linear-gradient(
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0)
+      )`
+    },
+    1: {
+      "box-shadow": `0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)`,
+      "background-image": `linear-gradient(
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05)
+      )`
+    }
+  }
+  // small: `
+  //     0px 1px 1.3px hsla(var(--shadow-color) / 0.11),
+  //     0px 1.6px 2.1px -0.7px hsla(var(--shadow-color) / 0.17),
+  //     0px 3.2px 4.2px -1.3px hsl(var(--shadow-color) / 0.24);
+  //     `,
   // medium: `
-  //   3.4px 3.4px 3.4px -6px hsl(var(--shadow-color) / 0.7),
-  //   8.6px 8.5px 7.3px -6px hsl(var(--shadow-color) / 0.5),
-  //   17.7px 17.3px 14.8px -6px hsl(var(--shadow-color) / 0.4),
-  //   36.5px 35.7px 30.6px -6px hsl(var(--shadow-color) / 0.3),
-  //   100px 98px 84px -6px hsl(var(--shadow-color) / 0.2)
-  // `,
-  large: `
-        0px 1px 1.3px hsl(var(--shadow-color) / 0.12),
-        0.1px 5.8px 7.5px -0.2px hsl(var(--shadow-color) / 0.15),
-        0.1px 10.5px 13.6px -0.4px hsl(var(--shadow-color) / 0.18),
-        0.1px 16.7px 21.7px -0.7px hsl(var(--shadow-color) / 0.21),
-        0.2px 26.1px 33.9px -0.9px hsl(var(--shadow-color) / 0.24),
-        0.4px 40.3px 52.3px -1.1px hsl(var(--shadow-color) / 0.27),
-        0.5px 61px 79.2px -1.3px hsl(var(--shadow-color) / 0.3)
-      `
+  //       0px 1px 1.3px hsl(var(--shadow-color) / 0.12),
+  //       0px 3.4px 4.4px -0.4px hsl(var(--shadow-color) / 0.17),
+  //       0.1px 7.3px 9.5px -0.9px hsl(var(--shadow-color) / 0.22),
+  //       0.1px 16.1px 20.9px -1.3px hsl(var(--shadow-color) / 0.27)
+  //   `,
+  // large: `
+  //       0px 1px 1.3px hsl(var(--shadow-color) / 0.12),
+  //       0.1px 5.8px 7.5px -0.2px hsl(var(--shadow-color) / 0.15),
+  //       0.1px 10.5px 13.6px -0.4px hsl(var(--shadow-color) / 0.18),
+  //       0.1px 16.7px 21.7px -0.7px hsl(var(--shadow-color) / 0.21),
+  //       0.2px 26.1px 33.9px -0.9px hsl(var(--shadow-color) / 0.24),
+  //       0.4px 40.3px 52.3px -1.1px hsl(var(--shadow-color) / 0.27),
+  //       0.5px 61px 79.2px -1.3px hsl(var(--shadow-color) / 0.3)
+  //     `
 };
 
 export const RADIUSES = {

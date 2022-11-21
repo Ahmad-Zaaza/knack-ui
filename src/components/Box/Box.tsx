@@ -15,10 +15,16 @@ import useBoxProps from "./useBoxProps";
  * - added dynamic spacing properties.
  */
 const Box = forwardRef(({ render, ...props }, ref) => {
-  const { indentStyles, otherProps } = useBoxProps(props);
-  console.log("Box Rendered", props);
+  const { indentStyles, otherProps, elevationStyles } = useBoxProps(props);
+  console.log({ elevationStyles });
   return (
-    <Wrapper as={render} ref={ref} styles={indentStyles} {...otherProps} />
+    <Wrapper
+      as={render}
+      ref={ref}
+      styles={indentStyles}
+      elevationStyles={elevationStyles}
+      {...otherProps}
+    />
   );
 }) as Polymorphic.ForwardRefComponent<"div", IBoxProps>;
 
@@ -26,6 +32,7 @@ export default Box;
 
 export type { IBoxProps };
 
-const Wrapper = styled.div<{ styles: {} }>`
-  ${(p) => p.styles && css(p.styles)}
+const Wrapper = styled.div<{ styles: {}; elevationStyles: {} }>`
+  ${(p) => p.styles && css(p.styles)};
+  ${(p) => p.elevationStyles && css(p.elevationStyles)};
 `;

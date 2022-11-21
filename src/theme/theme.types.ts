@@ -42,3 +42,9 @@ export type ThemeMediaQueries = {
   hoverSupported: string;
   hoverPointerDevices: () => string;
 };
+
+export type ThemeElevation = {
+  [K in "light" | "dark"]: {
+    [key: number]: Record<string, string>;
+  };
+};
