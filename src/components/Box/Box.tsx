@@ -12,11 +12,14 @@ import useBoxProps from "./useBoxProps";
  *
  * - Replace `as` prop with `render`.
  *
+ * - add `elevation` prop that controls box's surface elevation
+ *
+ * - add `paper` prop to control the box background-color, best used with elevation.
+ *
  * - added dynamic spacing properties.
  */
 const Box = forwardRef(({ render, ...props }, ref) => {
   const { indentStyles, otherProps, elevationStyles } = useBoxProps(props);
-  console.log({ elevationStyles });
   return (
     <Wrapper
       as={render}

@@ -110,4 +110,10 @@ export interface IBoxProps {
 
   zIndex?: number;
   elevation?: number;
+
+  /**
+   * If `true`, the background color will match the `paper` theme color. best practice is to dynamically change the `paper` theme color to match color scheme.
+   *
+   */
+  paper?: boolean;
 }

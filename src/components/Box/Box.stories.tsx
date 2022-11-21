@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Stack, Typography } from "..";
+import { createTheme } from "../../theme/defaultTheme";
 import ThemeProvider from "../../theme/ThemeProvider";
 
 import Box from "./Box";
@@ -14,18 +15,21 @@ const Template: ComponentStory<typeof Box> = ({
   children: _,
 
   ...args
-}) => (
-  <ThemeProvider>
-    <Box elevation={2} p={4}  {...args}>
-      <div>Hey ma, I am dynamic! </div>
-    </Box>
-  </ThemeProvider>
-);
+}) => {
+  const customTheme = createTheme({ colors: { paper: "hsl(160,13%,15%)" } });
+  return (
+    <ThemeProvider theme={customTheme} mode="auto">
+      <Box elevation={1} p={4} paper {...args}>
+        <div>Hey ma, I am dynamic! </div>
+      </Box>
+    </ThemeProvider>
+  );
+};
 const PolymorphicTemplate: ComponentStory<typeof Box> = ({
   children: __,
   ...args
 }) => (
-  <div>
+  <ThemeProvider>
     <Typography style={{ marginBottom: "1rem" }} variant="h5">
       Box as Stack
     </Typography>
@@ -46,7 +50,7 @@ const PolymorphicTemplate: ComponentStory<typeof Box> = ({
         <div>Elevation 6 </div>
       </Box>
     </Box>
-  </div>
+  </ThemeProvider>
 );
 
 export const Default = Template.bind({});

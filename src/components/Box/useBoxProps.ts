@@ -67,6 +67,7 @@ function calculateIndentStyles(props: IBoxProps, scaleDenominator: number) {
       getAutoOrScaleIndent(props.pb, scaleDenominator) ||
       getAutoOrScaleIndent(props.py, scaleDenominator),
     width: getAutoOrScaleIndent(props.w, scaleDenominator),
+    height: getAutoOrScaleIndent(props.h, scaleDenominator),
     "min-width": getAutoOrScaleIndent(props.wMin, scaleDenominator),
     "max-width": getAutoOrScaleIndent(props.wMax, scaleDenominator),
     "min-height": getAutoOrScaleIndent(props.hMin, scaleDenominator),
@@ -102,6 +103,8 @@ function useBoxProps({
   right,
   display,
   wMin,
+  paper,
+  h,
   elevation = 0,
 
   ...otherProps
@@ -109,11 +112,15 @@ function useBoxProps({
   const theme = useKnackTheme();
 
   const elevationStyles = useMemo(() => {
+    let elevations = ELEVATIONS.light[elevation];
     if (theme.mode === "dark") {
-      return ELEVATIONS.dark[elevation];
+      elevations = ELEVATIONS.dark[elevation];
     }
-    return ELEVATIONS.light[elevation];
-  }, [theme, elevation]);
+    return {
+      ...(paper && { "background-color": theme.colors.paper }),
+      ...elevations
+    };
+  }, [theme, elevation, paper]);
 
   const indentStyles = useMemo(
     () =>
@@ -143,6 +150,7 @@ function useBoxProps({
           ml,
           pl,
           pr,
+          h,
           hMin
         },
         theme.scaleDenominator
@@ -172,7 +180,8 @@ function useBoxProps({
       ml,
       pl,
       pr,
-      hMin
+      hMin,
+      h
     ]
   );
 

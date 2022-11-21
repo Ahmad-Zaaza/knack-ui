@@ -43,12 +43,9 @@ function validateColorValues(colors: Subset<ThemeColors>): ThemeColors {
   }, defaultTheme.colors);
 }
 
-type CreatedTheme = Pick<
-  Subset<Theme>,
-  "colors" | "queries" | "scaleDenominator"
->;
+type CreatedTheme = Pick<Theme, "colors" | "queries" | "scaleDenominator">;
 
-export const createTheme = (theme: CreatedTheme): Theme => ({
+export const createTheme = (theme: Subset<CreatedTheme>): Theme => ({
   ...defaultTheme,
   ...theme,
   // borderRadiuses: { ...defaultTheme.borderRadiuses, ...theme.borderRadiuses },
