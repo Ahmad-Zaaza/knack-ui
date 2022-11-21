@@ -1,10 +1,10 @@
 import { ThemeProvider as StyledProvider } from "styled-components";
 import { useEffect } from "react";
-import { defaultTheme, ThemeType } from "./defaultTheme";
+import { defaultTheme, Theme } from "./defaultTheme";
 import GlobalStyles from "./globalStyles";
 
 interface ThemeProviderProps {
-  theme?: ThemeType;
+  theme?: Theme;
 }
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({

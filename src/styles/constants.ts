@@ -1,23 +1,15 @@
-export const COLORS = {
+import { ThemeColors, ThemeMediaQueries } from "../theme/theme.types";
+
+export const COLORS: ThemeColors = {
   primary: "hsl(350, 100%, 72%)",
-  primaryAccent: "hsl(350deg, 100%, 86%)",
-  primaryBackground: "hsla(350deg, 100%, 72%, 0.1)",
-  primaryHover: "hsl(350deg, 68%, 60%)",
-  secondary: "hsl(296deg, 24%, 52%)",
-  secondaryBackground: "background: hsla(296deg, 24%, 52%, 0.1)",
-  text: "hsl(222deg, 22%, 5%)",
+  secondary: "hsl(296, 24%, 52%)",
+  text: "hsl(222, 22%, 5%)",
   onPrimary: "hsl(0, 0%, 98%)",
   onSecondary: "hsl(0, 0%, 98%)",
-
-  // white
-  // background: "hsl(0deg, 0%, 100%)",
-  // Figma file background
-  background: "hsl(220, 60%, 98%);",
-  alert: "hsl(30deg, 100%, 50%)",
-  success: "hsl(160deg, 100%, 40%)",
-  successBackground: "hsla(160deg, 100%, 40%, 0.1)",
-  danger: "hsl(340deg, 95%, 60%)",
-  white: "hsl(0deg,100%,100%)",
+  alert: "hsl(30, 100%, 50%)",
+  success: "hsl(160, 100%, 40%)",
+  danger: "hsl(340, 95%, 60%)",
+  white: "hsl(0,100%,100%)",
   gray: {
     50: "hsl(228, 29%, 97%)",
     100: "hsl(233, 17%, 90%)",
@@ -27,7 +19,7 @@ export const COLORS = {
     500: "hsl(231, 6%, 45%)",
     600: "hsl(230, 8%, 31%)",
     700: "hsl(226, 13%, 19%)",
-    800: "	hsl(228, 17%, 12%)"
+    800: "hsl(228, 17%, 12%)"
   },
   blue: {
     50: "hsl(202, 100%, 96%)",
@@ -70,7 +62,7 @@ export const BREAKPOINTS = {
   laptopMin: 1100,
   desktopMin: 1500
 };
-export const QUERIES = {
+export const QUERIES: ThemeMediaQueries = {
   tabletAndUp: `(min-width: ${BREAKPOINTS.tabletMin / 16}rem)`,
   laptopAndUp: `(min-width: ${BREAKPOINTS.laptopMin / 16}rem)`,
   desktopAndUp: `(min-width: ${BREAKPOINTS.desktopMin / 16}rem)`,

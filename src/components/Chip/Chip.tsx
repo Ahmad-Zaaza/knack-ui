@@ -1,5 +1,5 @@
 import { transparentize } from "polished";
-import { forwardRef, CSSProperties } from "react";
+import { forwardRef, CSSProperties, useMemo } from "react";
 import styled from "styled-components";
 import * as Polymorphic from "../../types/helpers";
 import DeleteIcon from "./DeleteIcon";
@@ -58,11 +58,11 @@ const Chip = forwardRef(
   (
     {
       children,
-      variant = "secondary",
+      variant,
       size = "medium",
       startIcon,
       endIcon,
-      theme = "info",
+      theme = "default",
       style,
       shape,
       onDelete,
@@ -72,17 +72,28 @@ const Chip = forwardRef(
   ) => {
     const { chipSizeStyles, chipTheme } = useChipTheme();
 
-    let Component = ChipBase;
+    const pallete = useMemo(() => {
+      let variantPallete;
+      if (!variant || !["primary", "secondary"].includes(variant)) {
+        variantPallete = chipTheme.primary;
+      } else {
+        variantPallete = chipTheme[variant];
+      }
+      if (!theme || !["info", "success", "danger", "default"].includes(theme)) {
+        return variantPallete.default;
+      }
+      return variantPallete[theme];
+    }, [theme, chipTheme, variant]);
 
-    if (variant === "primary") {
-      Component = PrimaryChip;
-    } else {
+    let Component = PrimaryChip;
+
+    if (variant === "secondary") {
       Component = SecondaryChip;
     }
     return (
       <Component
         corners={shape}
-        palette={chipTheme[variant]?.[theme] ?? {}}
+        palette={pallete}
         style={
           { ...chipSizeStyles[size || "medium"], ...style } as CSSProperties
         }
@@ -141,6 +152,7 @@ const SecondaryChip = styled(ChipBase)`
 const ChipText = styled.span`
   margin-left: var(--spacing);
   margin-right: var(--spacing);
+  white-space: nowrap;
 `;
 const StartIconWrapper = styled.span`
   margin-inline-start: var(--spacing);

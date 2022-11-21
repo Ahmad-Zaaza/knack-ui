@@ -78,10 +78,19 @@ export const getCollisions = (
 
 export function removeUndefinedKeys<T extends {}>(obj: T) {
   return Object.entries(obj).reduce((acc, [key, value]) => {
-    if (value !== undefined) {
+    if (value !== undefined && value !== "") {
       // @ts-ignore
       acc[key] = value;
     }
     return acc;
   }, {});
 }
+export type Subset<K> = {
+  [attr in keyof K]?: K[attr] extends object
+    ? Subset<K[attr]>
+    : K[attr] extends object | null
+    ? Subset<K[attr]> | null
+    : K[attr] extends object | null | undefined
+    ? Subset<K[attr]> | null | undefined
+    : K[attr];
+};
