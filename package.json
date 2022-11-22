@@ -21,7 +21,7 @@
     "prepublishOnly": "npm test && npm run lint:fix && npm run build && npm version patch",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "storybook": "start-storybook -p 6006",
+    "dev": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint:fix": "eslint --fix",
     "prepare": "husky install",

@@ -1,8 +1,9 @@
 import { ThemeProvider as StyledProvider } from "styled-components";
 import { useEffect } from "react";
-import { defaultTheme, Theme } from "./defaultTheme";
+import { defaultTheme } from "./defaultTheme";
 import GlobalStyles from "./globalStyles";
 import { useDarkMode } from "../utils/useDarkMode";
+import { Theme } from "./theme.types";
 
 interface ThemeProviderProps {
   theme?: Theme;

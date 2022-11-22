@@ -1,3 +1,14 @@
+import { ELEVATIONS } from "../styles/constants";
+
+export interface Theme {
+  queries: ThemeMediaQueries;
+  elevations: typeof ELEVATIONS;
+  colors: ThemeColors;
+  borderRadiuses: ThemeBorderRadiuses;
+  scaleDenominator: number;
+  mode: "dark" | "light";
+}
+
 export type ThemeColors = {
   primary: string;
   secondary: string;
@@ -11,7 +22,7 @@ export type ThemeColors = {
   red: ColorPalletes;
   green: ColorPalletes;
   themes: {
-    [key in "alert" | "success" | "danger" | "info"]: {
+    [key in SemanticThemes]: {
       color: string;
       hue: string;
       lightness: string;
@@ -39,6 +50,8 @@ export type ThemeBorderRadiuses = {
   full: string;
 };
 
+export type SemanticThemes = "info" | "success" | "danger" | "warning";
+
 export type ThemeMediaQueries = {
   tabletAndUp: string;
   laptopAndUp: string;
@@ -53,3 +66,4 @@ export type ThemeElevation = {
     [key: number]: Record<string, string>;
   };
 };
+export type CreatedTheme = Pick<Theme, "colors" | "queries" | "scaleDenominator">;

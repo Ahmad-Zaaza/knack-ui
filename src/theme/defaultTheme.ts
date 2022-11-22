@@ -1,19 +1,11 @@
 import { COLORS, ELEVATIONS, QUERIES, RADIUSES } from "../styles/constants";
 import { removeUndefinedKeys, Subset } from "../utils/helpers";
 import {
-  ThemeBorderRadiuses,
+  CreatedTheme,
+  Theme,
   ThemeColors,
   ThemeMediaQueries
 } from "./theme.types";
-
-export interface Theme {
-  queries: ThemeMediaQueries;
-  elevations: typeof ELEVATIONS;
-  colors: ThemeColors;
-  borderRadiuses: ThemeBorderRadiuses;
-  scaleDenominator: number;
-  mode: "dark" | "light";
-}
 
 export const defaultTheme: Theme = {
   queries: QUERIES,
@@ -43,8 +35,6 @@ function validateColorValues(colors: Subset<ThemeColors>): ThemeColors {
     return acc;
   }, defaultTheme.colors);
 }
-
-type CreatedTheme = Pick<Theme, "colors" | "queries" | "scaleDenominator">;
 
 export const createTheme = (theme: Subset<CreatedTheme>): Theme => ({
   ...defaultTheme,
