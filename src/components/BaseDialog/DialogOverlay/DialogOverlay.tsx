@@ -2,13 +2,13 @@ import { MouseEvent, useRef, Dispatch, SetStateAction } from "react";
 import { RemoveScroll } from "react-remove-scroll";
 import styled, { css } from "styled-components";
 import { Portal } from "../../Portal";
-import { IBaseDialogProps } from "../BaseDialog/BaseDialog";
 
 import { fade, fadeExit } from "../../../lib/animations";
+import { IDrawerProps } from "../../Drawer/Drawer";
 
 interface IDialogOverlayProps
   extends Pick<
-    IBaseDialogProps,
+    IDrawerProps,
     | "isOpen"
     | "children"
     | "onClose"

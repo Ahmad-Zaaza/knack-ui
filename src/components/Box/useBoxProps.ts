@@ -66,12 +66,12 @@ function calculateIndentStyles(props: IBoxProps, scaleDenominator: number) {
     "padding-bottom":
       getAutoOrScaleIndent(props.pb, scaleDenominator) ||
       getAutoOrScaleIndent(props.py, scaleDenominator),
-    width: getAutoOrScaleIndent(props.w, scaleDenominator),
-    height: getAutoOrScaleIndent(props.h, scaleDenominator),
-    "min-width": getAutoOrScaleIndent(props.wMin, scaleDenominator),
-    "max-width": getAutoOrScaleIndent(props.wMax, scaleDenominator),
-    "min-height": getAutoOrScaleIndent(props.hMin, scaleDenominator),
-    "max-height": getAutoOrScaleIndent(props.hMax, scaleDenominator),
+    width: getSize(props.w),
+    height: getSize(props.h),
+    "min-width": getSize(props.wMin),
+    "max-width": getSize(props.wMax),
+    "min-height": getSize(props.hMin),
+    "max-height": getSize(props.hMax),
     "z-index": props.zIndex,
     flex: props.flex
   });
