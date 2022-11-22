@@ -20,3 +20,4 @@ export * from "./Drawer";
 export * from "./HorizontalList";
 export * from "./Spinner";
 export * from "./Modal";
+export * from "./Notice";
