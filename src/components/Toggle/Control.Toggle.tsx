@@ -26,7 +26,7 @@ const Control = forwardRef<HTMLInputElement, ToggleControlProps>(
       );
     }
 
-    const styles = useMemo(
+    const tokens = useMemo(
       () => ({
         m: {
           "--width": "40px",
@@ -43,10 +43,16 @@ const Control = forwardRef<HTMLInputElement, ToggleControlProps>(
       }),
       []
     );
+    const styles = useMemo(() => {
+      if (!context.size || !["m", "l"].includes(context.size)) {
+        return tokens.l;
+      }
+      return tokens[context.size];
+    }, [context.size]);
 
     return (
       <Wrapper
-        style={{ ...styles[context.size], ...style } as CSSProperties}
+        style={{ ...styles, ...style } as CSSProperties}
         data-testid="k-toggle"
         ref={ref}
       >

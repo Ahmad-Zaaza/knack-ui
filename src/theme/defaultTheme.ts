@@ -12,7 +12,7 @@ export interface Theme {
   colors: ThemeColors;
   borderRadiuses: ThemeBorderRadiuses;
   scaleDenominator: number;
-  mode?: "dark" | "light";
+  mode: "dark" | "light";
 }
 
 export const defaultTheme: Theme = {
@@ -20,7 +20,8 @@ export const defaultTheme: Theme = {
   colors: COLORS,
   elevations: ELEVATIONS,
   borderRadiuses: RADIUSES,
-  scaleDenominator: 4
+  scaleDenominator: 4,
+  mode: "light"
 };
 
 function validateColorValues(colors: Subset<ThemeColors>): ThemeColors {
@@ -48,10 +49,8 @@ type CreatedTheme = Pick<Theme, "colors" | "queries" | "scaleDenominator">;
 export const createTheme = (theme: Subset<CreatedTheme>): Theme => ({
   ...defaultTheme,
   ...theme,
-  // borderRadiuses: { ...defaultTheme.borderRadiuses, ...theme.borderRadiuses },
   colors: {
     ...validateColorValues(theme.colors as Subset<ThemeColors>)
   },
-  // elevations: { ...defaultTheme.elevations, ...theme.elevations },
   queries: { ...defaultTheme.queries, ...theme.queries } as ThemeMediaQueries
 });

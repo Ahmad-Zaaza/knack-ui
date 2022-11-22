@@ -38,4 +38,5 @@ export type { IBoxProps };
 const Wrapper = styled.div<{ styles: {}; elevationStyles: {} }>`
   ${(p) => p.styles && css(p.styles)};
   ${(p) => p.elevationStyles && css(p.elevationStyles)};
+  /* ${(p) => p.theme.elevations[p.theme.mode][1]} */
 `;

@@ -1,5 +1,6 @@
 import { createContext, useMemo } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
+import useKnackTheme from "../../utils/useTheme";
 import Control, { ToggleInput } from "./Control.Toggle";
 import Text from "./Text.Toggle";
 
@@ -25,13 +26,8 @@ export const ToggleContext = createContext<TToggleContext>({ size: "m" });
 type TToggle = React.FC<ToggleProps> & ParentComposition;
 
 const Toggle: TToggle = ({ size = "m", ...delegated }) => {
-  const theme = useTheme();
+  useKnackTheme();
 
-  if (!theme) {
-    throw new Error(
-      '<Toggle /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
-    );
-  }
   const value = useMemo(() => ({ size: size || "m" }), [size]);
   return (
     <ToggleContext.Provider value={value}>
