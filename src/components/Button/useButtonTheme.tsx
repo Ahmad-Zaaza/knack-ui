@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import { useMemo } from "react";
 import { useTheme } from "styled-components";
 
@@ -28,52 +29,52 @@ const useButtonTheme = () => {
           text: mainTheme.colors.onPrimary
         },
         info: {
-          theme: mainTheme.colors.blue[400],
+          theme: mainTheme.colors.themes.info.color,
           text: mainTheme.colors.white
         },
         danger: {
-          text: mainTheme.colors.white,
-          theme: mainTheme.colors.red[400]
+          theme: mainTheme.colors.themes.danger.color,
+          text: mainTheme.colors.white
         },
         success: {
-          text: mainTheme.colors.white,
-          theme: mainTheme.colors.green[400]
+          theme: mainTheme.colors.themes.success.color,
+          text: mainTheme.colors.white
         }
       },
       secondary: {
         default: {
           theme: mainTheme.colors.gray[200],
-          text: mainTheme.colors.gray[500]
+          text: mainTheme.colors.gray[800]
         },
         info: {
-          theme: mainTheme.colors.blue[200],
-          text: mainTheme.colors.blue[400]
+          theme: mainTheme.colors.themes.info.color,
+          text: darken(0.2, mainTheme.colors.themes.info.color)
         },
         danger: {
-          theme: mainTheme.colors.red[200],
-          text: mainTheme.colors.red[400]
+          theme: mainTheme.colors.themes.danger.color,
+          text: darken(0.2, mainTheme.colors.themes.danger.color)
         },
         success: {
-          theme: mainTheme.colors.green[200],
-          text: mainTheme.colors.green[400]
+          theme: mainTheme.colors.themes.success.color,
+          text: darken(0.2, mainTheme.colors.themes.success.color)
         }
       },
       tertiary: {
         default: {
           theme: mainTheme.colors.gray[200],
-          text: mainTheme.colors.gray[500]
+          text: mainTheme.colors.gray[800]
         },
         info: {
-          theme: mainTheme.colors.blue[200],
-          text: mainTheme.colors.blue[400]
+          theme: mainTheme.colors.themes.info.color,
+          text: darken(0.2, mainTheme.colors.themes.info.color)
         },
         danger: {
-          theme: mainTheme.colors.red[200],
-          text: mainTheme.colors.red[400]
+          theme: mainTheme.colors.themes.danger.color,
+          text: darken(0.2, mainTheme.colors.themes.danger.color)
         },
         success: {
-          theme: mainTheme.colors.green[200],
-          text: mainTheme.colors.green[400]
+          theme: mainTheme.colors.themes.success.color,
+          text: darken(0.2, mainTheme.colors.themes.success.color)
         }
       }
     }),

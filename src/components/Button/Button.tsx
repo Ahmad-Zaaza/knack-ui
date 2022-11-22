@@ -6,7 +6,7 @@ import {
   useMemo
 } from "react";
 import styled, { css } from "styled-components";
-import { transparentize, darken, lighten } from "polished";
+import { transparentize, darken } from "polished";
 
 import useButtonTheme from "./useButtonTheme";
 import Spinner from "../Spinner";
@@ -208,31 +208,30 @@ const PrimaryButton = styled(ButtonBase)`
 `;
 
 const SecondaryButton = styled(ButtonBase)`
-  background-color: ${(p) => transparentize(0.7, p.palette.theme)};
-  color: ${(p) => lighten(0.05, p.palette.text)};
-  border: 1px solid ${(p) => p.palette.theme};
+  background-color: ${(p) => transparentize(0.8, p.palette.theme)};
+  color: ${(p) => p.palette.text};
+  border: 1px solid ${(p) => transparentize(0.5, p.palette.theme)};
   ${(p) => p.theme.queries.hoverPointerDevices} {
     &:hover:not(:disabled) {
-      color: ${(p) => p.palette.text};
-      background-color: ${(p) => transparentize(0.6, p.palette.theme)};
+      background-color: ${(p) => transparentize(0.7, p.palette.theme)};
     }
   }
   &:active:not(:disabled) {
-    background-color: ${(p) => transparentize(0.5, p.palette.theme)};
+    background-color: ${(p) => transparentize(0.6, p.palette.theme)};
   }
 `;
 
 const TertiaryButton = styled(ButtonBase)`
   background-color: transparent;
   border: 1px solid transparent;
+  color: ${(p) => p.palette.text};
   ${(p) => p.theme.queries.hoverPointerDevices} {
     &:hover:not(:disabled) {
-      color: ${(p) => p.palette.text};
-      background-color: ${(p) => transparentize(0.6, p.palette.theme)};
+      background-color: ${(p) => transparentize(0.8, p.palette.theme)};
     }
   }
   &:active:not(:disabled) {
-    background-color: ${(p) => transparentize(0.5, p.palette.theme)};
+    background-color: ${(p) => transparentize(0.7, p.palette.theme)};
   }
   &:disabled {
     background-color: ${(p) => transparentize(0.5, p.palette.theme)};

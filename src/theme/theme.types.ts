@@ -4,15 +4,20 @@ export type ThemeColors = {
   text: string;
   onPrimary: string;
   onSecondary: string;
-  alert: string;
-  success: string;
-  danger: string;
   paper: string;
   white: string;
   gray: ColorPalletes;
   blue: ColorPalletes;
   red: ColorPalletes;
   green: ColorPalletes;
+  themes: {
+    [key in "alert" | "success" | "danger" | "info"]: {
+      color: string;
+      hue: string;
+      lightness: string;
+      saturation: string;
+    };
+  };
 };
 
 export type ColorPalletes = {

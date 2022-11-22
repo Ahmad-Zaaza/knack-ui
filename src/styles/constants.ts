@@ -10,9 +10,32 @@ export const COLORS: ThemeColors = {
   text: "hsl(222, 22%, 5%)",
   onPrimary: "hsl(0, 0%, 98%)",
   onSecondary: "hsl(0, 0%, 98%)",
-  alert: "hsl(30, 100%, 50%)",
-  success: "hsl(160, 100%, 40%)",
-  danger: "hsl(340, 95%, 60%)",
+  themes: {
+    alert: {
+      color: "hsl(30, 100%, 50%)",
+      hue: "30",
+      lightness: "100%",
+      saturation: "50%"
+    },
+    info: {
+      color: "hsl(205, 100%, 49%)",
+      hue: "205",
+      lightness: "100%",
+      saturation: "49%"
+    },
+    success: {
+      color: "hsl(160, 100%, 40%)",
+      hue: "160",
+      lightness: "100%",
+      saturation: "40%"
+    },
+    danger: {
+      color: "hsl(340, 95%, 60%)",
+      hue: "340",
+      lightness: "95%",
+      saturation: "60%"
+    }
+  },
   white: "hsl(0,100%,100%)",
   gray: {
     50: "hsl(228, 29%, 97%)",
