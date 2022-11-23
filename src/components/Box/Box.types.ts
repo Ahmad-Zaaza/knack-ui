@@ -1,5 +1,6 @@
 import { CSSProperties, ElementType } from "react";
 import { PolymorphicComponentProps } from "../../types/polymorphic";
+import { ThemeBorderRadiuses } from "../../theme/theme.types";
 
 export interface IBoxProps {
   /** Sets the `inline-block` property */
@@ -113,6 +114,11 @@ export interface IBoxProps {
   elevation?: number;
 
   /**
+   * CSS `border-radius` property, compatible with theme `borderRadiuses` prop
+   */
+  br?: keyof ThemeBorderRadiuses | number;
+
+  /**
    * If `true`, the background color will match the `paper` theme color. best practice is to dynamically change the `paper` theme color to match color scheme.
    *
    */
@@ -120,4 +126,4 @@ export interface IBoxProps {
 }
 
 export type BoxPolymorphicProps<C extends ElementType> =
-  PolymorphicComponentProps<C,IBoxProps>;
+  PolymorphicComponentProps<C, IBoxProps>;

@@ -103,58 +103,113 @@ export const QUERIES: ThemeMediaQueries = {
 
 export const ELEVATIONS: ThemeElevation = {
   light: {
-    0: { "box-shadow": "none" },
+    0: {},
 
     1: {
       "box-shadow": `0px 2px 1px -1px rgba(0, 0, 0, 0.2),
         0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)`
+    },
+    2: {
+      "box-shadow":
+        "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)"
+    },
+    3: {
+      "box-shadow":
+        "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)"
+    },
+    4: {
+      "box-shadow":
+        "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)"
+    },
+    5: {
+      "box-shadow":
+        "0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12)"
+    },
+    6: {
+      "box-shadow":
+        "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)"
+    },
+    7: {
+      "box-shadow":
+        "0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)"
+    },
+    8: {
+      "box-shadow":
+        "0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)"
+    },
+    9: {
+      "box-shadow":
+        "0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)"
+    },
+    10: {
+      "box-shadow":
+        "0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)"
     }
   },
   dark: {
-    0: {
-      "box-shadow": "none",
-      "background-image": `linear-gradient(
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0)
-      )`
-    },
+    0: {},
     1: {
       "box-shadow": `0px 2px 1px -1px rgba(0, 0, 0, 0.2),
         0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)`,
-      "background-image": `linear-gradient(
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.05)
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)
       )`
+    },
+    2: {
+      "box-shadow":
+        "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07))`
+    },
+    3: {
+      "box-shadow":
+        "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08))`
+    },
+    4: {
+      "box-shadow":
+        "0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09))`
+    },
+    5: {
+      "box-shadow":
+        "0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))`
+    },
+    6: {
+      "box-shadow":
+        "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11))`
+    },
+    7: {
+      "box-shadow":
+        "0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11))`
+    },
+    8: {
+      "box-shadow":
+        "0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12))`
+    },
+    9: {
+      "box-shadow":
+        "0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12))`
+    },
+    10: {
+      "box-shadow":
+        "0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)",
+      "background-image": `linear-gradient(rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.13))`
     }
   }
-  // small: `
-  //     0px 1px 1.3px hsla(var(--shadow-color) / 0.11),
-  //     0px 1.6px 2.1px -0.7px hsla(var(--shadow-color) / 0.17),
-  //     0px 3.2px 4.2px -1.3px hsl(var(--shadow-color) / 0.24);
-  //     `,
-  // medium: `
-  //       0px 1px 1.3px hsl(var(--shadow-color) / 0.12),
-  //       0px 3.4px 4.4px -0.4px hsl(var(--shadow-color) / 0.17),
-  //       0.1px 7.3px 9.5px -0.9px hsl(var(--shadow-color) / 0.22),
-  //       0.1px 16.1px 20.9px -1.3px hsl(var(--shadow-color) / 0.27)
-  //   `,
-  // large: `
-  //       0px 1px 1.3px hsl(var(--shadow-color) / 0.12),
-  //       0.1px 5.8px 7.5px -0.2px hsl(var(--shadow-color) / 0.15),
-  //       0.1px 10.5px 13.6px -0.4px hsl(var(--shadow-color) / 0.18),
-  //       0.1px 16.7px 21.7px -0.7px hsl(var(--shadow-color) / 0.21),
-  //       0.2px 26.1px 33.9px -0.9px hsl(var(--shadow-color) / 0.24),
-  //       0.4px 40.3px 52.3px -1.1px hsl(var(--shadow-color) / 0.27),
-  //       0.5px 61px 79.2px -1.3px hsl(var(--shadow-color) / 0.3)
-  //     `
 };
 
 export const RADIUSES = {
   // Use for boxes and placeholder addons
+  xsmall: "2px",
   small: "4px",
   // Use for inputs and widgets
   medium: "6px",
   // Use for modal Windows and popovers
   large: "12px",
+  xlarge: "16px",
   full: "50%"
 };

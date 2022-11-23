@@ -44,9 +44,11 @@ export type ColorPalletes = {
 };
 
 export type ThemeBorderRadiuses = {
+  xsmall: string;
   small: string;
   medium: string;
   large: string;
+  xlarge: string;
   full: string;
 };
 
@@ -66,4 +68,7 @@ export type ThemeElevation = {
     [key: number]: Record<string, string>;
   };
 };
-export type CreatedTheme = Pick<Theme, "colors" | "queries" | "scaleDenominator">;
+export type CreatedTheme = Pick<
+  Theme,
+  "colors" | "queries" | "scaleDenominator"
+>;

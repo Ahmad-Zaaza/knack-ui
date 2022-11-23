@@ -105,11 +105,24 @@ function useBoxProps({
   wMin,
   paper,
   h,
+  br,
   elevation = 0,
 
   ...otherProps
 }: IBoxProps) {
   const theme = useKnackTheme();
+
+  const borderRadiusStyles = useMemo(() => {
+    if (
+      typeof br === "string" &&
+      ["xsmall", "small", "medium", "large", "xlarge", "full"].includes(br)
+    ) {
+      return { "border-radius": theme.borderRadiuses[br] };
+    }
+    return {
+      "border-radius": getSize(br)
+    };
+  }, [br, theme]);
 
   const elevationStyles = useMemo(() => {
     let elevations = ELEVATIONS.light[elevation];
@@ -184,6 +197,10 @@ function useBoxProps({
       h
     ]
   );
-  return { indentStyles, otherProps, elevationStyles };
+  return {
+    indentStyles: { ...indentStyles, ...borderRadiusStyles },
+    otherProps,
+    elevationStyles
+  };
 }
 export default useBoxProps;

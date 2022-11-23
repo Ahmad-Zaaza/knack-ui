@@ -25,34 +25,35 @@ const Template: ComponentStory<typeof Box> = ({
     </ThemeProvider>
   );
 };
-const PolymorphicTemplate: ComponentStory<typeof Box> = ({
+const ElevationsTemplate: ComponentStory<typeof Box> = ({
   children: __,
   ...args
 }) => (
-  <ThemeProvider>
+  <ThemeProvider mode="light">
     <Typography style={{ marginBottom: "1rem" }} variant="h5">
       Box as Stack
     </Typography>
-    <Box mt={4} p={4} as={Stack} gap={4} {...args}>
-      <Box {...args}>
-        <div>Elevation 1 (Default)</div>
-      </Box>
-      <Box {...args}>
-        <div>Elevation 2 </div>
-      </Box>
-      <Box {...args}>
-        <div>Elevation 3 </div>
-      </Box>
-      <Box {...args}>
-        <div>Elevation 4 </div>
-      </Box>
-      <Box {...args}>
-        <div>Elevation 6 </div>
-      </Box>
+    <Box as={Stack} flexWrap="wrap" mt={4} p={4} gap={4} {...args}>
+      {Array.from(new Array(10).keys()).map((i) => (
+        <Stack
+          justifyContent="center"
+          alignItems="center"
+          h={125}
+          w={125}
+          p={4}
+          br={16}
+          paper
+          key={i}
+          elevation={i}
+          {...args}
+        >
+          <div>Elevation {i}</div>
+        </Stack>
+      ))}
     </Box>
   </ThemeProvider>
 );
 
 export const Default = Template.bind({});
 
-export const Polymorphic = PolymorphicTemplate.bind({});
+export const WithElevations = ElevationsTemplate.bind({});
