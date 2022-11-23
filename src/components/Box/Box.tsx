@@ -18,11 +18,12 @@ import useBoxProps from "./useBoxProps";
  *
  * - added dynamic spacing properties.
  */
-const Box = forwardRef(({ render, ...props }, ref) => {
+
+const Box = forwardRef(({ as, ...props }, ref) => {
   const { indentStyles, otherProps, elevationStyles } = useBoxProps(props);
   return (
     <Wrapper
-      as={render}
+      as={as}
       ref={ref}
       boxIndentStyles={indentStyles}
       elevationStyles={elevationStyles}

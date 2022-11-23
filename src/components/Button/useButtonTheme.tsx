@@ -1,14 +1,10 @@
 import { darken } from "polished";
 import { useMemo } from "react";
-import { useTheme } from "styled-components";
+import useKnackTheme from "../../utils/useTheme";
 
 const useButtonTheme = () => {
-  const mainTheme = useTheme();
-  if (!mainTheme) {
-    throw new Error(
-      '<Button /> must be inside <ThemeProvider/> with a value, import {ThemeProvider} from "knack-ui" '
-    );
-  }
+  const mainTheme = useKnackTheme();
+
   const buttonSizeStyles = {
     medium: {
       "--spacing": "8px",

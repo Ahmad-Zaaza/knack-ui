@@ -1,4 +1,5 @@
-import { CSSProperties } from "styled-components";
+import { CSSProperties, ElementType } from "react";
+import { PolymorphicComponentProps } from "../../types/polymorphic";
 
 export interface IBoxProps {
   /** Sets the `inline-block` property */
@@ -117,3 +118,6 @@ export interface IBoxProps {
    */
   paper?: boolean;
 }
+
+export type BoxPolymorphicProps<C extends ElementType> =
+  PolymorphicComponentProps<C,IBoxProps>;

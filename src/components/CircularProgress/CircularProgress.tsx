@@ -1,12 +1,12 @@
 import {
   ComponentPropsWithoutRef,
-  
   forwardRef,
   useEffect,
   useMemo,
   useState
 } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
+import useKnackTheme from "../../utils/useTheme";
 
 export interface ICircularProgressProps
   extends ComponentPropsWithoutRef<"svg"> {
@@ -60,12 +60,8 @@ const CircularProgress = forwardRef<SVGSVGElement, ICircularProgressProps>(
     },
     ref
   ) => {
-    const mainTheme = useTheme();
-    if (!mainTheme) {
-      throw new Error(
-        '<CircularProgress /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
-      );
-    }
+    const mainTheme = useKnackTheme();
+
     const [progress, setProgress] = useState(0);
     const viewBox = useMemo(() => `0 0 ${size} ${size}`, [size]);
     const radius = useMemo(() => (size - strokeWidth) / 2, [size, strokeWidth]);

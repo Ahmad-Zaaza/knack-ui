@@ -30,7 +30,6 @@ const Template: ComponentStory<typeof Chip> = ({
       }
     }
   });
-  console.log({ theme });
   return (
     <ThemeProvider theme={theme}>
       <Stack gap={4}>

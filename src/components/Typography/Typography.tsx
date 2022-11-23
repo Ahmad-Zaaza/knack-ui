@@ -1,20 +1,11 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { ComponentPropsWithoutRef, CSSProperties, forwardRef } from "react";
+import { CSSProperties, forwardRef } from "react";
 import styled, { css } from "styled-components";
+import { Box, IBoxProps } from "../Box";
 import useTypographyStyles from "./useTypographyStyles";
-// import * as Polymorphic from "../../types/helpers";
+import * as Polymorphic from "../../types/helpers";
 
-export const TagsMap = {
-  h1: "h1",
-  h2: "h2",
-  h3: "h3",
-  h4: "h4",
-  h5: "h5",
-  h6: "h6",
-  p: "p",
-  label: "label",
-  span: "span"
-} as const;
+
 
 type TypographyVariants =
   | "h1"
@@ -60,10 +51,10 @@ type TypographyProps = {
    */
   clamp?: number;
 
-  tag?: keyof typeof TagsMap;
+  // tag?: keyof typeof TagsMap;
 };
 
-type Props = TypographyProps & ComponentPropsWithoutRef<"p">;
+type Props = TypographyProps & IBoxProps;
 
 /**
  * @description
@@ -80,10 +71,10 @@ type Props = TypographyProps & ComponentPropsWithoutRef<"p">;
  *
  *
  */
-const Typography = forwardRef<HTMLParagraphElement, Props>(
+const Typography = forwardRef(
   (
     {
-      tag = "p",
+      as = "p",
       variant = "body1",
       children,
       fontWeight,
@@ -95,10 +86,9 @@ const Typography = forwardRef<HTMLParagraphElement, Props>(
     ref
   ) => {
     const styles = useTypographyStyles();
-
     return (
       <Text
-        as={tag}
+        forwardedAs={as}
         fw={fontWeight}
         ref={ref}
         color={color}
@@ -111,19 +101,19 @@ const Typography = forwardRef<HTMLParagraphElement, Props>(
       </Text>
     );
   }
-);
+) as Polymorphic.ForwardRefComponent<"p", Props>;
 
 export default Typography;
 
 export type { TypographyProps, TypographyFontWeight, TypographyVariants };
 
 Typography.defaultProps = {
-  tag: "p",
+  as: "p",
   variant: "body1",
   color: "currentColor"
 };
 
-const Text = styled.h1<{
+const Text = styled(Box)<{
   fw?: TypographyProps["fontWeight"];
   clamp?: TypographyProps["clamp"];
   textAlign?: TypographyProps["textAlign"];

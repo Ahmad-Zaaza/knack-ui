@@ -5,7 +5,8 @@ import {
   useMemo,
   useState
 } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
+import useKnackTheme from "../../utils/useTheme";
 
 export interface ILinearProgressProps extends ComponentPropsWithoutRef<"svg"> {
   /**
@@ -59,12 +60,8 @@ const LinearProgress = forwardRef<SVGSVGElement, ILinearProgressProps>(
     },
     ref
   ) => {
-    const mainTheme = useTheme();
-    if (!mainTheme) {
-      throw new Error(
-        '<LinearProgress /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
-      );
-    }
+    const mainTheme = useKnackTheme();
+  
     const [progress, setProgress] = useState(0);
 
     // clipping the track

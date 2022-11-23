@@ -1,13 +1,9 @@
 import { useMemo } from "react";
-import { useTheme } from "styled-components";
+import useKnackTheme from "../../utils/useTheme";
 
 const useChipTheme = () => {
-  const mainTheme = useTheme();
-  if (!mainTheme) {
-    throw new Error(
-      '<Chip /> must be inside <ThemeProvider/> with a value, import {ThemeProvider} from "knack-ui" '
-    );
-  }
+  const mainTheme = useKnackTheme();
+
   const chipSizeStyles = {
     small: {
       "--spacing": "8px",

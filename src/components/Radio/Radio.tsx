@@ -1,5 +1,6 @@
 import { createContext, useMemo } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
+import useKnackTheme from "../../utils/useTheme";
 import { Box, IBoxProps } from "../Box";
 import Control, { RadioInput } from "./Control.Radio";
 import Text from "./Text.Radio";
@@ -35,19 +36,12 @@ type TRadio = React.FC<RadioProps & IBoxProps> & ParentComposition;
  * - change checkmark implementation.
  */
 const Radio: TRadio = ({ size = "m", ...delegated }) => {
-  const theme = useTheme();
-
-  if (!theme) {
-    throw new Error(
-      '<Radio /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
-    );
-  }
+  useKnackTheme();
 
   const contextValue = useMemo(() => ({ size: size || "m" }), [size]);
   return (
     <RadioContext.Provider value={contextValue}>
-      {/* @ts-ignore */}
-      <Wrapper render="label" {...delegated} />
+      <Wrapper forwardedAs="label" {...delegated} />
     </RadioContext.Provider>
   );
 };
