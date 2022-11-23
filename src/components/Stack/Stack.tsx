@@ -2,7 +2,7 @@ import { forwardRef, CSSProperties } from "react";
 import styled, { css } from "styled-components";
 
 import * as Polymorphic from "../../types/helpers";
-import { IBoxProps } from "../Box";
+import { Box, IBoxProps } from "../Box";
 import useStackProps from "./useStackProps";
 
 /**
@@ -44,12 +44,15 @@ interface StackProps extends IBoxProps {
 
 const Stack = forwardRef((props, ref) => {
   const { indentStyles, otherProps } = useStackProps(props);
-  return <Flex ref={ref} styles={indentStyles} {...otherProps} />;
+  return <Flex ref={ref} stackIndentStyles={indentStyles} {...otherProps} />;
 }) as Polymorphic.ForwardRefComponent<"div", StackProps>;
 
 export default Stack;
 export type { StackProps };
 
-const Flex = styled.div<{ styles: {} }>`
-  ${(p) => p.styles && css(p.styles)}
+const Flex = styled(Box)<{ stackIndentStyles: {} }>`
+  ${(p) => p.stackIndentStyles && css(p.stackIndentStyles)}
 `;
+// const Flex = styled.div<{ styles: {} }>`
+//   ${(p) => p.styles && css(p.styles)}
+// `;

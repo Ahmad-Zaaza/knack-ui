@@ -1,20 +1,7 @@
 import { useMemo } from "react";
-import { useTheme } from "styled-components";
 import { removeUndefinedKeys } from "../../utils/helpers";
-import useBoxProps from "../Box/useBoxProps";
+import useKnackTheme from "../../utils/useTheme";
 import { StackProps } from "./Stack";
-
-// function getSize(size: string | number | undefined) {
-//   if (typeof size !== "number") {
-//     return size;
-//   }
-//   if (size < 1) {
-//     return `${100 * size}%`;
-//   }
-//   if (size >= 1) {
-//     return `${size}px`;
-//   }
-// }
 
 export const getAutoOrScaleIndent = (
   indent: number | string | undefined,
@@ -52,14 +39,8 @@ function useStackProps({
   flexWrap,
   ...otherProps
 }: StackProps) {
-  const theme = useTheme();
-  const { indentStyles: boxIndentStyles, otherProps: boxProps } =
-    useBoxProps(otherProps);
-  if (!theme) {
-    throw new Error(
-      '<Stack /> must be inside <ThemeProvider /> with a value, import {ThemeProvider} from "knack-ui" '
-    );
-  }
+  const theme = useKnackTheme();
+
   const indentStyles = useMemo(
     () =>
       calculateIndentStyles(
@@ -70,8 +51,8 @@ function useStackProps({
   );
 
   return {
-    indentStyles: { ...indentStyles, ...boxIndentStyles },
-    otherProps: { ...otherProps, ...boxProps }
+    indentStyles: { ...indentStyles },
+    otherProps: { ...otherProps }
   };
 }
 export default useStackProps;

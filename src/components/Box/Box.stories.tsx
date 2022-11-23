@@ -33,7 +33,7 @@ const PolymorphicTemplate: ComponentStory<typeof Box> = ({
     <Typography style={{ marginBottom: "1rem" }} variant="h5">
       Box as Stack
     </Typography>
-    <Box render={Stack} gap={4} {...args}>
+    <Box mt={4} p={4} render={Stack}   gap={4} {...args}>
       <Box {...args}>
         <div>Elevation 1 (Default)</div>
       </Box>

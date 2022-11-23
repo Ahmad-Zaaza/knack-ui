@@ -184,7 +184,6 @@ function useBoxProps({
       h
     ]
   );
-
   return { indentStyles, otherProps, elevationStyles };
 }
 export default useBoxProps;

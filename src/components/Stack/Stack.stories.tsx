@@ -1,5 +1,4 @@
 import { Meta, Story } from "@storybook/react";
-import styled from "styled-components";
 import ThemeProvider from "../../theme/ThemeProvider";
 
 import Stack, { StackProps } from "./Stack";
@@ -17,7 +16,14 @@ const Template: Story<StackProps & { numberOfChildren: number }> = ({
   ...args
 }) => (
   <ThemeProvider>
-    <Flex flexWrap="wrap" gap={5} {...args}>
+    <Stack
+      mt={2}
+      justifyContent="space-around"
+      elevation={1}
+      p={4}
+      flexWrap="wrap"
+      {...args}
+    >
       {[...Array(numberOfChildren).keys()].map((n) => (
         <div
           style={{
@@ -32,16 +38,12 @@ const Template: Story<StackProps & { numberOfChildren: number }> = ({
           {n + 1}
         </div>
       ))}
-    </Flex>
+    </Stack>
   </ThemeProvider>
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  direction: "column",
-  gap: 2
+  direction: "row",
+  gap: 16
 };
-
-const Flex = styled(Stack)`
-  /* flex-wrap: wrap; */
-`;
