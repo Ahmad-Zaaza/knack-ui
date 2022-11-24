@@ -5,7 +5,6 @@ import {
   CSSProperties
 } from "react";
 import styled, { css, useTheme } from "styled-components";
-import { COLORS } from "../../styles/constants";
 
 export interface ITextareaProps extends ComponentPropsWithoutRef<"textarea"> {
   /**
@@ -129,7 +128,7 @@ const Input = styled.textarea<{
   position: relative;
   padding: 1px;
   border-radius: 6px;
-  border: 1px solid ${COLORS.gray["200"]};
+  border: 1px solid ${(p) => p.theme.colors.gray["200"]};
   outline: none;
   line-height: 1.3;
   --focus-color: 202 100% 58%;

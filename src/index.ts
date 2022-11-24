@@ -1,3 +1,4 @@
 export * from "./components";
 export { default as ThemeProvider } from "./theme/ThemeProvider";
-export { createTheme, defaultTheme } from "./theme/defaultTheme";
+export { defaultTheme } from "./theme/defaultTheme";
+export { createTheme } from "./theme/utils";

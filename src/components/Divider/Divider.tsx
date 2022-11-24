@@ -19,12 +19,8 @@ const Wrapper = styled.span<{
   --bg-size: 5px 1px;
 
   display: block;
-  ${(p) =>
-    p.orientation === "horizontal" &&
-    css`
-      width: 100%;
-      height: 1px;
-    `};
+  width: 100%;
+  height: 1px;
   ${(p) =>
     p.orientation === "vertical" &&
     css`

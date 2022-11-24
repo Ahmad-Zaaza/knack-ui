@@ -6,7 +6,6 @@ import {
   useMemo
 } from "react";
 import styled, { css } from "styled-components";
-import { COLORS } from "../../styles/constants";
 import useKnackTheme from "../../utils/useTheme";
 
 interface IInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
@@ -227,7 +226,7 @@ const Wrapper = styled.div<{
   position: relative;
   padding: 1px;
   border-radius: 6px;
-  border: 1px solid ${COLORS.gray["200"]};
+  border: 1px solid ${(p) => p.theme.colors.gray["200"]};
 
   --focus-color: 202 100% 58%;
   ${(p) =>

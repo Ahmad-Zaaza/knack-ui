@@ -1,8 +1,11 @@
-import { ELEVATIONS } from "../styles/constants";
-
 export interface Theme {
-  queries: ThemeMediaQueries;
-  elevations: typeof ELEVATIONS;
+  colors: ThemeColors;
+  borderRadiuses: ThemeBorderRadiuses;
+  scaleDenominator: number;
+}
+export interface KnackTheme {
+  queries: KnackThemeMediaQueries;
+  elevations: ThemeElevation;
   colors: ThemeColors;
   borderRadiuses: ThemeBorderRadiuses;
   scaleDenominator: number;
@@ -54,10 +57,15 @@ export type ThemeBorderRadiuses = {
 
 export type SemanticThemes = "info" | "success" | "danger" | "warning";
 
-export type ThemeMediaQueries = {
+export type KnackThemeMediaQueries = MediaQueries & AdvancedMediaQueries;
+
+export type MediaQueries = {
   tabletAndUp: string;
   laptopAndUp: string;
   desktopAndUp: string;
+};
+
+export type AdvancedMediaQueries = {
   precisePointerDevices: string;
   hoverSupported: string;
   hoverPointerDevices: () => string;
@@ -68,7 +76,3 @@ export type ThemeElevation = {
     [key: number]: Record<string, string>;
   };
 };
-export type CreatedTheme = Pick<
-  Theme,
-  "colors" | "queries" | "scaleDenominator"
->;

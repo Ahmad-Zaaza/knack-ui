@@ -3,7 +3,7 @@ import { Stack } from "../Stack";
 import ThemeProvider from "../../theme/ThemeProvider";
 
 import Chip from "./Chip";
-import { createTheme } from "../../theme/defaultTheme";
+import { createTheme } from "../../theme/utils";
 
 export default {
   title: "Components/Chip",

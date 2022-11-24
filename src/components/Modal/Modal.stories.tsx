@@ -5,7 +5,7 @@ import { Stack } from "../Stack";
 import { Button } from "../Button";
 import { Modal } from ".";
 import ThemeProvider from "../../theme/ThemeProvider";
-import { BREAKPOINTS } from "../../styles/constants";
+import { BREAKPOINTS } from "../../theme/builtInTokens";
 
 export default {
   title: "Components/Modal",

@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { ELEVATIONS } from "../../styles/constants";
 import { removeUndefinedKeys } from "../../utils/helpers";
 import useKnackTheme from "../../utils/useTheme";
 import { IBoxProps } from "./Box.types";
@@ -125,9 +124,9 @@ function useBoxProps({
   }, [br, theme]);
 
   const elevationStyles = useMemo(() => {
-    let elevations = ELEVATIONS.light[elevation];
+    let elevations = theme.elevations.light[elevation];
     if (theme.mode === "dark") {
-      elevations = ELEVATIONS.dark[elevation];
+      elevations = theme.elevations.dark[elevation];
     }
     return {
       ...(paper && { "background-color": theme.colors.paper }),

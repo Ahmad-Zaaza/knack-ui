@@ -1,19 +1,19 @@
 import { ThemeProvider as StyledProvider } from "styled-components";
-import { useEffect } from "react";
-import { defaultTheme } from "./defaultTheme";
+import { useEffect, useMemo } from "react";
 import GlobalStyles from "./globalStyles";
 import { useDarkMode } from "../utils/useDarkMode";
-import { Theme } from "./theme.types";
+import { KnackTheme } from "./theme.types";
+import { builtInTheme } from "./builtInTokens";
 
 interface ThemeProviderProps {
-  theme?: Theme;
+  theme?: KnackTheme;
   mode?: "dark" | "light" | "auto";
 }
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   mode = "light",
-  theme = defaultTheme
+  theme = builtInTheme
 }) => {
   const themeMode = useDarkMode(mode);
   useEffect(() => {
@@ -23,12 +23,19 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
     el.async = true;
     document.head.appendChild(el);
   }, []);
+
+  const knackTheme: KnackTheme = useMemo(
+    () => ({
+      ...theme,
+      mode: themeMode
+    }),
+    [theme, themeMode]
+  );
+
   return (
     <>
       <GlobalStyles />
-      <StyledProvider theme={{ ...theme, mode: themeMode }}>
-        {children}
-      </StyledProvider>
+      <StyledProvider theme={knackTheme}>{children}</StyledProvider>
     </>
   );
 };
