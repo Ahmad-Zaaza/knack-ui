@@ -18,11 +18,11 @@ const Template: ComponentStory<typeof Box> = ({
 }) => {
   const customTheme = createTheme({
     colors: { paper: "hsl(160,13%,15%)" },
-    borderRadiuses: { large: "2px" }
+    borderRadiuses: { large: "16px" }
   });
   return (
     <ThemeProvider theme={customTheme} mode="auto">
-      <Box elevation={1} br='medium' p={4} paper {...args}>
+      <Box elevation={1} br='large' p={4} paper {...args}>
         <div>Hey ma, I am dynamic! </div>
       </Box>
     </ThemeProvider>

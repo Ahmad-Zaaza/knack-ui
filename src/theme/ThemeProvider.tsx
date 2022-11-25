@@ -31,7 +31,6 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
     }),
     [theme, themeMode]
   );
-
   return (
     <>
       <GlobalStyles />
