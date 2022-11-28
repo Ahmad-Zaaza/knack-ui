@@ -1,36 +1,38 @@
 import { ThemeProvider as StyledProvider } from "styled-components";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import GlobalStyles from "./globalStyles";
-import { useDarkMode } from "../utils/useDarkMode";
 import { KnackTheme } from "./theme.types";
-import { builtInTheme } from "./builtInTokens";
+import { lightModeTheme, darkModeTheme } from "./builtInTokens";
+import { useDarkMode } from "../utils/useDarkMode";
 
-interface ThemeProviderProps {
-  theme?: KnackTheme;
-  mode?: "dark" | "light" | "auto";
+interface WithTheme {
+  theme: KnackTheme;
+  mode?: never;
 }
+interface WithoutTheme {
+  theme?: never;
+  mode: "light" | "dark" | "auto";
+}
+
+export type ThemeProviderProps = WithTheme | WithoutTheme;
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
-  mode = "light",
-  theme = builtInTheme
+  mode,
+  theme
 }) => {
   const themeMode = useDarkMode(mode);
-  useEffect(() => {
-    const el = document.createElement("script");
-    el.src =
-      "https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.inert";
-    el.async = true;
-    document.head.appendChild(el);
-  }, []);
 
-  const knackTheme: KnackTheme = useMemo(
-    () => ({
-      ...theme,
-      mode: themeMode
-    }),
-    [theme, themeMode]
-  );
+  const knackTheme: KnackTheme = useMemo(() => {
+    if (mode) {
+      if (themeMode === "dark") {
+        return darkModeTheme;
+      }
+      return lightModeTheme;
+    }
+    return theme;
+  }, [theme, themeMode, mode]);
+
   return (
     <>
       <GlobalStyles />

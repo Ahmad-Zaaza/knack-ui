@@ -1,8 +1,10 @@
 import { removeUndefinedKeys, Subset } from "../utils/helpers";
 import {
   builtInBorderRadiuses,
-  builtInColors,
-  builtInTheme
+  lightThemeColors,
+  darkThemeColors,
+  lightModeTheme,
+  darkModeTheme
 } from "./builtInTokens";
 import {
   KnackTheme,
@@ -11,10 +13,13 @@ import {
   ThemeColors
 } from "./theme.types";
 
-function validateColorValues(colors?: Subset<ThemeColors>): ThemeColors {
+function validateColorValues(
+  colors: Subset<ThemeColors>,
+  builtInColors: ThemeColors
+): ThemeColors {
   try {
     if (!colors) {
-      return builtInColors as ThemeColors;
+      return builtInColors;
     }
     return Object.entries(colors).reduce((acc, [key, value]) => {
       if (!value) {
@@ -34,7 +39,7 @@ function validateColorValues(colors?: Subset<ThemeColors>): ThemeColors {
       return acc;
     }, builtInColors);
   } catch (error) {
-    return builtInColors as ThemeColors;
+    return builtInColors;
   }
 }
 function validateBorderRadiuses(
@@ -59,8 +64,20 @@ function validateBorderRadiuses(
   }
 }
 
-export const createTheme = (theme: Subset<Theme>): KnackTheme => {
+export const createTheme = (
+  mode: "light" | "dark",
+  theme: Subset<Theme>
+): KnackTheme => {
   const cleanTheme = removeUndefinedKeys(theme) as Theme;
+  let builtInTheme: KnackTheme;
+  let builtInColors: ThemeColors;
+  if (mode === "dark") {
+    builtInTheme = darkModeTheme;
+    builtInColors = darkThemeColors;
+  } else {
+    builtInTheme = lightModeTheme;
+    builtInColors = lightThemeColors;
+  }
   return {
     ...builtInTheme,
     scaleDenominator:
@@ -68,7 +85,10 @@ export const createTheme = (theme: Subset<Theme>): KnackTheme => {
 
     colors: {
       ...builtInColors,
-      ...validateColorValues(cleanTheme.colors as Subset<ThemeColors>)
+      ...validateColorValues(
+        cleanTheme.colors as Subset<ThemeColors>,
+        builtInColors
+      )
     },
     borderRadiuses: {
       ...builtInBorderRadiuses,

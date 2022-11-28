@@ -124,10 +124,8 @@ function useBoxProps({
   }, [br, theme]);
 
   const elevationStyles = useMemo(() => {
-    let elevations = theme.elevations.light[elevation];
-    if (theme.mode === "dark") {
-      elevations = theme.elevations.dark[elevation];
-    }
+    const elevations = theme.elevations[elevation];
+
     return {
       ...(paper && { "background-color": theme.colors.paper }),
       ...elevations

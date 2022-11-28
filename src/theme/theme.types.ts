@@ -9,7 +9,6 @@ export interface KnackTheme {
   colors: ThemeColors;
   borderRadiuses: ThemeBorderRadiuses;
   scaleDenominator: number;
-  mode: "dark" | "light";
 }
 
 export type ThemeColors = {
@@ -72,7 +71,5 @@ export type AdvancedMediaQueries = {
 };
 
 export type ThemeElevation = {
-  [K in "light" | "dark"]: {
-    [key: number]: Record<string, string>;
-  };
+  [key: number]: Record<string, string>;
 };

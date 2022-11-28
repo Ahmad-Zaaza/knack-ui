@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 
-export function useDarkMode(prefered: "light" | "dark" | "auto") {
+export function useDarkMode(prefered?: "light" | "dark" | "auto") {
+  if (!prefered) return undefined;
   const [mode, setMode] = useState(() => {
     if (prefered === "auto") {
       if (typeof window !== "undefined") {

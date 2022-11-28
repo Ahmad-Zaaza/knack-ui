@@ -13,7 +13,7 @@ export default {
 } as ComponentMeta<typeof Typography>;
 
 const Template: ComponentStory<typeof Typography> = ({ ...args }) => (
-  <ThemeProvider>
+  <ThemeProvider mode="auto">
     <Stack direction="column" gap={2}>
       <Typography mb={4} variant="h1" as="p">
         This is an h1 variant
