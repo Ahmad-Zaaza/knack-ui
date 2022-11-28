@@ -1,7 +1,7 @@
 import { Story, ComponentMeta } from "@storybook/react";
-// import { Router } from "react-router-dom";
-// import { createMemoryHistory } from "history";
+import { createMemoryHistory } from "history";
 import { AiFillEdit } from "react-icons/ai";
+import { Link, Router } from "react-router-dom";
 import Button, { ButtonProps } from "./Button";
 import ThemeProvider from "../../theme/ThemeProvider";
 
@@ -23,21 +23,19 @@ export default {
     loaderType: { options: ["Dual Ring"], control: "radio" }
   }
 } as ComponentMeta<typeof Button>;
-// const history = createMemoryHistory();
+const history = createMemoryHistory();
 const Template: Story<ButtonProps> = ({ ...args }) => (
-  <ThemeProvider>
-    <Button {...args}>
-      Hello
-    </Button>
+  <ThemeProvider mode="light">
+    <Button {...args}>Hello</Button>
   </ThemeProvider>
 );
-// const RouterTemplate: Story<ButtonProps> = (args) => (
-//   <ThemeProvider>
-//     <Router navigator={history} location={history.location}>
-//       <Button {...args} />
-//     </Router>
-//   </ThemeProvider>
-// );
+const RouterTemplate: Story<ButtonProps> = (args) => (
+  <ThemeProvider mode="light">
+    <Router navigator={history} location={history.location}>
+      <Button as={Link} to="/" {...args} />
+    </Router>
+  </ThemeProvider>
+);
 
 export const Primary = Template.bind({});
 
@@ -45,4 +43,8 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   variant: "primary",
   startIcon: <AiFillEdit />
+};
+export const AsLink = RouterTemplate.bind({});
+Secondary.args = {
+  variant: "primary"
 };

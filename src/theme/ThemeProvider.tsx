@@ -1,7 +1,7 @@
 import { ThemeProvider as StyledProvider } from "styled-components";
 import { useMemo } from "react";
 import GlobalStyles from "./globalStyles";
-import { KnackTheme } from "./theme.types";
+import { IntegratedTheme, KnackTheme } from "./theme.types";
 import { lightModeTheme, darkModeTheme } from "./builtInTokens";
 import { useDarkMode } from "../utils/useDarkMode";
 
@@ -23,14 +23,14 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
 }) => {
   const themeMode = useDarkMode(mode);
 
-  const knackTheme: KnackTheme = useMemo(() => {
+  const knackTheme: IntegratedTheme = useMemo(() => {
     if (mode) {
       if (themeMode === "dark") {
-        return darkModeTheme;
+        return { knackTheme: darkModeTheme };
       }
-      return lightModeTheme;
+      return { knackTheme: lightModeTheme };
     }
-    return theme;
+    return { knackTheme: theme };
   }, [theme, themeMode, mode]);
 
   return (

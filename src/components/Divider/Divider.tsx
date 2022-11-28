@@ -15,7 +15,7 @@ const Wrapper = styled.span<{
   variant: IDividerProps["variant"];
 }>`
   --direction: 90deg;
-  --color: ${(p) => p.theme.colors.gray[200]};
+  --color: ${(p) => p.theme.knackTheme.colors.gray[200]};
   --bg-size: 5px 1px;
 
   display: block;

@@ -7,6 +7,7 @@ import {
 } from "react";
 import styled, { css } from "styled-components";
 import { transparentize, darken } from "polished";
+import * as Polymorphic from "../../types/helpers";
 
 import useButtonTheme from "./useButtonTheme";
 import Spinner from "../Spinner";
@@ -82,7 +83,7 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
  * - fixed: loading state causing button to shrink.
  *
  */
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef(
   (
     {
       size = "medium",
@@ -98,6 +99,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       style,
       children,
       disabled,
+      as,
       ...delegated
     },
     ref
@@ -127,6 +129,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }, [theme, buttonTheme, variant]);
     return (
       <Component
+        as={as}
         palette={pallete}
         ref={ref}
         shape={shape}
@@ -154,7 +157,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       </Component>
     );
   }
-);
+) as Polymorphic.ForwardRefComponent<"button", ButtonProps>;
 export default Button;
 
 export type { ButtonProps, ButtonVariants };

@@ -94,7 +94,7 @@ const Check = styled.span<{ indeterminate?: boolean }>`
 
   &:before {
     border-radius: 4px;
-    border: 1px solid ${(p) => p.theme.colors.gray[200]};
+    border: 1px solid ${(p) => p.theme.knackTheme.colors.gray[200]};
     position: absolute;
     content: " ";
     inset: 0;
