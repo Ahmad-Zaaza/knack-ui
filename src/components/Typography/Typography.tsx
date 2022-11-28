@@ -5,8 +5,6 @@ import { Box, IBoxProps } from "../Box";
 import useTypographyStyles from "./useTypographyStyles";
 import * as Polymorphic from "../../types/helpers";
 
-
-
 type TypographyVariants =
   | "h1"
   | "h2"
@@ -65,10 +63,6 @@ type Props = TypographyProps & IBoxProps;
  * - `fontWeight` now only accepts numbers as strings.
  *
  * - added a new `body3` variant to have more versatility.
- *
- * - replace `as` prop with `tag`.
- *
- *
  *
  */
 const Typography = forwardRef(

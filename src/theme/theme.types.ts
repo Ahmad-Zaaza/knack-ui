@@ -4,7 +4,7 @@ export interface Theme {
   scaleDenominator: number;
 }
 export interface KnackTheme {
-  queries: KnackThemeMediaQueries;
+  mediaQueries: KnackThemeMediaQueries;
   elevations: ThemeElevation;
   colors: ThemeColors;
   borderRadiuses: ThemeBorderRadiuses;

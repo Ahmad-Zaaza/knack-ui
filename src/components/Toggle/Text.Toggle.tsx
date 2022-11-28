@@ -13,7 +13,7 @@ const Text: React.FC = (props) => {
   return (
     <Typography
       variant={context.size === "l" ? "body2" : "body3"}
-      tag="span"
+      as="span"
       {...props}
     />
   );
