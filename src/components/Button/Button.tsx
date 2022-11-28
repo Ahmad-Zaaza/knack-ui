@@ -168,7 +168,7 @@ const ButtonBase = styled.button<{
   fullWidth?: boolean;
   shape?: "rounded" | "square" | "default";
 }>`
-  border-radius: ${(p) => p.theme.borderRadiuses.medium};
+  border-radius: ${(p) => p.theme.knackTheme.borderRadiuses.medium};
   position: relative;
   display: inline-block;
   font-size: var(--font-size);
@@ -195,7 +195,7 @@ const ButtonBase = styled.button<{
 const PrimaryButton = styled(ButtonBase)`
   background-color: ${(p) => p.palette.theme};
   border: 1px solid ${(p) => p.palette.theme};
-  ${(p) => p.theme.mediaQueries.hoverPointerDevices} {
+  ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
       background-color: ${(p) => darken(0.05, p.palette.theme)};
       border-color: ${(p) => darken(0.05, p.palette.theme)};
@@ -211,7 +211,7 @@ const SecondaryButton = styled(ButtonBase)`
   background-color: ${(p) => transparentize(0.8, p.palette.theme)};
   color: ${(p) => p.palette.text};
   border: 1px solid ${(p) => transparentize(0.5, p.palette.theme)};
-  ${(p) => p.theme.mediaQueries.hoverPointerDevices} {
+  ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
       background-color: ${(p) => transparentize(0.7, p.palette.theme)};
     }
@@ -225,7 +225,7 @@ const TertiaryButton = styled(ButtonBase)`
   background-color: transparent;
   border: 1px solid transparent;
   color: ${(p) => p.palette.text};
-  ${(p) => p.theme.mediaQueries.hoverPointerDevices} {
+  ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
       background-color: ${(p) => transparentize(0.8, p.palette.theme)};
     }

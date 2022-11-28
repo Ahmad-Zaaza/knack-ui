@@ -11,6 +11,10 @@ export interface KnackTheme {
   scaleDenominator: number;
 }
 
+export interface IntegratedTheme {
+  knackTheme: KnackTheme;
+}
+
 export type ThemeColors = {
   primary: string;
   secondary: string;

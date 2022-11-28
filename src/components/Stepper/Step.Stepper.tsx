@@ -77,7 +77,7 @@ const Step = forwardRef<HTMLDivElement, IStepProps>(
           textAlign="center"
           onClick={onChangeStep}
           variant="subtitle2"
-          tag="p"
+          as="p"
         >
           {children}
         </Typography>
@@ -100,7 +100,7 @@ const Wrapper = styled("step" as IntrinsicElementsKeys)`
     &:after {
       position: absolute;
       content: " ";
-      border-top: 2px dashed ${(p) => p.theme.colors.gray[200]};
+      border-top: 2px dashed ${(p) => p.theme.knackTheme.colors.gray[200]};
       inset-inline-start: calc(
         50% + var(--size) + (var(--stepper-spacing) / 2)
       );
@@ -110,7 +110,7 @@ const Wrapper = styled("step" as IntrinsicElementsKeys)`
     }
     &:is([data-completed="true"])::after {
       border-top-style: solid;
-      border-color: ${(p) => p.theme.colors.green[400]};
+      border-color: ${(p) => p.theme.knackTheme.colors.green[400]};
     }
   }
 

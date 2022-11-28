@@ -1,15 +1,13 @@
-// import { useTheme as useStyledTheme } from "styled-components";
-import { useContext } from "react";
-import { ThemeContext } from "styled-components";
+import { useTheme } from "styled-components";
 
 const useKnackTheme = () => {
-  const mainTheme = useContext(ThemeContext);
+  const mainTheme = useTheme();
   if (!mainTheme) {
     throw new Error(
       'Please wrap your component with <ThemeProvider /> that is imported from "knack-ui"'
     );
   }
-  return mainTheme;
+  return mainTheme.knackTheme;
 };
 
 export default useKnackTheme;

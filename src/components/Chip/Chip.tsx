@@ -129,10 +129,10 @@ const ChipBase = styled.div<{
   font-weight: 500;
   border-radius: ${(p) =>
     p.corners === "rounded"
-      ? p.theme.borderRadiuses.large
+      ? p.theme.knackTheme.borderRadiuses.large
       : p.corners === "square"
       ? 0
-      : p.theme.borderRadiuses.medium};
+      : p.theme.knackTheme.borderRadiuses.medium};
   font-size: var(--font-size);
   height: var(--height);
 `;

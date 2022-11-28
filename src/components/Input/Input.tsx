@@ -226,7 +226,7 @@ const Wrapper = styled.div<{
   position: relative;
   padding: 1px;
   border-radius: 6px;
-  border: 1px solid ${(p) => p.theme.colors.gray["200"]};
+  border: 1px solid ${(p) => p.theme.knackTheme.colors.gray["200"]};
 
   --focus-color: 202 100% 58%;
   ${(p) =>
@@ -240,13 +240,13 @@ const Wrapper = styled.div<{
   ${(p) =>
     p.readOnly &&
     css`
-      background-color: ${p.theme.colors.gray["50"]};
+      background-color: ${p.theme.knackTheme.colors.gray["50"]};
     `}
   ${(p) =>
     p.error &&
     css`
       --focus-color: 347deg 100% 41%;
-      border-color: ${p.theme.colors.red["500"]};
+      border-color: ${p.theme.knackTheme.colors.red["500"]};
       &:focus-within {
         box-shadow: 0 0 0 3px hsla(var(--focus-color) / 0.3);
       }
@@ -267,7 +267,7 @@ const Adornment = styled.span`
 `;
 
 const ErrorMessage = styled.span`
-  color: ${(p) => p.theme.colors.red["500"]};
+  color: ${(p) => p.theme.knackTheme.colors.red["500"]};
   font-size: ${13 / 16}rem;
   margin-top: 8px;
   display: block;

@@ -53,7 +53,7 @@ const Wrapper = styled.div`
     box-sizing: content-box;
     border: 2px solid white;
     flex-shrink: 0;
-    background-color: ${(p) => p.theme.colors.primary};
-    color: ${(p) => p.theme.colors.onPrimary};
+    background-color: ${(p) => p.theme.knackTheme.colors.primary};
+    color: ${(p) => p.theme.knackTheme.colors.onPrimary};
   }
 `;

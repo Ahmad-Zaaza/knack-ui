@@ -90,7 +90,7 @@ const Check = styled.span`
 
   &:before {
     border-radius: 50%;
-    border: 1px solid ${(p) => p.theme.colors.gray[200]};
+    border: 1px solid ${(p) => p.theme.knackTheme.colors.gray[200]};
     position: absolute;
     content: " ";
     inset: 0;

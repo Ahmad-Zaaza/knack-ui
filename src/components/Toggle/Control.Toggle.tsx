@@ -98,13 +98,13 @@ const Span = styled.span`
   inset: 0;
   display: inline-block;
   transition: color 200ms ease-out, background 200ms ease-out;
-  background-color: ${(p) => p.theme.colors.gray[200]};
+  background-color: ${(p) => p.theme.knackTheme.colors.gray[200]};
   z-index: -1;
   ${ToggleInput}:checked:not(:disabled) + & {
-    background-color: ${(p) => p.theme.colors.green[400]};
+    background-color: ${(p) => p.theme.knackTheme.colors.green[400]};
   }
   ${ToggleInput}:disabled + & {
-    background-color: ${(p) => p.theme.colors.gray[200]};
+    background-color: ${(p) => p.theme.knackTheme.colors.gray[200]};
   }
 
   &::before {

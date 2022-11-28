@@ -28,5 +28,5 @@ const Wrapper = styled.svg`
   margin-inline-start: 8px;
   fill: var(--icons-color);
   cursor: pointer;
-  color: ${(p) => p.theme.colors.gray[800]};
+  color: ${(p) => p.theme.knackTheme.colors.gray[800]};
 `;
