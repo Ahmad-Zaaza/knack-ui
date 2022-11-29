@@ -22,7 +22,7 @@ export default {
 } as Meta<INoticeProps>;
 
 const Template: ComponentStory<typeof Notice> = ({ theme, visible }) => (
-  <ThemeProvider>
+  <ThemeProvider mode='light'>
     <Notice theme={theme} visible={visible}>
       <Notice.Label>
         <BsQuestion size={20} />

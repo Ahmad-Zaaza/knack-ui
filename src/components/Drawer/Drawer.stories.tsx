@@ -20,7 +20,7 @@ export default {
 const Template: ComponentStory<typeof Drawer> = (args) => {
   const [open, setOpen] = useState(false);
   return (
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <Button onClick={() => setOpen(true)}>Open</Button>
       <div style={{ height: "110vh" }}>
         <Drawer {...args} isOpen={open} onClose={() => setOpen(false)}>
