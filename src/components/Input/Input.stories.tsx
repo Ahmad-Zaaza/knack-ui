@@ -12,6 +12,7 @@ import { BsAlarm } from "react-icons/bs";
 import Input, { IInputProps } from "./Input";
 import { Stack } from "../Stack";
 import ThemeProvider from "../../theme/ThemeProvider";
+import { Box } from "../Box";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -24,7 +25,7 @@ export default {
       },
       subtitle: "Subtitle",
       page: () => (
-        <ThemeProvider>
+        <ThemeProvider mode="light">
           <Title />
           <Subtitle />
           <Description />
@@ -46,12 +47,14 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<IInputProps> = (args) => (
-  <ThemeProvider>
-    <Input readOnly placeholder="Enter text..." {...args} />
+  <ThemeProvider mode="light">
+    <Box p={4} elevation={4}>
+      <Input size="large" placeholder="Enter text..." {...args} />
+    </Box>
   </ThemeProvider>
 );
 const OTPTemplate: Story<IInputProps> = (args) => (
-  <ThemeProvider>
+  <ThemeProvider mode="light">
     <div className="container max-w-lg p-4 mx-auto rounded-2xl">
       <Stack gap={2}>
         {Array.from(new Array(4).keys()).map((c) => (

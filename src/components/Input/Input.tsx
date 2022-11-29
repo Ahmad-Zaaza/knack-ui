@@ -11,7 +11,7 @@ import useKnackTheme from "../../utils/useTheme";
 interface IInputProps extends Omit<ComponentPropsWithoutRef<"input">, "size"> {
   /**
    * Input size.
-   * @default 'default'
+   * @default 'medium'
    */
   size?: "small" | "medium" | "large";
   /**
@@ -116,27 +116,27 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     );
 
     const height = useMemo(() => {
-      if (!size || !["small", "large"].includes(size)) {
+      if (!size || !["small", "medium", "large"].includes(size)) {
         return `${sizes.medium.height}px`;
       }
       return `${sizes[size].height}px`;
     }, [size]);
 
     const spacing = useMemo(() => {
-      if (!size || !["small", "large"].includes(size)) {
+      if (!size || !["small", "medium", "large"].includes(size)) {
         return `${sizes.medium.spacing}px`;
       }
       return `${sizes[size].spacing}px`;
     }, [size]);
 
     const fontSize = useMemo(() => {
-      if (!size || !["small", "large"].includes(size)) {
+      if (!size || !["small", "medium", "large"].includes(size)) {
         return sizes.medium.fontSize;
       }
       return sizes[size].fontSize;
     }, [size]);
     const iconSize = useMemo(() => {
-      if (!size || !["small", "large"].includes(size)) {
+      if (!size || !["small", "medium", "large"].includes(size)) {
         return `${sizes.medium.iconSize}px`;
       }
       return `${sizes[size].iconSize}px`;
@@ -285,6 +285,14 @@ const TextInput = styled.input<{
   outline: none;
   font-size: var(--font-size);
   background-color: transparent;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+  &[data-autocompleted] {
+    background-color: transparent !important;
+  }
 
   ${(p) =>
     p.startNeighbor &&

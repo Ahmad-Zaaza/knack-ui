@@ -32,7 +32,7 @@ const Template: Story<ButtonProps> = ({ ...args }) => (
 const RouterTemplate: Story<ButtonProps> = (args) => (
   <ThemeProvider mode="light">
     <Router navigator={history} location={history.location}>
-      <Button as={Link} to="/" {...args} />
+      <Button size='large' as={Link} to="/" {...args} />
     </Router>
   </ThemeProvider>
 );

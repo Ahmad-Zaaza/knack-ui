@@ -21,3 +21,4 @@ export * from "./HorizontalList";
 export * from "./Spinner";
 export * from "./Modal";
 export * from "./Notice";
+export * from "./Divider";

@@ -13,7 +13,7 @@ export default {
 } as ComponentMeta<typeof HorizontalList>;
 
 const Template: ComponentStory<typeof HorizontalList> = () => (
-  <ThemeProvider>
+  <ThemeProvider mode='light'>
     <Stack style={{ height: 150 }} gap={4} className="p-4">
       <img
         className="object-cover h-full rounded-lg"
