@@ -74,6 +74,7 @@ const Typography = forwardRef(
       fontWeight,
       color,
       clamp,
+      style,
       textAlign,
       ...delegated
     },
@@ -88,7 +89,7 @@ const Typography = forwardRef(
         color={color}
         textAlign={textAlign}
         clamp={clamp}
-        style={styles[variant]}
+        style={{ ...styles[variant], ...style }}
         {...delegated}
       >
         {children}
