@@ -35,7 +35,7 @@ type TypographyProps = {
   /**
    * Controls the typography color
    */
-  color?: string;
+  color?: CSSProperties["color"];
   /**
    * Controls the typography font weight
    */
@@ -72,7 +72,7 @@ const Typography = forwardRef(
       variant = "body1",
       children,
       fontWeight,
-      color = "currentColor",
+      color,
       clamp,
       textAlign,
       ...delegated
@@ -103,8 +103,7 @@ export type { TypographyProps, TypographyFontWeight, TypographyVariants };
 
 Typography.defaultProps = {
   as: "p",
-  variant: "body1",
-  color: "currentColor"
+  variant: "body1"
 };
 
 const Text = styled(Box)<{
@@ -116,7 +115,11 @@ const Text = styled(Box)<{
   font-size: var(--fs);
   font-weight: ${(p) => p.fw || `var(--fw, 400)`};
   line-height: var(--lh);
-  color: ${(p) => p.color};
+  ${(p) =>
+    p.color &&
+    css`
+      color: ${p.color};
+    `}
   ${(p) =>
     p.textAlign &&
     css`

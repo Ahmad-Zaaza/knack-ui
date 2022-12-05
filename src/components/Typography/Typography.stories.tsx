@@ -8,7 +8,7 @@ export default {
   title: "Components/Typography",
   component: Typography,
   argTypes: {
-    color: { defaultValue: "currentColor", control: "text" }
+    color: { control: "text" }
   }
 } as ComponentMeta<typeof Typography>;
 
@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof Typography> = ({ ...args }) => (
       <Typography {...args} variant="h2">
         This is an h2 variant
       </Typography>
-      <Typography {...args} variant="h3">
+      <Typography color="red" {...args} variant="h3">
         This is an h3 variant
       </Typography>
       <Typography {...args} variant="h4">
