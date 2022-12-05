@@ -11,7 +11,7 @@ export default {
   argTypes: {
     size: {
       defaultValue: "medium",
-      options: ["medium", "large"],
+      options: ["small", "medium", "large"],
       control: "radio"
     },
     kind: { control: "radio" },
@@ -32,7 +32,7 @@ const Template: Story<ButtonProps> = ({ ...args }) => (
 const RouterTemplate: Story<ButtonProps> = (args) => (
   <ThemeProvider mode="light">
     <Router navigator={history} location={history.location}>
-      <Button size='large' as={Link} to="/" {...args} />
+      <Button size="large" as={Link} to="/" {...args} />
     </Router>
   </ThemeProvider>
 );

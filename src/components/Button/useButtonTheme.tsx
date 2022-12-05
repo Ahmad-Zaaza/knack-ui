@@ -6,9 +6,14 @@ const useButtonTheme = () => {
   const mainTheme = useKnackTheme();
 
   const buttonSizeStyles = {
-    medium: {
+    small: {
       "--spacing": "8px",
       "--height": "28px",
+      "--font-size": `${14 / 16}rem`
+    },
+    medium: {
+      "--spacing": "10px",
+      "--height": "32px",
       "--font-size": `${14 / 16}rem`
     },
     large: {

@@ -17,7 +17,7 @@ type ButtonVariants = "primary" | "secondary" | "tertiary";
 
 type ButtonTheme = "info" | "danger" | "success" | "default";
 
-type ButtonSize = "medium" | "large";
+type ButtonSize = "small" | "medium" | "large";
 
 interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   /**
