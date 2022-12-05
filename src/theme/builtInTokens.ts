@@ -164,8 +164,8 @@ export const lightThemeColors: ThemeColors = {
   primary: "hsl(350, 100%, 72%)",
   secondary: "hsl(296, 24%, 52%)",
   text: "hsl(222, 22%, 5%)",
-  onPrimary: "hsl(0, 0%, 98%)",
-  onSecondary: "hsl(0, 0%, 98%)",
+  onPrimary: "hsl(0, 0%, 100%)",
+  onSecondary: "hsl(0, 0%, 100%)",
   white: "hsl(0,100%,100%)",
   gray: {
     50: "hsl(228, 29%, 97%)",
@@ -211,7 +211,7 @@ export const lightThemeColors: ThemeColors = {
     700: "hsl(172, 100%, 10%)",
     800: "hsl(176, 100%, 6%)"
   },
-  paper: "hsl(0, 0%, 98%)"
+  paper: "hsl(0, 0%, 100%)"
 };
 export const darkThemeColors: ThemeColors = {
   themes: SemanticThemes,
