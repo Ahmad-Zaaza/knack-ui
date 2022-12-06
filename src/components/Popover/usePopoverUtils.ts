@@ -1,6 +1,4 @@
-/* eslint-disable no-param-reassign */
-import { Dispatch, MutableRefObject, SetStateAction, useCallback } from "react";
-import useClickOutside from "../../utils/useClickOutside";
+import { Dispatch, SetStateAction, useCallback } from "react";
 import useEventInEffect from "../../utils/useEventInEffect";
 import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect";
 import { IPopoverProps } from "./Popover";
@@ -8,12 +6,10 @@ import { IPopoverProps } from "./Popover";
 const usePopoverUtils = ({
   isOpen,
   onClose,
-  ref,
-  parentRef,
+
   setActive
-}: Pick<IPopoverProps, "isOpen" | "onClose" | "parentRef"> & {
+}: Pick<IPopoverProps, "isOpen" | "onClose"> & {
   setActive: Dispatch<SetStateAction<boolean>>;
-  ref: MutableRefObject<null>;
 }) => {
   // 🔒 Close on Esc press
   const handleEsc = useCallback(
@@ -24,9 +20,6 @@ const usePopoverUtils = ({
     },
     [isOpen, onClose]
   );
-
-  // 🔒 Close on Click outside the popover
-  useClickOutside(ref, onClose, parentRef);
 
   useEventInEffect("keydown", handleEsc);
 

@@ -1,17 +1,10 @@
-import { forwardRef } from "react";
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import { CSSProperties, forwardRef } from "react";
+import styled, { css } from "styled-components";
+import { Box, IBoxProps } from "../Box";
+import useTypographyStyles from "./useTypographyStyles";
 import * as Polymorphic from "../../types/helpers";
-import useTypographyClasses from "./useTypographyClasses";
 
-type TypographyTags =
-  | "h1"
-  | "h2"
-  | "h3"
-  | "h4"
-  | "h5"
-  | "h6"
-  | "p"
-  | "span"
-  | "label";
 type TypographyVariants =
   | "h1"
   | "h2"
@@ -21,25 +14,28 @@ type TypographyVariants =
   | "h6"
   | "body1"
   | "body2"
+  | "body3"
   | "subtitle1"
   | "subtitle2"
-  | "button"
   | "caption";
 
-type TypographyColors =
-  | "primary"
-  | "secondary"
-  | "muted"
-  | "success"
-  | "warning"
-  | "currentColor";
-type TypographyFontWeight = "bold" | "semibold" | "medium" | "normal" | "light";
+type TypographyFontWeight =
+  | "900"
+  | "800"
+  | "700"
+  | "600"
+  | "500"
+  | "400"
+  | "300"
+  | "200"
+  | "100";
+
 type TypographyProps = {
   variant?: TypographyVariants;
   /**
    * Controls the typography color
    */
-  color?: TypographyColors;
+  color?: CSSProperties["color"];
   /**
    * Controls the typography font weight
    */
@@ -47,49 +43,95 @@ type TypographyProps = {
   /**
    * Controls `text-align` CSS property.
    */
-  textAlign?: "left" | "right" | "start" | "end" | "center";
+  textAlign?: CSSProperties["textAlign"];
   /**
    * Applies `line-clamp` to the element.
    */
-  clamp?: 1 | 2 | 3 | 4;
+  clamp?: number;
+
+  // tag?: keyof typeof TagsMap;
 };
 
+type Props = TypographyProps & IBoxProps;
+
+/**
+ * @description
+ * change log:
+ *
+ * - changed font size scaling, with clamp functionality.
+ *
+ * - `fontWeight` now only accepts numbers as strings.
+ *
+ * - added a new `body3` variant to have more versatility.
+ *
+ */
 const Typography = forwardRef(
   (
     {
-      className,
-      as: Component = "p",
-      variant,
+      as = "p",
+      variant = "body1",
       children,
       fontWeight,
-      color = "currentColor",
+      color,
       clamp,
+      style,
       textAlign,
       ...delegated
     },
     ref
   ) => {
-    const { typographyClasses } = useTypographyClasses({
-      className,
-      variant,
-      color,
-      fontWeight,
-      clamp,
-      textAlign
-    });
+    const styles = useTypographyStyles();
     return (
-      <Component className={typographyClasses} ref={ref} {...delegated}>
+      <Text
+        forwardedAs={as}
+        fw={fontWeight}
+        ref={ref}
+        color={color}
+        textAlign={textAlign}
+        clamp={clamp}
+        style={{ ...styles[variant], ...style }}
+        {...delegated}
+      >
         {children}
-      </Component>
+      </Text>
     );
   }
-) as Polymorphic.ForwardRefComponent<"p", TypographyProps>;
+) as Polymorphic.ForwardRefComponent<"p", Props>;
 
 export default Typography;
-export type {
-  TypographyProps,
-  TypographyTags,
-  TypographyColors,
-  TypographyFontWeight,
-  TypographyVariants
+
+export type { TypographyProps, TypographyFontWeight, TypographyVariants };
+
+Typography.defaultProps = {
+  as: "p",
+  variant: "body1"
 };
+
+const Text = styled(Box)<{
+  fw?: TypographyProps["fontWeight"];
+  clamp?: TypographyProps["clamp"];
+  textAlign?: TypographyProps["textAlign"];
+  color?: TypographyProps["color"];
+}>`
+  font-size: var(--fs);
+  font-weight: ${(p) => p.fw || `var(--fw, 400)`};
+  line-height: var(--lh);
+  ${(p) =>
+    p.color &&
+    css`
+      color: ${p.color};
+    `}
+  ${(p) =>
+    p.textAlign &&
+    css`
+      text-align: ${p.textAlign};
+    `}
+  ${(p) =>
+    p.clamp &&
+    css`
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: ${p.clamp};
+      overflow: hidden;
+    `};
+`;

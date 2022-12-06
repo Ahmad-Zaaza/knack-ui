@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import inquirer from "inquirer";
 import fs from "fs/promises";
-import fsSync from "fs";
 import path from "path";
 
 import { fileURLToPath } from "url";
@@ -11,26 +10,27 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const rootPath = path.join(__dirname, "..");
 const componentsPath = path.join(rootPath, "src", "components");
-const stylesPath = path.join(rootPath, "src", "styles");
 
 const jsxTemplate = `
 import { ComponentPropsWithoutRef, forwardRef } from "react";
-import use[NAME]Classes from "./use[NAME]Classes";
+import styled from 'styled-components';
 
 export interface I[NAME]Props extends ComponentPropsWithoutRef<"[TYPE]"> {
   
 }
 
 const [NAME] = forwardRef<HTML[CTYPE]Element, I[NAME]Props>(
-  ({ className, ...delegated }, ref) => {
-    const { containerClasses } = use[NAME]Classes({className});
+  ({ ...delegated }, ref) => {
     return (
-      <[TYPE] ref={ref} className={containerClasses} {...delegated}>GENERATED FROM create.mjs</[TYPE]>
+      <Wrapper ref={ref}  {...delegated}>[NAME] generated successfully</Wrapper>
     );
   }
 );
 
 export default [NAME];
+
+
+const Wrapper = styled.[STYPE]${"``"}
 
 `;
 const storyTemplate = `
@@ -51,28 +51,7 @@ export const Default = Template.bind({});
 `;
 const indexTemplate = `
 export { default as [NAME] } from "./[NAME]";
-`;
-
-const useClassesTemplate = `
-import { useMemo } from "react";
-import classnames from "classnames/bind";
-import styles from "../../tailwind.css";
-import { I[NAME]Props } from "./[NAME]";
-
-const clsx = classnames.bind(styles);
-const use[NAME]Classes = ({className}: I[NAME]Props) => {
-  const containerClasses = useMemo(
-    () =>
-      clsx(className),
-    [className ]
-  );
-
-  return {
-    containerClasses
-  };
-};
-
-export default use[NAME]Classes;
+export { I[NAME]Props } from "./[NAME]";
 `;
 
 const produceTemplate = (file, changes) => {
@@ -113,7 +92,8 @@ const getUserInput = async () => {
       produceTemplate(jsxTemplate, {
         NAME: componentName,
         TYPE: elementType,
-        CTYPE: capitalize(elementType)
+        CTYPE: capitalize(elementType),
+        STYPE: elementType
       })
     );
     // 🆕 Make new storybook file
@@ -134,62 +114,7 @@ const getUserInput = async () => {
     // Append file to index.ts
     await fs.appendFile(
       path.join(componentsPath, `index.ts`),
-      `export { ${componentName} } from "./${componentName}";`
-    );
-    // Add useComponentClasses.tsx
-    await fs.writeFile(
-      path.join(
-        componentsPath,
-        componentName,
-        `use${componentName}Classes.tsx`
-      ),
-      produceTemplate(useClassesTemplate, { NAME: componentName })
-    );
-    // 🎨 Add component styles and utilities
-    await fs.writeFile(
-      path.join(
-        stylesPath,
-        "components",
-        `${componentName.toLowerCase()}.component.css`
-      ),
-      `@layer components {}`
-    );
-    await fs.writeFile(
-      path.join(
-        stylesPath,
-        "utilities",
-        `${componentName.toLowerCase()}.utilities.css`
-      ),
-      `@layer utilities {}`
-    );
-    // Update imports in layers
-    const componentsLayer = fsSync
-      .readFileSync(path.join(stylesPath, "layers", `componentsLayer.css`))
-      .toString()
-      .split("\n");
-    const utilsLayer = fsSync
-      .readFileSync(path.join(stylesPath, "layers", `utilsLayer.css`))
-      .toString()
-      .split("\n");
-    componentsLayer.splice(
-      1, // After tailwind import
-      0,
-      `@import "../components/${componentName.toLowerCase()}.component.css";`
-    );
-    utilsLayer.splice(
-      1, // after tailwind import
-      0,
-      `@import "../utilities/${componentName.toLowerCase()}.utilities.css";`
-    );
-    const newComponentLayer = componentsLayer.join("\n");
-    const newUtilsLayer = utilsLayer.join("\n");
-    await fs.writeFile(
-      path.join(stylesPath, "layers", `componentsLayer.css`),
-      newComponentLayer
-    );
-    await fs.writeFile(
-      path.join(stylesPath, "layers", `utilsLayer.css`),
-      newUtilsLayer
+      `export * from "./${componentName}";`
     );
   } catch (error) {
     console.error(error);

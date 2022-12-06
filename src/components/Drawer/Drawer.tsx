@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef, forwardRef, useState } from "react";
-import useBaseDialogUtils from "../BaseDialog/BaseDialog/useBaseDialogUtils";
+import { ComponentPropsWithoutRef, forwardRef, useMemo, useState } from "react";
+import styled, { css } from "styled-components";
 import { DialogOverlay } from "../BaseDialog/DialogOverlay";
-import useDrawerClasses from "./useDrawerClasses";
+import useDrawerUtils from "./useDrawerUtils";
 
 export interface IDrawerProps extends ComponentPropsWithoutRef<"div"> {
   /**
@@ -85,13 +85,24 @@ const Drawer = forwardRef<HTMLDivElement, IDrawerProps>(
     ref
   ) => {
     const [active, setActive] = useState(false);
-    const { containerClasses } = useDrawerClasses({
-      className,
-      isOpen,
-      position,
-      active
-    });
-    useBaseDialogUtils({ isOpen, onClose, setActive });
+
+    useDrawerUtils({ isOpen, onClose });
+
+    const state = useMemo(() => {
+      if (isOpen && active) {
+        return "OPENED";
+      }
+      if (isOpen && !active) {
+        return "OPENING";
+      }
+      if (!isOpen && active) {
+        return "CLOSING";
+      }
+      if (!isOpen && !active) {
+        return "CLOSED";
+      }
+    }, [isOpen, active]);
+
     return (
       <DialogOverlay
         disableScrollLock={disableScrollLock}
@@ -102,12 +113,93 @@ const Drawer = forwardRef<HTMLDivElement, IDrawerProps>(
         allowPinchZoom={allowPinchZoom}
         disableFocusLock={disableFocusLock}
       >
-        <div ref={ref} className={containerClasses} {...delegated}>
+        <Wrapper
+          data-state={state}
+          onTransitionEnd={(e) => e.stopPropagation()}
+          position={position}
+          tabIndex={-1}
+          ref={ref}
+          className={className}
+          {...delegated}
+        >
           {children}
-        </div>
+        </Wrapper>
       </DialogOverlay>
     );
   }
 );
 
 export default Drawer;
+
+const Wrapper = styled.div<{
+  position: IDrawerProps["position"];
+}>`
+  --isRTL: -1;
+  --transition-transform-start: calc(100% * var(--isRTL));
+  --transition-transform-end: calc(100% * var(--isRTL) * -1);
+  --transition-transform-top: -100%;
+  --transition-transform-bottom: 100%;
+
+  transform: translateX(var(--_x, 0)) translateY(var(--_y, 0));
+  transition: opacity 0.2s ease, transform 0.2s ease-out;
+
+  position: absolute;
+  will-change: transform;
+
+  html[dir="rtl"] &,
+  &[dir="rtl"] {
+    --isRTL: 1;
+  }
+
+  ${(p) =>
+    p.position === "end" &&
+    css`
+      inset-inline-end: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
+
+      --_x: var(--transition-transform-end);
+
+      &:is([data-state="OPENED"]) {
+        --_x: 0;
+      }
+    `};
+
+  ${(p) =>
+    p.position === "start" &&
+    css`
+      inset-inline-start: 0;
+      inset-block-start: 0;
+      inset-block-end: 0;
+      --_x: var(--transition-transform-start);
+      &:is([data-state="OPENED"]) {
+        --_x: 0;
+      }
+    `};
+
+  ${(p) =>
+    p.position === "top" &&
+    css`
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
+      --_y: var(--transition-transform-top);
+
+      &:is([data-state="OPENED"]) {
+        --_y: 0;
+      }
+    `};
+
+  ${(p) =>
+    p.position === "bottom" &&
+    css`
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
+      --_y: var(--transition-transform-bottom);
+
+      &:is([data-state="OPENED"]) {
+        --_y: 0;
+      }
+    `};
+`;

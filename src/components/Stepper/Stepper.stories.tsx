@@ -1,14 +1,14 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, Meta } from "@storybook/react";
 import { useState } from "react";
-import Step from "../Step/Step";
+import ThemeProvider from "../../theme/ThemeProvider";
 
-import Stepper from "./Stepper";
+import { Stepper, IStepperProps } from ".";
 
 export default {
   title: "Components/Stepper",
   component: Stepper,
   argTypes: {}
-} as ComponentMeta<typeof Stepper>;
+} as Meta<IStepperProps>;
 
 const Template: ComponentStory<typeof Stepper> = ({
   activeStep: _,
@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof Stepper> = ({
 }) => {
   const [active, setActive] = useState(0);
   return (
-    <>
+    <ThemeProvider>
       <Stepper
         onChange={(i) => {
           setActive(i);
@@ -26,14 +26,20 @@ const Template: ComponentStory<typeof Stepper> = ({
         clickable
         {...args}
       >
-        <Step completed>First step</Step>
-        <Step completed>hello</Step>
-        <Step>I am disabled</Step>
-        <Step disabled>4th step bla bla 4th step bla bla</Step>
+        <Stepper.Step iconSize={20}>First step</Stepper.Step>
+        <Stepper.Step completed iconSize={30}>
+          hello
+        </Stepper.Step>
+        <Stepper.Step disabled iconSize={40}>
+          I am disabled
+        </Stepper.Step>
+        <Stepper.Step iconSize={50}>
+          4th step bla bla 4th step bla bla
+        </Stepper.Step>
       </Stepper>
       {active === 0 && "step 1"}
       {active === 1 && "step 2"}
-    </>
+    </ThemeProvider>
   );
 };
 

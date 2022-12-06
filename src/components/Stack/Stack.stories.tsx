@@ -1,4 +1,5 @@
 import { Meta, Story } from "@storybook/react";
+import ThemeProvider from "../../theme/ThemeProvider";
 
 import Stack, { StackProps } from "./Stack";
 
@@ -14,34 +15,35 @@ const Template: Story<StackProps & { numberOfChildren: number }> = ({
   numberOfChildren,
   ...args
 }) => (
-  <Stack {...args}>
-    {[...Array(numberOfChildren).keys()].map((n) => (
-      <div
-        style={{
-          width: 50,
-          height: 50,
-          backgroundColor: "red",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
-        {n + 1}
-      </div>
-    ))}
-  </Stack>
+  <ThemeProvider>
+    <Stack
+      mt={2}
+      justifyContent="space-around"
+      elevation={1}
+      p={4}
+      flexWrap="wrap"
+      {...args}
+    >
+      {[...Array(numberOfChildren).keys()].map((n) => (
+        <div
+          style={{
+            width: 50,
+            height: 50,
+            backgroundColor: "red",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          {n + 1}
+        </div>
+      ))}
+    </Stack>
+  </ThemeProvider>
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  direction: "column",
-  gap: 6,
-  children: (
-    <>
-      <p>first</p>
-      <h1>second</h1>
-      <div>third</div>
-      <span>fourth</span>
-    </>
-  )
+  direction: "row",
+  gap: 16
 };

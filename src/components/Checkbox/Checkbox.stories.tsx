@@ -1,7 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, Meta } from "@storybook/react";
 import { useState } from "react";
+import ThemeProvider from "../../theme/ThemeProvider";
 
-import Checkbox from "./Checkbox";
+import Checkbox, { CheckboxProps } from "./Checkbox";
 
 export default {
   title: "Components/Checkbox",
@@ -12,8 +13,8 @@ export default {
     },
     checked: {
       control: {
-        control: null,
-        disable: true
+        control: "boolean"
+        // disable: true
       }
     },
     disabled: {
@@ -22,29 +23,44 @@ export default {
       }
     }
   }
-} as ComponentMeta<typeof Checkbox>;
+} as Meta<CheckboxProps>;
 
-const Template: ComponentStory<typeof Checkbox> = ({...args}) => {
-  const [checked, setChecked] = useState(args.checked);
+const Template: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
+  const [checked, setChecked] = useState(true);
   return (
-    <Checkbox
-      {...args}
-      checked={checked}
-      onChange={(e) => setChecked(e.target.checked)}
-    />
+    <ThemeProvider>
+      <Checkbox size={size} {...args}>
+        <Checkbox.Control
+          checked={checked}
+          onChange={(e) => setChecked(e.target.checked)}
+        />
+        <Checkbox.Text>Send weekly email</Checkbox.Text>
+      </Checkbox>
+    </ThemeProvider>
+  );
+};
+const WithLabel: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
+  const [checked, setChecked] = useState(true);
+  return (
+    <ThemeProvider>
+      <Checkbox mt={6} mx={12} size={size} {...args}>
+        <Checkbox.Control
+          checked={checked}
+          disabled
+          onChange={(e) => setChecked(e.target.checked)}
+        />
+        <Checkbox.Text>Send weekly email</Checkbox.Text>
+      </Checkbox>
+    </ThemeProvider>
   );
 };
 
 export const Default = Template.bind({});
-export const Small = Template.bind({});
-Small.args = {
-  size: "small"
-};
+
 export const Large = Template.bind({});
 Large.args = {
-  size: "large"
+  size: "l"
 };
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true
-};
+
+export const CheckboxWithLabel = WithLabel.bind({});
+CheckboxWithLabel.args = {};

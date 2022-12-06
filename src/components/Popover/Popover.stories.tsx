@@ -2,8 +2,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useRef, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
-import { Button, Input, MenuItem } from "..";
-import { Stack } from "../Stack";
+import { Button, Box, Stack } from "..";
+import ThemeProvider from "../../theme/ThemeProvider";
 
 export default {
   title: "Components/Popover",
@@ -17,41 +17,39 @@ const Template: ComponentStory<typeof Popover> = (_) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <BrowserRouter>
-      <Stack
-        justifyContent="space-between"
-        // className="flex-row-reverse"
-      >
-        <Input />
-        <Button
-          onClick={() => {
-            if (!open) {
-              setOpen(true);
-            }
-          }}
-          className="mt-[300px]"
-          ref={parentRef}
+    <ThemeProvider>
+      <BrowserRouter>
+        <Stack justifyContent="space-between">
+          {/* <Input /> */}
+          <Button
+            onClick={() => {
+              if (!open) {
+                setOpen(true);
+              }
+            }}
+            className="mt-[300px]"
+            ref={parentRef}
+          >
+            Click me
+          </Button>
+        </Stack>
+        <Popover
+          animationType="fade-up"
+          isOpen={open}
+          offset={{ bottom: 10, left: 0 }}
+          onClose={() => setOpen(false)}
+          parentRef={parentRef}
         >
-          Click me
-        </Button>
-      </Stack>
-      <Popover
-        animationType="fade-up"
-        isOpen={open}
-        offset={{ bottom: 10, left: 0 }}
-        popoverProps={{
-          className: "w-64",
-          variant: "elevated",
-          elevation: 2
-        }}
-        onClose={() => setOpen(false)}
-        parentRef={parentRef}
-      >
-        <MenuItem kind="ghost">Go to home</MenuItem>
-        <MenuItem kind="ghost">Go to home</MenuItem>
-        <MenuItem kind="ghost">Go to home</MenuItem>
-      </Popover>
-    </BrowserRouter>
+          <Box p={4} style={{ backgroundColor: "#fff" }}>
+            <div>Go to home</div>
+            <div>Go to home</div>
+            <div>Go to home</div>
+            <Button>Hello</Button>
+          </Box>
+        </Popover>
+        <Button>Fake Button</Button>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

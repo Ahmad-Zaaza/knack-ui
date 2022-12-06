@@ -1,33 +1,38 @@
-import { useMemo, forwardRef, CSSProperties } from "react";
-import classnames from "classnames/bind";
-import styles from "../../tailwind.css";
-import * as Polymorphic from "../../types/helpers";
+import { forwardRef, CSSProperties } from "react";
+import styled, { css } from "styled-components";
 
-const clsx = classnames.bind(styles);
+import * as Polymorphic from "../../types/helpers";
+import { Box, IBoxProps } from "../Box";
+import useStackProps from "./useStackProps";
 
 /**
  * One limitation with Stack that it affects absolute children with `margin-top`
  */
-interface StackProps {
+interface StackProps extends IBoxProps {
   /**
    * Controls flex direction
    * @default 'row'
    */
-  direction?: "column" | "row";
+  direction?: CSSProperties["flexDirection"];
+
+  /**
+   * applies inline-flex;
+   */
   inline?: boolean;
-  children: React.ReactNode;
+  /**
+   * controls `flex-wrap` property;
+   */
+  flexWrap?: CSSProperties["flexWrap"];
   /**
    * Controls `align-items` flex property
-   * @default 'row'
    */
   alignItems?: CSSProperties["alignItems"];
   /**
    * Controls `justfify-content` flex property
-   * @default 'row'
    */
   justifyContent?: CSSProperties["justifyContent"];
   /**
-   * Spacing between items, from 1 to 10, measures by `number * 0.25rem`
+   * Spacing between items, measured by `value * 0.25rem`
    *
    * @example <caption>Spacing of 0.5rem between elements</caption>
    *
@@ -37,53 +42,17 @@ interface StackProps {
   gap?: number;
 }
 
-const Stack = forwardRef(
-  (
-    {
-      className,
-      direction = "row",
-      gap = 0,
-      style,
-      children,
-      inline,
-      justifyContent,
-      alignItems,
-      ...delegated
-    },
-    ref
-  ) => {
-    const stackStyles = useMemo(() => ({ ...style }), [style]);
-    const classes = useMemo(
-      () =>
-        clsx(
-          "stack",
-          {
-            "s-column": direction === "column",
-            "items-center": alignItems === "center",
-            "items-start": alignItems === "flex-start",
-            "items-end": alignItems === "flex-end",
-            "justify-center": justifyContent === "center",
-            "justify-start": justifyContent === "flex-start",
-            "justify-end": justifyContent === "flex-end",
-            "justify-between": justifyContent === "space-between",
-            "justify-around": justifyContent === "space-around",
-            "justify-evenly": justifyContent === "space-evenly",
-            "inline-flex": inline,
-            [`sc-spacing-${gap}`]: direction === "column",
-            [`sr-spacing-${gap}`]: direction === "row"
-          },
-
-          className
-        ),
-      [gap, direction, className, inline, justifyContent, alignItems]
-    );
-    return (
-      <div ref={ref} style={stackStyles} className={classes} {...delegated}>
-        {children}
-      </div>
-    );
-  }
-) as Polymorphic.ForwardRefComponent<"div", StackProps>;
+const Stack = forwardRef((props, ref) => {
+  const { indentStyles, otherProps } = useStackProps(props);
+  return <Flex ref={ref} stackIndentStyles={indentStyles} {...otherProps} />;
+}) as Polymorphic.ForwardRefComponent<"div", StackProps>;
 
 export default Stack;
 export type { StackProps };
+
+const Flex = styled(Box)<{ stackIndentStyles: {} }>`
+  ${(p) => p.stackIndentStyles && css(p.stackIndentStyles)}
+`;
+// const Flex = styled.div<{ styles: {} }>`
+//   ${(p) => p.styles && css(p.styles)}
+// `;

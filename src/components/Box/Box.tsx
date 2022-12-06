@@ -1,56 +1,42 @@
 import { forwardRef } from "react";
+import styled, { css } from "styled-components";
 import * as Polymorphic from "../../types/helpers";
-import useBoxClasses from "./useBoxClasses";
+import { IBoxProps } from "./Box.types";
+import useBoxProps from "./useBoxProps";
 
-interface BoxProps {
-  /**
-   * The variant to use.
-   */
-  variant?: "outlined" | "elevated";
-  /**
-   * Controls the shadow depth
-   */
-  elevation?: 0 | 1 | 2 | 3 | 4 | 6;
-  /**
-   * Remove default `Box` border radius
-   */
-  square?: boolean;
-  /**
-   * Preset padding values
-   */
-  paddingPreset?: "card" | string;
-}
+/**
+ * @description
+ *
+ * Change log:
+ *
+ *
+ * - Replace `as` prop with `render`.
+ *
+ * - add `elevation` prop that controls box's surface elevation
+ *
+ * - add `paper` prop to control the box background-color, best used with elevation.
+ *
+ * - added dynamic spacing properties.
+ */
 
-const Box = forwardRef(
-  (
-    {
-      as: Component = "div",
-      children,
-      variant = "elevated",
-      square,
-      paddingPreset,
-      elevation = 1,
-      className,
-      ...delegated
-    },
-    ref
-  ) => {
-    const { containerClasses } = useBoxClasses({
-      className,
-      variant,
-      elevation,
-      square,
-      paddingPreset
-    });
-
-    return (
-      <Component ref={ref} className={containerClasses} {...delegated}>
-        {children}
-      </Component>
-    );
-  }
-) as Polymorphic.ForwardRefComponent<"div", BoxProps>;
+const Box = forwardRef(({ as, ...props }, ref) => {
+  const { indentStyles, otherProps, elevationStyles } = useBoxProps(props);
+  return (
+    <Wrapper
+      as={as}
+      ref={ref}
+      boxIndentStyles={indentStyles}
+      elevationStyles={elevationStyles}
+      {...otherProps}
+    />
+  );
+}) as Polymorphic.ForwardRefComponent<"div", IBoxProps>;
 
 export default Box;
 
-export type { BoxProps };
+export type { IBoxProps };
+
+const Wrapper = styled.div<{ boxIndentStyles: {}; elevationStyles: {} }>`
+  ${(p) => p.boxIndentStyles && css(p.boxIndentStyles)};
+  ${(p) => p.elevationStyles && css(p.elevationStyles)};
+`;

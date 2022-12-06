@@ -5,10 +5,10 @@ import React, {
   forwardRef,
   isValidElement
 } from "react";
+import styled from "styled-components";
 import Crumb from "./Crumb";
-import useBreadcrumbsClasses from "./useBreadcrumbsClasses";
 
-export interface IBreadcrumbsProps extends ComponentPropsWithoutRef<"nav"> {}
+export interface IBreadcrumbsProps extends ComponentPropsWithoutRef<"ol"> {}
 const Arrow = () => (
   <svg
     width="7"
@@ -23,23 +23,29 @@ const Arrow = () => (
     />
   </svg>
 );
-const Breadcrumbs = forwardRef<HTMLDivElement, IBreadcrumbsProps>(
-  ({ className, children, ...delegated }, ref) => {
-    const { containerClasses } = useBreadcrumbsClasses({ className });
-    return (
-      <nav aria-label="Breadcrumb" ref={ref} {...delegated}>
-        <ol className={containerClasses}>
-          {React.Children.map(children, (child, i) => {
-            if (isValidElement(child)) {
-              return <Crumb key={i}>{cloneElement(child)}</Crumb>;
-            }
-            return null;
-            // @ts-ignore
-          })?.reduce((prev, curr) => [prev, <Arrow key={Math.random} />, curr])}
-        </ol>
-      </nav>
-    );
-  }
+const Breadcrumbs = forwardRef<HTMLOListElement, IBreadcrumbsProps>(
+  ({ children, ...delegated }, ref) => (
+    <nav aria-label="Breadcrumb">
+      <Wrapper ref={ref} {...delegated}>
+        {React.Children.map(children, (child, i) => {
+          if (isValidElement(child)) {
+            return <Crumb key={i}>{cloneElement(child)}</Crumb>;
+          }
+          return null;
+          // @ts-ignore
+        })?.reduce((prev, curr) => [prev, <Arrow key={Math.random} />, curr])}
+      </Wrapper>
+    </nav>
+  )
 );
 
 export default Breadcrumbs;
+
+const Wrapper = styled.ol`
+  display: flex;
+  align-items: center;
+
+  & svg {
+    margin-inline-start: 8px;
+  }
+`;

@@ -1,8 +1,0 @@
-@layer components {
-  .popover {
-    @apply absolute;
-  }
-  .popover-menu {
-    @apply relative;
-  }
-}

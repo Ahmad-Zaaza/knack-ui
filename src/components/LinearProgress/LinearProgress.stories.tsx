@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { LinearProgress } from ".";
+import ThemeProvider from "../../theme/ThemeProvider";
 
 export default {
   title: "Components/LinearProgress",
@@ -7,12 +8,15 @@ export default {
   argTypes: {
     color: {
       control: "text"
-    }
+    },
+    percentage: { control: "range" }
   }
 } as ComponentMeta<typeof LinearProgress>;
 
 const Template: ComponentStory<typeof LinearProgress> = (args) => (
-  <LinearProgress {...args} />
+  <ThemeProvider>
+    <LinearProgress {...args} />
+  </ThemeProvider>
 );
 
 export const Default = Template.bind({});
@@ -25,7 +29,7 @@ export const DynamicColors = Template.bind({});
 
 DynamicColors.args = {
   size: 14,
-  color: "dynamic",
+  dynamicColors: true,
   percentage: 24,
   strokeWidth: 15,
   showPercentage: true

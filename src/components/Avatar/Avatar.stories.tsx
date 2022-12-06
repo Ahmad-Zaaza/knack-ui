@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import ThemeProvider from "../../theme/ThemeProvider";
 
 import Avatar from "./Avatar";
 
@@ -16,11 +17,17 @@ export default {
 } as ComponentMeta<typeof Avatar>;
 
 const Template: ComponentStory<typeof Avatar> = ({ ...args }) => (
-  <Avatar {...args} />
+  <ThemeProvider>
+    <Avatar {...args} />
+  </ThemeProvider>
 );
 
 export const Default = Template.bind({});
 export const Square = Template.bind({});
 Square.args = {
-  square: true
+  shape: "square"
+};
+export const Semirounded = Template.bind({});
+Semirounded.args = {
+  shape: "semi-rounded"
 };
