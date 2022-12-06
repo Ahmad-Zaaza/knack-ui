@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof Stepper> = ({
 }) => {
   const [active, setActive] = useState(0);
   return (
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <Stepper
         onChange={(i) => {
           setActive(i);

@@ -22,7 +22,7 @@ export default {
 const Template: ComponentStory<typeof Radio> = ({ size }) => {
   const [value, setValue] = useState<"oranges" | "apples" | null>(null);
   return (
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <div style={{ gap: "2rem", display: "flex", flexDirection: "column" }}>
         <Radio mt={6} mx={12} size={size}>
           <Radio.Control

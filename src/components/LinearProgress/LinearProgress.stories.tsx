@@ -14,7 +14,7 @@ export default {
 } as ComponentMeta<typeof LinearProgress>;
 
 const Template: ComponentStory<typeof LinearProgress> = (args) => (
-  <ThemeProvider>
+  <ThemeProvider mode='light'>
     <LinearProgress {...args} />
   </ThemeProvider>
 );

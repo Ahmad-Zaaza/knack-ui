@@ -23,7 +23,7 @@ export default {
 } as ComponentMeta<typeof Textarea>;
 
 const Template: ComponentStory<typeof Textarea> = (args) => (
-  <ThemeProvider>
+  <ThemeProvider mode='light'>
     <Textarea {...args} />
   </ThemeProvider>
 );

@@ -16,7 +16,7 @@ export default {
 } as ComponentMeta<typeof CircularProgress>;
 
 const Template: ComponentStory<typeof CircularProgress> = (args) => (
-  <ThemeProvider>
+  <ThemeProvider mode="light">
     <CircularProgress {...args} />
   </ThemeProvider>
 );

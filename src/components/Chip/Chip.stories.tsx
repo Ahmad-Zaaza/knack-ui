@@ -3,7 +3,6 @@ import { Stack } from "../Stack";
 import ThemeProvider from "../../theme/ThemeProvider";
 
 import Chip from "./Chip";
-import { createTheme } from "../../theme/utils";
 
 export default {
   title: "Components/Chip",
@@ -21,17 +20,8 @@ const Template: ComponentStory<typeof Chip> = ({
   variant: __,
 
   ...args
-}) => {
-  const theme = createTheme({
-    colors: {
-      primary: "",
-      gray: {
-        600: ""
-      }
-    }
-  });
-  return (
-    <ThemeProvider theme={theme}>
+}) => (
+    <ThemeProvider mode='light'>
       <Stack gap={4}>
         <Chip onDelete={() => {}} variant="primary" {...args}>
           Default Chip
@@ -60,7 +50,6 @@ const Template: ComponentStory<typeof Chip> = ({
       </Stack>
     </ThemeProvider>
   );
-};
 
 export const Default = Template.bind({});
 Default.args = {

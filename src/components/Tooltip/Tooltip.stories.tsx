@@ -12,7 +12,7 @@ export default {
 
 const Template: ComponentStory<typeof Tooltip> = ({ position }) => (
   <BrowserRouter>
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <div
         style={{
           display: "flex",

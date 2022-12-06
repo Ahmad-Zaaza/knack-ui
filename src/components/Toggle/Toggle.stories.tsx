@@ -16,7 +16,7 @@ export default {
 } as Meta<ToggleProps>;
 
 const Template: ComponentStory<typeof Toggle> = ({ size }) => (
-  <ThemeProvider>
+  <ThemeProvider mode='light'>
     <Toggle size={size}>
       <Toggle.Text>Turn Off</Toggle.Text>
       <Toggle.Control />

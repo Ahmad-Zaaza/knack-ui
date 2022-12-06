@@ -12,7 +12,7 @@ export default {
 } as ComponentMeta<typeof AvatarGroup>;
 
 const Template: ComponentStory<typeof AvatarGroup> = (args) => (
-  <ThemeProvider>
+  <ThemeProvider mode='light'>
     <Stack justifyContent="flex-start">
       <AvatarGroup {...args}>
         <Avatar

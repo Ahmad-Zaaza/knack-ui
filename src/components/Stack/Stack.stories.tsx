@@ -15,7 +15,7 @@ const Template: Story<StackProps & { numberOfChildren: number }> = ({
   numberOfChildren,
   ...args
 }) => (
-  <ThemeProvider>
+  <ThemeProvider mode='light'>
     <Stack
       mt={2}
       justifyContent="space-around"

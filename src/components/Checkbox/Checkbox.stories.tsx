@@ -28,7 +28,7 @@ export default {
 const Template: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
   const [checked, setChecked] = useState(true);
   return (
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <Checkbox size={size} {...args}>
         <Checkbox.Control
           checked={checked}
@@ -42,7 +42,7 @@ const Template: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
 const WithLabel: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
   const [checked, setChecked] = useState(true);
   return (
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <Checkbox mt={6} mx={12} size={size} {...args}>
         <Checkbox.Control
           checked={checked}

@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof Popover> = (_) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <BrowserRouter>
         <Stack justifyContent="space-between">
           {/* <Input /> */}

@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Divider>;
 
 const Template: ComponentStory<typeof Divider> = ({ ...args }) => (
-  <ThemeProvider>
+  <ThemeProvider mode='light'>
     <Box h={300}>
       <Divider {...args} />
     </Box>

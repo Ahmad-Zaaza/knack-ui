@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof Modal> = (args) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <Button onClick={() => setOpen(true)}>Open</Button>
       <div>
         <StyledModal

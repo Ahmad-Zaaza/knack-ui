@@ -13,7 +13,7 @@ const CheckboxText: React.FC = (props) => {
   return (
     <Typography
       variant={context.size === "l" ? "body1" : "body2"}
-      tag="span"
+      as="span"
       {...props}
     />
   );

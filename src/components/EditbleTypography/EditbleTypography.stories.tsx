@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof EditableTypography> = ({
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("You can edit me! ");
   return (
-    <ThemeProvider>
+    <ThemeProvider mode='light'>
       <EditableTypography
         showInput={open || showInput}
         inputProps={{
