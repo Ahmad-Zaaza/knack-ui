@@ -22,3 +22,4 @@ export * from "./Spinner";
 export * from "./Modal";
 export * from "./Notice";
 export * from "./Divider";
+export * from "./Counter";
