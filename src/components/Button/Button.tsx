@@ -171,7 +171,12 @@ const ButtonBase = styled.button<{
   fullWidth?: boolean;
   shape?: "rounded" | "square" | "default";
 }>`
-  border-radius: ${(p) => p.theme.knackTheme.borderRadiuses.medium};
+  border-radius: ${(p) =>
+    p.shape === "default"
+      ? p.theme.knackTheme.borderRadiuses.medium
+      : p.shape === "rounded"
+      ? p.theme.knackTheme.borderRadiuses.xlarge
+      : 0};
   position: relative;
   display: inline-block;
   font-size: var(--font-size);
