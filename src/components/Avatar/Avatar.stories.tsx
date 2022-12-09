@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 import Avatar from "./Avatar";
 
@@ -17,9 +16,7 @@ export default {
 } as ComponentMeta<typeof Avatar>;
 
 const Template: ComponentStory<typeof Avatar> = ({ ...args }) => (
-  <ThemeProvider>
-    <Avatar {...args} />
-  </ThemeProvider>
+  <Avatar {...args} />
 );
 
 export const Default = Template.bind({});

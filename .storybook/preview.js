@@ -1,4 +1,5 @@
 // preview.js
+import ThemeProvider from "../src/theme/ThemeProvider";
 
 export const globalTypes = {
   locale: {
@@ -31,3 +32,11 @@ export const parameters = {
     }
   }
 };
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider mode='light'>
+      <Story />
+    </ThemeProvider>
+  )
+];

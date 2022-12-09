@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { CircularProgress } from ".";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 export default {
   title: "Components/CircularProgress",
@@ -16,9 +15,7 @@ export default {
 } as ComponentMeta<typeof CircularProgress>;
 
 const Template: ComponentStory<typeof CircularProgress> = (args) => (
-  <ThemeProvider mode="light">
-    <CircularProgress {...args} />
-  </ThemeProvider>
+  <CircularProgress {...args} />
 );
 
 export const Default = Template.bind({});

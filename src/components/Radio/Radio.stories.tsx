@@ -1,6 +1,5 @@
 import { ComponentStory, Meta } from "@storybook/react";
 import { useState } from "react";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 import Radio, { RadioProps } from "./Radio";
 
@@ -22,24 +21,22 @@ export default {
 const Template: ComponentStory<typeof Radio> = ({ size }) => {
   const [value, setValue] = useState<"oranges" | "apples" | null>(null);
   return (
-    <ThemeProvider mode='light'>
-      <div style={{ gap: "2rem", display: "flex", flexDirection: "column" }}>
-        <Radio mt={6} mx={12} size={size}>
-          <Radio.Control
-            checked={value === "apples"}
-            onChange={() => setValue("apples")}
-          />
-          <Radio.Text>Apples</Radio.Text>
-        </Radio>
-        <Radio mt={6} mx={12} size={size}>
-          <Radio.Control
-            checked={value === "oranges"}
-            onChange={() => setValue("oranges")}
-          />
-          <Radio.Text>Oranges</Radio.Text>
-        </Radio>
-      </div>
-    </ThemeProvider>
+    <div style={{ gap: "2rem", display: "flex", flexDirection: "column" }}>
+      <Radio mt={6} mx={12} size={size}>
+        <Radio.Control
+          checked={value === "apples"}
+          onChange={() => setValue("apples")}
+        />
+        <Radio.Text>Apples</Radio.Text>
+      </Radio>
+      <Radio mt={6} mx={12} size={size}>
+        <Radio.Control
+          checked={value === "oranges"}
+          onChange={() => setValue("oranges")}
+        />
+        <Radio.Text>Oranges</Radio.Text>
+      </Radio>
+    </div>
   );
 };
 

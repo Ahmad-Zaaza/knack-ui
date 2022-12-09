@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 import Counter from "./Counter";
 
@@ -10,9 +9,9 @@ export default {
 } as ComponentMeta<typeof Counter>;
 
 const Template: ComponentStory<typeof Counter> = (args) => (
-  <ThemeProvider mode="light">
+ 
     <Counter {...args} />
-  </ThemeProvider>
+ 
 );
 
 export const Default = Template.bind({});

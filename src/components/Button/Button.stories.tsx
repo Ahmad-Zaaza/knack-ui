@@ -3,7 +3,6 @@ import { createMemoryHistory } from "history";
 import { AiFillEdit } from "react-icons/ai";
 import { Link, Router } from "react-router-dom";
 import Button, { ButtonProps } from "./Button";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 export default {
   title: "Components/Button",
@@ -25,16 +24,12 @@ export default {
 } as ComponentMeta<typeof Button>;
 const history = createMemoryHistory();
 const Template: Story<ButtonProps> = ({ ...args }) => (
-  <ThemeProvider mode="light">
-    <Button {...args}>Hello</Button>
-  </ThemeProvider>
+  <Button {...args}>Hello</Button>
 );
 const RouterTemplate: Story<ButtonProps> = (args) => (
-  <ThemeProvider mode="light">
-    <Router navigator={history} location={history.location}>
-      <Button size="large" as={Link} to="/" {...args} />
-    </Router>
-  </ThemeProvider>
+  <Router navigator={history} location={history.location}>
+    <Button size="large" as={Link} to="/" {...args} />
+  </Router>
 );
 
 export const Primary = Template.bind({});

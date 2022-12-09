@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
 import { Button, Box, Stack } from "..";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 export default {
   title: "Components/Popover",
@@ -17,7 +16,7 @@ const Template: ComponentStory<typeof Popover> = (_) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <ThemeProvider mode='light'>
+   
       <BrowserRouter>
         <Stack justifyContent="space-between">
           {/* <Input /> */}
@@ -49,7 +48,7 @@ const Template: ComponentStory<typeof Popover> = (_) => {
         </Popover>
         <Button>Fake Button</Button>
       </BrowserRouter>
-    </ThemeProvider>
+    
   );
 };
 

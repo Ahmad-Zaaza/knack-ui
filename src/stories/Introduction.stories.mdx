@@ -1,6 +1,6 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from "@storybook/addon-docs/blocks";
 
-<Meta title="Intro" />
+<Meta title="Introduction" />
 
 # Getting started
 
@@ -16,20 +16,20 @@ Add KUDS to your project.
 
 ### **Usage**
 
-Import components you want into your UI.
+Import all the components you want into your UI.
 
-`import { Button, Stack, Input } from 'knack-ui';`
+`import { Button, Stack, Input, Box } from 'knack-ui';`
 
 and use them like so
 
 ```
   const Example = () => (
-    <div>
-      <Stack direction='column' gap={3}>
-        <Button variant='primary'>Knack UI button</Button>
+    <Box paper p={4} mx={2}>
+      <Stack direction='column' mb={4} gap={3}>
+        <Button variant='primary' size='small'>Knack UI button</Button>
         <Button variant='secondary'>Knack UI button 2</Button>
       </Stack>
-      <Input variant='large'/>
-    </div>
+      <Input variant='large' />
+    </Box>
   )
 ```

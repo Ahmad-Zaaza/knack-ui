@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Stack } from "../Stack";
 import { Button } from "../Button";
 import { Modal } from ".";
-import ThemeProvider from "../../theme/ThemeProvider";
 import { BREAKPOINTS } from "../../theme/builtInTokens";
 
 export default {
@@ -17,7 +16,7 @@ const Template: ComponentStory<typeof Modal> = (args) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <ThemeProvider mode='light'>
+    <>
       <Button onClick={() => setOpen(true)}>Open</Button>
       <div>
         <StyledModal
@@ -45,7 +44,7 @@ const Template: ComponentStory<typeof Modal> = (args) => {
           </div>
         </StyledModal>
       </div>
-    </ThemeProvider>
+    </>
   );
 };
 export const Default = Template.bind({});

@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { LinearProgress } from ".";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 export default {
   title: "Components/LinearProgress",
@@ -14,9 +13,7 @@ export default {
 } as ComponentMeta<typeof LinearProgress>;
 
 const Template: ComponentStory<typeof LinearProgress> = (args) => (
-  <ThemeProvider mode='light'>
-    <LinearProgress {...args} />
-  </ThemeProvider>
+  <LinearProgress {...args} />
 );
 
 export const Default = Template.bind({});

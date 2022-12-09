@@ -1,6 +1,5 @@
 import { ComponentStory, Meta } from "@storybook/react";
 import { useState } from "react";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 import Checkbox, { CheckboxProps } from "./Checkbox";
 
@@ -28,30 +27,26 @@ export default {
 const Template: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
   const [checked, setChecked] = useState(true);
   return (
-    <ThemeProvider mode='light'>
-      <Checkbox size={size} {...args}>
-        <Checkbox.Control
-          checked={checked}
-          onChange={(e) => setChecked(e.target.checked)}
-        />
-        <Checkbox.Text>Send weekly email</Checkbox.Text>
-      </Checkbox>
-    </ThemeProvider>
+    <Checkbox size={size} {...args}>
+      <Checkbox.Control
+        checked={checked}
+        onChange={(e) => setChecked(e.target.checked)}
+      />
+      <Checkbox.Text>Send weekly email</Checkbox.Text>
+    </Checkbox>
   );
 };
 const WithLabel: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
   const [checked, setChecked] = useState(true);
   return (
-    <ThemeProvider mode='light'>
-      <Checkbox mt={6} mx={12} size={size} {...args}>
-        <Checkbox.Control
-          checked={checked}
-          disabled
-          onChange={(e) => setChecked(e.target.checked)}
-        />
-        <Checkbox.Text>Send weekly email</Checkbox.Text>
-      </Checkbox>
-    </ThemeProvider>
+    <Checkbox mt={6} mx={12} size={size} {...args}>
+      <Checkbox.Control
+        checked={checked}
+        disabled
+        onChange={(e) => setChecked(e.target.checked)}
+      />
+      <Checkbox.Text>Send weekly email</Checkbox.Text>
+    </Checkbox>
   );
 };
 
