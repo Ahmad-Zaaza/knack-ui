@@ -30,12 +30,17 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/
     }
+  },
+  options: {
+    storySort: {
+      order: ["Introduction", "Installation", "Usage", "Components"]
+    }
   }
 };
 
 export const decorators = [
   (Story) => (
-    <ThemeProvider mode='light'>
+    <ThemeProvider mode="light">
       <Story />
     </ThemeProvider>
   )
