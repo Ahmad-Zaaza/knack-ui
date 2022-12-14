@@ -136,26 +136,26 @@ export const SemanticThemes = {
   warning: {
     color: "hsl(30, 100%, 50%)",
     hue: "30",
-    lightness: "100%",
-    saturation: "50%"
+    saturation: "100%",
+    lightness: "50%"
   },
   info: {
     color: "hsl(205, 100%, 49%)",
     hue: "205",
-    lightness: "100%",
-    saturation: "49%"
+    saturation: "100%",
+    lightness: "49%"
   },
   success: {
     color: "hsl(160, 100%, 40%)",
     hue: "160",
-    lightness: "100%",
-    saturation: "40%"
+    saturation: "100%",
+    lightness: "40%"
   },
   danger: {
     color: "hsl(340, 95%, 60%)",
     hue: "340",
-    lightness: "95%",
-    saturation: "60%"
+    saturation: "95%",
+    lightness: "60%"
   }
 };
 
