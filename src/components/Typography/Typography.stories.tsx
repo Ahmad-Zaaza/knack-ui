@@ -13,13 +13,13 @@ export default {
 
 const Template: ComponentStory<typeof Typography> = ({ ...args }) => (
   <Stack direction="column" gap={2}>
-    <Typography mb={4} variant="h1" as="p">
+    <Typography mb={4} color='themes.warning' variant="h1" as="h1">
       This is an h1 variant
     </Typography>
     <Typography {...args} variant="h2">
       This is an h2 variant
     </Typography>
-    <Typography color="red" {...args} variant="h3">
+    <Typography color="" {...args} variant="h3">
       This is an h3 variant
     </Typography>
     <Typography {...args} variant="h4">
