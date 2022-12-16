@@ -1,8 +1,3 @@
-// export interface Theme {
-//   colors: typeof lightThemeColors;
-//   borderRadiuses: ThemeBorderRadiuses;
-//   scaleDenominator: number;
-// }
 export interface KnackTheme {
   mediaQueries: KnackThemeMediaQueries;
   elevations: ThemeElevation;
@@ -67,9 +62,9 @@ export type SemanticThemes = "info" | "success" | "danger" | "warning";
 export type KnackThemeMediaQueries = MediaQueries & AdvancedMediaQueries;
 
 export type MediaQueries = {
-  tabletAndUp: string;
-  laptopAndUp: string;
-  desktopAndUp: string;
+  readonly tabletAndUp: string;
+  readonly laptopAndUp: string;
+  readonly desktopAndUp: string;
 };
 
 export type AdvancedMediaQueries = {

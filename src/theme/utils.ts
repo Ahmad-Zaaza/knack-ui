@@ -6,12 +6,7 @@ import {
   lightModeTheme,
   darkModeTheme
 } from "./builtInTokens";
-import {
-  KnackTheme,
-  Theme,
-  ThemeBorderRadiuses,
-  ThemeColors
-} from "./theme.types";
+import { KnackTheme, ThemeBorderRadiuses, ThemeColors } from "./theme.types";
 
 function validateColorValues(
   colors: Subset<ThemeColors>,
@@ -66,9 +61,9 @@ function validateBorderRadiuses(
 
 export const createTheme = (
   mode: "light" | "dark",
-  theme: Subset<Theme>
+  theme: Subset<KnackTheme>
 ): KnackTheme => {
-  const cleanTheme = removeUndefinedKeys(theme) as Theme;
+  const cleanTheme = removeUndefinedKeys(theme) as KnackTheme;
   let builtInTheme: KnackTheme;
   let builtInColors: ThemeColors;
   if (mode === "dark") {
