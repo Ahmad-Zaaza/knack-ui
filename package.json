@@ -18,7 +18,7 @@
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "deploy": "npm publish --access public",
-    "prepublishOnly": "npm run lint:fix && npm run build && npm version patch",
+    "prepublishOnly": "npm run lint:fix && npm run build && npm version minor",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "dev": "start-storybook -p 6006",
