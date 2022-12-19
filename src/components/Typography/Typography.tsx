@@ -30,7 +30,7 @@ type TypographyFontWeight =
   | "200"
   | "100";
 
-type TypographyProps = {
+type TypographyBaseProps = {
   variant?: TypographyVariants;
   /**
    * Controls the typography color
@@ -52,7 +52,7 @@ type TypographyProps = {
   // tag?: keyof typeof TagsMap;
 };
 
-type Props = TypographyProps & IBoxProps;
+type TypographyProps = TypographyBaseProps & IBoxProps;
 
 /**
  * @description
@@ -96,11 +96,16 @@ const Typography = forwardRef(
       </Text>
     );
   }
-) as Polymorphic.ForwardRefComponent<"p", Props>;
+) as Polymorphic.ForwardRefComponent<"p", TypographyProps>;
 
 export default Typography;
 
-export type { TypographyProps, TypographyFontWeight, TypographyVariants };
+export type {
+  TypographyBaseProps,
+  TypographyFontWeight,
+  TypographyProps,
+  TypographyVariants
+};
 
 Typography.defaultProps = {
   as: "p",
@@ -108,10 +113,10 @@ Typography.defaultProps = {
 };
 
 const Text = styled(Box)<{
-  fw?: TypographyProps["fontWeight"];
-  clamp?: TypographyProps["clamp"];
-  textAlign?: TypographyProps["textAlign"];
-  color?: TypographyProps["color"];
+  fw?: TypographyBaseProps["fontWeight"];
+  clamp?: TypographyBaseProps["clamp"];
+  textAlign?: TypographyBaseProps["textAlign"];
+  color?: TypographyBaseProps["color"];
 }>`
   font-size: var(--fs);
   font-weight: ${(p) => p.fw || `var(--fw, 400)`};
