@@ -1,9 +1,15 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import { CSSProperties, forwardRef } from "react";
-import styled, { css } from "styled-components";
+import { CSSProperties, forwardRef, useCallback } from "react";
+import styled, { css, useTheme } from "styled-components";
 import { Box, IBoxProps } from "../Box";
 import useTypographyStyles from "./useTypographyStyles";
 import * as Polymorphic from "../../types/helpers";
+import {
+  BuiltInColorPalettesKeys,
+  PaletteDegrees,
+  SemanticThemes,
+  ThemeColors
+} from "../../theme/theme.types";
 
 type TypographyVariants =
   | "h1"
@@ -30,12 +36,42 @@ type TypographyFontWeight =
   | "200"
   | "100";
 
+type UsableThemeColors = Pick<
+  ThemeColors,
+  | "primary"
+  | "onPrimary"
+  | "secondary"
+  | "onSecondary"
+  | "gray"
+  | "blue"
+  | "green"
+  | "red"
+  | "text"
+> & {
+  themes: {
+    [K in SemanticThemes]: string;
+  };
+};
+
+type PathImpl<T, K extends keyof T> = K extends string | number
+  ? T[K] extends Record<string, any>
+    ? T[K] extends ArrayLike<any>
+      ? K | `${K}.${PathImpl<T[K], Exclude<keyof T[K], keyof any[]>>}`
+      : K | `${K}.${PathImpl<T[K], keyof T[K]>}`
+    : K
+  : never;
+
+type Path<T> = PathImpl<T, keyof T> | keyof T;
+
+type TypographyColor = CSSProperties["color"] | Path<UsableThemeColors>;
+// type TypographyColor = Path<UsableThemeColors>;
+
 type TypographyBaseProps = {
   variant?: TypographyVariants;
   /**
    * Controls the typography color
    */
-  color?: CSSProperties["color"];
+  color?: TypographyColor;
   /**
    * Controls the typography font weight
    */
@@ -81,12 +117,39 @@ const Typography = forwardRef(
     ref
   ) => {
     const styles = useTypographyStyles();
+
+    const { knackTheme } = useTheme();
+
+    const getColor = useCallback(() => {
+      if (!color) return;
+
+      if (["themes."].find((c) => color.includes(c))) {
+        const extractedKey = color.split(".");
+        return knackTheme.colors.themes[extractedKey[1] as SemanticThemes]
+          .color;
+      }
+      if (["gray", "blue", "red.", "green"].find((c) => color.includes(c))) {
+        const extractedKey = color.split(".");
+        return knackTheme.colors[extractedKey[0] as BuiltInColorPalettesKeys][
+          extractedKey[1] as PaletteDegrees
+        ];
+      }
+      if (
+        ["primary", "secondary", "onPrimary", "onSecondary"].includes(color)
+      ) {
+        return knackTheme.colors[
+          color as "primary" | "secondary" | "onPrimary" | "onSecondary"
+        ];
+      }
+      return color;
+    }, [color, knackTheme]);
+
     return (
       <Text
         forwardedAs={as}
         fw={fontWeight}
         ref={ref}
-        color={color}
+        color={getColor()}
         textAlign={textAlign}
         clamp={clamp}
         style={{ ...styles[variant], ...style }}
@@ -113,10 +176,10 @@ Typography.defaultProps = {
 };
 
 const Text = styled(Box)<{
-  fw?: TypographyBaseProps["fontWeight"];
-  clamp?: TypographyBaseProps["clamp"];
-  textAlign?: TypographyBaseProps["textAlign"];
-  color?: TypographyBaseProps["color"];
+  fw?: TypographyProps["fontWeight"];
+  clamp?: TypographyProps["clamp"];
+  textAlign?: TypographyProps["textAlign"];
+  color?: TypographyColor;
 }>`
   font-size: var(--fs);
   font-weight: ${(p) => p.fw || `var(--fw, 400)`};

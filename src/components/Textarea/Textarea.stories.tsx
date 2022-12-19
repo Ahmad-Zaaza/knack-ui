@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 import Textarea from "./Textarea";
 
@@ -23,9 +22,9 @@ export default {
 } as ComponentMeta<typeof Textarea>;
 
 const Template: ComponentStory<typeof Textarea> = (args) => (
-  <ThemeProvider mode='light'>
+ 
     <Textarea {...args} />
-  </ThemeProvider>
+  
 );
 
 export const Default = Template.bind({});

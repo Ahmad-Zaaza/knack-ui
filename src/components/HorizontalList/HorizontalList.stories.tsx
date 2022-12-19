@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import ThemeProvider from "../../theme/ThemeProvider";
 import { Chip } from "../Chip";
 import { Stack } from "../Stack";
 import { Typography } from "../Typography";
@@ -13,7 +12,7 @@ export default {
 } as ComponentMeta<typeof HorizontalList>;
 
 const Template: ComponentStory<typeof HorizontalList> = () => (
-  <ThemeProvider mode='light'>
+  
     <Stack style={{ height: 150 }} gap={4} className="p-4">
       <img
         className="object-cover h-full rounded-lg"
@@ -68,7 +67,7 @@ const Template: ComponentStory<typeof HorizontalList> = () => (
         </div>
       </Stack>
     </Stack>
-  </ThemeProvider>
+  
 );
 
 export const Default = Template.bind({});

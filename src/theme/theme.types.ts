@@ -1,8 +1,3 @@
-export interface Theme {
-  colors: ThemeColors;
-  borderRadiuses: ThemeBorderRadiuses;
-  scaleDenominator: number;
-}
 export interface KnackTheme {
   mediaQueries: KnackThemeMediaQueries;
   elevations: ThemeElevation;
@@ -15,6 +10,14 @@ export interface IntegratedTheme {
   knackTheme: KnackTheme;
 }
 
+export type BuiltInColorPalettesKeys = "gray" | "blue" | "red" | "green";
+
+export type PaletteDegrees = keyof ColorPalleteMap;
+
+export type ColorPalette = {
+  [key in BuiltInColorPalettesKeys]: ColorPalleteMap;
+};
+
 export type ThemeColors = {
   primary: string;
   secondary: string;
@@ -23,10 +26,6 @@ export type ThemeColors = {
   onSecondary: string;
   paper: string;
   white: string;
-  gray: ColorPalletes;
-  blue: ColorPalletes;
-  red: ColorPalletes;
-  green: ColorPalletes;
   themes: {
     [key in SemanticThemes]: {
       color: string;
@@ -35,18 +34,18 @@ export type ThemeColors = {
       saturation: string;
     };
   };
-};
+} & ColorPalette;
 
-export type ColorPalletes = {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
+export type ColorPalleteMap = {
+  "50": string;
+  "100": string;
+  "200": string;
+  "300": string;
+  "400": string;
+  "500": string;
+  "600": string;
+  "700": string;
+  "800": string;
 };
 
 export type ThemeBorderRadiuses = {
@@ -63,9 +62,9 @@ export type SemanticThemes = "info" | "success" | "danger" | "warning";
 export type KnackThemeMediaQueries = MediaQueries & AdvancedMediaQueries;
 
 export type MediaQueries = {
-  tabletAndUp: string;
-  laptopAndUp: string;
-  desktopAndUp: string;
+  readonly tabletAndUp: string;
+  readonly laptopAndUp: string;
+  readonly desktopAndUp: string;
 };
 
 export type AdvancedMediaQueries = {

@@ -1,18 +1,28 @@
 import { FC, CSSProperties, forwardRef, ComponentPropsWithoutRef } from "react";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { fade, fadeUp } from "../../lib/animations";
+import { MediaQueries } from "../../theme/theme.types";
 
 interface IModalProps extends ComponentPropsWithoutRef<"div"> {
   isOpen: boolean;
   onClose: () => void;
   width?: string | number;
+  fullWidth?:
+    | boolean
+    | {
+        breakpointThreshold: keyof MediaQueries;
+      };
 }
 
 const Modal: FC<IModalProps> = forwardRef<HTMLDivElement, IModalProps>(
-  ({ children, isOpen, onClose, width, style, ...delegated }, ref) => (
+  (
+    { children, isOpen, onClose, width, style, fullWidth, ...delegated },
+    ref
+  ) => (
     <Overlay isOpen={isOpen} onDismiss={onClose}>
       <Content
+        fullWidth={fullWidth}
         ref={ref}
         style={
           {
@@ -42,14 +52,49 @@ const Overlay = styled(DialogOverlay)`
   animation: ${fade} 100ms linear forwards;
   backdrop-filter: blur(1px);
 `;
-const Content = styled(DialogContent)`
-  max-width: var(--width, 750px);
+const Content = styled(DialogContent)<{ fullWidth?: IModalProps["fullWidth"] }>`
   animation: ${fadeUp} 250ms linear forwards;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10vh;
-  padding: 2rem;
-  padding-bottom: 0;
-  width: var(--width, fit-content);
+
   position: relative;
+  ${(p) =>
+    p.fullWidth
+      ? typeof p.fullWidth === "boolean"
+        ? css`
+            width: 100%;
+            padding: 0;
+            margin-left: unset;
+            margin-right: unset;
+            max-width: unset;
+            margin-top: unset;
+            height: 100%;
+          `
+        : css`
+            width: 100%;
+            padding: 0;
+            margin-left: unset;
+            margin-right: unset;
+            max-width: unset;
+            margin-top: unset;
+            height: 100%;
+
+            @media ${p.theme.knackTheme.mediaQueries[
+                p.fullWidth?.breakpointThreshold
+              ]} {
+              margin-left: auto;
+              margin-right: auto;
+              margin-top: 10vh;
+              padding: 2rem;
+              padding-bottom: 0;
+              width: var(--width, fit-content);
+              height: unset;
+            }
+          `
+      : css`
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 10vh;
+          padding: 2rem;
+          padding-bottom: 0;
+          width: var(--width, fit-content);
+        `}
 `;

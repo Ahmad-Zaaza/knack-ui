@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import styled from "styled-components";
+import { useState } from "@storybook/addons";
 import { Stack } from "../Stack";
 import { Button } from "../Button";
 import { Modal } from ".";
-import ThemeProvider from "../../theme/ThemeProvider";
-import { BREAKPOINTS } from "../../theme/builtInTokens";
+import { Box } from "../Box";
 
 export default {
   title: "Components/Modal",
@@ -17,44 +15,32 @@ const Template: ComponentStory<typeof Modal> = (args) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <ThemeProvider mode='light'>
+    <div>
       <Button onClick={() => setOpen(true)}>Open</Button>
       <div>
-        <StyledModal
+        <Modal
           width="clamp(550px, 70vw, 750px)"
           {...args}
           isOpen={open}
           onClose={() => setOpen(false)}
         >
-          <div
-            style={
-              {
-                // maxBlockSize: "85vh",
-                // gridTemplateRows: "1fr auto",
-                // display: "grid",
-                // borderRadius: 12
-              }
-            }
-          >
+          <Box h="100%" paper>
             <div style={{ height: 400 }}>123</div>
 
             <Stack gap={2}>
               <Button>OK</Button>
               <Button>Cancel</Button>
             </Stack>
-          </div>
-        </StyledModal>
+          </Box>
+        </Modal>
       </div>
-    </ThemeProvider>
+    </div>
   );
 };
 export const Default = Template.bind({});
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  fullWidth: { breakpointThreshold: "tabletAndUp" }
+};
 
-const StyledModal = styled(Modal)`
-  @media (max-width: ${BREAKPOINTS.tabletMin}px) {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin-top: 0;
-  }
-`;
+

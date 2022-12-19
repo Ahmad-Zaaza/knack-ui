@@ -1,12 +1,19 @@
 const path = require("path");
 
 module.exports = {
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: [
+    "../src/**/*.stories.mdx",
+    "../src/**/*.stories.@(js|jsx|ts|tsx)",
+    "../docs/**/*.stories.mdx",
+    "../docs/**/*.stories.@(js|jsx|ts|tsx)"
+  ],
   addons: [
     "@storybook/addon-links",
+    "@storybook/addon-docs",
     "@storybook/addon-essentials",
     "storybook-addon-rtl-direction"
   ],
+  staticDirs: ["./public"],
   framework: "@storybook/react",
   core: {
     builder: "webpack5"

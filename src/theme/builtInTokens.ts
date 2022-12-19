@@ -1,5 +1,6 @@
 import {
   AdvancedMediaQueries,
+  ColorPalleteMap,
   KnackTheme,
   KnackThemeMediaQueries,
   MediaQueries,
@@ -136,27 +137,74 @@ export const SemanticThemes = {
   warning: {
     color: "hsl(30, 100%, 50%)",
     hue: "30",
-    lightness: "100%",
-    saturation: "50%"
+    saturation: "100%",
+    lightness: "50%"
   },
   info: {
     color: "hsl(205, 100%, 49%)",
     hue: "205",
-    lightness: "100%",
-    saturation: "49%"
+    saturation: "100%",
+    lightness: "49%"
   },
   success: {
     color: "hsl(160, 100%, 40%)",
     hue: "160",
-    lightness: "100%",
-    saturation: "40%"
+    saturation: "100%",
+    lightness: "40%"
   },
   danger: {
     color: "hsl(340, 95%, 60%)",
     hue: "340",
-    lightness: "95%",
-    saturation: "60%"
+    saturation: "95%",
+    lightness: "60%"
   }
+};
+
+export const grayPalette: ColorPalleteMap = {
+  50: "hsl(228, 29%, 97%)",
+  100: "hsl(233, 17%, 90%)",
+  200: "hsl(224, 10%, 79%)",
+  300: "hsl(231, 8%, 69%)",
+  400: "hsl(226, 8%, 57%)",
+  500: "hsl(231, 6%, 45%)",
+  600: "hsl(230, 8%, 31%)",
+  700: "hsl(226, 13%, 19%)",
+  800: "hsl(228, 17%, 12%)"
+};
+
+export const bluePalette: ColorPalleteMap = {
+  50: "hsl(202, 100%, 96%)",
+  100: "hsl(206, 97%, 88%)",
+  200: "hsl(207, 100%, 78%)",
+  300: "hsl(202, 100%, 58%)",
+  400: "hsl(205, 100%, 49%)",
+  500: "hsl(208, 100%, 40%)",
+  600: "hsl(212, 95%, 29%)",
+  700: "hsl(213, 100%, 19%)",
+  800: "hsl(213, 100%, 12%)"
+};
+
+export const redPalette: ColorPalleteMap = {
+  50: "hsl(332, 100%, 97%)",
+  100: "hsl(348, 100%, 92%)",
+  200: "hsl(355, 100%, 84%)",
+  300: "hsl(0,100%, 76%)",
+  400: "hsl(357, 100%, 64%)",
+  500: "hsl(347, 100%, 41%)",
+  600: "hsl(351, 100%, 28%)",
+  700: "hsl(353, 100%, 17%)",
+  800: "hsl(0,97%, 13%)"
+};
+export const greenPalette: ColorPalleteMap = {
+  50: "hsl(142, 95%, 93%)",
+  100: "hsl(151, 76%, 78%)",
+  200: "hsl(157, 66%, 61%)",
+  300: "hsl(165, 100%, 38%)",
+  400: "hsl(169, 100%, 31%)",
+  500: "hsl(169, 100%, 24%)",
+  600: "hsl(169, 89%, 17%)",
+  700: "hsl(172, 100%, 10%)",
+  800: "hsl(176, 100%, 6%)"
 };
 
 export const lightThemeColors: ThemeColors = {
@@ -167,52 +215,14 @@ export const lightThemeColors: ThemeColors = {
   onPrimary: "hsl(0, 0%, 100%)",
   onSecondary: "hsl(0, 0%, 100%)",
   white: "hsl(0,100%,100%)",
-  gray: {
-    50: "hsl(228, 29%, 97%)",
-    100: "hsl(233, 17%, 90%)",
-    200: "hsl(224, 10%, 79%)",
-    300: "hsl(231, 8%, 69%)",
-    400: "hsl(226, 8%, 57%)",
-    500: "hsl(231, 6%, 45%)",
-    600: "hsl(230, 8%, 31%)",
-    700: "hsl(226, 13%, 19%)",
-    800: "hsl(228, 17%, 12%)"
-  },
-  blue: {
-    50: "hsl(202, 100%, 96%)",
-    100: "hsl(206, 97%, 88%)",
-    200: "hsl(207, 100%, 78%)",
-    300: "hsl(202, 100%, 58%)",
-    400: "hsl(205, 100%, 49%)",
-    500: "hsl(208, 100%, 40%)",
-    600: "hsl(212, 95%, 29%)",
-    700: "hsl(213, 100%, 19%)",
-    800: "hsl(213, 100%, 12%)"
-  },
-  red: {
-    50: "hsl(332, 100%, 97%)",
-    100: "hsl(348, 100%, 92%)",
-    200: "hsl(355, 100%, 84%)",
-    300: "hsl(0,100%, 76%)",
-    400: "hsl(357, 100%, 64%)",
-    500: "hsl(347, 100%, 41%)",
-    600: "hsl(351, 100%, 28%)",
-    700: "hsl(353, 100%, 17%)",
-    800: "hsl(0,97%, 13%)"
-  },
-  green: {
-    50: "hsl(142, 95%, 93%)",
-    100: "hsl(151, 76%, 78%)",
-    200: "hsl(157, 66%, 61%)",
-    300: "hsl(165, 100%, 38%)",
-    400: "hsl(169, 100%, 31%)",
-    500: "hsl(169, 100%, 24%)",
-    600: "hsl(169, 89%, 17%)",
-    700: "hsl(172, 100%, 10%)",
-    800: "hsl(176, 100%, 6%)"
-  },
+  gray: grayPalette,
+  blue: bluePalette,
+  red: redPalette,
+  green: greenPalette,
   paper: "hsl(0, 0%, 100%)"
 };
+
+// for now color palettes are the same.
 export const darkThemeColors: ThemeColors = {
   themes: SemanticThemes,
   primary: "hsl(350, 100%, 72%)",
@@ -221,50 +231,10 @@ export const darkThemeColors: ThemeColors = {
   onPrimary: "hsl(0, 0%, 98%)",
   onSecondary: "hsl(0, 0%, 98%)",
   white: "hsl(0,100%,100%)",
-  gray: {
-    50: "hsl(228, 29%, 97%)",
-    100: "hsl(233, 17%, 90%)",
-    200: "hsl(224, 10%, 79%)",
-    300: "hsl(231, 8%, 69%)",
-    400: "hsl(226, 8%, 57%)",
-    500: "hsl(231, 6%, 45%)",
-    600: "hsl(230, 8%, 31%)",
-    700: "hsl(226, 13%, 19%)",
-    800: "hsl(228, 17%, 12%)"
-  },
-  blue: {
-    50: "hsl(202, 100%, 96%)",
-    100: "hsl(206, 97%, 88%)",
-    200: "hsl(207, 100%, 78%)",
-    300: "hsl(202, 100%, 58%)",
-    400: "hsl(205, 100%, 49%)",
-    500: "hsl(208, 100%, 40%)",
-    600: "hsl(212, 95%, 29%)",
-    700: "hsl(213, 100%, 19%)",
-    800: "hsl(213, 100%, 12%)"
-  },
-  red: {
-    50: "hsl(332, 100%, 97%)",
-    100: "hsl(348, 100%, 92%)",
-    200: "hsl(355, 100%, 84%)",
-    300: "hsl(0,100%, 76%)",
-    400: "hsl(357, 100%, 64%)",
-    500: "hsl(347, 100%, 41%)",
-    600: "hsl(351, 100%, 28%)",
-    700: "hsl(353, 100%, 17%)",
-    800: "hsl(0,97%, 13%)"
-  },
-  green: {
-    50: "hsl(142, 95%, 93%)",
-    100: "hsl(151, 76%, 78%)",
-    200: "hsl(157, 66%, 61%)",
-    300: "hsl(165, 100%, 38%)",
-    400: "hsl(169, 100%, 31%)",
-    500: "hsl(169, 100%, 24%)",
-    600: "hsl(169, 89%, 17%)",
-    700: "hsl(172, 100%, 10%)",
-    800: "hsl(176, 100%, 6%)"
-  },
+  gray: grayPalette,
+  blue: bluePalette,
+  red: redPalette,
+  green: greenPalette,
   paper: "hsl(228, 17%, 12%)"
 };
 

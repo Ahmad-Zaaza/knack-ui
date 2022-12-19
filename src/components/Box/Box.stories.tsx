@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Stack, Typography } from "..";
-import ThemeProvider from "../../theme/ThemeProvider";
-import { createTheme } from "../../theme/utils";
 
 import Box from "./Box";
 
@@ -15,23 +13,16 @@ const Template: ComponentStory<typeof Box> = ({
   children: _,
 
   ...args
-}) => {
-  const customTheme = createTheme("dark", {
-    borderRadiuses: { large: "16px" }
-  });
-  return (
-    <ThemeProvider theme={customTheme}>
-      <Box elevation={1} br="large" p={4} paper {...args}>
-        <div>Hey ma, I am dynamic! </div>
-      </Box>
-    </ThemeProvider>
-  );
-};
+}) => (
+  <Box elevation={1} br="large" p={4} paper {...args}>
+    <div>Hey ma, I am dynamic! </div>
+  </Box>
+);
 const ElevationsTemplate: ComponentStory<typeof Box> = ({
   children: __,
   ...args
 }) => (
-  <ThemeProvider mode="light">
+  <>
     <Typography style={{ marginBottom: "1rem" }} variant="h5">
       Box as Stack
     </Typography>
@@ -53,7 +44,7 @@ const ElevationsTemplate: ComponentStory<typeof Box> = ({
         </Stack>
       ))}
     </Box>
-  </ThemeProvider>
+  </>
 );
 
 export const Default = Template.bind({});

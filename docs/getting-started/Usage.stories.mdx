@@ -1,0 +1,114 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Usage" />
+
+# **Usage**
+
+---
+
+##### **Knack-ui uses a theme system, allowing different projects to supply their customized values to be interpreted.**
+
+First, start with importing `ThemeProvider` and place it at the root of your project.
+
+```
+
+import { ThemeProvider } from "knack-ui";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+
+
+const root = createRoot(document.getElementById("root")!);
+
+root.render(
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+);
+
+```
+
+Now, `ThemeProvider` can accept two different props: `theme` and `mode`, and it depends on if you want to use the built-in theme or create a custom theme.
+
+- **If you wish to use the built-in theme without any modifications, just provide the theme mode. it can be `auto | light | dark`.**
+
+```
+
+import { ThemeProvider } from 'knack-ui';
+
+<ThemeProvider mode='auto'>
+  {/* Your application */}
+</ThemeProvider>
+
+```
+
+- **If you wish to use a customized theme, you need first to create a theme by importing and calling `createTheme()`. **
+
+`createTheme` accepts two arguments, the first being the mode `light | dark`, and the second being the custom theme object. see `Theme` section for more info.
+
+```
+import { ThemeProvider, createTheme } from 'knack-ui';
+
+const myTheme = createTheme('light', {});
+
+<ThemeProvider theme={theme}>
+  {/* Your application */}
+</ThemeProvider>
+
+```
+
+## Usage with existing `styled-components` project.
+
+If your project already uses `styled-components`.
+
+Since `knack-ui` already uses `styled-components` in its core, we need to merge `knack-ui`'s theme with your project theme. The reason behind this is we're internally using `useTheme()` which returns it's values from the nearest `ThemeProvider`, It doesn't differenciate between your project's `ThemeProvider` and our `ThemeProvider`. So whoever is closest wins, and obviously you'd want your project's theme to be accessible.
+
+##### Example:
+
+` import` `ThemeProvider` from the project's `styled-components`, and create our theme from knack-ui's `createTheme` function.
+
+```
+
+import styled, { ThemeProvider } from 'styled-components';
+import { createTheme } from 'knack-ui';
+import { theme } from "./styles/theme"; // import your project's theme
+
+
+
+const projectTheme = useMemo(() => {
+  const knackTheme = createTheme("light", { colors: { primary: "hsl(230deg,80%,54%)" } });
+  return { ...theme, knackTheme };
+}, []);
+
+<ThemeProvider theme={theme}>
+  <Heading> Hello World! <Heading>
+</ThemeProvider>
+
+const Heading = styled.h1`
+color:${p => p.theme.knackTheme.colors.primary};
+`
+
+```
+
+### Important note for typescript users:
+
+If you have a custom theme make sure to add `knackTheme` key to your theme type. so it acts like a part of your project theme.
+
+```
+// "./styles/theme.ts"
+
+import { KnackTheme } from "knack-ui";
+
+export interface ProjectTheme {
+   //...your theme values.
+}
+
+export const theme: ProjectTheme = {
+  //...your theme types.
+};
+export interface Theme extends ProjectTheme {
+  knackTheme: KnackTheme;
+}
+
+
+
+```

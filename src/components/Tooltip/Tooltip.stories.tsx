@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Tooltip } from ".";
-import ThemeProvider from "../../theme/ThemeProvider";
 import { Button } from "../Button";
 
 export default {
@@ -12,25 +11,23 @@ export default {
 
 const Template: ComponentStory<typeof Tooltip> = ({ position }) => (
   <BrowserRouter>
-    <ThemeProvider mode='light'>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          height: "500px",
-          alignItems: "center"
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        height: "500px",
+        alignItems: "center"
+      }}
+    >
+      <Button
+        tooltipProps={{
+          text: "My informative text",
+          position
         }}
       >
-        <Button
-          tooltipProps={{
-            text: "My informative text",
-            position
-          }}
-        >
-          I have a tooltip
-        </Button>
-      </div>
-    </ThemeProvider>
+        I have a tooltip
+      </Button>
+    </div>
   </BrowserRouter>
 );
 

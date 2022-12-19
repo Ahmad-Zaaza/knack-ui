@@ -1,4 +1,5 @@
 // preview.js
+import ThemeProvider from "../src/theme/ThemeProvider";
 
 export const globalTypes = {
   locale: {
@@ -29,5 +30,18 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/
     }
+  },
+  options: {
+    storySort: {
+      order: ["Introduction", "Installation", "Usage", "Components"]
+    }
   }
 };
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider mode="light">
+      <Story />
+    </ThemeProvider>
+  )
+];

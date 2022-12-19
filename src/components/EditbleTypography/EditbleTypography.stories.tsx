@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 import EditableTypography from "./EditbleTypography";
 
@@ -22,24 +21,22 @@ const Template: ComponentStory<typeof EditableTypography> = ({
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("You can edit me! ");
   return (
-    <ThemeProvider mode="light">
-      <EditableTypography
-        showInput={open || showInput}
-        inputProps={{
-          size: "small",
-          value,
-          onChange: (e) => setValue(e.target.value)
-        }}
-        onToggleEdit={() => {
-          setOpen(!open);
-        }}
-        onSubmit={() => {
-          setOpen(!open);
-        }}
-      >
-        {value}
-      </EditableTypography>
-    </ThemeProvider>
+    <EditableTypography
+      showInput={open || showInput}
+      inputProps={{
+        size: "small",
+        value,
+        onChange: (e) => setValue(e.target.value)
+      }}
+      onToggleEdit={() => {
+        setOpen(!open);
+      }}
+      onSubmit={() => {
+        setOpen(!open);
+      }}
+    >
+      {value}
+    </EditableTypography>
   );
 };
 

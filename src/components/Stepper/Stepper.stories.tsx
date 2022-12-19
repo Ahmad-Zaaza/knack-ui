@@ -1,6 +1,5 @@
 import { ComponentStory, Meta } from "@storybook/react";
 import { useState } from "react";
-import ThemeProvider from "../../theme/ThemeProvider";
 
 import { Stepper, IStepperProps } from ".";
 
@@ -17,7 +16,7 @@ const Template: ComponentStory<typeof Stepper> = ({
 }) => {
   const [active, setActive] = useState(0);
   return (
-    <ThemeProvider mode='light'>
+    <>
       <Stepper
         onChange={(i) => {
           setActive(i);
@@ -39,7 +38,7 @@ const Template: ComponentStory<typeof Stepper> = ({
       </Stepper>
       {active === 0 && "step 1"}
       {active === 1 && "step 2"}
-    </ThemeProvider>
+    </>
   );
 };
 
