@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useRef } from "react";
+import { ComponentPropsWithoutRef, CSSProperties, useRef } from "react";
 import { calculateInputHeight } from "../../utils/helpers";
 import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect";
 import * as Polymorphic from "../../types/helpers";
@@ -26,7 +26,10 @@ export interface IEditbleTypographyProps {
   /**
    * Props for the underlying `Typography` element
    */
-  typographyProps?: TypographyProps;
+  typographyProps?: TypographyProps & {
+    className?: string;
+    style?: CSSProperties;
+  };
 
   /**
    * Callback applied when pressing 'Enter' or pressing 'Esc' or Blurring out an input

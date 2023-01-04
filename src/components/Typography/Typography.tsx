@@ -66,7 +66,7 @@ type Path<T> = PathImpl<T, keyof T> | keyof T;
 type TypographyColor = CSSProperties["color"] | Path<UsableThemeColors>;
 // type TypographyColor = Path<UsableThemeColors>;
 
-type TypographyProps = {
+type TypographyBaseProps = {
   variant?: TypographyVariants;
   /**
    * Controls the typography color
@@ -88,7 +88,7 @@ type TypographyProps = {
   // tag?: keyof typeof TagsMap;
 };
 
-type Props = TypographyProps & IBoxProps;
+type TypographyProps = TypographyBaseProps & IBoxProps;
 
 /**
  * @description
@@ -159,11 +159,16 @@ const Typography = forwardRef(
       </Text>
     );
   }
-) as Polymorphic.ForwardRefComponent<"p", Props>;
+) as Polymorphic.ForwardRefComponent<"p", TypographyProps>;
 
 export default Typography;
 
-export type { TypographyProps, TypographyFontWeight, TypographyVariants };
+export type {
+  TypographyBaseProps,
+  TypographyFontWeight,
+  TypographyProps,
+  TypographyVariants
+};
 
 Typography.defaultProps = {
   as: "p",
