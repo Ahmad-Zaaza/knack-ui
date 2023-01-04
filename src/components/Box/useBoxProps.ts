@@ -105,6 +105,8 @@ function useBoxProps({
   paper,
   h,
   br,
+  flex,
+  zIndex,
   elevation = 0,
 
   ...otherProps
@@ -161,7 +163,9 @@ function useBoxProps({
           pl,
           pr,
           h,
-          hMin
+          hMin,
+          zIndex,
+          flex
         },
         theme.scaleDenominator
       ),
@@ -191,6 +195,8 @@ function useBoxProps({
       pl,
       pr,
       hMin,
+      flex,
+      zIndex,
       h
     ]
   );

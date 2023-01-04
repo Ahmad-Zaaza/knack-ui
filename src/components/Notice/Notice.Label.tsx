@@ -7,6 +7,7 @@ const NoticeLabel: React.FC = ({ children }) => (
 export default NoticeLabel;
 
 const Wrapper = styled.div`
+  flex-shrink: 0;
   margin-inline-end: 8px;
   color: var(--icons-color);
   fill: var(--icons-color);
