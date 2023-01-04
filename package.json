@@ -1,6 +1,6 @@
 {
   "name": "knack-ui",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "Knack component library",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
