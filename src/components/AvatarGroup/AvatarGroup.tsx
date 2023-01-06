@@ -9,19 +9,22 @@ import { Wrapper as AvatarWrapper } from "../Avatar/Avatar";
 import { Avatar } from "..";
 
 interface IAvatarGroupProps extends ComponentPropsWithoutRef<"div"> {
-  max?: number;
+  max?: number | null;
+  onRemainingClick?: () => void;
 }
 /**
  * `AvatarGroup` renders its children as a stack. Use the `max` prop to limit the number of avatars.
  */
 const AvatarGroup = forwardRef<HTMLDivElement, IAvatarGroupProps>(
-  ({ children, max = 0, ...delegated }, ref) => {
+  ({ children, max = 0, onRemainingClick, ...delegated }, ref) => {
     const numberOfChildren = React.Children.count(children);
     return (
       <Wrapper ref={ref} {...delegated}>
-        {max > 0 && numberOfChildren > max && (
-          <Avatar
+        {max && max > 0 && numberOfChildren > max && (
+          <RemainingCountAvatar
             disableAltSlicing
+            onClick={onRemainingClick}
+            isClickable={typeof onRemainingClick === "function"}
             showAltOnFallback
             alt={`+${(numberOfChildren - max).toString()}`}
           />
@@ -30,7 +33,7 @@ const AvatarGroup = forwardRef<HTMLDivElement, IAvatarGroupProps>(
           if (isValidElement(child)) {
             return cloneElement(child, { key: i });
           }
-        })?.slice(0, max > 0 ? max : numberOfChildren)}
+        })?.slice(0, max && max > 0 ? max : numberOfChildren)}
       </Wrapper>
     );
   }
@@ -56,4 +59,8 @@ const Wrapper = styled.div`
     background-color: ${(p) => p.theme.knackTheme.colors.primary};
     color: ${(p) => p.theme.knackTheme.colors.onPrimary};
   }
+`;
+
+const RemainingCountAvatar = styled(Avatar)<{ isClickable?: boolean }>`
+  cursor: ${(p) => (p.isClickable ? "pointer" : "auto")};
 `;
