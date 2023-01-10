@@ -160,24 +160,28 @@ const Popover: React.FC<IPopoverProps> = ({
 
   return (
     <Portal>
-      <Overlay ref={overlayRef} onClick={handleClick} role="presentation">
-        <Wrapper
-          data-state={state}
-          onTransitionEnd={onTransitionEnd}
-          ref={popoverRef}
-          role="presentation"
-          {...popoverProps}
-          style={{
-            ...getStyles(position, parentRect as PRect, popoverRect as PRect, {
-              bottom: offset?.bottom ?? 0,
-              left: offset?.left ?? 0
-            }),
-            ...popoverProps?.style
-          }}
-        >
-          {children}
-        </Wrapper>
-      </Overlay>
+      <Overlay
+        tabIndex={-1}
+        ref={overlayRef}
+        onClick={handleClick}
+        role="presentation"
+      />
+      <Wrapper
+        data-state={state}
+        onTransitionEnd={onTransitionEnd}
+        ref={popoverRef}
+        role="presentation"
+        {...popoverProps}
+        style={{
+          ...getStyles(position, parentRect as PRect, popoverRect as PRect, {
+            bottom: offset?.bottom ?? 0,
+            left: offset?.left ?? 0
+          }),
+          ...popoverProps?.style
+        }}
+      >
+        {children}
+      </Wrapper>
     </Portal>
   );
 };

@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { useRef, useState } from "react";
+import { useState, useRef } from "@storybook/addons";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
 import { Button, Box, Stack } from "..";
@@ -16,39 +16,36 @@ const Template: ComponentStory<typeof Popover> = (_) => {
   const [open, setOpen] = useState(false);
 
   return (
-   
-      <BrowserRouter>
-        <Stack justifyContent="space-between">
-          {/* <Input /> */}
-          <Button
-            onClick={() => {
-              if (!open) {
-                setOpen(true);
-              }
-            }}
-            className="mt-[300px]"
-            ref={parentRef}
-          >
-            Click me
-          </Button>
-        </Stack>
-        <Popover
-          animationType="fade-up"
-          isOpen={open}
-          offset={{ bottom: 10, left: 0 }}
-          onClose={() => setOpen(false)}
-          parentRef={parentRef}
+    <BrowserRouter>
+      <Stack h="120vh" justifyContent="space-between">
+        {/* <Input /> */}
+        <Button
+          onClick={() => {
+            if (!open) {
+              setOpen(true);
+            }
+          }}
+          style={{ marginTop: 300 }}
+          ref={parentRef}
         >
-          <Box p={4} style={{ backgroundColor: "#fff" }}>
-            <div>Go to home</div>
-            <div>Go to home</div>
-            <div>Go to home</div>
-            <Button>Hello</Button>
-          </Box>
-        </Popover>
-        <Button>Fake Button</Button>
-      </BrowserRouter>
-    
+          Click me
+        </Button>
+      </Stack>
+      <Popover
+        isOpen={open}
+        offset={{ bottom: 10, left: 0 }}
+        onClose={() => setOpen(false)}
+        parentRef={parentRef}
+      >
+        <Box br="medium" elevation={4} paper p={4}>
+          <div>Go to home</div>
+          <div>Go to home</div>
+          <div>Go to home</div>
+          <Button>Hello</Button>
+        </Box>
+      </Popover>
+      <Button>Fake Button</Button>
+    </BrowserRouter>
   );
 };
 
