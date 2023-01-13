@@ -261,9 +261,11 @@ const ButtonText = styled.span`
 `;
 const StartIconWrapper = styled.span`
   margin-inline-start: var(--spacing);
+  flex-shrink: 0;
 `;
 const EndIconWrapper = styled.span`
   margin-inline-end: var(--spacing);
+  flex-shrink: 0;
 `;
 const LoadingWrapper = styled.div`
   position: absolute;
