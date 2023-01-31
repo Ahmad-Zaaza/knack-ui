@@ -25,7 +25,11 @@ const useButtonTheme = () => {
   const buttonTheme = useMemo(
     () => ({
       primary: {
-        default: {
+        primary: {
+          theme: mainTheme.colors.primary,
+          text: mainTheme.colors.onPrimary
+        },
+        neutral: {
           theme: mainTheme.colors.primary,
           text: mainTheme.colors.onPrimary
         },
@@ -43,7 +47,11 @@ const useButtonTheme = () => {
         }
       },
       secondary: {
-        default: {
+        primary: {
+          theme: mainTheme.colors.primary,
+          text: darken(0.2, mainTheme.colors.primary)
+        },
+        neutral: {
           theme: mainTheme.colors.gray[200],
           text: mainTheme.colors.gray[800]
         },
@@ -61,7 +69,33 @@ const useButtonTheme = () => {
         }
       },
       tertiary: {
-        default: {
+        primary: {
+          theme: mainTheme.colors.primary,
+          text: darken(0.2, mainTheme.colors.primary)
+        },
+        neutral: {
+          theme: mainTheme.colors.gray[200],
+          text: mainTheme.colors.gray[800]
+        },
+        info: {
+          theme: mainTheme.colors.themes.info.color,
+          text: darken(0.2, mainTheme.colors.themes.info.color)
+        },
+        danger: {
+          theme: mainTheme.colors.themes.danger.color,
+          text: darken(0.2, mainTheme.colors.themes.danger.color)
+        },
+        success: {
+          theme: mainTheme.colors.themes.success.color,
+          text: darken(0.2, mainTheme.colors.themes.success.color)
+        }
+      },
+      ghost: {
+        primary: {
+          theme: mainTheme.colors.primary,
+          text: darken(0.2, mainTheme.colors.primary)
+        },
+        neutral: {
           theme: mainTheme.colors.gray[200],
           text: mainTheme.colors.gray[800]
         },

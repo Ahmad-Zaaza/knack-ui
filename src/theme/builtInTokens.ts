@@ -209,7 +209,7 @@ export const greenPalette: ColorPalleteMap = {
 
 export const lightThemeColors: ThemeColors = {
   themes: SemanticThemes,
-  primary: "hsl(350, 100%, 72%)",
+  primary: "hsl(230,80%,54%)",
   secondary: "hsl(296, 24%, 52%)",
   text: "hsl(222, 22%, 5%)",
   onPrimary: "hsl(0, 0%, 100%)",

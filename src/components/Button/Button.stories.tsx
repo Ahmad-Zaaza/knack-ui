@@ -13,6 +13,16 @@ export default {
       options: ["small", "medium", "large"],
       control: "radio"
     },
+    variant: {
+      defaultValue: "default",
+      options: ["primary", "secondary", "tertiary", "ghost"],
+      control: "radio"
+    },
+    theme: {
+      defaultValue: "default",
+      options: ["primary", "success", "info", "neutral", "danger"],
+      control: "radio"
+    },
     kind: { control: "radio" },
     children: { defaultValue: "Hello", control: "text" },
     fullWidth: { defaultValue: false, control: "boolean" },

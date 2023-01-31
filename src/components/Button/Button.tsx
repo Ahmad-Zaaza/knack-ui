@@ -13,9 +13,9 @@ import useButtonTheme from "./useButtonTheme";
 import Spinner from "../Spinner";
 import { Tooltip, TooltipPosition } from "../Tooltip";
 
-type ButtonVariants = "primary" | "secondary" | "tertiary";
+type ButtonVariants = "primary" | "secondary" | "tertiary" | "ghost";
 
-type ButtonTheme = "info" | "danger" | "success" | "default";
+type ButtonTheme = "info" | "danger" | "success" | "primary" | "neutral";
 
 type ButtonSize = "small" | "medium" | "large";
 
@@ -91,7 +91,7 @@ const Button = forwardRef(
       isLoading,
       type = "button",
       shape = "default",
-      theme = "default",
+      theme = "primary",
       fullWidth,
       tooltipProps,
       startIcon,
@@ -114,16 +114,25 @@ const Button = forwardRef(
       Component = SecondaryButton;
     } else if (variant === "tertiary") {
       Component = TertiaryButton;
+    } else if (variant === "ghost") {
+      Component = GhostButton;
     }
+
     const pallete = useMemo(() => {
       let variantPallete;
-      if (!variant || !["primary", "secondary", "tertiary"].includes(variant)) {
+      if (
+        !variant ||
+        !["primary", "secondary", "tertiary", "ghost"].includes(variant)
+      ) {
         variantPallete = buttonTheme.primary;
       } else {
         variantPallete = buttonTheme[variant];
       }
-      if (!theme || !["info", "success", "danger", "default"].includes(theme)) {
-        return variantPallete.default;
+      if (
+        !theme ||
+        !["info", "success", "danger", "primary", "neutral"].includes(theme)
+      ) {
+        return variantPallete.primary;
       }
       return variantPallete[theme];
     }, [theme, buttonTheme, variant]);
@@ -163,7 +172,7 @@ export default Button;
 export type { ButtonProps, ButtonVariants };
 
 Button.defaultProps = {
-  theme: "default"
+  theme: "primary"
 };
 
 const ButtonBase = styled.button<{
@@ -231,6 +240,22 @@ const SecondaryButton = styled(ButtonBase)`
 `;
 
 const TertiaryButton = styled(ButtonBase)`
+  border: 1px solid transparent;
+  background-color: ${(p) => transparentize(0.8, p.palette.theme)};
+  color: ${(p) => p.palette.text};
+  ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
+    &:hover:not(:disabled) {
+      background-color: ${(p) => transparentize(0.7, p.palette.theme)};
+    }
+  }
+  &:active:not(:disabled) {
+    background-color: ${(p) => transparentize(0.5, p.palette.theme)};
+  }
+  &:disabled {
+    background-color: ${(p) => transparentize(0.6, p.palette.theme)};
+  }
+`;
+const GhostButton = styled(ButtonBase)`
   background-color: transparent;
   border: 1px solid transparent;
   color: ${(p) => p.palette.text};
