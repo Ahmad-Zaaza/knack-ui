@@ -178,10 +178,11 @@ const ButtonBase = styled.button<{
       ? p.theme.knackTheme.borderRadiuses.xlarge
       : 0};
   position: relative;
+  padding: 0;
   display: inline-block;
   font-size: var(--font-size);
   height: var(--height);
-  font-weight: 500;
+  font-weight: 700;
   font-family: inherit;
   cursor: pointer;
   transition: color 50ms ease, background 50ms ease;

@@ -23,9 +23,7 @@ export default {
   }
 } as ComponentMeta<typeof Button>;
 const history = createMemoryHistory();
-const Template: Story<ButtonProps> = ({ ...args }) => (
-  <Button {...args}>Hello</Button>
-);
+const Template: Story<ButtonProps> = ({ ...args }) => <Button {...args} />;
 const RouterTemplate: Story<ButtonProps> = (args) => (
   <Router navigator={history} location={history.location}>
     <Button size="large" as={Link} to="/" {...args} />

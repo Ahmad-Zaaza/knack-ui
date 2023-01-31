@@ -7,19 +7,19 @@ const useButtonTheme = () => {
 
   const buttonSizeStyles = {
     small: {
-      "--spacing": "8px",
-      "--height": "28px",
-      "--font-size": `${14 / 16}rem`
-    },
-    medium: {
-      "--spacing": "10px",
+      "--spacing": "12px",
       "--height": "32px",
       "--font-size": `${14 / 16}rem`
     },
+    medium: {
+      "--spacing": "14px",
+      "--height": "36px",
+      "--font-size": `${14 / 16}rem`
+    },
     large: {
-      "--spacing": "12px",
-      "--font-size": `${16 / 16}rem`,
-      "--height": "38px"
+      "--spacing": "16px",
+      "--font-size": `${14 / 16}rem`,
+      "--height": "42px"
     }
   };
   const buttonTheme = useMemo(
