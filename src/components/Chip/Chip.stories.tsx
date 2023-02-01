@@ -9,7 +9,7 @@ export default {
   argTypes: {
     shape: {
       control: "radio",
-      options: ["rounded", "square", "default"]
+      options: ["rounded", "square", "default", "semi-rounded"]
     }
   }
 } as ComponentMeta<typeof Chip>;
@@ -43,6 +43,12 @@ const Template: ComponentStory<typeof Chip> = ({
       Danger
     </Chip>
     <Chip theme="success" variant="secondary" {...args}>
+      Success
+    </Chip>
+    <Chip theme="success" variant="tertiary" {...args}>
+      Success
+    </Chip>
+    <Chip theme="primary" variant="tertiary" {...args}>
       Success
     </Chip>
   </Stack>

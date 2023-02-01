@@ -5,9 +5,9 @@ import * as Polymorphic from "../../types/helpers";
 import DeleteIcon from "./DeleteIcon";
 import useChipTheme from "./useChipTheme";
 
-type TChipVariants = "primary" | "secondary";
+type TChipVariants = "primary" | "secondary" | "tertiary";
 
-type ChipTheme = "info" | "danger" | "success" | "default";
+type ChipTheme = "info" | "danger" | "success" | "neutral" | "primary";
 
 interface ChipProps {
   className?: string;
@@ -22,7 +22,7 @@ interface ChipProps {
   /**
    * Chip border radius
    */
-  shape?: "square" | "rounded";
+  shape?: "square" | "rounded" | "semi-rounded";
 
   /**
    * Controls Chip size
@@ -62,7 +62,7 @@ const Chip = forwardRef(
       size = "medium",
       startIcon,
       endIcon,
-      theme = "default",
+      theme = "primary",
       style,
       shape,
       onDelete,
@@ -74,13 +74,13 @@ const Chip = forwardRef(
 
     const pallete = useMemo(() => {
       let variantPallete;
-      if (!variant || !["primary", "secondary"].includes(variant)) {
+      if (!variant || !["primary", "secondary", "tertiary"].includes(variant)) {
         variantPallete = chipTheme.primary;
       } else {
         variantPallete = chipTheme[variant];
       }
-      if (!theme || !["info", "success", "danger", "default"].includes(theme)) {
-        return variantPallete.default;
+      if (!theme || !["info", "success", "danger", "primary"].includes(theme)) {
+        return variantPallete.primary;
       }
       return variantPallete[theme];
     }, [theme, chipTheme, variant]);
@@ -89,6 +89,8 @@ const Chip = forwardRef(
 
     if (variant === "secondary") {
       Component = SecondaryChip;
+    } else if (variant === "tertiary") {
+      Component = TertiaryChip;
     }
     return (
       <Component
@@ -128,10 +130,12 @@ const ChipBase = styled.div<{
   justify-content: center;
   font-weight: 500;
   border-radius: ${(p) =>
-    p.corners === "rounded"
+    p.corners === "semi-rounded"
       ? p.theme.knackTheme.borderRadiuses.large
       : p.corners === "square"
       ? 0
+      : p.corners === "rounded"
+      ? "50px"
       : p.theme.knackTheme.borderRadiuses.medium};
   font-size: var(--font-size);
   height: var(--height);
@@ -148,6 +152,12 @@ const SecondaryChip = styled(ChipBase)`
   color: ${(p) => p.palette.text};
   fill: ${(p) => p.palette.text};
   border: 1px solid ${(p) => p.palette.theme};
+`;
+const TertiaryChip = styled(ChipBase)`
+  background-color: ${(p) => transparentize(0.8, p.palette.theme)};
+  color: ${(p) => p.palette.text};
+  fill: ${(p) => p.palette.text};
+  border: 1px solid transparent;
 `;
 const ChipText = styled.span`
   margin-left: var(--spacing);
