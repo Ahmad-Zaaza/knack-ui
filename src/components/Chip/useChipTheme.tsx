@@ -7,13 +7,13 @@ const useChipTheme = () => {
 
   const chipSizeStyles = {
     small: {
-      "--spacing": "8px",
+      "--spacing": "10px",
       "--height": "24px",
       "--font-size": `${14 / 16}rem`
     },
     medium: {
-      "--spacing": "12px",
-      "--font-size": `${16 / 16}rem`,
+      "--spacing": "14px",
+      "--font-size": `${14 / 16}rem`,
       "--height": "32px"
     }
   };
@@ -51,16 +51,16 @@ const useChipTheme = () => {
           text: mainTheme.colors.gray[500]
         },
         info: {
-          theme: mainTheme.colors.blue[200],
-          text: mainTheme.colors.blue[400]
+          theme: mainTheme.colors.themes.info.color,
+          text: darken(0.2, mainTheme.colors.themes.info.color)
         },
         danger: {
-          theme: mainTheme.colors.red[200],
-          text: mainTheme.colors.red[400]
+          theme: mainTheme.colors.themes.danger.color,
+          text: darken(0.2, mainTheme.colors.themes.danger.color)
         },
         success: {
-          theme: mainTheme.colors.green[200],
-          text: mainTheme.colors.green[400]
+          theme: mainTheme.colors.themes.success.color,
+          text: darken(0.2, mainTheme.colors.themes.success.color)
         }
       },
       tertiary: {
@@ -73,16 +73,16 @@ const useChipTheme = () => {
           text: mainTheme.colors.gray[500]
         },
         info: {
-          theme: mainTheme.colors.blue[200],
-          text: mainTheme.colors.blue[400]
+          theme: mainTheme.colors.themes.info.color,
+          text: darken(0.2, mainTheme.colors.themes.info.color)
         },
         danger: {
-          theme: mainTheme.colors.red[200],
-          text: mainTheme.colors.red[400]
+          theme: mainTheme.colors.themes.danger.color,
+          text: darken(0.2, mainTheme.colors.themes.danger.color)
         },
         success: {
-          theme: mainTheme.colors.green[200],
-          text: mainTheme.colors.green[400]
+          theme: mainTheme.colors.themes.success.color,
+          text: darken(0.2, mainTheme.colors.themes.success.color)
         }
       }
     }),

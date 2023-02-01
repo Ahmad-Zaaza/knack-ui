@@ -10,6 +10,11 @@ export default {
     shape: {
       control: "radio",
       options: ["rounded", "square", "default", "semi-rounded"]
+    },
+    size: {
+      defaultValue: "medium",
+      options: ["small", "medium"],
+      control: "radio"
     }
   }
 } as ComponentMeta<typeof Chip>;

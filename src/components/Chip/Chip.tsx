@@ -108,7 +108,7 @@ const Chip = forwardRef(
           <EndIconWrapper>{endIcon}</EndIconWrapper>
         ) : null}
         {typeof onDelete !== "undefined" ? (
-          <EndIconWrapper>
+          <EndIconWrapper style={{ cursor: "pointer" }}>
             <DeleteIcon onClick={onDelete} size={size === "medium" ? 18 : 14} />
           </EndIconWrapper>
         ) : null}
@@ -154,7 +154,7 @@ const SecondaryChip = styled(ChipBase)`
   border: 1px solid ${(p) => p.palette.theme};
 `;
 const TertiaryChip = styled(ChipBase)`
-  background-color: ${(p) => transparentize(0.8, p.palette.theme)};
+  background-color: ${(p) => transparentize(0.7, p.palette.theme)};
   color: ${(p) => p.palette.text};
   fill: ${(p) => p.palette.text};
   border: 1px solid transparent;
@@ -163,6 +163,8 @@ const ChipText = styled.span`
   margin-left: var(--spacing);
   margin-right: var(--spacing);
   white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-block;
 `;
 const StartIconWrapper = styled.span`
   margin-inline-start: var(--spacing);
