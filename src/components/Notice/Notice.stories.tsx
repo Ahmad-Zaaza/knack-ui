@@ -20,8 +20,12 @@ export default {
   }
 } as Meta<INoticeProps>;
 
-const Template: ComponentStory<typeof Notice> = ({ theme, visible }) => (
-  <Notice theme={theme} visible={visible}>
+const Template: ComponentStory<typeof Notice> = ({
+  theme,
+  visible,
+  ...delegated
+}) => (
+  <Notice theme={theme} visible={visible} {...delegated}>
     <Notice.Label>
       <BsQuestion size={20} />
     </Notice.Label>

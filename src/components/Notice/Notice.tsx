@@ -11,6 +11,7 @@ import NoticeTitle from "./Notice.Title";
 
 export interface INoticeProps extends ComponentPropsWithoutRef<"div"> {
   theme?: SemanticThemes;
+  variant?: "borderless" | "default";
   visible?: boolean;
 }
 
@@ -23,13 +24,13 @@ export interface ParentComposition {
 }
 
 const Notice = forwardRef<HTMLDivElement, INoticeProps>(
-  ({ theme = "info", visible, ...delegated }, ref) => {
+  ({ theme = "info", visible, variant = "default", ...delegated }, ref) => {
     const mainTheme = useKnackTheme();
 
     const noticeTheme = useMemo(
       () => ({
         warning: {
-          theme: mainTheme.colors.primary
+          theme: mainTheme.colors.themes.warning.color
         },
         info: {
           theme: mainTheme.colors.themes.info.color
@@ -49,6 +50,7 @@ const Notice = forwardRef<HTMLDivElement, INoticeProps>(
         aria-live="polite"
         hidden={!visible}
         ref={ref}
+        borderless={variant === "borderless"}
         palette={noticeTheme[theme]}
         {...delegated}
       />
@@ -67,7 +69,10 @@ Notice.Actions = NoticeActions;
 
 export default Notice;
 
-const Wrapper = styled.div<{ palette: Record<string, string> }>`
+const Wrapper = styled.div<{
+  palette: Record<string, string>;
+  borderless: boolean;
+}>`
   --icons-color: ${(p) => p.palette.theme};
   background-color: ${(p) => transparentize(0.8, p.palette.theme)};
   padding: 16px;
@@ -75,5 +80,6 @@ const Wrapper = styled.div<{ palette: Record<string, string> }>`
   border-radius: 6px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${(p) => transparentize(0.7, p.palette.theme)};
+  border-color: ${(p) =>
+    p.borderless ? "transparent" : transparentize(0.7, p.palette.theme)};
 `;
