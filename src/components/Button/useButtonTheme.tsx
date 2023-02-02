@@ -19,7 +19,7 @@ const useButtonTheme = () => {
     large: {
       "--spacing": "16px",
       "--font-size": `${14 / 16}rem`,
-      "--height": "42px"
+      "--height": "40px"
     }
   };
   const buttonTheme = useMemo(

@@ -50,7 +50,7 @@ interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
    */
   isLoading?: boolean;
 
-  shape?: "rounded" | "square" | "default";
+  shape?: "semi-rounded" | "square" | "default" | "rounded";
   /**
    * If `false` will disable hover elevation animation.
    *
@@ -178,12 +178,14 @@ Button.defaultProps = {
 const ButtonBase = styled.button<{
   palette: Record<string, string>;
   fullWidth?: boolean;
-  shape?: "rounded" | "square" | "default";
+  shape?: ButtonProps["shape"];
 }>`
   border-radius: ${(p) =>
     p.shape === "default"
-      ? p.theme.knackTheme.borderRadiuses.medium
+      ? "8px"
       : p.shape === "rounded"
+      ? "50px"
+      : p.shape === "semi-rounded"
       ? p.theme.knackTheme.borderRadiuses.xlarge
       : 0};
   position: relative;
@@ -191,8 +193,9 @@ const ButtonBase = styled.button<{
   display: inline-block;
   font-size: var(--font-size);
   height: var(--height);
-  font-weight: 700;
+  font-weight: 600;
   font-family: inherit;
+
   cursor: pointer;
   transition: color 50ms ease, background 50ms ease;
   color: ${(p) => p.palette.text};
@@ -284,6 +287,8 @@ const InnerContainer = styled.span<{ isLoading?: boolean }>`
 const ButtonText = styled.span`
   margin-left: var(--spacing);
   margin-right: var(--spacing);
+  white-space: nowrap;
+  line-height: 20px;
 `;
 const StartIconWrapper = styled.span`
   margin-inline-start: var(--spacing);

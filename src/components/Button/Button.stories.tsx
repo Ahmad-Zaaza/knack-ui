@@ -24,16 +24,21 @@ export default {
       control: "radio"
     },
     kind: { control: "radio" },
-    children: { defaultValue: "Hello", control: "text" },
+    children: { defaultValue: "Get started", control: "text" },
     fullWidth: { defaultValue: false, control: "boolean" },
     disabled: { defaultValue: false, control: "boolean" },
     isLoading: { defaultValue: false, control: "boolean" },
-    shape: { options: ["square", "rounded"], control: "radio" },
-    loaderType: { options: ["Dual Ring"], control: "radio" }
+    shape: {
+      options: ["square", "rounded", "semi-rounded", "default"],
+      control: "radio"
+    }
   }
 } as ComponentMeta<typeof Button>;
 const history = createMemoryHistory();
+
 const Template: Story<ButtonProps> = ({ ...args }) => <Button {...args} />;
+const IconTemplate: Story<ButtonProps> = ({ ...args }) => <Button startIcon={<AiFillEdit />} {...args} />;
+
 const RouterTemplate: Story<ButtonProps> = (args) => (
   <Router navigator={history} location={history.location}>
     <Button size="large" as={Link} to="/" {...args} />
@@ -42,12 +47,8 @@ const RouterTemplate: Story<ButtonProps> = (args) => (
 
 export const Primary = Template.bind({});
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  variant: "primary",
-  startIcon: <AiFillEdit />
-};
-export const AsLink = RouterTemplate.bind({});
-Secondary.args = {
+export const WithIcon = IconTemplate.bind({});
+WithIcon.args = {
   variant: "primary"
 };
+export const AsLink = RouterTemplate.bind({});
