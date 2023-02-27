@@ -20,7 +20,7 @@ const AvatarGroup = forwardRef<HTMLDivElement, IAvatarGroupProps>(
     const numberOfChildren = React.Children.count(children);
     return (
       <Wrapper ref={ref} {...delegated}>
-        {max && max > 0 && numberOfChildren > max && (
+        {max && max > 0 && numberOfChildren > max ? (
           <RemainingCountAvatar
             disableAltSlicing
             onClick={onRemainingClick}
@@ -28,7 +28,7 @@ const AvatarGroup = forwardRef<HTMLDivElement, IAvatarGroupProps>(
             showAltOnFallback
             alt={`+${(numberOfChildren - max).toString()}`}
           />
-        )}
+        ) : null}
         {React.Children.map(children, (child, i) => {
           if (isValidElement(child)) {
             return cloneElement(child, { key: i });

@@ -7,9 +7,9 @@ export default {
   component: Avatar,
   argTypes: {
     image: {
-      defaultValue: "https://cdn-icons-png.flaticon.com/512/147/147140.png"
+      defaultValue: ""
     },
-    text: {
+    alt: {
       defaultValue: "Ahmad"
     }
   }
