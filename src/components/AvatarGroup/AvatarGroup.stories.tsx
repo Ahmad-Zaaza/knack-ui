@@ -1,18 +1,22 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState, useEffect } from "@storybook/addons";
 
-import { Avatar, Stack } from "..";
-
+import { Stack } from "../Stack";
 import AvatarGroup from "./AvatarGroup";
+import { Avatar } from "../Avatar";
 
 export default {
   title: "Components/AvatarGroup",
   component: AvatarGroup,
-  argTypes: {},
+  argTypes: {
+    max: {
+      control: "number"
+    }
+  },
   subcomponents: { Avatar }
 } as ComponentMeta<typeof AvatarGroup>;
 
-const Template: ComponentStory<typeof AvatarGroup> = ({ max }) => {
+const Template: ComponentStory<typeof AvatarGroup> = ({ max, size, shape }) => {
   const [localMax, setMax] = useState<number | null>(null);
 
   useEffect(() => {
@@ -22,13 +26,18 @@ const Template: ComponentStory<typeof AvatarGroup> = ({ max }) => {
   }, [max]);
   return (
     <Stack justifyContent="flex-start">
-      <AvatarGroup onRemainingClick={() => setMax(4)} max={localMax}>
+      <AvatarGroup
+        size={size}
+        shape={shape}
+        onRemainingClick={() => setMax(4)}
+        max={localMax}
+      >
         <Avatar
           image="https://cdn-icons-png.flaticon.com/512/147/147140.png"
           alt="dsa"
         />
         <Avatar
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRna0Yn_AMMEcnVGFuHNG0-UENJAFjsGKO8RQ&usqp=CAU"
+          // image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRna0Yn_AMMEcnVGFuHNG0-UENJAFjsGKO8RQ&usqp=CAU"
           alt="dsa"
         />
         <Avatar

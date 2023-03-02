@@ -2,7 +2,9 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState, useRef } from "@storybook/addons";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
-import { Button, Box, Stack } from "..";
+
+import { Button } from "../Button";
+import { Stack } from "../Stack";
 
 export default {
   title: "Components/Popover",
@@ -37,12 +39,12 @@ const Template: ComponentStory<typeof Popover> = (_) => {
         onClose={() => setOpen(false)}
         parentRef={parentRef}
       >
-        <Box br="medium" elevation={4} paper p={4}>
+        <Stack br="medium" elevation={4} paper p={4}>
           <div>Go to home</div>
           <div>Go to home</div>
           <div>Go to home</div>
           <Button>Hello</Button>
-        </Box>
+        </Stack>
       </Popover>
       <Button>Fake Button</Button>
     </BrowserRouter>

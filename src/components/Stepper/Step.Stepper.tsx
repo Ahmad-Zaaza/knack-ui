@@ -6,7 +6,7 @@ import {
   CSSProperties
 } from "react";
 import styled, { IntrinsicElementsKeys } from "styled-components";
-import { Typography } from "..";
+import Typography from "../Typography/Typography";
 import { useStepperContext } from "./Stepper";
 import DefaultStepperIcon from "./DefaultStepperIcon";
 

@@ -3,13 +3,40 @@ import {
   ComponentPropsWithoutRef,
   forwardRef,
   useEffect,
-  useMemo,
   useState,
-  CSSProperties
+  CSSProperties,
+  useContext
 } from "react";
 import styled from "styled-components";
+import { AvatarGroupContext } from "../AvatarGroup/AvatarGroup";
 
-export interface IAvatarProps extends ComponentPropsWithoutRef<"div"> {
+export const avatarSizes = {
+  small: {
+    "--spacing": "24px",
+    "--fs": "0.875rem"
+  },
+  medium: {
+    "--spacing": "40px",
+    "--fs": "1rem"
+  },
+  large: {
+    "--spacing": "56px",
+    "--fs": "1rem"
+  }
+};
+export const avatarShapes = {
+  rounded: {
+    "--br": "50%"
+  },
+  "semi-rounded": {
+    "--br": "6px"
+  },
+  square: {
+    "--br": "0px"
+  }
+};
+
+interface IAvatarProps extends ComponentPropsWithoutRef<"div"> {
   size?: "small" | "medium" | "large";
   alt: Required<string>;
   image?: string;
@@ -64,6 +91,8 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
     },
     ref
   ) => {
+    const context = useContext(AvatarGroupContext);
+
     const [showFallback, setShowFallback] = useState(() => Boolean(!image));
     const [showTextFallback, setShowTextFallback] = useState(showAltOnFallback);
 
@@ -75,44 +104,13 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
         }
       }
     }, [image]);
-    const sizes = useMemo(
-      () => ({
-        small: {
-          "--spacing": "24px",
-          "--fs": "0.875rem"
-        },
-        medium: {
-          "--spacing": "40px",
-          "--fs": "1rem"
-        },
-        large: {
-          "--spacing": "56px",
-          "--fs": "1rem"
-        }
-      }),
-      [size]
-    );
-    const shapes = useMemo(
-      () => ({
-        rounded: {
-          "--br": "50%"
-        },
-        "semi-rounded": {
-          "--br": "6px"
-        },
-        square: {
-          "--br": "0px"
-        }
-      }),
-      [shape]
-    );
 
     return (
       <Wrapper
         style={
           {
-            ...sizes[size],
-            ...shapes[shape],
+            ...avatarSizes[context.size || size],
+            ...avatarShapes[context.shape || shape],
             ...style
           } as CSSProperties
         }
@@ -149,6 +147,8 @@ const Avatar = forwardRef<HTMLDivElement, IAvatarProps>(
 );
 
 export default Avatar;
+
+export type { IAvatarProps };
 
 export const Wrapper = styled.div`
   position: relative;

@@ -1,7 +1,8 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Stack, Typography } from "..";
 
 import Box from "./Box";
+import { Typography } from "../Typography";
+import { Stack } from "../Stack";
 
 export default {
   title: "Components/Box",

@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Stack } from "..";
+import { Stack } from "../Stack";
 
 import Typography from "./Typography";
 
@@ -13,7 +13,7 @@ export default {
 
 const Template: ComponentStory<typeof Typography> = ({ ...args }) => (
   <Stack direction="column" gap={2}>
-    <Typography mb={4} color='themes.warning' variant="h1" as="h1">
+    <Typography mb={4} color="themes.warning" variant="h1" as="h1">
       This is an h1 variant
     </Typography>
     <Typography {...args} variant="h2">

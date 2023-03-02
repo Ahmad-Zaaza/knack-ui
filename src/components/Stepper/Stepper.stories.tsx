@@ -1,13 +1,13 @@
 import { ComponentStory, Meta } from "@storybook/react";
-import { useState } from "react";
+import { useState } from "@storybook/addons";
 
-import { Stepper, IStepperProps } from ".";
+import Stepper from "./Stepper";
 
 export default {
   title: "Components/Stepper",
   component: Stepper,
   argTypes: {}
-} as Meta<IStepperProps>;
+} as Meta<typeof Stepper>;
 
 const Template: ComponentStory<typeof Stepper> = ({
   activeStep: _,
