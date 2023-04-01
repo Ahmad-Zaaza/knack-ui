@@ -53,6 +53,3 @@ export type { StackProps };
 const Flex = styled(Box)<{ stackIndentStyles: {} }>`
   ${(p) => p.stackIndentStyles && css(p.stackIndentStyles)}
 `;
-// const Flex = styled.div<{ styles: {} }>`
-//   ${(p) => p.styles && css(p.styles)}
-// `;

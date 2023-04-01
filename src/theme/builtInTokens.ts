@@ -147,10 +147,10 @@ export const SemanticThemes = {
     lightness: "49%"
   },
   success: {
-    color: "hsl(160, 100%, 40%)",
-    hue: "160",
+    color: "hsl(128, 100%, 35%)",
+    hue: "128",
     saturation: "100%",
-    lightness: "40%"
+    lightness: "35%"
   },
   danger: {
     color: "hsl(340, 95%, 60%)",

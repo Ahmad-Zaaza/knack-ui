@@ -216,7 +216,7 @@ const ButtonBase = styled.button<{
 const PrimaryButton = styled(ButtonBase)`
   background-color: ${(p) => p.palette.theme};
   border: 1px solid ${(p) => p.palette.theme};
-  ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
+  @media ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
       background-color: ${(p) => darken(0.05, p.palette.theme)};
       border-color: ${(p) => darken(0.05, p.palette.theme)};
@@ -232,7 +232,7 @@ const SecondaryButton = styled(ButtonBase)`
   background-color: ${(p) => transparentize(0.8, p.palette.theme)};
   color: ${(p) => p.palette.text};
   border: 1px solid ${(p) => transparentize(0.5, p.palette.theme)};
-  ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
+  @media ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
       background-color: ${(p) => transparentize(0.7, p.palette.theme)};
     }
@@ -246,7 +246,7 @@ const TertiaryButton = styled(ButtonBase)`
   border: 1px solid transparent;
   background-color: ${(p) => transparentize(0.8, p.palette.theme)};
   color: ${(p) => p.palette.text};
-  ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
+  @media ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
       background-color: ${(p) => transparentize(0.7, p.palette.theme)};
     }
@@ -262,7 +262,7 @@ const GhostButton = styled(ButtonBase)`
   background-color: transparent;
   border: 1px solid transparent;
   color: ${(p) => p.palette.text};
-  ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
+  @media ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
       background-color: ${(p) => transparentize(0.8, p.palette.theme)};
     }
