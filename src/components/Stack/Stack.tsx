@@ -16,10 +16,6 @@ interface StackProps extends IBoxProps {
   direction?: CSSProperties["flexDirection"];
 
   /**
-   * applies inline-flex;
-   */
-  inline?: boolean;
-  /**
    * controls `flex-wrap` property;
    */
   flexWrap?: CSSProperties["flexWrap"];

@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { CSSProperties, forwardRef, useCallback } from "react";
 import styled, { css, useTheme } from "styled-components";
-import { Box, IBoxProps } from "../Box";
+import { Box } from "../Box";
 import useTypographyStyles from "./useTypographyStyles";
 import * as Polymorphic from "../../types/helpers";
 import {
   BuiltInColorPalettesKeys,
+  ExtendableCSSProps,
   PaletteDegrees,
   SemanticThemes,
   ThemeColors
@@ -88,7 +89,9 @@ type TypographyBaseProps = {
   // tag?: keyof typeof TagsMap;
 };
 
-type TypographyProps = TypographyBaseProps & IBoxProps;
+type TypographyProps = TypographyBaseProps &
+  Pick<ExtendableCSSProps, "my" | "mx" | "mb" | "mt"> &
+  React.ComponentPropsWithoutRef<"p">;
 
 /**
  * @description
@@ -111,12 +114,21 @@ const Typography = forwardRef(
       color,
       clamp,
       style,
+      my,
+      mb,
+      mt,
+      mx,
       textAlign,
       ...delegated
     },
     ref
   ) => {
-    const styles = useTypographyStyles();
+    const { indentStyles, textStyles } = useTypographyStyles({
+      mb,
+      mt,
+      mx,
+      my
+    });
 
     const { knackTheme } = useTheme();
 
@@ -152,7 +164,8 @@ const Typography = forwardRef(
         color={getColor()}
         textAlign={textAlign}
         clamp={clamp}
-        style={{ ...styles[variant], ...style }}
+        $indentStyles={indentStyles}
+        style={{ ...textStyles[variant], ...style }}
         {...delegated}
       >
         {children}
@@ -180,6 +193,7 @@ const Text = styled(Box)<{
   clamp?: TypographyProps["clamp"];
   textAlign?: TypographyProps["textAlign"];
   color?: TypographyColor;
+  $indentStyles?: {};
 }>`
   font-size: var(--fs);
   font-weight: ${(p) => p.fw || `var(--fw, 400)`};
@@ -202,4 +216,5 @@ const Text = styled(Box)<{
       -webkit-line-clamp: ${p.clamp};
       overflow: hidden;
     `};
+  ${(p) => p.$indentStyles && css(p.$indentStyles)}
 `;

@@ -1,8 +1,14 @@
 import { useMemo } from "react";
 
-import { TypographyVariants } from "./Typography";
+import { TypographyProps, TypographyVariants } from "./Typography";
+import { calculateIndentStyles } from "../../utils/helpers";
 
-const useTypographyStyles = () => {
+const useTypographyStyles = ({
+  mb,
+  mt,
+  my,
+  mx
+}: Pick<TypographyProps, "mb" | "mt" | "my" | "mx">) => {
   const textStyles: { [K in TypographyVariants]: any } = useMemo(
     () => ({
       h1: {
@@ -68,8 +74,17 @@ const useTypographyStyles = () => {
     }),
     []
   );
-
-  return textStyles;
+  const indentStyles = useMemo(
+    () =>
+      calculateIndentStyles({
+        "margin-block": my,
+        "margin-inline": mx,
+        "margin-bottom": mb,
+        "margin-top": mt
+      }),
+    [my, mx, mb, mt]
+  );
+  return { textStyles, indentStyles };
 };
 
 export default useTypographyStyles;

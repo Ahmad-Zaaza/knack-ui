@@ -1,80 +1,11 @@
 import { useMemo } from "react";
-import { removeUndefinedKeys } from "../../utils/helpers";
 import useKnackTheme from "../../utils/useTheme";
 import { IBoxProps } from "./Box.types";
-
-function getSize(size: string | number | undefined) {
-  if (typeof size !== "number") {
-    return size;
-  }
-  if (size < 1) {
-    return `${100 * size}%`;
-  }
-  if (size >= 1) {
-    return `${size}px`;
-  }
-}
-
-export const getAutoOrScaleIndent = (
-  indent: number | string | undefined,
-  scaleIndent: number
-) => {
-  if (typeof indent === "string") {
-    return indent;
-  }
-  if (typeof indent === "number" && indent > -1 && indent < 1) {
-    return `${100 * indent}%`;
-  }
-  if (typeof indent === "number" && (indent >= 1 || indent <= -1)) {
-    return `${indent * scaleIndent}px`;
-  }
-  return indent;
-};
-
-function calculateIndentStyles(props: IBoxProps, scaleDenominator: number) {
-  return removeUndefinedKeys({
-    display: props.display,
-    top: getSize(props.top),
-    bottom: getSize(props.bottom),
-    left: getSize(props.left),
-    right: getSize(props.right),
-    position: props.position,
-    margin: getAutoOrScaleIndent(props.m, scaleDenominator),
-    "margin-right":
-      getAutoOrScaleIndent(props.mr, scaleDenominator) ||
-      getAutoOrScaleIndent(props.mx, scaleDenominator),
-    "margin-left":
-      getAutoOrScaleIndent(props.ml, scaleDenominator) ||
-      getAutoOrScaleIndent(props.mx, scaleDenominator),
-    "margin-top":
-      getAutoOrScaleIndent(props.mt, scaleDenominator) ||
-      getAutoOrScaleIndent(props.my, scaleDenominator),
-    "margin-bottom":
-      getAutoOrScaleIndent(props.mb, scaleDenominator) ||
-      getAutoOrScaleIndent(props.my, scaleDenominator),
-    padding: getAutoOrScaleIndent(props.p, scaleDenominator),
-    "padding-right":
-      getAutoOrScaleIndent(props.pr, scaleDenominator) ||
-      getAutoOrScaleIndent(props.px, scaleDenominator),
-    "padding-left":
-      getAutoOrScaleIndent(props.pl, scaleDenominator) ||
-      getAutoOrScaleIndent(props.px, scaleDenominator),
-    "padding-top":
-      getAutoOrScaleIndent(props.pt, scaleDenominator) ||
-      getAutoOrScaleIndent(props.py, scaleDenominator),
-    "padding-bottom":
-      getAutoOrScaleIndent(props.pb, scaleDenominator) ||
-      getAutoOrScaleIndent(props.py, scaleDenominator),
-    width: getSize(props.w),
-    height: getSize(props.h),
-    "min-width": getSize(props.wMin),
-    "max-width": getSize(props.wMax),
-    "min-height": getSize(props.hMin),
-    "max-height": getSize(props.hMax),
-    "z-index": props.zIndex,
-    flex: props.flex
-  });
-}
+import {
+  calculateIndentStyles,
+  getAutoOrScaleIndent
+} from "../../utils/helpers";
+import { ThemeBorderRadiuses } from "../../theme/theme.types";
 
 function useBoxProps({
   m,
@@ -118,10 +49,12 @@ function useBoxProps({
       typeof br === "string" &&
       ["xsmall", "small", "medium", "large", "xlarge", "full"].includes(br)
     ) {
-      return { "border-radius": theme.borderRadiuses[br] };
+      return {
+        "border-radius": theme.borderRadiuses[br as keyof ThemeBorderRadiuses]
+      };
     }
     return {
-      "border-radius": getSize(br)
+      "border-radius": getAutoOrScaleIndent(br as number)
     };
   }, [br, theme]);
 
@@ -136,39 +69,37 @@ function useBoxProps({
 
   const indentStyles = useMemo(
     () =>
-      calculateIndentStyles(
-        {
-          display,
-          top,
-          bottom,
-          left,
-          right,
-          position,
-          mr,
-          mx,
-          mb,
-          my,
-          p,
-          py,
-          px,
-          pt,
-          pb,
-          wMax,
-          wMin,
-          hMax,
-          w,
-          m,
-          mt,
-          ml,
-          pl,
-          pr,
-          h,
-          hMin,
-          zIndex,
-          flex
-        },
-        theme.scaleDenominator
-      ),
+      calculateIndentStyles({
+        display,
+
+        top,
+        bottom,
+        "inset-inline-start": left,
+        "inset-inline-end": right,
+        position,
+        margin: m,
+        "margin-right": mr,
+        "margin-left": ml,
+        "margin-top": mt,
+        "margin-bottom": mb,
+        "margin-inline": mx,
+        "margin-block": my,
+        padding: p,
+        "padding-right": pr,
+        "padding-left": pl,
+        "padding-top": pt,
+        "padding-bottom": pb,
+        "padding-inline": px,
+        "padding-block": py,
+        width: w,
+        "max-width": wMax,
+        "min-width": wMin,
+        height: h,
+        "max-height": hMax,
+        "min-height": hMin,
+        "z-index": zIndex,
+        flex
+      }),
     [
       display,
       top,
@@ -194,10 +125,10 @@ function useBoxProps({
       ml,
       pl,
       pr,
+      h,
       hMin,
-      flex,
       zIndex,
-      h
+      flex
     ]
   );
   return {
