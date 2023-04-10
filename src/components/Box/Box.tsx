@@ -25,8 +25,8 @@ const Box = forwardRef(({ as, ...props }, ref) => {
     <Wrapper
       as={as}
       ref={ref}
-      boxIndentStyles={indentStyles}
-      elevationStyles={elevationStyles}
+      $boxIndentStyles={indentStyles}
+      $elevationStyles={elevationStyles}
       {...otherProps}
     />
   );
@@ -36,7 +36,7 @@ export default Box;
 
 export type { IBoxProps };
 
-const Wrapper = styled.div<{ boxIndentStyles: {}; elevationStyles: {} }>`
-  ${(p) => p.boxIndentStyles && css(p.boxIndentStyles)};
-  ${(p) => p.elevationStyles && css(p.elevationStyles)};
+const Wrapper = styled.div<{ $boxIndentStyles: {}; $elevationStyles: {} }>`
+  ${(p) => p.$boxIndentStyles && css(p.$boxIndentStyles)};
+  ${(p) => p.$elevationStyles && css(p.$elevationStyles)};
 `;

@@ -22,7 +22,7 @@ const Modal: FC<IModalProps> = forwardRef<HTMLDivElement, IModalProps>(
   ) => (
     <Overlay isOpen={isOpen} onDismiss={onClose}>
       <Content
-        fullWidth={fullWidth}
+        $fullWidth={fullWidth}
         ref={ref}
         style={
           {
@@ -52,13 +52,13 @@ const Overlay = styled(DialogOverlay)`
   animation: ${fade} 100ms linear forwards;
   backdrop-filter: blur(1px);
 `;
-const Content = styled(DialogContent)<{ fullWidth?: IModalProps["fullWidth"] }>`
+const Content = styled(DialogContent)<{ $fullWidth?: IModalProps["fullWidth"] }>`
   animation: ${fadeUp} 250ms linear forwards;
 
   position: relative;
   ${(p) =>
-    p.fullWidth
-      ? typeof p.fullWidth === "boolean"
+    p.$fullWidth
+      ? typeof p.$fullWidth === "boolean"
         ? css`
             width: 100%;
             padding: 0;
@@ -78,7 +78,7 @@ const Content = styled(DialogContent)<{ fullWidth?: IModalProps["fullWidth"] }>`
             height: 100%;
 
             @media ${p.theme.knackTheme.mediaQueries[
-                p.fullWidth?.breakpointThreshold
+                p.$fullWidth?.breakpointThreshold
               ]} {
               margin-left: auto;
               margin-right: auto;

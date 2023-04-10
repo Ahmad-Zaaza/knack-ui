@@ -92,7 +92,7 @@ const Counter = forwardRef<HTMLDivElement, ICounterProps>(
       <Wrapper
         style={{ ...counterSizeStyles[size], ...style } as CSSProperties}
         ref={ref}
-        pallete={pallete}
+        $pallete={pallete}
         {...delegated}
       >
         {children}
@@ -104,7 +104,7 @@ const Counter = forwardRef<HTMLDivElement, ICounterProps>(
 export default Counter;
 
 const Wrapper = styled.div<{
-  pallete: Record<"theme" | "border" | "text", string>;
+  $pallete: Record<"theme" | "border" | "text", string>;
 }>`
   display: inline-flex;
   justify-content: center;
@@ -118,7 +118,7 @@ const Wrapper = styled.div<{
   border-width: 1px;
   border-style: solid;
   border-radius: 12px;
-  background-color: ${(p) => p.pallete.theme};
-  border-color: ${(p) => p.pallete.border};
-  color: ${(p) => p.pallete.text};
+  background-color: ${(p) => p.$pallete.theme};
+  border-color: ${(p) => p.$pallete.border};
+  color: ${(p) => p.$pallete.text};
 `;

@@ -159,11 +159,11 @@ const Typography = forwardRef(
     return (
       <Text
         forwardedAs={as}
-        fw={fontWeight}
+        $fw={fontWeight}
         ref={ref}
         color={getColor()}
-        textAlign={textAlign}
-        clamp={clamp}
+        $textAlign={textAlign}
+        $clamp={clamp}
         $indentStyles={indentStyles}
         style={{ ...textStyles[variant], ...style }}
         {...delegated}
@@ -189,14 +189,14 @@ Typography.defaultProps = {
 };
 
 const Text = styled(Box)<{
-  fw?: TypographyProps["fontWeight"];
-  clamp?: TypographyProps["clamp"];
-  textAlign?: TypographyProps["textAlign"];
+  $fw?: TypographyProps["fontWeight"];
+  $clamp?: TypographyProps["clamp"];
+  $textAlign?: TypographyProps["textAlign"];
   color?: TypographyColor;
   $indentStyles?: {};
 }>`
   font-size: var(--fs);
-  font-weight: ${(p) => p.fw || `var(--fw, 400)`};
+  font-weight: ${(p) => p.$fw || `var(--fw, 400)`};
   line-height: var(--lh);
   ${(p) =>
     p.color &&
@@ -204,16 +204,16 @@ const Text = styled(Box)<{
       color: ${p.color};
     `}
   ${(p) =>
-    p.textAlign &&
+    p.$textAlign &&
     css`
-      text-align: ${p.textAlign};
+      text-align: ${p.$textAlign};
     `}
   ${(p) =>
-    p.clamp &&
+    p.$clamp &&
     css`
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: ${p.clamp};
+      -webkit-line-clamp: ${p.$clamp};
       overflow: hidden;
     `};
   ${(p) => p.$indentStyles && css(p.$indentStyles)}

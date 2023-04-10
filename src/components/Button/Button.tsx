@@ -139,11 +139,11 @@ const Button = forwardRef(
     return (
       <Component
         as={as}
-        palette={pallete}
+        $palette={pallete}
         ref={ref}
-        shape={shape}
+        $shape={shape}
         type={type}
-        fullWidth={fullWidth}
+        $fullWidth={fullWidth}
         style={{ ...styles, ...style }}
         disabled={disabled || isLoading}
         {...delegated}
@@ -176,16 +176,16 @@ Button.defaultProps = {
 };
 
 const ButtonBase = styled.button<{
-  palette: Record<string, string>;
-  fullWidth?: boolean;
-  shape?: ButtonProps["shape"];
+  $palette: Record<string, string>;
+  $fullWidth?: boolean;
+  $shape?: ButtonProps["shape"];
 }>`
   border-radius: ${(p) =>
-    p.shape === "default"
+    p.$shape === "default"
       ? "8px"
-      : p.shape === "rounded"
+      : p.$shape === "rounded"
       ? "50px"
-      : p.shape === "semi-rounded"
+      : p.$shape === "semi-rounded"
       ? p.theme.knackTheme.borderRadiuses.xlarge
       : 0};
   position: relative;
@@ -198,10 +198,10 @@ const ButtonBase = styled.button<{
 
   cursor: pointer;
   transition: color 50ms ease, background 50ms ease;
-  color: ${(p) => p.palette.text};
+  color: ${(p) => p.$palette.text};
 
   ${(p) =>
-    p.fullWidth &&
+    p.$fullWidth &&
     css`
       display: "block";
       width: 100%;
@@ -214,64 +214,64 @@ const ButtonBase = styled.button<{
 `;
 
 const PrimaryButton = styled(ButtonBase)`
-  background-color: ${(p) => p.palette.theme};
-  border: 1px solid ${(p) => p.palette.theme};
+  background-color: ${(p) => p.$palette.theme};
+  border: 1px solid ${(p) => p.$palette.theme};
   @media ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
-      background-color: ${(p) => darken(0.05, p.palette.theme)};
-      border-color: ${(p) => darken(0.05, p.palette.theme)};
+      background-color: ${(p) => darken(0.05, p.$palette.theme)};
+      border-color: ${(p) => darken(0.05, p.$palette.theme)};
     }
   }
   &:active:not(:disabled) {
-    background-color: ${(p) => darken(0.12, p.palette.theme)};
-    border-color: ${(p) => darken(0.12, p.palette.theme)};
+    background-color: ${(p) => darken(0.12, p.$palette.theme)};
+    border-color: ${(p) => darken(0.12, p.$palette.theme)};
   }
 `;
 
 const SecondaryButton = styled(ButtonBase)`
-  background-color: ${(p) => transparentize(0.8, p.palette.theme)};
-  color: ${(p) => p.palette.text};
-  border: 1px solid ${(p) => transparentize(0.5, p.palette.theme)};
+  background-color: ${(p) => transparentize(0.8, p.$palette.theme)};
+  color: ${(p) => p.$palette.text};
+  border: 1px solid ${(p) => transparentize(0.5, p.$palette.theme)};
   @media ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
-      background-color: ${(p) => transparentize(0.7, p.palette.theme)};
+      background-color: ${(p) => transparentize(0.7, p.$palette.theme)};
     }
   }
   &:active:not(:disabled) {
-    background-color: ${(p) => transparentize(0.6, p.palette.theme)};
+    background-color: ${(p) => transparentize(0.6, p.$palette.theme)};
   }
 `;
 
 const TertiaryButton = styled(ButtonBase)`
   border: 1px solid transparent;
-  background-color: ${(p) => transparentize(0.8, p.palette.theme)};
-  color: ${(p) => p.palette.text};
+  background-color: ${(p) => transparentize(0.8, p.$palette.theme)};
+  color: ${(p) => p.$palette.text};
   @media ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
-      background-color: ${(p) => transparentize(0.7, p.palette.theme)};
+      background-color: ${(p) => transparentize(0.7, p.$palette.theme)};
     }
   }
   &:active:not(:disabled) {
-    background-color: ${(p) => transparentize(0.5, p.palette.theme)};
+    background-color: ${(p) => transparentize(0.5, p.$palette.theme)};
   }
   &:disabled {
-    background-color: ${(p) => transparentize(0.6, p.palette.theme)};
+    background-color: ${(p) => transparentize(0.6, p.$palette.theme)};
   }
 `;
 const GhostButton = styled(ButtonBase)`
   background-color: transparent;
   border: 1px solid transparent;
-  color: ${(p) => p.palette.text};
+  color: ${(p) => p.$palette.text};
   @media ${(p) => p.theme.knackTheme.mediaQueries.hoverPointerDevices} {
     &:hover:not(:disabled) {
-      background-color: ${(p) => transparentize(0.8, p.palette.theme)};
+      background-color: ${(p) => transparentize(0.8, p.$palette.theme)};
     }
   }
   &:active:not(:disabled) {
-    background-color: ${(p) => transparentize(0.7, p.palette.theme)};
+    background-color: ${(p) => transparentize(0.7, p.$palette.theme)};
   }
   &:disabled {
-    background-color: ${(p) => transparentize(0.5, p.palette.theme)};
+    background-color: ${(p) => transparentize(0.5, p.$palette.theme)};
   }
 `;
 

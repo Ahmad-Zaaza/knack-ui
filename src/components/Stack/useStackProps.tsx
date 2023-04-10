@@ -7,10 +7,13 @@ function useStackProps({
   direction,
   gap,
   justifyContent,
-  display,
+  display='flex',
   flexWrap,
   ...otherProps
 }: StackProps) {
+
+
+
   const indentStyles = useMemo(
     () =>
       calculateIndentStyles({

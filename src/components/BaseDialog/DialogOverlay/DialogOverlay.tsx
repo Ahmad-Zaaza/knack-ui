@@ -51,7 +51,7 @@ const DialogOverlay: React.FC<IDialogOverlayProps> = ({
         <Overlay
           onAnimationEnd={onAnimationEnd}
           ref={overlayRef}
-          shouldClose={!isOpen && active}
+          $shouldClose={!isOpen && active}
           onClick={handleClick}
           role="presentation"
         >
@@ -64,7 +64,7 @@ const DialogOverlay: React.FC<IDialogOverlayProps> = ({
 
 export default DialogOverlay;
 
-const Overlay = styled.div<{ shouldClose?: boolean }>`
+const Overlay = styled.div<{ $shouldClose?: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
@@ -75,7 +75,7 @@ const Overlay = styled.div<{ shouldClose?: boolean }>`
   animation: ${fade} 100ms linear forwards;
   backdrop-filter: blur(1px);
   ${(p) =>
-    p.shouldClose &&
+    p.$shouldClose &&
     css`
       animation: ${fadeExit} 200ms 200ms linear forwards;
     `}

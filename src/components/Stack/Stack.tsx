@@ -40,12 +40,12 @@ interface StackProps extends IBoxProps {
 
 const Stack = forwardRef((props, ref) => {
   const { indentStyles, otherProps } = useStackProps(props);
-  return <Flex ref={ref} stackIndentStyles={indentStyles} {...otherProps} />;
+  return <Flex ref={ref} $stackIndentStyles={indentStyles} {...otherProps} />;
 }) as Polymorphic.ForwardRefComponent<"div", StackProps>;
 
 export default Stack;
 export type { StackProps };
 
-const Flex = styled(Box)<{ stackIndentStyles: {} }>`
-  ${(p) => p.stackIndentStyles && css(p.stackIndentStyles)}
+const Flex = styled(Box)<{ $stackIndentStyles: {} }>`
+  ${(p) => p.$stackIndentStyles && css(p.$stackIndentStyles)}
 `;

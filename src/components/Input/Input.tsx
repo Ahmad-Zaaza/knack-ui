@@ -152,7 +152,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
               "--width": typeof w === "number" ? `${w}px` : w
             } as CSSProperties
           }
-          error={Boolean(error)}
+          $error={Boolean(error)}
           disabled={disabled}
           readOnly={readOnly}
           className={className}
@@ -179,8 +179,8 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
                 ...inputStyle
               } as CSSProperties
             }
-            startNeighbor={Boolean(InputPrefix)}
-            endNeighbor={Boolean(InputSuffix)}
+            $startNeighbor={Boolean(InputPrefix)}
+            $endNeighbor={Boolean(InputSuffix)}
             className={inputClassName}
             disabled={disabled}
             {...delegated}
@@ -215,7 +215,7 @@ Input.defaultProps = {
 };
 
 const Wrapper = styled.div<{
-  error: boolean;
+  $error: boolean;
   disabled?: boolean;
   readOnly?: boolean;
 }>`
@@ -243,7 +243,7 @@ const Wrapper = styled.div<{
       background-color: ${p.theme.knackTheme.colors.gray["50"]};
     `}
   ${(p) =>
-    p.error &&
+    p.$error &&
     css`
       --focus-color: 347deg 100% 41%;
       border-color: ${p.theme.knackTheme.colors.red["500"]};
@@ -274,8 +274,8 @@ const ErrorMessage = styled.span`
 `;
 
 const TextInput = styled.input<{
-  startNeighbor: boolean;
-  endNeighbor: boolean;
+  $startNeighbor: boolean;
+  $endNeighbor: boolean;
 }>`
   width: 100%;
   min-width: 0;
@@ -295,12 +295,12 @@ const TextInput = styled.input<{
   }
 
   ${(p) =>
-    p.startNeighbor &&
+    p.$startNeighbor &&
     css`
       padding-inline-start: 0;
     `}
   ${(p) =>
-    p.endNeighbor &&
+    p.$endNeighbor &&
     css`
       padding-inline-end: 0;
     `};
