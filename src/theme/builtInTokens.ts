@@ -135,28 +135,34 @@ export const darkThemeElevations: ThemeElevation = {
 
 export const SemanticThemes = {
   warning: {
-    color: "hsl(30, 100%, 50%)",
-    hue: "30",
-    saturation: "100%",
+    // color: "hsl(30, 100%, 50%)",
+    // color: "hsl(45, 100%, 51%)",
+    color: "hsla(32, 90%, 50%)",
+    hue: "32",
+    saturation: "90%",
     lightness: "50%"
   },
   info: {
-    color: "hsl(205, 100%, 49%)",
-    hue: "205",
+    // color: "hsl(205, 100%, 49%)",
+    color: "hsl(188, 78%, 41%)",
+    hue: "188",
     saturation: "100%",
     lightness: "49%"
   },
   success: {
-    color: "hsl(128, 100%, 35%)",
-    hue: "128",
-    saturation: "100%",
-    lightness: "35%"
+    color: "hsl(134, 61%, 41%)",
+    // color: "hsl(128, 100%, 35%)",
+    // color: "hsl(116, 46%, 49%)",
+    hue: "134",
+    saturation: "61%",
+    lightness: "41%"
   },
   danger: {
-    color: "hsl(340, 95%, 60%)",
-    hue: "340",
-    saturation: "95%",
-    lightness: "60%"
+    // color: "hsl(340, 95%, 60%)",
+    color: "hsl(354, 70%, 54%)",
+    hue: "354",
+    saturation: "70%",
+    lightness: "54%"
   }
 };
 
