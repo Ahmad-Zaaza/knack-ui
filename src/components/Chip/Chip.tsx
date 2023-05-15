@@ -7,7 +7,7 @@ import useChipTheme from "./useChipTheme";
 
 type TChipVariants = "primary" | "secondary" | "tertiary";
 
-type ChipTheme = "info" | "danger" | "success" | "neutral" | "primary";
+type ChipTheme = "info" | "danger" | "success" | "neutral" | "primary" | 'warning';
 
 interface ChipProps {
   className?: string;
@@ -79,7 +79,7 @@ const Chip = forwardRef(
       } else {
         variantPallete = chipTheme[variant];
       }
-      if (!theme || !["info", "success", "danger", "primary"].includes(theme)) {
+      if (!theme || !["info", "success", "danger", "primary",'warning'].includes(theme)) {
         return variantPallete.primary;
       }
       return variantPallete[theme];
@@ -145,19 +145,19 @@ const PrimaryChip = styled(ChipBase)`
   background-color: ${(p) => p.palette.theme};
   color: ${(p) => p.palette.text};
   fill: ${(p) => p.palette.text};
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
 `;
 const SecondaryChip = styled(ChipBase)`
   background-color: ${(p) => transparentize(0.7, p.palette.theme)};
   color: ${(p) => p.palette.text};
   fill: ${(p) => p.palette.text};
-  border: 1px solid ${(p) => p.palette.theme};
+  /* border: 1px solid ${(p) => p.palette.theme}; */
 `;
 const TertiaryChip = styled(ChipBase)`
   background-color: ${(p) => transparentize(0.7, p.palette.theme)};
   color: ${(p) => p.palette.text};
   fill: ${(p) => p.palette.text};
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
 `;
 const ChipText = styled.span`
   margin-left: var(--spacing);

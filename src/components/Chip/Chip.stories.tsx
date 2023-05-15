@@ -53,8 +53,8 @@ const Template: StoryFn<typeof Chip> = ({
     <Chip theme="success" variant="tertiary" {...args}>
       Success
     </Chip>
-    <Chip theme="primary" variant="tertiary" {...args}>
-      Success
+    <Chip theme="neutral" variant='tertiary' {...args}>
+      Default
     </Chip>
   </Stack>
 );

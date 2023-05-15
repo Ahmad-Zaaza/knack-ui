@@ -137,7 +137,7 @@ export const SemanticThemes = {
   warning: {
     // color: "hsl(30, 100%, 50%)",
     // color: "hsl(45, 100%, 51%)",
-    color: "hsla(32, 90%, 50%)",
+    color: "hsl(32, 90%, 50%)",
     hue: "32",
     saturation: "90%",
     lightness: "50%"
