@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Chip } from "../Chip";
 import { Stack } from "../Stack";
 import { Typography } from "../Typography";
@@ -9,9 +9,9 @@ export default {
   title: "Components/HorizontalList",
   component: HorizontalList,
   argTypes: {}
-} as ComponentMeta<typeof HorizontalList>;
+} as Meta<typeof HorizontalList>;
 
-const Template: ComponentStory<typeof HorizontalList> = () => (
+const Template: StoryFn<typeof HorizontalList> = () => (
   
     <Stack style={{ height: 150 }} gap={4} className="p-4">
       <img

@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import { Tooltip } from ".";
 import { Button } from "../Button";
@@ -7,9 +7,9 @@ export default {
   title: "Components/Tooltip",
   component: Tooltip,
   argTypes: {}
-} as ComponentMeta<typeof Tooltip>;
+} as Meta<typeof Tooltip>;
 
-const Template: ComponentStory<typeof Tooltip> = ({ position }) => (
+const Template: StoryFn<typeof Tooltip> = ({ position }) => (
   <BrowserRouter>
     <div
       style={{

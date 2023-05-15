@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useState } from "@storybook/addons";
 import { Stack } from "../Stack";
 import { Button } from "../Button";
@@ -9,9 +9,9 @@ export default {
   title: "Components/Modal",
   component: Modal,
   argTypes: {}
-} as ComponentMeta<typeof Modal>;
+} as Meta<typeof Modal>;
 
-const Template: ComponentStory<typeof Modal> = (args) => {
+const Template: StoryFn<typeof Modal> = (args) => {
   const [open, setOpen] = useState(false);
 
   return (

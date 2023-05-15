@@ -1,7 +1,6 @@
-import { Story, ComponentMeta } from "@storybook/react";
-import { createMemoryHistory } from "history";
+import { StoryFn, Meta } from "@storybook/react";
 import { AiFillEdit } from "react-icons/ai";
-import { Link, Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button, { ButtonProps } from "./Button";
 
 export default {
@@ -33,16 +32,14 @@ export default {
       control: "radio"
     }
   }
-} as ComponentMeta<typeof Button>;
-const history = createMemoryHistory();
+} as Meta<typeof Button>;
 
-const Template: Story<ButtonProps> = ({ ...args }) => <Button {...args} />;
-const IconTemplate: Story<ButtonProps> = ({ ...args }) => <Button startIcon={<AiFillEdit />} {...args} />;
+const Template: StoryFn<ButtonProps> = ({ ...args }) => <Button {...args} />;
+const IconTemplate: StoryFn<ButtonProps> = ({ ...args }) => <Button startIcon={<AiFillEdit />} {...args} />;
 
-const RouterTemplate: Story<ButtonProps> = (args) => (
-  <Router navigator={history} location={history.location}>
+const RouterTemplate: StoryFn<ButtonProps> = (args) => (
     <Button size="large" as={Link} to="/" {...args} />
-  </Router>
+  
 );
 
 export const Primary = Template.bind({});

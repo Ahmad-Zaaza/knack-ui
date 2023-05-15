@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Stack } from "../Stack";
 
 import Chip from "./Chip";
@@ -17,9 +17,9 @@ export default {
       control: "radio"
     }
   }
-} as ComponentMeta<typeof Chip>;
+} as Meta<typeof Chip>;
 
-const Template: ComponentStory<typeof Chip> = ({
+const Template: StoryFn<typeof Chip> = ({
   children: _,
   variant: __,
 

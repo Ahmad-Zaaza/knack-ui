@@ -1,5 +1,5 @@
-import { ComponentStory, Meta } from "@storybook/react";
-import { useState } from "react";
+import { StoryFn, Meta, } from "@storybook/react";
+import { useState } from "@storybook/addons";
 
 import Checkbox, { CheckboxProps } from "./Checkbox";
 
@@ -24,7 +24,7 @@ export default {
   }
 } as Meta<CheckboxProps>;
 
-const Template: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
+const Template: StoryFn<typeof Checkbox> = ({ size, ...args }) => {
   const [checked, setChecked] = useState(true);
   return (
     <Checkbox size={size} {...args}>
@@ -36,7 +36,7 @@ const Template: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
     </Checkbox>
   );
 };
-const WithLabel: ComponentStory<typeof Checkbox> = ({ size, ...args }) => {
+const WithLabel: StoryFn<typeof Checkbox> = ({ size, ...args }) => {
   const [checked, setChecked] = useState(true);
   return (
     <Checkbox mt={6} mx={12} size={size} {...args}>

@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Box from "./Box";
 import { Typography } from "../Typography";
@@ -8,9 +8,9 @@ export default {
   title: "Components/Box",
   component: Box,
   argTypes: {}
-} as ComponentMeta<typeof Box>;
+} as Meta<typeof Box>;
 
-const Template: ComponentStory<typeof Box> = ({
+const Template: StoryFn<typeof Box> = ({
   children: _,
 
   ...args
@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof Box> = ({
     <div>Hey ma, I am dynamic! </div>
   </Box>
 );
-const ElevationsTemplate: ComponentStory<typeof Box> = ({
+const ElevationsTemplate: StoryFn<typeof Box> = ({
   children: __,
   ...args
 }) => (

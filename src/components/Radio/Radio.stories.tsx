@@ -1,4 +1,4 @@
-import { ComponentStory, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useState } from "react";
 
 import Radio, { RadioProps } from "./Radio";
@@ -18,7 +18,7 @@ export default {
   }
 } as Meta<RadioProps>;
 
-const Template: ComponentStory<typeof Radio> = ({ size }) => {
+const Template: StoryFn<typeof Radio> = ({ size }) => {
   const [value, setValue] = useState<"oranges" | "apples" | null>(null);
   return (
     <div style={{ gap: "2rem", display: "flex", flexDirection: "column" }}>

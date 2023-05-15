@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Counter from "./Counter";
 
@@ -6,9 +6,9 @@ export default {
   title: "Components/Counter",
   component: Counter,
   argTypes: {}
-} as ComponentMeta<typeof Counter>;
+} as Meta<typeof Counter>;
 
-const Template: ComponentStory<typeof Counter> = (args) => (
+const Template: StoryFn<typeof Counter> = (args) => (
  
     <Counter {...args} />
  

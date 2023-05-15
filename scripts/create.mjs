@@ -34,7 +34,7 @@ const Wrapper = styled.[STYPE]${"``"}
 
 `;
 const storyTemplate = `
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import [NAME] from "./[NAME]";
 
@@ -42,10 +42,10 @@ export default {
   title: "Components/[NAME]",
   component: [NAME],
   argTypes: {}
-} as ComponentMeta<typeof [NAME]>;
+} as Meta<typeof [NAME]>;
 
 
-const Template: ComponentStory<typeof [NAME]> = (args) => <[NAME] {...args} />;
+const Template: StoryFn<typeof [NAME]> = (args) => <[NAME] {...args} />;
 
 export const Default = Template.bind({});
 `;

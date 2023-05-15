@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useState, useEffect } from "@storybook/addons";
 
 import { Stack } from "../Stack";
@@ -14,9 +14,9 @@ export default {
     }
   },
   subcomponents: { Avatar }
-} as ComponentMeta<typeof AvatarGroup>;
+} as Meta<typeof AvatarGroup>;
 
-const Template: ComponentStory<typeof AvatarGroup> = ({ max, size, shape }) => {
+const Template: StoryFn<typeof AvatarGroup> = ({ max, size, shape }) => {
   const [localMax, setMax] = useState<number | null>(null);
 
   useEffect(() => {

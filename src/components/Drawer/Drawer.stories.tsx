@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "../Button";
 
@@ -14,9 +14,9 @@ export default {
       }
     }
   }
-} as ComponentMeta<typeof Drawer>;
+} as Meta<typeof Drawer>;
 
-const Template: ComponentStory<typeof Drawer> = (args) => {
+const Template: StoryFn<typeof Drawer> = (args) => {
   const [open, setOpen] = useState(false);
   return (
     <>

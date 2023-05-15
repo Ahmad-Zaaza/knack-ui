@@ -100,11 +100,11 @@ const Check = styled.span<{ indeterminate?: boolean }>`
     inset: 0;
     background-color: #fff;
     ${CheckboxInput}:checked + & {
-      border-color: #008ff8;
-      background-color: #008ff8;
+      border-color: ${p => p.theme.knackTheme.colors.primary};
+      background-color: ${p => p.theme.knackTheme.colors.primary};
     }
     ${CheckboxInput}:focus + & {
-      border-color: #008ff8;
+      border-color: ${p => p.theme.knackTheme.colors.primary};
       box-shadow: 0 0 0 3px rgba(0, 143, 248, 0.25);
     }
   }
