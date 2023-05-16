@@ -1,4 +1,4 @@
-import { ComponentStory, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { BsQuestion } from "react-icons/bs";
 import { Button } from "../Button";
 
@@ -20,7 +20,7 @@ export default {
   }
 } as Meta<INoticeProps>;
 
-const Template: ComponentStory<typeof Notice> = ({
+const Template: StoryFn<typeof Notice> = ({
   theme,
   visible,
   ...delegated

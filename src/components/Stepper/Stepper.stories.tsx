@@ -1,4 +1,4 @@
-import { ComponentStory, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useState } from "@storybook/addons";
 
 import Stepper from "./Stepper";
@@ -9,7 +9,7 @@ export default {
   argTypes: {}
 } as Meta<typeof Stepper>;
 
-const Template: ComponentStory<typeof Stepper> = ({
+const Template: StoryFn<typeof Stepper> = ({
   activeStep: _,
   onChange: __,
   ...args

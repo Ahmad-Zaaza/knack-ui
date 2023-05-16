@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Stack } from "../Stack";
 
 import Typography from "./Typography";
@@ -9,9 +9,9 @@ export default {
   argTypes: {
     color: { control: "text" }
   }
-} as ComponentMeta<typeof Typography>;
+} as Meta<typeof Typography>;
 
-const Template: ComponentStory<typeof Typography> = ({ ...args }) => (
+const Template: StoryFn<typeof Typography> = ({ ...args }) => (
   <Stack direction="column" gap={2}>
     <Typography mb={4} color="themes.warning" variant="h1" as="h1">
       This is an h1 variant

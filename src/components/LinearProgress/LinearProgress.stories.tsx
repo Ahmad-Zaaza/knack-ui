@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { LinearProgress } from ".";
 
 export default {
@@ -10,9 +10,9 @@ export default {
     },
     percentage: { control: "range" }
   }
-} as ComponentMeta<typeof LinearProgress>;
+} as Meta<typeof LinearProgress>;
 
-const Template: ComponentStory<typeof LinearProgress> = (args) => (
+const Template: StoryFn<typeof LinearProgress> = (args) => (
   <LinearProgress {...args} />
 );
 

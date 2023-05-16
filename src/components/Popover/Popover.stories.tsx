@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useState, useRef } from "@storybook/addons";
 import { BrowserRouter } from "react-router-dom";
 import { Popover } from ".";
@@ -10,9 +10,9 @@ export default {
   title: "Components/Popover",
   component: Popover,
   argTypes: {}
-} as ComponentMeta<typeof Popover>;
+} as Meta<typeof Popover>;
 
-const Template: ComponentStory<typeof Popover> = (_) => {
+const Template: StoryFn<typeof Popover> = (_) => {
   const parentRef = useRef<HTMLButtonElement | null>(null);
 
   const [open, setOpen] = useState(false);

@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Stack } from "../Stack";
 
 import Chip from "./Chip";
@@ -17,9 +17,9 @@ export default {
       control: "radio"
     }
   }
-} as ComponentMeta<typeof Chip>;
+} as Meta<typeof Chip>;
 
-const Template: ComponentStory<typeof Chip> = ({
+const Template: StoryFn<typeof Chip> = ({
   children: _,
   variant: __,
 
@@ -34,8 +34,8 @@ const Template: ComponentStory<typeof Chip> = ({
     </Chip>
     <Chip
       onDelete={() => {}}
-      theme="info"
-      variant="secondary"
+      theme="neutral"
+      // variant=""
       shape="rounded"
       {...args}
     >
@@ -53,8 +53,8 @@ const Template: ComponentStory<typeof Chip> = ({
     <Chip theme="success" variant="tertiary" {...args}>
       Success
     </Chip>
-    <Chip theme="primary" variant="tertiary" {...args}>
-      Success
+    <Chip theme="neutral" variant='tertiary' {...args}>
+      Default
     </Chip>
   </Stack>
 );

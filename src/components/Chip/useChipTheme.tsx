@@ -25,20 +25,24 @@ const useChipTheme = () => {
           text: mainTheme.colors.onPrimary
         },
         neutral: {
-          theme: mainTheme.colors.primary,
-          text: mainTheme.colors.onPrimary
+          theme: mainTheme.colors.gray[200],
+          text: mainTheme.colors.gray[500]
         },
         info: {
-          theme: mainTheme.colors.blue[400],
-          text: mainTheme.colors.white
+          text: mainTheme.colors.white,
+          theme: mainTheme.colors.themes.info.color
         },
         danger: {
           text: mainTheme.colors.white,
-          theme: mainTheme.colors.red[400]
+          theme: mainTheme.colors.themes.danger.color
         },
         success: {
           text: mainTheme.colors.white,
-          theme: mainTheme.colors.green[400]
+          theme: mainTheme.colors.themes.success.color
+        },
+        warning: {
+          text: mainTheme.colors.white,
+          theme: mainTheme.colors.themes.warning.color
         }
       },
       secondary: {
@@ -61,6 +65,10 @@ const useChipTheme = () => {
         success: {
           theme: mainTheme.colors.themes.success.color,
           text: darken(0.2, mainTheme.colors.themes.success.color)
+        },
+        warning: {
+          text: darken(0.2, mainTheme.colors.themes.warning.color),
+          theme: mainTheme.colors.themes.warning.color
         }
       },
       tertiary: {
@@ -83,6 +91,10 @@ const useChipTheme = () => {
         success: {
           theme: mainTheme.colors.themes.success.color,
           text: darken(0.2, mainTheme.colors.themes.success.color)
+        },
+        warning: {
+          text: darken(0.2, mainTheme.colors.themes.warning.color),
+          theme: mainTheme.colors.themes.warning.color
         }
       }
     }),

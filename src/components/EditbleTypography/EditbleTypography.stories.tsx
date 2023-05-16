@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useState } from "react";
 
 import EditableTypography from "./EditbleTypography";
@@ -12,9 +12,9 @@ export default {
       defaultValue: false
     }
   }
-} as ComponentMeta<typeof EditableTypography>;
+} as Meta<typeof EditableTypography>;
 
-const Template: ComponentStory<typeof EditableTypography> = ({
+const Template: StoryFn<typeof EditableTypography> = ({
   showInput,
   ..._
 }) => {

@@ -1,4 +1,4 @@
-import { ComponentStory, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Toggle, { ToggleProps } from "./Toggle";
 
@@ -14,7 +14,7 @@ export default {
   }
 } as Meta<ToggleProps>;
 
-const Template: ComponentStory<typeof Toggle> = ({ size }) => (
+const Template: StoryFn<typeof Toggle> = ({ size }) => (
  
     <Toggle size={size}>
       <Toggle.Text>Turn Off</Toggle.Text>

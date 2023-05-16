@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Avatar from "./Avatar";
 
@@ -13,10 +13,14 @@ export default {
       defaultValue: "Ahmad"
     }
   }
-} as ComponentMeta<typeof Avatar>;
+} as Meta<typeof Avatar>;
 
-const Template: ComponentStory<typeof Avatar> = ({ ...args }) => (
-  <Avatar {...args} />
+const Template: StoryFn<typeof Avatar> = ({ ...args }) => (
+  <div
+  //  style={{ background: "black" }}
+  >
+    <Avatar {...args} />
+  </div>
 );
 
 export const Default = Template.bind({});

@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { CircularProgress } from ".";
 
 export default {
@@ -12,9 +12,9 @@ export default {
       control: "range"
     }
   }
-} as ComponentMeta<typeof CircularProgress>;
+} as Meta<typeof CircularProgress>;
 
-const Template: ComponentStory<typeof CircularProgress> = (args) => (
+const Template: StoryFn<typeof CircularProgress> = (args) => (
   <CircularProgress {...args} />
 );
 

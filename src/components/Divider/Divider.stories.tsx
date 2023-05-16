@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Box } from "../Box";
 import Divider from "./Divider";
 
@@ -6,9 +6,9 @@ export default {
   title: "Components/Divider",
   component: Divider,
   argTypes: {}
-} as ComponentMeta<typeof Divider>;
+} as Meta<typeof Divider>;
 
-const Template: ComponentStory<typeof Divider> = ({ ...args }) => (
+const Template: StoryFn<typeof Divider> = ({ ...args }) => (
   <Box h={300}>
     <Divider {...args} />
   </Box>
