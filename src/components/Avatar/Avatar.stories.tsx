@@ -16,7 +16,11 @@ export default {
 } as Meta<typeof Avatar>;
 
 const Template: StoryFn<typeof Avatar> = ({ ...args }) => (
-  <Avatar {...args} />
+  <div
+  //  style={{ background: "black" }}
+  >
+    <Avatar {...args} />
+  </div>
 );
 
 export const Default = Template.bind({});

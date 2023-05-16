@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, {
   cloneElement,
   ComponentPropsWithoutRef,
@@ -9,12 +10,7 @@ import React, {
 
 import styled, { CSSProperties } from "styled-components";
 
-import {
-  Wrapper as AvatarWrapper,
-  IAvatarProps,
-  avatarSizes,
-  avatarShapes
-} from "../Avatar/Avatar";
+import { IAvatarProps, avatarSizes, avatarShapes } from "../Avatar/Avatar";
 
 export const AvatarGroupContext = createContext<
   Partial<{ size: IAvatarProps["size"]; shape: IAvatarProps["shape"] }>
@@ -72,16 +68,14 @@ const Wrapper = styled.div`
   flex-direction: row-reverse;
   isolation: isolate;
 
-  & > ${AvatarWrapper}:nth-child(n+2) {
+  & > div:nth-child(n + 2) {
     margin-inline-end: -8px;
   }
 
-  & ${AvatarWrapper} {
+  & > div {
     box-sizing: content-box;
-    border: 2px solid white;
     flex-shrink: 0;
-    /* background-color: ${(p) => p.theme.knackTheme.colors.primary}; */
-    /* color: ${(p) => p.theme.knackTheme.colors.onPrimary}; */
+    ${(p) => p.theme.knackTheme.elevations[4]};
   }
 `;
 
