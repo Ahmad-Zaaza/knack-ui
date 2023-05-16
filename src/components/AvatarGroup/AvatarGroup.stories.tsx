@@ -12,8 +12,7 @@ export default {
     max: {
       control: "number"
     }
-  },
-  subcomponents: { Avatar }
+  }
 } as Meta<typeof AvatarGroup>;
 
 const Template: StoryFn<typeof AvatarGroup> = ({ max, size, shape }) => {
@@ -25,7 +24,7 @@ const Template: StoryFn<typeof AvatarGroup> = ({ max, size, shape }) => {
     }
   }, [max]);
   return (
-    <Stack style={{background:"black"}} justifyContent="flex-start">
+    <Stack style={{ background: "black" }} justifyContent="flex-start">
       <AvatarGroup
         size={size}
         shape={shape}
