@@ -79,7 +79,7 @@ const Chip = forwardRef(
       } else {
         variantPallete = chipTheme[variant];
       }
-      if (!theme || !["info", "success", "danger", "primary",'warning'].includes(theme)) {
+      if (!theme || !["info", "success", "danger", "primary", "warning", "neutral"].includes(theme)) {
         return variantPallete.primary;
       }
       return variantPallete[theme];
@@ -133,10 +133,10 @@ const ChipBase = styled.div<{
     p.corners === "semi-rounded"
       ? p.theme.knackTheme.borderRadiuses.large
       : p.corners === "square"
-      ? 0
-      : p.corners === "rounded"
-      ? "50px"
-      : p.theme.knackTheme.borderRadiuses.medium};
+        ? 0
+        : p.corners === "rounded"
+          ? "50px"
+          : p.theme.knackTheme.borderRadiuses.medium};
   font-size: var(--font-size);
   height: var(--height);
 `;
@@ -148,10 +148,10 @@ const PrimaryChip = styled(ChipBase)`
   /* border: 1px solid transparent; */
 `;
 const SecondaryChip = styled(ChipBase)`
-  background-color: ${(p) => transparentize(0.7, p.palette.theme)};
+  // background-color: ${(p) => transparentize(0.7, p.palette.theme)};
   color: ${(p) => p.palette.text};
   fill: ${(p) => p.palette.text};
-  /* border: 1px solid ${(p) => p.palette.theme}; */
+  border: 1px solid ${(p) => p.palette.theme}; 
 `;
 const TertiaryChip = styled(ChipBase)`
   background-color: ${(p) => transparentize(0.7, p.palette.theme)};

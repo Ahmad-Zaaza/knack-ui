@@ -34,8 +34,8 @@ const Template: StoryFn<typeof Chip> = ({
     </Chip>
     <Chip
       onDelete={() => {}}
-      theme="info"
-      variant="secondary"
+      theme="neutral"
+      // variant=""
       shape="rounded"
       {...args}
     >

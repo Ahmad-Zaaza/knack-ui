@@ -25,8 +25,8 @@ const useChipTheme = () => {
           text: mainTheme.colors.onPrimary
         },
         neutral: {
-          theme: mainTheme.colors.primary,
-          text: mainTheme.colors.onPrimary
+          theme: mainTheme.colors.gray[200],
+          text: mainTheme.colors.gray[500]
         },
         info: {
           text: mainTheme.colors.white,
