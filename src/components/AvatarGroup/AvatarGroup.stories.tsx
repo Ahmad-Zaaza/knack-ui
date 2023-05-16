@@ -25,7 +25,7 @@ const Template: StoryFn<typeof AvatarGroup> = ({ max, size, shape }) => {
     }
   }, [max]);
   return (
-    <Stack justifyContent="flex-start">
+    <Stack style={{background:"black"}} justifyContent="flex-start">
       <AvatarGroup
         size={size}
         shape={shape}
