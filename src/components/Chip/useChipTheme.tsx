@@ -25,7 +25,7 @@ const useChipTheme = () => {
           text: mainTheme.colors.onPrimary
         },
         neutral: {
-          theme: mainTheme.colors.gray[200],
+          theme: mainTheme.colors.gray[100],
           text: mainTheme.colors.gray[500]
         },
         info: {
@@ -51,7 +51,7 @@ const useChipTheme = () => {
           text: darken(0.2, mainTheme.colors.primary)
         },
         neutral: {
-          theme: mainTheme.colors.gray[200],
+          theme: mainTheme.colors.gray[100],
           text: mainTheme.colors.gray[500]
         },
         info: {

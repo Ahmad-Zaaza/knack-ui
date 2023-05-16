@@ -33,7 +33,6 @@ const Template: StoryFn<typeof Chip> = ({
       Secondary Outline
     </Chip>
     <Chip
-      onDelete={() => {}}
       theme="neutral"
       // variant=""
       shape="rounded"
