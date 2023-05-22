@@ -7,8 +7,10 @@ const useTypographyStyles = ({
   mb,
   mt,
   my,
+  display,
+  flex,
   mx
-}: Pick<TypographyProps, "mb" | "mt" | "my" | "mx">) => {
+}: Pick<TypographyProps, "mb" | "mt" | "my" | "mx" | "display" | "flex">) => {
   const textStyles: { [K in TypographyVariants]: any } = useMemo(
     () => ({
       h1: {
@@ -80,9 +82,11 @@ const useTypographyStyles = ({
         "margin-block": my,
         "margin-inline": mx,
         "margin-bottom": mb,
+        display,
+        flex,
         "margin-top": mt
       }),
-    [my, mx, mb, mt]
+    [my, mx, mb, mt, display, flex]
   );
   return { textStyles, indentStyles };
 };

@@ -90,7 +90,7 @@ type TypographyBaseProps = {
 };
 
 type TypographyProps = TypographyBaseProps &
-  Pick<ExtendableCSSProps, "my" | "mx" | "mb" | "mt"> &
+  Pick<ExtendableCSSProps, "my" | "mx" | "mb" | "mt" | "display" | "flex"> &
   React.ComponentPropsWithoutRef<"p">;
 
 /**
@@ -119,6 +119,8 @@ const Typography = forwardRef(
       mt,
       mx,
       textAlign,
+      display,
+      flex,
       ...delegated
     },
     ref
@@ -127,6 +129,8 @@ const Typography = forwardRef(
       mb,
       mt,
       mx,
+      display,
+      flex,
       my
     });
 

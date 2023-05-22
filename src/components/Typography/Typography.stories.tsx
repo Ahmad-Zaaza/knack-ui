@@ -13,7 +13,7 @@ export default {
 
 const Template: StoryFn<typeof Typography> = ({ ...args }) => (
   <Stack direction="column" gap={2}>
-    <Typography mb={4} color="themes.warning" variant="h1" as="h1">
+    <Typography flex='1'  mb={4} color="themes.danger" variant="h1" as="h1">
       This is an h1 variant
     </Typography>
     <Typography {...args} variant="h2">
